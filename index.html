@@ -54,12 +54,19 @@
   .nav-end{display:flex;align-items:center;gap:10px}
   .nav-toggle{display:none;background:transparent;border:1px solid var(--line);color:var(--deep);width:42px;height:42px;border-radius:10px;font-size:1.35rem;line-height:1;align-items:center;justify-content:center;cursor:pointer}
   .nav-toggle:hover{background:var(--paper-2)}
+  .mobile-menu{display:none}
+  .mobile-menu.open{display:flex;flex-direction:column;position:absolute;top:100%;inset-inline-end:0;inset-inline-start:0;background:var(--card);border-bottom:1px solid var(--line);box-shadow:0 12px 24px -12px rgba(11,33,31,.2);padding:14px 24px;gap:0;z-index:50}
+  .mobile-menu.open a{display:block;padding:12px 0;border-bottom:1px solid var(--paper-2);color:var(--deep);font-weight:600;font-size:.95rem}
+  .mobile-menu.open a:last-child{border-bottom:0}
   .mobile-menu{display:none;flex-direction:column;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 12px 22px -12px rgba(11,33,31,.25)}
   .mobile-menu.open{display:flex}
   .mobile-menu a{padding:14px 24px;font-weight:600;color:var(--deep);border-top:1px solid var(--line)}
   .mobile-menu a:active{background:var(--paper-2)}
   @media(max-width:760px){
     .nav-links{display:none}
+    .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;inset-inline-end:0;inset-inline-start:0;background:var(--card);border-bottom:1px solid var(--line);box-shadow:0 12px 24px -12px rgba(11,33,31,.2);padding:14px 24px;gap:6px;z-index:50}
+    .nav-links.open a{padding:10px 0;border-bottom:1px solid var(--paper-2);color:var(--deep);font-weight:600}
+    .nav-links.open a:last-child{border-bottom:0}
     .nav-toggle{display:inline-flex}
     .nav .btn-primary{padding:9px 14px;font-size:.85rem}
   }
@@ -386,6 +393,7 @@
     <a href="#pricing">الباقات</a>
     <a href="#free">مجانًا</a>
     <a href="dashboard.html">لوحة التحكم</a>
+    <a href="properties.html">إدارة الأملاك</a>
   </div>
 </header>
 
@@ -406,6 +414,10 @@
       <div class="trust">
         <svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.4-3 8-7 10-4-2-7-5.6-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
         متوافق مع النماذج الاسترشادية للهيئة العامة للعقار
+      </div>
+      <div class="trust" style="margin-top:10px">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        ملاك تسجّل الجمعية — وثيق <b>يُديرها</b>. إيجار يسجّل العقد — وثيق <b>يُحصّل الإيجار</b>.
       </div>
     </div>
     <div class="hero-visual">

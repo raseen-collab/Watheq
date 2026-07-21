@@ -49,8 +49,13 @@
   .brand small{display:block;font-family:"IBM Plex Sans Arabic";font-weight:400;font-size:.68rem;color:#9FB8B3;margin-top:-2px}
   .nav-links{display:flex;align-items:center;gap:24px;font-size:.93rem;color:#B9CCC7}
   .nav-links a:hover{color:#fff}
+  .nav-toggle{display:none;background:transparent;border:1px solid rgba(255,255,255,.25);color:#EAF1EE;width:42px;height:42px;border-radius:10px;font-size:1.35rem;align-items:center;justify-content:center;cursor:pointer}
+  .mobile-menu{display:none}
+  .mobile-menu.open{display:flex;flex-direction:column;position:absolute;top:100%;inset-inline-end:0;inset-inline-start:0;background:var(--deep);border-bottom:1px solid rgba(255,255,255,.1);box-shadow:0 12px 24px -12px rgba(0,0,0,.4);padding:14px 24px;gap:0;z-index:50}
+  .mobile-menu.open a{display:block;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08);color:#EAF1EE;font-weight:600;font-size:.95rem}
+  .mobile-menu.open a:last-child{border-bottom:0}
   .nav .btn{padding:9px 16px;font-size:.9rem}
-  @media(max-width:820px){.nav-links{display:none}}
+  @media(max-width:820px){.nav-links{display:none}.nav-toggle{display:inline-flex}}
 
   /* ===== HERO (داكن) ===== */
   .hero{background:linear-gradient(160deg,var(--deep),var(--deep-2));color:#EAF1EE;position:relative;overflow:hidden}
@@ -160,7 +165,16 @@
       <a href="index.html">جمعيات الملاك</a>
       <a href="dashboard.html#property">دخول اللوحة</a>
     </nav>
-    <a class="btn btn-gold" data-wa href="#">تواصل عبر واتساب</a>
+    <div style="display:flex;align-items:center;gap:10px">
+      <a class="btn btn-gold" data-wa href="#">تواصل عبر واتساب</a>
+      <button class="nav-toggle" aria-label="Menu" data-menu>☰</button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services">الخدمات</a>
+    <a href="#pricing">الباقات</a>
+    <a href="index.html">جمعيات الملاك</a>
+    <a href="dashboard.html#property">دخول اللوحة</a>
   </div>
 </header>
 
@@ -177,6 +191,9 @@
     <div class="hero-trust">
       <span><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg> تحصيل أسرع، تأخّر أقل</span>
       <span><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.4-3 8-7 10-4-2-7-5.6-7-10V6z"/></svg> إنذارات متوافقة مع عقد الإيجار الموحّد</span>
+    </div>
+    <div class="hero-trust" style="margin-top:8px">
+      <span><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg> إيجار يسجّل العقد — وثيق <b>يُحصّل الإيجار</b></span>
     </div>
   </div>
 </section>
@@ -342,6 +359,22 @@
     const msg=a.getAttribute("data-msg")||DEFAULT_MSG;
     a.href="https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(msg);
   });
+
+  // mobile menu toggle
+  const navToggle = document.querySelector("[data-menu]");
+  const mobileMenu = document.getElementById("mobileMenu");
+  if (navToggle && mobileMenu) {
+    navToggle.addEventListener("click", () => {
+      const open = mobileMenu.classList.toggle("open");
+      navToggle.setAttribute("aria-expanded", open);
+      navToggle.textContent = open ? "✕" : "☰";
+    });
+    mobileMenu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.textContent = "☰";
+    }));
+  }
 </script>
 </body>
 </html>
