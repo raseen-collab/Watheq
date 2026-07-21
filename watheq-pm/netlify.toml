@@ -1,0 +1,12 @@
+# نشر Next.js على Netlify
+[build]
+  command = "next build"
+
+# دالة مجدولة تعمل يوميًّا 8 صباحًا (بديل Vercel Cron)
+# ملف الدالة: netlify/functions/rent-chaser.ts تستدعي منطق computeChaserActions
+# أو تنادي مسار /api/cron/rent-chaser داخليًّا.
+[functions."rent-chaser"]
+  schedule = "0 8 * * *"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
