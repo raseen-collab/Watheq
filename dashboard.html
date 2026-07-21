@@ -102,6 +102,7 @@
   .pay .d{width:7px;height:7px;border-radius:50%}
   .pay.ok{background:var(--paid-bg);color:#137a50}.pay.ok .d{background:var(--paid)}
   .pay.late{background:var(--late-bg);color:#a5322c}.pay.late .d{background:var(--late)}
+  .pay.soon{background:var(--amber-bg);color:var(--gold-ink)}.pay.soon .d{background:var(--gold)}
   .row-item .acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
 
   /* ملاحظات */
@@ -197,6 +198,23 @@ const today=()=>new Date().toISOString().slice(0,10);
 function daysLeft(d){ if(!d) return null; return Math.ceil((new Date(d)-new Date(new Date().toDateString()))/86400000); }
 function waNum(p){ p=(p||'').replace(/\D/g,''); if(!p)return''; if(p.startsWith('966'))return p; if(p.startsWith('0'))return'966'+p.slice(1); if(p.length===9)return'966'+p; return p; }
 function openWa(phone,msg){ window.open(`https://wa.me/${waNum(phone)}?text=${encodeURIComponent(msg)}`,'_blank'); }
+
+/* حساب أيام حتى استحقاق الشهر القادم (يوم 1 من كل شهر افتراضيًّا) */
+function daysUntilDue(dueDay){
+  dueDay=dueDay||1;
+  const now=new Date(), y=now.getFullYear(), m=now.getMonth();
+  let next=new Date(y,m,dueDay);
+  if(next<=now) next=new Date(y,m+1,dueDay);
+  return Math.ceil((next-now)/86400000);
+}
+
+/* مؤشّر ثلاثي: أحمر (متأخر) / أصفر (اقترب الموعد ≤7 أيام) / أخضر (منتظم) */
+function statusBadge(monthsLate, dueDay){
+  if(monthsLate>0) return `<span class="pay late"><span class="d"></span> متأخر ${monthsLate>1?monthsLate+' أشهر':'شهر'}</span>`;
+  const d=daysUntilDue(dueDay);
+  if(d<=7) return `<span class="pay soon"><span class="d"></span> يستحق خلال ${d} يوم</span>`;
+  return `<span class="pay ok"><span class="d"></span> منتظم</span>`;
+}
 const WATHEQ_WA="966596300591";
 
 const assoc=()=>state.associations.find(a=>a.id===state.activeAssoc);
@@ -359,7 +377,7 @@ function renderAssociation(){
   const owners=total?a.owners.map(o=>{const l=o.monthsLate>0;return `<div class="row-item">
     <span class="av">${esc((o.name||'?').trim().charAt(0))}</span>
     <span class="meta"><span class="n">${esc(o.name)}</span><span class="u">${o.unit?'وحدة '+esc(o.unit):'—'}${o.phone?' · '+esc(o.phone):''}</span></span>
-    ${l?`<span class="pay late"><span class="d"></span> متأخر ${o.monthsLate>1?o.monthsLate+' أشهر':'شهر'}</span>`:`<span class="pay ok"><span class="d"></span> مسدّد</span>`}
+    ${statusBadge(o.monthsLate)}
     <span class="acts">
       <button class="btn btn-ghost btn-sm" data-act="ownerPay" data-id="${o.id}">سجّل دفعة</button>
       <button class="btn btn-ghost btn-sm" data-act="ownerDue" data-id="${o.id}">+ استحقاق</button>
@@ -396,7 +414,7 @@ function renderProperty(){
   const rows=total?ts.map(t=>{const l=t.monthsLate>0,total2=t.monthsLate*Number(t.rentAmount||0);return `<div class="row-item">
     <span class="av">${esc((t.name||'?').trim().charAt(0))}</span>
     <span class="meta"><span class="n">${esc(t.name)}</span><span class="u">وحدة ${esc(t.unit||'—')} · إيجار ${money(t.rentAmount)} ريال${l&&total2>t.rentAmount?` · متأخر ${money(total2)} ريال`:''}${t.contractEnd?` · ينتهي ${t.contractEnd}`:''}</span></span>
-    ${l?`<span class="pay late"><span class="d"></span> متأخر ${t.monthsLate>1?t.monthsLate+' أشهر':'شهر'}</span>`:`<span class="pay ok"><span class="d"></span> مسدّد</span>`}
+    ${statusBadge(t.monthsLate)}
     <span class="acts">
       <button class="btn btn-ghost btn-sm" data-act="tenantPay" data-id="${t.id}">تسجيل دفعة</button>
       <button class="btn btn-ghost btn-sm" data-act="tenantDue" data-id="${t.id}">+ استحقاق</button>
@@ -422,7 +440,7 @@ function render(){
   const body = state.mode==='association'?renderAssociation():renderProperty();
   const hasEntity = state.mode==='association'?state.associations.length:state.properties.length;
   app.innerHTML = (hasEntity?toolbar():'') + body +
-    `<div class="foot">وثيق · البيانات تُحفظ تلقائيًّا على جهازك. <span class="badge-soon">نسخة تجريبية</span></div>` + renderModal();
+    `<div class="foot"><a href="index.html" style="color:var(--gold-ink);font-weight:600;text-decoration:underline">← العودة إلى الموقع الرئيسي</a><br>وثيق · البيانات تُحفظ تلقائيًّا على جهازك. <span class="badge-soon">نسخة تجريبية</span></div>` + renderModal();
 }
 
 /* ============================ الأحداث ============================ */
