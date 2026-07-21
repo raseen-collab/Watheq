@@ -1,0 +1,16 @@
+# وثيق — إعدادات النشر على Netlify
+# المشروع يقع داخل المجلد الفرعي watheq-pm، لذا نضبط "base" ليجد Netlify
+# ملف package.json ويبني مشروع Next.js من المكان الصحيح.
+[build]
+  base = "watheq-pm"
+  # نثبّت الاعتماديات صراحةً قبل البناء لضمان توفّر أداة prisma (تفادي "prisma: not found").
+  command = "npm install && npm run build"
+  publish = ".next"
+
+# نضمن تثبيت devDependencies (typescript وأدوات البناء) أثناء عملية النشر.
+[build.environment]
+  NPM_FLAGS = "--include=dev"
+
+# محرك Next.js على Netlify (App Router + مسارات API كدوال).
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
