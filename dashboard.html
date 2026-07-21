@@ -465,7 +465,10 @@ document.addEventListener('keydown',e=>{
 });
 
 /* ============================ إقلاع ============================ */
-(async()=>{ await load(); render(); })();
+(async()=>{ await load();
+  const h=(location.hash||'').replace('#','');
+  if(h==='property'||h==='association') state.mode=h;
+  render(); })();
 </script>
 </body>
 </html>
