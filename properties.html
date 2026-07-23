@@ -8,6 +8,13 @@
 <meta name="description" content="وثيق لإدارة الأملاك: أدر مستأجريك، حصّل الإيجارات في وقتها بنظام تحصيل آلي، إنذارات نظامية جاهزة للتنفيذ عبر ناجز، وتنبيه انتهاء العقود — للمُلّاك ومكاتب إدارة الأملاك.">
 <meta property="og:title" content="وثيق · إدارة الأملاك">
 <meta property="og:description" content="حصّل إيجاراتك في وقتها، دون أن تطارد أحدًا.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://watheqapp.netlify.app/properties">
+<meta property="og:image" content="https://watheqapp.netlify.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://watheqapp.netlify.app/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -151,6 +158,44 @@
   .fab{position:fixed;inset-inline-start:22px;bottom:22px;z-index:70;display:flex;align-items:center;gap:10px;background:#1FA855;color:#fff;font-weight:600;padding:13px 20px;border-radius:999px;box-shadow:0 14px 30px -12px rgba(31,168,85,.9);font-size:.95rem}
   .fab:hover{background:#18944a}.fab .wa-ico{width:20px;height:20px}
 
+  /* أنواع العقارات */
+  .ptypes{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:30px}
+  .ptype{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 10px;text-align:center;box-shadow:var(--shadow);transition:transform .18s ease,border-color .18s ease}
+  .ptype:hover{transform:translateY(-3px);border-color:var(--gold-soft)}
+  .ptype .e{font-size:1.7rem;display:block;margin-bottom:7px}
+  .ptype .n{font-size:.85rem;font-weight:600;color:var(--deep)}
+  /* اللوحة المرئية */
+  .demo{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-lg);overflow:hidden;margin-top:30px}
+  .demo-bar{background:var(--deep);color:#EAF1EE;padding:11px 16px;display:flex;align-items:center;justify-content:space-between;font-size:.85rem}
+  .demo-bar .dots{display:flex;gap:6px}
+  .demo-bar .dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25);display:block}
+  .demo-body{padding:18px}
+  .demo-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+  .dstat{background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:12px}
+  .dstat .v{font-family:"Readex Pro";font-weight:700;font-size:1.5rem;line-height:1;color:var(--deep)}
+  .dstat .v.g{color:var(--paid)}.dstat .v.r{color:var(--late)}
+  .dstat .l{font-size:.74rem;color:var(--muted);margin-top:5px}
+  .drow{display:flex;align-items:center;gap:11px;border:1px solid var(--line);border-radius:11px;padding:10px 12px;margin-bottom:8px;background:var(--paper)}
+  .drow .av{width:34px;height:34px;border-radius:9px;background:var(--paper-2);display:grid;place-items:center;font-weight:700;color:var(--deep);flex:none;font-size:.9rem}
+  .drow .info{flex:1;min-width:0}
+  .drow .nm{font-weight:600;font-size:.9rem}
+  .drow .mt{color:var(--muted);font-size:.75rem}
+  .dpill{font-size:.74rem;font-weight:700;padding:5px 11px;border-radius:8px;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+  .dpill i{width:7px;height:7px;border-radius:50%;display:block}
+  .dpill.g{background:var(--paid-bg);color:#137a50}.dpill.g i{background:var(--paid)}
+  .dpill.a{background:var(--amber-bg);color:var(--gold-ink)}.dpill.a i{background:var(--gold)}
+  .dpill.r{background:#FBE9E7;color:#a5322c}.dpill.r i{background:var(--late)}
+  .demo-cap{background:var(--paper-2);border-top:1px solid var(--line);padding:12px 18px;font-size:.83rem;color:var(--muted);text-align:center}
+  /* الحدود القانونية */
+  .legal{background:var(--card);border:2px solid var(--gold-soft);border-radius:18px;padding:30px clamp(20px,4vw,40px);margin-top:34px}
+  .legal h3{font-size:1.25rem;color:var(--deep);margin-bottom:8px}
+  .legal .two{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:18px}
+  .legal ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .legal li{display:flex;gap:9px;align-items:flex-start;font-size:.92rem}
+  .legal li .m{flex:none;font-weight:700;width:18px}
+  .legal .yes .m{color:var(--paid)}.legal .no .m{color:var(--late)}
+  .legal h4{font-size:.95rem;margin-bottom:10px;color:var(--deep)}
+  @media(max-width:860px){.ptypes{grid-template-columns:repeat(3,1fr)}.demo-stats{grid-template-columns:1fr 1fr}.legal .two{grid-template-columns:1fr}}
   @media(max-width:860px){.services,.steps{grid-template-columns:1fr}.packs{grid-template-columns:1fr;max-width:420px}.pain,.preview{border-radius:18px}}
 </style>
 </head>
@@ -189,7 +234,10 @@
     <p class="lead">وثيق يدير مستأجريك، ويطارد الإيجارات المتأخرة بالنيابة عنك بتذكير آلي وإنذارات نظامية جاهزة للتنفيذ عبر ناجز، وينبّهك قبل انتهاء أي عقد. عقارك يُدار، لا يُهمَل.</p>
     <div class="cta-row">
       <a class="btn btn-wa" data-wa href="#"><svg class="wa-ico" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.4A10 10 0 1 0 12 2z"/></svg> ابدأ عبر واتساب</a>
-      <a class="btn btn-light" href="dashboard.html#property">جرّب لوحة التحكم ←</a>
+      <a class="btn btn-light" href="https://watheq-app.vercel.app">ابدأ تجربة ٣٠ يومًا مجانًا ←</a>
+    </div>
+    <div style="margin-top:18px;display:inline-flex;align-items:center;gap:9px;background:rgba(31,168,85,.14);border:1px solid rgba(31,168,85,.4);color:#7FE0A8;padding:9px 18px;border-radius:999px;font-size:.92rem;font-weight:600">
+      🎁 تجربة مجانية ٣٠ يومًا — كل المزايا، بلا بطاقة بنكية
     </div>
     <div class="hero-trust">
       <span><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg> تحصيل أسرع، تأخّر أقل</span>
@@ -227,41 +275,101 @@
     <p class="sec-sub">من التحصيل إلى حفظ الحق النظامي — أدوات مصمّمة لتزيد تحصيلك وتريح بالك.</p>
     <div class="services">
       <div class="svc">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H7l-3 3z"/><path d="M8 9h8M8 12h5"/></svg></div>
-        <h3>المُحصّل الذكي للإيجارات</h3>
-        <p>تذكير ودّي قبل الاستحقاق، ثم تصعيد آلي عند التأخّر — رسائل احترافية تُرسل بالنيابة عنك عبر واتساب. التحصيل الفعلي يتم بين المالك والمستأجر مباشرة.</p>
-        <span class="benefit">↑ تحصّل في وقتك دون ملاحقة يدوية</span>
-      </div>
-      <div class="svc">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.4-3 8-7 10-4-2-7-5.6-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <h3>إنذارات نظامية</h3>
-        <p>إنذار نهائي بصياغة رسمية يشير إلى عقد الإيجار الموحّد، ويمهّد للمطالبة عبر محكمة التنفيذ (ناجز).</p>
-        <span class="benefit">↑ حقّك محفوظ ومُوثّق</span>
-      </div>
-      <div class="svc">
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></div>
-        <h3>تتبّع العقود والتنبيهات</h3>
-        <p>تاريخ بداية ونهاية كل عقد، وتنبيه مبكر قبل انتهائه لتجدّد أو تُخلي في وقتك.</p>
-        <span class="benefit">↑ لا يفوتك تجديد ولا إخلاء</span>
+        <h3>محرّك العقود التلقائي</h3>
+        <p>أدخل تاريخ البداية والقيمة ودورة السداد (يومي، أسبوعي، شهري، كل ٣ أو ٦ أشهر، سنوي) — والنظام يستنتج كل تواريخ الدفعات ونهاية العقد تلقائيًّا.</p>
+        <span class="benefit">↑ لا حسابات يدوية ولا تواريخ ضائعة</span>
       </div>
       <div class="svc">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div>
-        <h3>لوحة تحصيل واضحة</h3>
-        <p>حالة سداد كل مستأجر (أخضر/أحمر)، نسبة التحصيل، والمبالغ المتأخرة — في نظرة واحدة.</p>
-        <span class="benefit">↑ صورة كاملة لأملاكك</span>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H7l-3 3z"/><path d="M8 9h8M8 12h5"/></svg></div>
+        <h3>تذكيرات واتساب جاهزة</h3>
+        <p>بضغطة واحدة يفتح واتساب برسالة تذكير مصاغة باسم المستأجر ووحدته ومبلغه وتاريخ استحقاقه — ترسلها أنت من رقمك.</p>
+        <span class="benefit">↑ تذكير مهني في ثوانٍ</span>
       </div>
       <div class="svc">
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 12h6M9 16h6M9 8h3"/></svg></div>
-        <h3>كشوف وتقارير</h3>
-        <p>كشف حساب لكل عقار وحصيلة التحصيل، جاهزة لك أو لمالك العقار الذي تديره.</p>
-        <span class="benefit">↑ شفافية توفّر وقتك</span>
+        <h3>نماذج خطابات وإشعارات</h3>
+        <p>نموذج إشعار سداد مصاغ ببياناتك جاهز للنسخ أو الطباعة. <b>نماذج فقط</b> — تستخدمها أنت كما تشاء.</p>
+        <span class="benefit">↑ صياغة مرتّبة توفّر وقتك</span>
+      </div>
+      <div class="svc">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v12M8 11l4 4 4-4"/><path d="M4 19h16"/></svg></div>
+        <h3>رفع جماعي من Excel</h3>
+        <p>عندك ٤٠ مستأجرًا؟ حمّل القالب، املأه، وارفعه — تُضاف كل الوحدات دفعة واحدة مع معاينة وتحقّق قبل الحفظ.</p>
+        <span class="benefit">↑ تجهيز محفظتك في دقائق</span>
+      </div>
+      <div class="svc">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div>
+        <h3>لوحة إشارات المرور</h3>
+        <p>أخضر منتظم، أصفر يستحق خلال ٧ أيام، أحمر متأخر — مع نسبة الانتظام وإجمالي المتأخر وجدول دفعات كامل لكل وحدة.</p>
+        <span class="benefit">↑ صورة محفظتك في نظرة</span>
       </div>
       <div class="svc">
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 21V8l6-4 6 4M9 21v-6h4v6M15 21V11l6 4v6"/></svg></div>
-        <h3>إدارة عدة عقارات</h3>
-        <p>كل عقاراتك ومستأجريك في مكان واحد، وتنقّل سريع بينها — مثالي لمكاتب إدارة الأملاك.</p>
-        <span class="benefit">↑ تُدير أكثر بجهد أقل</span>
+        <h3>كل أنواع العقارات</h3>
+        <p>عمائر سكنية، معارض تجارية، مكاتب، مستودعات، فلل، وأراضٍ — كل نوع بمصطلحاته الصحيحة داخل اللوحة.</p>
+        <span class="benefit">↑ منصة واحدة لمحفظتك كلها</span>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- أنواع العقارات + اللوحة المرئية -->
+<section class="band" style="padding-top:0">
+  <div class="wrap">
+    <span class="sec-eyebrow">يدعم محفظتك كاملة</span>
+    <h2 class="sec-title">كل نوع عقار — بمصطلحاته الصحيحة</h2>
+    <p class="sec-sub">اختر نوع العقار، فتتغيّر تسميات الوحدات داخل اللوحة تلقائيًّا (شقة، معرض، مكتب، مستودع، فيلا، قطعة).</p>
+    <div class="ptypes">
+      <div class="ptype"><span class="e">🏢</span><span class="n">عمارة سكنية</span></div>
+      <div class="ptype"><span class="e">🏬</span><span class="n">معرض تجاري</span></div>
+      <div class="ptype"><span class="e">🏛️</span><span class="n">مبنى مكاتب</span></div>
+      <div class="ptype"><span class="e">🏭</span><span class="n">مستودع</span></div>
+      <div class="ptype"><span class="e">🏡</span><span class="n">فيلا / فلل</span></div>
+      <div class="ptype"><span class="e">🗺️</span><span class="n">أرض</span></div>
+    </div>
+
+    <div style="margin-top:52px">
+      <span class="sec-eyebrow">هكذا تبدو لوحتك</span>
+      <h2 class="sec-title">محفظتك كلها في شاشة واحدة</h2>
+      <p class="sec-sub">إشارات مرور واضحة، ومبالغ محسوبة تلقائيًّا، وتاريخ كل دفعة قادمة — دون أن تفتح ملف إكسل واحدًا.</p>
+    </div>
+
+    <div class="demo">
+      <div class="demo-bar">
+        <span style="font-family:'Readex Pro';font-weight:600">🏬 مجمّع الياسمين التجاري · معرض تجاري · الرياض</span>
+        <span class="dots"><i></i><i></i><i></i></span>
+      </div>
+      <div class="demo-body">
+        <div class="demo-stats">
+          <div class="dstat"><div class="v g">٧٥٪</div><div class="l">نسبة الانتظام</div></div>
+          <div class="dstat"><div class="v r">١</div><div class="l">وحدات متأخرة</div></div>
+          <div class="dstat"><div class="v r">18,000</div><div class="l">إجمالي المتأخر (ريال)</div></div>
+          <div class="dstat"><div class="v">١</div><div class="l">دفعات خلال ٧ أيام</div></div>
+        </div>
+
+        <div class="drow">
+          <span class="av">م</span>
+          <span class="info"><span class="nm">مؤسسة النور التجارية</span><span class="mt">معرض 2 · 18,000 ريال / ٣ أشهر · متأخر 18,000 ريال</span></span>
+          <span class="dpill r"><i></i> متأخر دفعة واحدة</span>
+        </div>
+        <div class="drow">
+          <span class="av">ع</span>
+          <span class="info"><span class="nm">عبدالله الحربي</span><span class="mt">معرض 1 · 9,500 ريال / شهر · القادمة 2026-07-28</span></span>
+          <span class="dpill a"><i></i> يستحق خلال ٥ أيام</span>
+        </div>
+        <div class="drow">
+          <span class="av">خ</span>
+          <span class="info"><span class="nm">خالد القحطاني</span><span class="mt">معرض 3 · 12,000 ريال / ٦ أشهر · القادمة 2026-11-01</span></span>
+          <span class="dpill g"><i></i> منتظم</span>
+        </div>
+        <div class="drow">
+          <span class="av">ش</span>
+          <span class="info"><span class="nm">شركة الأفق للتجارة</span><span class="mt">معرض 4 · 60,000 ريال / سنة · القادمة 2027-01-15</span></span>
+          <span class="dpill g"><i></i> منتظم</span>
+        </div>
+      </div>
+      <div class="demo-cap">كل المبالغ والتواريخ أعلاه <b>محسوبة تلقائيًّا</b> من تاريخ بداية كل عقد ودورة سداده — لم تُدخل يدويًّا.</div>
     </div>
   </div>
 </section>
@@ -287,6 +395,9 @@
       <h2 class="sec-title">باقة للمالك، وباقة للمكتب</h2>
       <p style="margin:14px auto 0;max-width:36em;font-weight:600;color:var(--gold-ink);font-size:.95rem">💡 مستأجر واحد يتأخّر شهرًا بإيجار ٣٬٠٠٠ ريال = أكثر من اشتراك وثيق لسنتين. التذكير في وقته أرخص وسيلة تحصيل.</p>
     </div>
+    <div style="max-width:760px;margin:22px auto 0;background:#E6F4EC;border:1px solid #B7DFC7;color:#137a50;border-radius:14px;padding:14px;text-align:center;font-weight:700">
+      🎁 جرّب كل المزايا مجانًا ٣٠ يومًا — بلا بطاقة بنكية، وبلا التزام
+    </div>
     <div class="founder">🎉 عرض المؤسسين — أول <b>٢٠ مشترك فقط</b>: سعرك ثابت مدى الحياة ولو ارتفعت الأسعار</div>
     <div class="packs">
       <div class="pack">
@@ -300,7 +411,7 @@
           <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg> تتبّع العقود وتنبيه انتهائها</li>
           <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg> لوحة تحصيل بحالة كل مستأجر</li>
         </ul>
-        <a class="btn btn-ghost" data-wa data-msg="السلام عليكم، مهتم بباقة المالك في وثيق لإدارة الأملاك." href="#">اختر باقة المالك</a>
+        <a class="btn btn-ghost" href="https://watheq-app.vercel.app">ابدأ مجانًا ٣٠ يومًا</a>
       </div>
       <div class="pack feature">
         <span class="pack-flag">الأنسب للمكاتب</span>
@@ -314,7 +425,7 @@
           <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg> كشوف وتقارير تحصيل لكل عقار</li>
           <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg> دعم بأولوية</li>
         </ul>
-        <a class="btn btn-gold" data-wa data-msg="السلام عليكم، مهتم بباقة المكتب في وثيق لإدارة الأملاك." href="#">اختر باقة المكتب</a>
+        <a class="btn btn-gold" href="https://watheq-app.vercel.app">ابدأ مجانًا ٣٠ يومًا</a>
       </div>
     </div>
   </div>
@@ -341,6 +452,42 @@
   </div>
 </section>
 
+<!-- الحدود القانونية -->
+<section class="band" style="padding-top:0">
+  <div class="wrap">
+    <div class="legal">
+      <span class="sec-eyebrow">وضوح تام</span>
+      <h3>وثيق أداة تنظيمية — لا جهة قانونية ولا مالية</h3>
+      <p style="color:var(--muted);font-size:.95rem">نُفضّل أن تعرف حدودنا بدقة قبل أن تشترك، لا بعدها.</p>
+      <div class="two">
+        <div>
+          <h4 style="color:var(--paid)">✓ ما يفعله وثيق</h4>
+          <ul class="yes">
+            <li><span class="m">✓</span> ينظّم عقاراتك ووحداتك ومستأجريك في مكان واحد</li>
+            <li><span class="m">✓</span> يحسب تواريخ الدفعات والمتأخرات تلقائيًّا</li>
+            <li><span class="m">✓</span> ينبّهك قبل الاستحقاق وقبل انتهاء العقود</li>
+            <li><span class="m">✓</span> يُنشئ <b>نماذج خطابات تذكير وإشعارات</b> بصياغة مرتّبة</li>
+            <li><span class="m">✓</span> يفتح لك واتساب برسالة جاهزة <b>ترسلها أنت من رقمك</b></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color:var(--late)">✕ ما لا يفعله وثيق</h4>
+          <ul class="no">
+            <li><span class="m">✕</span> لا يقدّم استشارات قانونية ولا يمثّلك أمام أي جهة</li>
+            <li><span class="m">✕</span> لا يرفع دعاوى ولا يقدّم طلبات تنفيذ نيابةً عنك</li>
+            <li><span class="m">✕</span> لا يستلم ولا يحوّل ولا يحتفظ بأي مبالغ — التحصيل بينك وبين المستأجر مباشرة</li>
+            <li><span class="m">✕</span> ليس بديلًا عن المنصات الحكومية الرسمية (إيجار، ملاك، ناجز)</li>
+            <li><span class="m">✕</span> لا يرسل رسائل نيابةً عنك دون علمك</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:20px;font-size:.86rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px">
+        النماذج التي يوفّرها وثيق <b>استرشادية</b>، ومسؤولية استخدامها تقع على المستخدم. ننصح بمراجعتها مع مختص مرخّص قبل أي استخدام رسمي.
+      </p>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap row">
     <a href="index.html" class="brand" style="display:flex;align-items:center;gap:10px"><span class="seal"></span> وثيق</a>
@@ -349,6 +496,7 @@
       <a href="#pricing">الباقات</a>
       <a href="index.html">جمعيات الملاك</a>
       <a href="dashboard.html#property">لوحة التحكم</a>
+      <a href="legal.html">الشروط والخصوصية</a>
     </div>
     <small>© وثيق ٢٠٢٦ — إدارة الأملاك</small>
     <small style="display:block;margin-top:8px;color:#5C6B67;font-size:.72rem;max-width:600px">وثيق منصة إدارية وتنظيمية ميسّرة، ولا تُعدّ بديلًا عن المنصات الحكومية الرسمية (مثل منصة ملاك أو إيجار)، ولا تقدم استشارات قانونية مباشرة. وثيق يُرسل تذكيرات ويُجهّز نماذج إنذارات — التحصيل الفعلي يتم بين المالك والمستأجر مباشرة.</small>

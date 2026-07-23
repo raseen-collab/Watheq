@@ -9,6 +9,14 @@
 <meta property="og:title" content="وثيق — منصة إدارة جمعيات الملاك">
 <meta property="og:description" content="من مستند لمرة واحدة، إلى منصة تُدار منها جمعيتك على مدار السنة.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://watheqapp.netlify.app">
+<meta property="og:image" content="https://watheqapp.netlify.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="وثيق — منصة إدارة جمعيات الملاك والأملاك">
+<meta name="twitter:description" content="حصّل إيجاراتك في وقتها، وأدِر جمعيتك من مكان واحد.">
+<meta name="twitter:image" content="https://watheqapp.netlify.app/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -365,6 +373,58 @@
     .pillar-viz,.pillar:nth-of-type(even) .pillar-viz{order:2;border-inline-start:0;border-inline-end:0;border-top:1px solid var(--line)}
   }
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+
+  /* مسارا المنصة */
+  .paths{display:grid;grid-template-columns:1.15fr 1fr;gap:20px;margin-top:34px}
+  .path{border-radius:20px;padding:30px clamp(20px,3vw,34px);position:relative;overflow:hidden;display:flex;flex-direction:column}
+  .path.main{background:linear-gradient(155deg,#0E3A37,#0A2C2A);color:#EAF1EE;box-shadow:0 26px 60px -30px rgba(11,33,31,.6)}
+  .path.main::after{content:"";position:absolute;inset-inline-start:-60px;bottom:-90px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(184,121,31,.26),transparent 62%)}
+  .path.alt{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
+  .path .tag{display:inline-block;font-size:.74rem;font-weight:700;padding:5px 13px;border-radius:999px;margin-bottom:14px;position:relative}
+  .path.main .tag{background:rgba(231,200,119,.16);border:1px solid rgba(231,200,119,.4);color:var(--gold-soft)}
+  .path.alt .tag{background:var(--paper-2);border:1px solid var(--line);color:var(--gold-ink)}
+  .path h3{font-size:clamp(1.3rem,2.2vw,1.7rem);margin:0 0 10px;position:relative;line-height:1.4}
+  .path p{font-size:.95rem;margin:0 0 16px;position:relative}
+  .path.main p{color:#B9CCC7}.path.alt p{color:var(--muted)}
+  .path ul{list-style:none;padding:0;margin:0 0 22px;display:flex;flex-direction:column;gap:9px;position:relative}
+  .path li{display:flex;gap:9px;align-items:flex-start;font-size:.92rem}
+  .path li b{font-weight:700}
+  .path.main li{color:#DDE8E5}
+  .path .go{margin-top:auto;position:relative}
+  /* لوحة مرئية */
+  .demo{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 28px 64px -32px rgba(11,33,31,.45);overflow:hidden;margin-top:32px}
+  .demo-bar{background:var(--deep);color:#EAF1EE;padding:11px 16px;display:flex;align-items:center;justify-content:space-between;font-size:.85rem;flex-wrap:wrap;gap:8px}
+  .demo-tabs{display:inline-flex;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:3px}
+  .demo-tabs span{padding:5px 14px;border-radius:7px;font-size:.8rem;font-weight:600;color:#CFE0DB}
+  .demo-tabs span.on{background:var(--gold-soft);color:#0A2C2A}
+  .demo-body{padding:18px}
+  .demo-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+  .dstat{background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:12px}
+  .dstat .v{font-family:"Readex Pro";font-weight:700;font-size:1.5rem;line-height:1;color:var(--deep)}
+  .dstat .v.g{color:var(--paid)}.dstat .v.r{color:var(--late)}
+  .dstat .l{font-size:.74rem;color:var(--muted);margin-top:5px}
+  .drow{display:flex;align-items:center;gap:11px;border:1px solid var(--line);border-radius:11px;padding:10px 12px;margin-bottom:8px;background:var(--paper)}
+  .drow .av{width:34px;height:34px;border-radius:9px;background:var(--paper-2);display:grid;place-items:center;font-weight:700;color:var(--deep);flex:none;font-size:.9rem}
+  .drow .info{flex:1;min-width:0}
+  .drow .nm{font-weight:600;font-size:.9rem;display:block}
+  .drow .mt{color:var(--muted);font-size:.75rem}
+  .dpill{font-size:.74rem;font-weight:700;padding:5px 11px;border-radius:8px;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+  .dpill i{width:7px;height:7px;border-radius:50%;display:block}
+  .dpill.g{background:#E6F4EC;color:#137a50}.dpill.g i{background:var(--paid)}
+  .dpill.a{background:var(--amber-bg);color:var(--gold-ink)}.dpill.a i{background:var(--gold)}
+  .dpill.r{background:#FBE9E7;color:#a5322c}.dpill.r i{background:var(--late)}
+  .demo-cap{background:var(--paper-2);border-top:1px solid var(--line);padding:12px 18px;font-size:.83rem;color:var(--muted);text-align:center}
+  /* حدود قانونية */
+  .legal{background:var(--card);border:2px solid var(--gold-soft);border-radius:18px;padding:30px clamp(20px,4vw,40px)}
+  .legal h3{font-size:1.25rem;color:var(--deep);margin:8px 0}
+  .legal .two{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:18px}
+  .legal ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px}
+  .legal li{display:flex;gap:9px;align-items:flex-start;font-size:.92rem}
+  .legal li .m{flex:none;font-weight:700;width:18px}
+  .legal .yes .m{color:var(--paid)}.legal .no .m{color:var(--late)}
+  .legal h4{font-size:.95rem;margin:0 0 10px}
+  .trial-chip{display:inline-flex;align-items:center;gap:9px;background:#E6F4EC;border:1px solid #B7DFC7;color:#137a50;padding:9px 18px;border-radius:999px;font-size:.92rem;font-weight:700}
+  @media(max-width:860px){.paths{grid-template-columns:1fr}.demo-stats{grid-template-columns:1fr 1fr}.legal .two{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -396,6 +456,7 @@
     <a href="#free">مجانًا</a>
     <a href="dashboard.html">لوحة التحكم</a>
     <a href="properties.html">إدارة الأملاك</a>
+      <a href="legal.html">الشروط والخصوصية</a>
     <a href="https://watheq-app.vercel.app">تسجيل الدخول</a>
   </div>
 </header>
@@ -412,7 +473,7 @@
           <svg class="wa-ico" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.4A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-2.85.83.76-2.78-.2-.32A8.2 8.2 0 1 1 12 20.2z"/></svg>
           ابدأ عبر واتساب
         </a>
-        <a class="btn btn-ghost" href="dashboard.html">جرّب لوحة التحكم مجانًا</a>
+        <a class="btn btn-ghost" href="https://watheq-app.vercel.app">ابدأ تجربة ٣٠ يومًا مجانًا</a>
       </div>
       <div class="trust">
         <svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.4-3 8-7 10-4-2-7-5.6-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
@@ -432,6 +493,91 @@
     </div>
   </div>
 </section>
+
+<!-- مسارا المنصة + اللوحة المرئية -->
+<section class="band" id="paths" style="padding:56px 0 10px">
+  <div class="wrap">
+    <div style="text-align:center">
+      <span class="sec-eyebrow">ابدأ من هنا</span>
+      <h2 class="sec-title">ماذا تدير؟</h2>
+      <p class="sec-sub" style="margin-inline:auto">لكل مسار لوحته الخاصة وأدواته — تختار عند التسجيل، فتتهيّأ المنصة لك تمامًا.</p>
+      <div class="trial-chip" style="margin-top:16px">🎁 تجربة مجانية ٣٠ يومًا — كل المزايا، بلا بطاقة بنكية</div>
+    </div>
+
+    <div class="paths">
+      <div class="path main">
+        <span class="tag">الأكثر استخدامًا</span>
+        <h3>أدير أملاكًا وعقارات</h3>
+        <p>مالك عقار أو مكتب إدارة أملاك — عمائر، معارض تجارية، مكاتب، مستودعات، فلل، وأراضٍ.</p>
+        <ul>
+          <li>◆ <span><b>محرّك عقود تلقائي:</b> أدخل تاريخ البداية والقيمة والدورة (يومي حتى سنوي) — والباقي يُحسب وحده</span></li>
+          <li>◆ <span><b>رفع جماعي من Excel:</b> عشرات المستأجرين في دقائق</span></li>
+          <li>◆ <span><b>تذكيرات واتساب</b> ونماذج خطابات جاهزة بصياغة مرتّبة</span></li>
+          <li>◆ <span><b>إشارات مرور:</b> منتظم / يستحق قريبًا / متأخر — في نظرة</span></li>
+        </ul>
+        <div class="go" style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn btn-gold" href="https://watheq-app.vercel.app">ابدأ مجانًا ٣٠ يومًا</a>
+          <a class="btn" style="background:rgba(255,255,255,.1);color:#EAF1EE;border:1px solid rgba(255,255,255,.25)" href="properties.html">تفاصيل المسار ←</a>
+        </div>
+      </div>
+
+      <div class="path alt">
+        <span class="tag">للاتحادات والجمعيات</span>
+        <h3>أدير جمعية ملاك</h3>
+        <p>مدير اتحاد ملاك أو عضو مجلس إدارة — عمارة أو مجمّع سكني.</p>
+        <ul>
+          <li>◆ <span><b>محاضر وموازنات</b> جاهزة للرفع على منصة ملاك</span></li>
+          <li>◆ <span><b>اشتراكات الصيانة:</b> حالة سداد كل مالك ورصيد الصندوق</span></li>
+          <li>◆ <span><b>تنبيه انتهاء شهادة الجمعية</b> قبل وقتها بوقت كافٍ</span></li>
+          <li>◆ <span><b>نماذج خطابات تذكير</b> للملّاك المتأخرين</span></li>
+        </ul>
+        <div class="go" style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="https://watheq-app.vercel.app">ابدأ مجانًا ٣٠ يومًا</a>
+          <a class="btn btn-ghost" href="#platform">تفاصيل المسار ←</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- اللوحة المرئية -->
+    <div style="text-align:center;margin-top:56px">
+      <span class="sec-eyebrow">هكذا تبدو لوحتك</span>
+      <h2 class="sec-title">كيف يُدير وثيق محفظتك فعليًّا</h2>
+      <p class="sec-sub" style="margin-inline:auto">هذه ليست صورة تخيّلية — هذه واجهة اللوحة الفعلية. كل مبلغ وتاريخ فيها <b>محسوب تلقائيًّا</b>.</p>
+    </div>
+
+    <div class="demo">
+      <div class="demo-bar">
+        <span style="font-family:'Readex Pro';font-weight:600">🏬 مجمّع الياسمين · معرض تجاري · الرياض</span>
+        <span class="demo-tabs"><span class="on">عقاراتي</span><span>رفع Excel</span></span>
+      </div>
+      <div class="demo-body">
+        <div class="demo-stats">
+          <div class="dstat"><div class="v g">٧٥٪</div><div class="l">نسبة الانتظام</div></div>
+          <div class="dstat"><div class="v r">١</div><div class="l">وحدات متأخرة</div></div>
+          <div class="dstat"><div class="v r">18,000</div><div class="l">إجمالي المتأخر (ريال)</div></div>
+          <div class="dstat"><div class="v">١</div><div class="l">دفعات خلال ٧ أيام</div></div>
+        </div>
+        <div class="drow">
+          <span class="av">م</span>
+          <span class="info"><span class="nm">مؤسسة النور التجارية</span><span class="mt">معرض 2 · 18,000 ريال / ٣ أشهر · متأخر 18,000 ريال</span></span>
+          <span class="dpill r"><i></i> متأخر دفعة واحدة</span>
+        </div>
+        <div class="drow">
+          <span class="av">ع</span>
+          <span class="info"><span class="nm">عبدالله الحربي</span><span class="mt">معرض 1 · 9,500 ريال / شهر · القادمة 2026-07-28</span></span>
+          <span class="dpill a"><i></i> يستحق خلال ٥ أيام</span>
+        </div>
+        <div class="drow">
+          <span class="av">خ</span>
+          <span class="info"><span class="nm">خالد القحطاني</span><span class="mt">معرض 3 · 12,000 ريال / ٦ أشهر · القادمة 2026-11-01</span></span>
+          <span class="dpill g"><i></i> منتظم</span>
+        </div>
+      </div>
+      <div class="demo-cap">أدخلت تاريخ بداية العقد ودورته وقيمته فقط — <b>تواريخ الدفعات والمتأخرات ونهاية العقد استُنتجت تلقائيًّا</b>.</div>
+    </div>
+  </div>
+</section>
+
 
 <!-- EXCEL OBJECTION -->
 <section class="band">
@@ -754,6 +900,9 @@
       <p style="margin:14px auto 0;max-width:36em;font-weight:600;color:var(--gold-ink);font-size:.95rem">💡 غرامة التأخّر عن تجديد شهادة الجمعية وحدها تتجاوز اشتراك وثيق لسنة كاملة.</p>
     </div>
 
+    <div style="max-width:760px;margin:22px auto 0;background:#E6F4EC;border:1px solid #B7DFC7;color:#137a50;border-radius:14px;padding:14px;text-align:center;font-weight:700">
+      🎁 جرّب كل المزايا مجانًا ٣٠ يومًا — بلا بطاقة بنكية، وبلا التزام
+    </div>
     <div class="founder-strip">🎉 عرض المؤسسين — أول <span class="g">٢٠ مشترك فقط</span>: سعرك ثابت مدى الحياة ولو ارتفعت الأسعار</div>
 
     <div class="packs">
@@ -880,6 +1029,42 @@
 </section>
 
 <!-- FOOTER -->
+<!-- الحدود القانونية -->
+<section class="band" style="padding-top:0">
+  <div class="wrap">
+    <div class="legal">
+      <span class="sec-eyebrow">وضوح تام</span>
+      <h3>وثيق أداة تنظيمية — لا جهة قانونية ولا مالية</h3>
+      <p style="color:var(--muted);font-size:.95rem;margin:0">نُفضّل أن تعرف حدودنا بدقة قبل أن تشترك، لا بعدها.</p>
+      <div class="two">
+        <div>
+          <h4 style="color:var(--paid)">✓ ما يفعله وثيق</h4>
+          <ul class="yes">
+            <li><span class="m">✓</span> ينظّم جمعيتك أو عقاراتك ووحداتها في مكان واحد</li>
+            <li><span class="m">✓</span> يحسب تواريخ الاستحقاق والمتأخرات تلقائيًّا</li>
+            <li><span class="m">✓</span> ينبّهك قبل المواعيد المهمة (استحقاق، نهاية عقد، انتهاء شهادة)</li>
+            <li><span class="m">✓</span> يُنشئ <b>نماذج محاضر وخطابات تذكير وإشعارات</b> بصياغة مرتّبة</li>
+            <li><span class="m">✓</span> يفتح لك واتساب برسالة جاهزة <b>ترسلها أنت من رقمك</b></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color:var(--late)">✕ ما لا يفعله وثيق</h4>
+          <ul class="no">
+            <li><span class="m">✕</span> لا يقدّم استشارات قانونية ولا يمثّلك أمام أي جهة</li>
+            <li><span class="m">✕</span> لا يرفع دعاوى ولا يقدّم طلبات تنفيذ نيابةً عنك</li>
+            <li><span class="m">✕</span> لا يستلم ولا يحوّل ولا يحتفظ بأي مبالغ — التحصيل بين الأطراف مباشرة</li>
+            <li><span class="m">✕</span> ليس بديلًا عن المنصات الحكومية الرسمية (ملاك، إيجار، ناجز)</li>
+            <li><span class="m">✕</span> لا يرسل أي رسالة نيابةً عنك دون علمك</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:20px;font-size:.86rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px">
+        النماذج التي يوفّرها وثيق <b>استرشادية</b>، ومسؤولية استخدامها تقع على المستخدم. ننصح بمراجعتها مع مختص مرخّص قبل أي استخدام رسمي.
+      </p>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap row">
     <div class="brand"><span class="seal"></span> وثيق</div>
