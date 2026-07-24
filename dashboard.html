@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E3A37'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='%23E7C877' font-weight='bold' font-family='Arial'%3E%D9%88%3C/text%3E%3C/svg%3E">
-<title>وثيق — لوحة التحكم</title>
+<title>وثيق — لوحة التحكم (معاينة)</title>
+<meta name="description" content="جرّب لوحة تحكم وثيق مباشرة: محرّك عقود تلقائي، دورات سداد مرنة، وإشارات مرور للتحصيل — بلا تسجيل.">
+<meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -136,6 +138,23 @@
   .doc{white-space:pre-wrap;border:1px solid var(--line);background:var(--paper);border-radius:12px;padding:16px;font-size:.9rem;line-height:1.9;color:var(--ink);max-height:52vh;overflow:auto}
   .disc{font-size:.76rem;color:var(--gold-ink);margin:2px 0 12px}
 
+  .freqgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+  .freqbtn{border:2px solid var(--line);background:var(--card);border-radius:9px;padding:9px 4px;font-size:.78rem;font-weight:600;color:var(--ink);transition:all .15s ease}
+  .freqbtn:hover{border-color:var(--gold-soft)}
+  .freqbtn.on{border-color:var(--gold);background:var(--amber-bg);color:var(--gold-ink)}
+  .ptgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+  .ptbtn{border:2px solid var(--line);background:var(--card);border-radius:10px;padding:10px 4px;font-size:.72rem;font-weight:600;color:var(--ink);transition:all .15s ease}
+  .ptbtn span{display:block;font-size:1.15rem;margin-bottom:3px}
+  .ptbtn:hover{border-color:var(--gold-soft)}
+  .ptbtn.on{border-color:var(--gold);background:var(--amber-bg);color:var(--gold-ink)}
+  .pfbar{background:var(--deep);color:#EAF1EE;border-radius:14px;padding:13px 16px;margin-bottom:18px;display:flex;flex-wrap:wrap;align-items:center;gap:18px}
+  .pfbar .ttl{font-family:"Readex Pro";font-weight:700;font-size:.82rem;color:var(--gold-soft)}
+  .pfbar b{font-family:"Readex Pro";font-size:1.05rem;display:block;line-height:1.2}
+  .pfbar small{color:#9FB8B3;font-size:.68rem}
+  .pfbar .r b{color:#F5A9A4}
+  .pay.soon{background:var(--amber-bg);color:var(--gold-ink)}.pay.soon .d{background:var(--gold)}
+  .upsell{margin-top:20px;background:var(--amber-bg);border:1px solid rgba(184,121,31,.3);color:var(--gold-ink);border-radius:12px;padding:13px 16px;font-size:.86rem;text-align:center}
+  .upsell a{color:var(--gold-ink);font-weight:700;text-decoration:underline}
   .foot{text-align:center;color:var(--muted);font-size:.8rem;margin-top:34px}
   .cloudbar{background:var(--amber-bg);border-bottom:1px solid rgba(184,121,31,.25);color:var(--gold-ink);font-size:.85rem;text-align:center;padding:8px 14px}
   .cloudbar a{color:var(--gold-ink);font-weight:700;text-decoration:underline}
@@ -195,6 +214,83 @@ async function save(){
 }
 async function commit(){ await save(); render(); }
 
+
+/* ============ محرّك العقود — مطابق للتطبيق السحابي ============ */
+const FREQS=[{v:'daily',l:'يومي',s:'يوم'},{v:'weekly',l:'أسبوعي',s:'أسبوع'},{v:'monthly',l:'شهري',s:'شهر'},
+             {v:'quarterly',l:'كل ٣ أشهر',s:'٣ أشهر'},{v:'semiannual',l:'كل ٦ أشهر',s:'٦ أشهر'},{v:'annual',l:'سنوي',s:'سنة'}];
+const PER_YEAR={daily:365,weekly:52,monthly:12,quarterly:4,semiannual:2,annual:1};
+const PER_MONTH={daily:30,weekly:4.33,monthly:1,quarterly:1/3,semiannual:1/6,annual:1/12};
+const freqL=f=>(FREQS.find(x=>x.v===f)||FREQS[2]).l;
+const freqS=f=>(FREQS.find(x=>x.v===f)||FREQS[2]).s;
+const sod=d=>new Date(d.getFullYear(),d.getMonth(),d.getDate());
+
+function addPeriods(date,freq,n){
+  const d=new Date(date.getTime());
+  if(freq==='daily') d.setDate(d.getDate()+n);
+  else if(freq==='weekly') d.setDate(d.getDate()+n*7);
+  else{
+    const m=freq==='monthly'?1:freq==='quarterly'?3:freq==='semiannual'?6:12;
+    const day=d.getDate(); d.setDate(1); d.setMonth(d.getMonth()+m*n);
+    const last=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();
+    d.setDate(Math.min(day,last));
+  }
+  return d;
+}
+function periodsElapsed(startISO,freq){
+  if(!startISO) return 0;
+  const st=sod(new Date(startISO)), t=sod(new Date());
+  if(t<st) return 0;
+  let n=0; while(addPeriods(st,freq,n)<=t && n<5000) n++;
+  return n;
+}
+const defaultTerm=f=>PER_YEAR[f]||12;
+function derivedEnd(startISO,freq,periods){
+  const n=periods&&periods>0?periods:defaultTerm(freq);
+  return addPeriods(sod(new Date(startISO)),freq,n).toISOString().slice(0,10);
+}
+const daysBtw=(a,b)=>Math.ceil((sod(a)-sod(b))/86400000);
+
+function contractState(t){
+  const freq=t.freq||'monthly', rent=Number(t.rentAmount)||0, paid=Math.max(0,Number(t.paidPeriods)||0), now=new Date();
+  if(!t.contractStart) return {due:0,paid,unpaid:0,amountDue:0,nextDueDate:null,daysToNextDue:null,endDate:t.contractEnd||null,daysToEnd:null,status:'ok',statusLabel:'بانتظار بيانات العقد'};
+  const st=sod(new Date(t.contractStart));
+  const due=periodsElapsed(t.contractStart,freq), unpaid=Math.max(0,due-paid), amountDue=unpaid*rent;
+  const nextDue=addPeriods(st,freq,paid), nextDueDate=nextDue.toISOString().slice(0,10), daysToNextDue=daysBtw(nextDue,now);
+  const endDate=t.contractEnd||derivedEnd(t.contractStart,freq,t.periods);
+  const daysToEnd=daysBtw(new Date(endDate),now);
+  let status='ok',statusLabel='منتظم';
+  if(unpaid>0){status='late';statusLabel=unpaid===1?'متأخر دفعة واحدة':`متأخر ${unpaid} دفعات`;}
+  else if(daysToNextDue<=7) status='soon',statusLabel=daysToNextDue<=0?'يستحق اليوم':`يستحق خلال ${daysToNextDue} يوم`;
+  return {due,paid,unpaid,amountDue,nextDueDate,daysToNextDue,endDate,daysToEnd,status,statusLabel};
+}
+function buildSchedule(t){
+  if(!t.contractStart) return [];
+  const freq=t.freq||'monthly', st=sod(new Date(t.contractStart));
+  const total=t.periods&&t.periods>0?t.periods:defaultTerm(freq);
+  const paid=Math.max(0,Number(t.paidPeriods)||0), rent=Number(t.rentAmount)||0, today0=sod(new Date());
+  return Array.from({length:Math.min(total,200)},(_,i)=>{
+    const d=addPeriods(st,freq,i);
+    return {n:i+1,date:d.toISOString().slice(0,10),amount:rent,status:i<paid?'paid':(d<=today0?'late':'upcoming')};
+  });
+}
+function renewContract(t,opts){
+  opts=opts||{};
+  const freq=opts.freq||t.freq||'monthly', st=contractState(t);
+  const start=st.endDate||new Date().toISOString().slice(0,10);
+  const periods=opts.periods&&opts.periods>0?opts.periods:(t.periods||defaultTerm(freq));
+  const amount=opts.amount&&opts.amount>0?opts.amount:(Number(t.rentAmount)||0);
+  return {contractStart:start,contractEnd:derivedEnd(start,freq,periods),freq,periods,rentAmount:amount,paidPeriods:0};
+}
+const needsRenewal=t=>{const s=contractState(t);return s.daysToEnd!==null&&s.daysToEnd<=60;};
+
+/* أنواع العقارات */
+const PTYPES=[{v:'residential',l:'عمارة سكنية',u:'شقة',e:'🏢'},{v:'showroom',l:'معرض تجاري',u:'معرض',e:'🏬'},
+  {v:'office',l:'مبنى مكاتب',u:'مكتب',e:'🏛️'},{v:'warehouse',l:'مستودع',u:'مستودع',e:'🏭'},
+  {v:'villa',l:'فيلا / فلل',u:'فيلا',e:'🏡'},{v:'land',l:'أرض',u:'قطعة',e:'🗺️'}];
+const ptL=t=>(PTYPES.find(x=>x.v===t)||PTYPES[0]).l;
+const ptU=t=>(PTYPES.find(x=>x.v===t)||PTYPES[0]).u;
+const ptE=t=>(PTYPES.find(x=>x.v===t)||PTYPES[0]).e;
+
 /* ============================ أدوات ============================ */
 const uid=()=>Math.random().toString(36).slice(2,9);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -253,27 +349,46 @@ function propAdd(p){ state.properties.push(p); state.activeProp=p.id; state.ui.m
 function propUpdate(patch){ Object.assign(prop(),patch); state.ui.modal=null; commit(); }
 function propDelete(){ if(!confirm('حذف هذا العقار وكل مستأجريه؟'))return; state.properties=state.properties.filter(p=>p.id!==state.activeProp); state.activeProp=state.properties[0]?.id||null; state.ui.modal=null; commit(); }
 function tenantSave(){
-  const g=id=>document.getElementById(id).value.trim();
+  const g=id=>{const el=document.getElementById(id);return el?el.value.trim():''};
   const name=g('tName'); if(!name){document.getElementById('tName').focus();return;}
-  const rent=Number(g('tRent'))||0;
-  const data={ name, unit:g('tUnit'), phone:g('tPhone'), nationalId:g('tNid'), rentAmount:rent, contractStart:g('tStart'), contractEnd:g('tEnd') };
+  const freq=g('tFreq')||'monthly', start=g('tStart')||today(), periods=+g('tPeriods')||null;
+  const data={name,unit:g('tUnit'),phone:g('tPhone'),nationalId:g('tNid'),rentAmount:+g('tRent')||0,
+    freq,contractStart:start,periods,contractEnd:derivedEnd(start,freq,periods)};
   const editId=state.ui.modal&&state.ui.modal.editTenant;
-  if(editId){ const t=prop().tenants.find(x=>x.id===editId); Object.assign(t,data); }
-  else prop().tenants.push({ id:uid(), monthsLate:0, lastPaid:null, ...data });
+  if(editId){const t=prop().tenants.find(x=>x.id===editId);Object.assign(t,data);}
+  else prop().tenants.push({id:uid(),paidPeriods:0,...data});
   state.ui.modal=null; commit();
 }
-function tenantPay(id){ const t=prop().tenants.find(x=>x.id===id); t.monthsLate=Math.max(0,t.monthsLate-1); t.lastPaid=today(); prop().collected=(prop().collected||0)+Number(t.rentAmount||0); commit(); }
-function tenantDue(id){ prop().tenants.find(x=>x.id===id).monthsLate++; commit(); }
+function tenantRenew(id){
+  const t=prop().tenants.find(x=>x.id===id); if(!t) return;
+  const st=contractState(t);
+  const per=prompt(`تجديد عقد ${t.name}\nالمدة الحالية تنتهي ${st.endDate}\n\nعدد الدفعات للمدة الجديدة:`, t.periods||defaultTerm(t.freq||'monthly'));
+  if(per===null) return;
+  const amt=prompt(`قيمة الدفعة الجديدة (ريال):\nالحالية ${money(t.rentAmount)}`, t.rentAmount);
+  if(amt===null) return;
+  Object.assign(t, renewContract(t,{periods:+per||null,amount:+amt||null}));
+  prop().notes.unshift({id:uid(),date:today(),text:`تجديد عقد ${t.name} (${ptU(prop().propertyType)} ${t.unit||'—'}) — من ${t.contractStart} إلى ${t.contractEnd} بقيمة ${money(t.rentAmount)} ريال / ${freqS(t.freq)}`});
+  commit();
+}
+function tenantSchedule(id){
+  const t=prop().tenants.find(x=>x.id===id); if(!t) return;
+  const rows=buildSchedule(t), st=contractState(t);
+  const body=`جدول دفعات ${t.name} — ${ptU(prop().propertyType)} ${t.unit||'—'}\n${freqL(t.freq)} · ${money(t.rentAmount)} ريال/دفعة\n\nمسدّدة: ${st.paid} · متأخرة: ${st.unpaid} · قادمة: ${Math.max(0,rows.length-st.due)}\n${'─'.repeat(34)}\n`
+    + rows.map(r=>`${String(r.n).padStart(2)}. ${r.date}   ${money(r.amount).padStart(8)} ريال   ${r.status==='paid'?'مسدّدة':r.status==='late'?'متأخرة':'قادمة'}`).join('\n');
+  state.ui.doc={title:`جدول الدفعات — ${t.name}`,body}; render();
+}
+function tenantPay(id){ const t=prop().tenants.find(x=>x.id===id); t.paidPeriods=(t.paidPeriods||0)+1; t.lastPaid=today(); prop().collected=(prop().collected||0)+Number(t.rentAmount||0); commit(); }
+function tenantUndo(id){ const t=prop().tenants.find(x=>x.id===id); t.paidPeriods=Math.max(0,(t.paidPeriods||0)-1); commit(); }
 function tenantDel(id){ if(!confirm('حذف هذا المستأجر؟'))return; prop().tenants=prop().tenants.filter(x=>x.id!==id); commit(); }
 function tenantRemind(id){
-  const p=prop(),t=p.tenants.find(x=>x.id===id),rent=Number(t.rentAmount||0),total=t.monthsLate*rent,mgr=p.manager||'إدارة الأملاك';
-  const msg=t.monthsLate<=1
-   ? `مساء الخير ${t.name} 🌿\nتذكير ودّي بأن إيجار الوحدة (${t.unit||'—'}) بعقار ${p.name}${rent?` وقدره ${money(rent)} ريال`:''} أصبح مستحقًا. نأمل السداد في موعده. شكرًا لتعاونكم.\n— ${mgr}`
-   : `تحية طيبة ${t.name}،\nنفيدكم بأن الأجرة المتأخرة (${t.monthsLate} أشهر)${total?` بمبلغ ${money(total)} ريال`:''} عن الوحدة (${t.unit||'—'}) بعقار ${p.name} لم تُسدَّد. نأمل المبادرة بالسداد خلال أيام تفاديًا للإجراءات النظامية وفق عقد الإيجار الموحّد.\n— ${mgr}`;
+  const p=prop(),t=p.tenants.find(x=>x.id===id),st=contractState(t),rent=Number(t.rentAmount||0),total=st.amountDue,mgr=p.manager||'إدارة الأملاك';
+  const msg=st.unpaid<=1
+   ? `مساء الخير ${t.name} 🌿\nتذكير ودّي بأن إيجار ${ptU(p.propertyType)} (${t.unit||'—'}) بعقار ${p.name}${rent?` وقدره ${money(rent)} ريال`:''} يستحق بتاريخ ${st.nextDueDate}. شكرًا لتعاونكم.\n— ${mgr}`
+   : `تحية طيبة ${t.name}،\nنفيدكم بوجود ${st.unpaid} دفعة متأخرة${total?` بمبلغ ${money(total)} ريال`:''} عن ${ptU(p.propertyType)} (${t.unit||'—'}) بعقار ${p.name}. نأمل المبادرة بالسداد.\n— ${mgr}`;
   openWa(t.phone,msg);
 }
 function tenantNotice(id){
-  const p=prop(),t=p.tenants.find(x=>x.id===id),rent=Number(t.rentAmount||0),total=(t.monthsLate||1)*rent,mgr=p.manager||'إدارة الأملاك';
+  const p=prop(),t=p.tenants.find(x=>x.id===id),st=contractState(t),total=st.amountDue||Number(t.rentAmount||0),mgr=p.manager||'إدارة الأملاك';
   const body=
 `إنذار نهائي بسداد الأجرة المتأخرة
 التاريخ: ${today()}
@@ -283,7 +398,7 @@ function tenantNotice(id){
 
 الموضوع: إنذار نهائي بسداد الأجرة المتأخرة بموجب عقد الإيجار الموحّد المسجّل في شبكة إيجار.
 
-بالإشارة إلى عقد الإيجار الموحّد المشار إليه أعلاه، فقد ترصّد بذمّتكم مبلغ ${money(total)} ريال قيمة أجرة متأخرة عن (${t.monthsLate||1}) شهرًا، ولم تُسدَّد رغم تنبيهكم بذلك.
+بالإشارة إلى عقد الإيجار الموحّد المشار إليه أعلاه، فقد ترصّد بذمّتكم مبلغ ${money(total)} ريال قيمة (${st.unpaid||1}) دفعة متأخرة، ولم تُسدَّد رغم تنبيهكم بذلك.
 
 وعليه، نُنذركم إنذارًا نهائيًّا بسداد كامل المبلغ المذكور خلال مدة أقصاها (5) أيام من تاريخ استلامكم هذا الإنذار.
 
@@ -303,32 +418,65 @@ function seedAssoc(){ const d=new Date();d.setDate(d.getDate()+47);
   assocAdd({id:uid(),name:'عمارة النرجس ٢٤',units:18,fee:300,certExpiry:d.toISOString().slice(0,10),fundBalance:14200,
    owners:[{id:uid(),name:'أبو محمد',unit:'3',phone:'',monthsLate:0,lastPaid:null},{id:uid(),name:'مالك الوحدة 7',unit:'7',phone:'',monthsLate:1,lastPaid:null},{id:uid(),name:'مالك الوحدة 11',unit:'11',phone:'',monthsLate:2,lastPaid:null},{id:uid(),name:'أبو ريان',unit:'14',phone:'',monthsLate:0,lastPaid:null}],
    notes:[{id:uid(),date:today(),text:'صيانة المصعد الرئيسي — تم التعاقد السنوي.'}]}); }
-function seedProp(){ const s=new Date(),e=new Date();e.setDate(e.getDate()+40);
-  propAdd({id:uid(),name:'برج الياسمين',address:'حي الياسمين، الرياض',manager:'مكتب اليمامة لإدارة الأملاك',collected:8300,
+function seedProp(){
+  const d=n=>{const x=new Date();x.setMonth(x.getMonth()+n);return x.toISOString().slice(0,10)};
+  const dd=n=>{const x=new Date();x.setDate(x.getDate()+n);return x.toISOString().slice(0,10)};
+  propAdd({id:uid(),name:'مجمّع الياسمين التجاري',address:'حي الياسمين',city:'الرياض',propertyType:'showroom',
+   manager:'مكتب اليمامة لإدارة الأملاك',collected:0,
    tenants:[
-    {id:uid(),name:'عبدالله الحربي',unit:'101',phone:'',nationalId:'',rentAmount:2500,contractStart:'2025-01-01',contractEnd:'2026-12-01',monthsLate:0,lastPaid:today()},
-    {id:uid(),name:'سارة العتيبي',unit:'204',phone:'',nationalId:'',rentAmount:3000,contractStart:'2025-06-15',contractEnd:e.toISOString().slice(0,10),monthsLate:1,lastPaid:null},
-    {id:uid(),name:'مؤسسة النور التجارية',unit:'المحل 2',phone:'',nationalId:'',rentAmount:6000,contractStart:'2024-03-01',contractEnd:'2027-03-01',monthsLate:2,lastPaid:null},
-    {id:uid(),name:'خالد القحطاني',unit:'305',phone:'',nationalId:'',rentAmount:2800,contractStart:'2025-11-20',contractEnd:'2026-11-20',monthsLate:0,lastPaid:today()}
+    {id:uid(),name:'مؤسسة النور التجارية',unit:'2',phone:'',nationalId:'7001234567',rentAmount:18000,
+     freq:'quarterly',contractStart:d(-7),periods:4,contractEnd:derivedEnd(d(-7),'quarterly',4),paidPeriods:2},
+    {id:uid(),name:'عبدالله الحربي',unit:'1',phone:'',nationalId:'',rentAmount:9500,
+     freq:'monthly',contractStart:dd(-25),periods:12,contractEnd:derivedEnd(dd(-25),'monthly',12),paidPeriods:1},
+    {id:uid(),name:'خالد القحطاني',unit:'3',phone:'',nationalId:'',rentAmount:12000,
+     freq:'semiannual',contractStart:d(-11),periods:2,contractEnd:derivedEnd(d(-11),'semiannual',2),paidPeriods:2},
+    {id:uid(),name:'شركة الأفق للتجارة',unit:'4',phone:'',nationalId:'',rentAmount:60000,
+     freq:'annual',contractStart:d(-2),periods:3,contractEnd:derivedEnd(d(-2),'annual',3),paidPeriods:1}
    ],
-   notes:[{id:uid(),date:today(),text:'صيانة مكيّفات الدور الثاني — مجدولة.'}]}); }
-
+   notes:[{id:uid(),date:today(),text:'صيانة مكيّفات الواجهة — مجدولة.'}]});
+}
 /* ============================ نماذج (Modals) ============================ */
 function assocFields(a={}){ return `
   <div class="field"><label>اسم الجمعية / العمارة</label><input class="fld" id="fName" value="${esc(a.name||'')}" placeholder="عمارة النرجس ٢٤"></div>
   <div class="field two"><div><label>عدد الوحدات</label><input class="fld" id="fUnits" type="number" value="${a.units||''}" placeholder="18"></div><div><label>الاشتراك الشهري (ريال)</label><input class="fld" id="fFee" type="number" value="${a.fee||''}" placeholder="300"></div></div>
   <div class="field two"><div><label>انتهاء الشهادة</label><input class="fld" id="fCert" type="date" value="${a.certExpiry||''}"></div><div><label>رصيد الصندوق (ريال)</label><input class="fld" id="fBal" type="number" value="${a.fundBalance??''}" placeholder="0"></div></div>`; }
 function readAssoc(){ return {name:v('fName'),units:+v('fUnits')||0,fee:+v('fFee')||0,certExpiry:v('fCert'),fundBalance:+v('fBal')||0}; }
-function propFields(p={}){ return `
+function propFields(p={}){ const ty=p.propertyType||'residential'; return `
+  <div class="field"><label>نوع العقار</label>
+    <div class="ptgrid" id="ptGrid">${PTYPES.map(x=>`<button type="button" class="ptbtn ${x.v===ty?'on':''}" data-ptype="${x.v}"><span>${x.e}</span>${x.l}</button>`).join('')}</div>
+    <input type="hidden" id="pfType" value="${ty}">
+  </div>
   <div class="field"><label>اسم العقار</label><input class="fld" id="pfName" value="${esc(p.name||'')}" placeholder="برج الياسمين"></div>
   <div class="field"><label>العنوان</label><input class="fld" id="pfAddr" value="${esc(p.address||'')}" placeholder="حي الياسمين، الرياض"></div>
   <div class="field"><label>اسم المكتب / المدير (يظهر في الإنذارات)</label><input class="fld" id="pfMgr" value="${esc(p.manager||'')}" placeholder="مكتب اليمامة لإدارة الأملاك"></div>`; }
-function readProp(){ return {name:v('pfName'),address:v('pfAddr'),manager:v('pfMgr')}; }
-function tenantFields(t={}){ return `
+function readProp(){ const t=document.getElementById('pfType'); return {name:v('pfName'),address:v('pfAddr'),manager:v('pfMgr'),propertyType:t?t.value:'residential'}; }
+function tenantFields(t={}){
+  const freq=t.freq||'monthly';
+  return `
   <div class="field two"><div><label>اسم المستأجر</label><input class="fld" id="tName" value="${esc(t.name||'')}" placeholder="عبدالله الحربي"></div><div><label>رقم الوحدة</label><input class="fld" id="tUnit" value="${esc(t.unit||'')}" placeholder="101"></div></div>
-  <div class="field two"><div><label>قيمة الإيجار (ريال)</label><input class="fld" id="tRent" type="number" value="${t.rentAmount||''}" placeholder="2500"></div><div><label>جوال المستأجر</label><input class="fld" id="tPhone" value="${esc(t.phone||'')}" placeholder="05xxxxxxxx"></div></div>
-  <div class="field"><label>رقم الهوية/الإقامة (للإنذار النظامي)</label><input class="fld" id="tNid" value="${esc(t.nationalId||'')}" placeholder="10xxxxxxxx"></div>
-  <div class="field two"><div><label>بداية العقد</label><input class="fld" id="tStart" type="date" value="${t.contractStart||''}"></div><div><label>نهاية العقد</label><input class="fld" id="tEnd" type="date" value="${t.contractEnd||''}"></div></div>`; }
+  <div class="field two"><div><label>قيمة الدفعة (ريال)</label><input class="fld" id="tRent" type="number" value="${t.rentAmount||''}" placeholder="2500"></div><div><label>جوال المستأجر</label><input class="fld" id="tPhone" value="${esc(t.phone||'')}" placeholder="05xxxxxxxx"></div></div>
+  <div class="field"><label>دورة السداد</label>
+    <div class="freqgrid" id="freqGrid">${FREQS.map(f=>`<button type="button" class="freqbtn ${f.v===freq?'on':''}" data-freq="${f.v}">${f.l}</button>`).join('')}</div>
+    <input type="hidden" id="tFreq" value="${freq}">
+  </div>
+  <div class="field two"><div><label>بداية العقد</label><input class="fld" id="tStart" type="date" value="${t.contractStart||today()}"></div><div><label>عدد الدفعات <small style="color:var(--muted);font-weight:400">فارغ = سنة</small></label><input class="fld" id="tPeriods" type="number" value="${t.periods||''}" placeholder="12"></div></div>
+  <div class="field"><label>رقم الهوية/السجل <small style="color:var(--muted);font-weight:400">للخطابات</small></label><input class="fld" id="tNid" value="${esc(t.nationalId||'')}" placeholder="10xxxxxxxx"></div>
+  <div id="cPreview"></div>`;
+}
+function updatePreview(){
+  const box=document.getElementById('cPreview'); if(!box) return;
+  const g=id=>{const el=document.getElementById(id);return el?el.value.trim():''};
+  const start=g('tStart'), rent=+g('tRent')||0, freq=g('tFreq')||'monthly', per=+g('tPeriods')||0;
+  if(!start||!rent){box.innerHTML='';return;}
+  const st=contractState({contractStart:start,rentAmount:rent,freq,periods:per||null,paidPeriods:0});
+  box.innerHTML=`<div style="background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:12px;font-size:.85rem">
+    <div style="font-weight:700;color:var(--deep);margin-bottom:6px">استنتاج تلقائي</div>
+    <div style="color:var(--muted);line-height:1.9;font-size:.8rem">
+      الدفعة القادمة: <b style="color:var(--ink)">${st.nextDueDate}</b><br>
+      نهاية العقد: <b style="color:var(--ink)">${st.endDate}</b><br>
+      إجمالي قيمة العقد: <b style="color:var(--ink)">${money(rent*(per||defaultTerm(freq)))} ريال</b>
+    </div></div>`;
+}
 const v=id=>document.getElementById(id).value.trim();
 
 function renderModal(){
@@ -403,38 +551,68 @@ function renderAssociation(){
 
 function renderProperty(){
   const p=prop();
-  if(!p){ return `<div class="onboard"><span class="seal"></span><h2>ابدأ بإضافة عقارك</h2><p>أدر مستأجري عقاراتك، الإيجارات، العقود، والتحصيل من مكان واحد.</p><button class="btn btn-gold" data-act="newProp">+ إنشاء عقار</button><div style="margin-top:14px"><button class="link-btn" data-act="seedProp">أو جرّب ببيانات تجريبية</button></div></div>`; }
-  const ts=p.tenants, total=ts.length, late=ts.filter(t=>t.monthsLate>0);
-  const pct=total?Math.round((total-late.length)/total*100):0;
-  const overdue=late.reduce((s,t)=>s+t.monthsLate*Number(t.rentAmount||0),0);
-  // تنبيه عقد ينتهي قريبًا
-  const soon=ts.map(t=>({t,dl:daysLeft(t.contractEnd)})).filter(x=>x.dl!==null&&x.dl<=60&&x.dl>=0).sort((a,b)=>a.dl-b.dl)[0];
+  if(!p){ return `<div class="onboard"><span class="seal"></span><h2>ابدأ بإضافة عقارك</h2><p>عمارة، معرض تجاري، مكتب، مستودع، فيلا، أو أرض — كلها مدعومة.</p><button class="btn btn-gold" data-act="newProp">+ إنشاء عقار</button><div style="margin-top:14px"><button class="link-btn" data-act="seedProp">أو جرّب ببيانات تجريبية</button></div></div>`; }
+  const ul=ptU(p.propertyType);
+  const rows=p.tenants.map(t=>({t,st:contractState(t)}));
+  const late=rows.filter(x=>x.st.status==='late'), soon=rows.filter(x=>x.st.status==='soon');
+  const overdue=late.reduce((s,x)=>s+x.st.amountDue,0);
+  const pct=rows.length?Math.round((rows.length-late.length)/rows.length*100):100;
+  const expiring=rows.filter(x=>x.st.daysToEnd!==null&&x.st.daysToEnd<=60&&x.st.daysToEnd>=0).sort((a,b)=>a.st.daysToEnd-b.st.daysToEnd)[0];
+
+  // شريط المحفظة (كل العقارات)
+  let pf='';
+  if(state.properties.length>1){
+    const agg=state.properties.reduce((a,pr)=>{
+      pr.tenants.forEach(t=>{const st=contractState(t);a.units++;
+        if(st.status==='late'){a.late++;a.overdue+=st.amountDue;}
+        if(st.status==='soon')a.soon++;
+        if(st.daysToEnd!==null&&st.daysToEnd<=60&&st.daysToEnd>=0)a.exp++;
+        a.monthly+=(Number(t.rentAmount)||0)*(PER_MONTH[t.freq||'monthly']||1);});
+      return a;},{units:0,late:0,soon:0,overdue:0,exp:0,monthly:0});
+    pf=`<div class="pfbar">
+      <span class="ttl">محفظتك · ${state.properties.length} عقارات</span>
+      <span><b>${agg.units}</b><small>وحدة</small></span>
+      <span class="${agg.late?'r':''}"><b>${agg.late}</b><small>متأخرة</small></span>
+      <span class="${agg.overdue?'r':''}"><b>${money(agg.overdue)}</b><small>ريال متأخر</small></span>
+      <span><b>${agg.soon}</b><small>تستحق خلال ٧ أيام</small></span>
+      <span><b>${agg.exp}</b><small>عقود تنتهي قريبًا</small></span>
+      <span><b>${money(Math.round(agg.monthly))}</b><small>دخل شهري تقريبي</small></span>
+    </div>`;
+  }
+
   let alert='';
-  if(soon) alert=`<div class="alert ${soon.dl<=30?'red':'amber'}"><span class="ico">📄</span><span><b>عقد ${esc(soon.t.name)} (وحدة ${esc(soon.t.unit||'—')}) ينتهي خلال ${soon.dl} يومًا</b> (${soon.t.contractEnd}). جهّز التجديد أو الإخلاء.</span></div>`;
+  if(expiring) alert=`<div class="alert ${expiring.st.daysToEnd<=30?'red':'amber'}"><span class="ico">📄</span><span><b>عقد ${esc(expiring.t.name)} (${ul} ${esc(expiring.t.unit||'—')}) ينتهي خلال ${expiring.st.daysToEnd} يومًا</b> (${expiring.st.endDate}). جهّز التجديد أو الإخلاء.</span></div>`;
+
   const stats=`<div class="stats">
-    <div class="stat"><div class="v ok">${pct}٪</div><div class="lbl">نسبة التحصيل</div></div>
-    <div class="stat"><div class="v ${late.length?'warn':''}">${late.length}</div><div class="lbl">مستأجرون متأخرون</div></div>
+    <div class="stat"><div class="v ok">${pct}٪</div><div class="lbl">نسبة الانتظام</div></div>
+    <div class="stat"><div class="v ${late.length?'warn':''}">${late.length}</div><div class="lbl">وحدات متأخرة</div></div>
     <div class="stat"><div class="v ${overdue?'warn':''}">${money(overdue)}</div><div class="lbl">إجمالي المتأخر (ريال)</div></div>
-    <div class="stat"><div class="v">${money(p.collected)}</div><div class="lbl">المُحصّل (ريال)</div></div></div>`;
-  const rows=total?ts.map(t=>{const l=t.monthsLate>0,total2=t.monthsLate*Number(t.rentAmount||0);return `<div class="row-item">
+    <div class="stat"><div class="v">${soon.length}</div><div class="lbl">دفعات خلال ٧ أيام</div></div></div>`;
+
+  const list=rows.length?rows.map(({t,st})=>`<div class="row-item" style="flex-wrap:wrap">
     <span class="av">${esc((t.name||'?').trim().charAt(0))}</span>
-    <span class="meta"><span class="n">${esc(t.name)}</span><span class="u">وحدة ${esc(t.unit||'—')} · إيجار ${money(t.rentAmount)} ريال${l&&total2>t.rentAmount?` · متأخر ${money(total2)} ريال`:''}${t.contractEnd?` · ينتهي ${t.contractEnd}`:''}</span></span>
-    ${statusBadge(t.monthsLate)}
+    <span class="meta"><span class="n">${esc(t.name)}</span><span class="u">${ul} ${esc(t.unit||'—')} · ${money(t.rentAmount)} ريال / ${freqS(t.freq)}${st.unpaid===0&&st.nextDueDate?` · القادمة ${st.nextDueDate}`:''}${st.amountDue?` · متأخر ${money(st.amountDue)} ريال`:''}</span></span>
+    <span class="pay ${st.status==='late'?'late':st.status==='soon'?'soon':'ok'}"><span class="d"></span> ${st.statusLabel}</span>
     <span class="acts">
-      <button class="btn btn-ghost btn-sm" data-act="tenantPay" data-id="${t.id}">تسجيل دفعة</button>
-      <button class="btn btn-ghost btn-sm" data-act="tenantDue" data-id="${t.id}">+ استحقاق</button>
-      ${l?`<button class="btn btn-wa btn-sm" data-act="tenantRemind" data-id="${t.id}">تذكير</button>`:''}
-      ${l?`<button class="btn btn-gold btn-sm" data-act="tenantNotice" data-id="${t.id}">توليد إنذار</button>`:''}
+      <button class="btn btn-ghost btn-sm" data-act="tenantPay" data-id="${t.id}">سجّل دفعة</button>
+      ${(t.paidPeriods||0)>0?`<button class="btn btn-ghost btn-sm" data-act="tenantUndo" data-id="${t.id}">تراجع</button>`:''}
+      <button class="btn btn-ghost btn-sm" data-act="tenantSchedule" data-id="${t.id}">الجدول</button>
+      ${st.unpaid>0?`<button class="btn btn-wa btn-sm" data-act="tenantRemind" data-id="${t.id}">تذكير</button>`:''}
+      ${st.unpaid>0?`<button class="btn btn-gold btn-sm" data-act="tenantNotice" data-id="${t.id}">نموذج إشعار</button>`:''}
+      ${needsRenewal(t)?`<button class="btn btn-primary btn-sm" data-act="tenantRenew" data-id="${t.id}">تجديد العقد</button>`:''}
       <button class="btn-icon" data-act="tenantEdit" data-id="${t.id}" title="تعديل" style="color:var(--deep)">✎</button>
       <button class="btn-icon" data-act="tenantDel" data-id="${t.id}" title="حذف">✕</button>
-    </span></div>`;}).join(''):`<div class="empty">لا يوجد مستأجرون بعد — أضف أول مستأجر.</div>`;
+    </span></div>`).join(''):`<div class="empty">لا توجد وحدات بعد — أضف أول وحدة.</div>`;
+
   const notes=p.notes.length?p.notes.map(n=>`<div class="note"><span class="dt">${n.date}</span><span class="tx">${esc(n.text)}</span><span class="x" data-act="propNoteDel" data-id="${n.id}">✕</span></div>`).join(''):`<div class="empty">لا ملاحظات بعد.</div>`;
-  return alert+stats+`<div class="grid2">
-    <div class="panel"><div class="panel-h"><h2>المستأجرون <span class="count">· ${total} وحدة</span></h2><button class="btn btn-gold btn-sm" data-act="newTenant">+ مستأجر</button></div>
-      <div class="panel-b">${rows}</div></div>
+
+  return pf+alert+stats+`<div class="grid2">
+    <div class="panel"><div class="panel-h"><h2>الوحدات والمستأجرون <span class="count">· ${rows.length} ${ul}</span></h2><button class="btn btn-gold btn-sm" data-act="newTenant">+ وحدة</button></div>
+      <div class="panel-b">${list}</div></div>
     <div class="panel"><div class="panel-h"><h2>سجل العقار</h2></div>
-      <div class="panel-b"><div class="note-add"><input class="fld" id="pNote" placeholder="أضف ملاحظة (صيانة، تجديد عقد…)"><button class="btn btn-primary btn-sm" data-act="propNote">حفظ</button></div>${notes}</div></div>
-  </div>`;
+      <div class="panel-b"><div class="note-add"><input class="fld" id="pNote" placeholder="ملاحظة (صيانة، تجديد عقد…)"><button class="btn btn-primary btn-sm" data-act="propNote">حفظ</button></div>${notes}</div></div>
+  </div>
+  <div class="upsell">في النسخة الكاملة أيضًا: <b>رفع جماعي من Excel</b> · <b>كشوف حساب وفواتير PDF</b> · <b>تنبيهات تليجرام يومية</b> — <a href="https://watheq-app.vercel.app" target="_blank" rel="noreferrer">جرّبها مجانًا ٣٠ يومًا ←</a></div>`;
 }
 
 function render(){
@@ -452,6 +630,14 @@ function render(){
 document.addEventListener('click',e=>{
   const seg=e.target.closest('#modeSeg button'); if(seg){switchMode(seg.dataset.mode);return;}
   if(e.target.hasAttribute&&e.target.hasAttribute('data-close')){ state.ui.modal=null; state.ui.doc=null; render(); return; }
+  // اختيار دورة السداد
+  const fb=e.target.closest('[data-freq]');
+  if(fb){ document.querySelectorAll('.freqbtn').forEach(x=>x.classList.remove('on')); fb.classList.add('on');
+          const h=document.getElementById('tFreq'); if(h) h.value=fb.dataset.freq; updatePreview(); return; }
+  // اختيار نوع العقار
+  const pb=e.target.closest('[data-ptype]');
+  if(pb){ document.querySelectorAll('.ptbtn').forEach(x=>x.classList.remove('on')); pb.classList.add('on');
+          const h=document.getElementById('pfType'); if(h) h.value=pb.dataset.ptype; return; }
   const t=e.target.closest('[data-act]'); if(!t) return;
   const act=t.dataset.act, id=t.dataset.id;
   const M={
@@ -471,10 +657,14 @@ document.addEventListener('click',e=>{
     saveProp:()=>{const d=readProp();if(!d.name)return;propUpdate(d);},deleteProp:propDelete,
     seedProp, newTenant:()=>{state.ui.modal={tenant:true};render();},
     tenantEdit:()=>{state.ui.modal={editTenant:id};render();},saveTenant:tenantSave,
-    tenantPay:()=>tenantPay(id),tenantDue:()=>tenantDue(id),tenantDel:()=>tenantDel(id),
+    tenantPay:()=>tenantPay(id),tenantUndo:()=>tenantUndo(id),tenantDel:()=>tenantDel(id),
+    tenantRenew:()=>tenantRenew(id),tenantSchedule:()=>tenantSchedule(id),
     tenantRemind:()=>tenantRemind(id),tenantNotice:()=>tenantNotice(id),propNote,propNoteDel:()=>propNoteDel(id),
   };
   if(M[act]) M[act]();
+});
+document.addEventListener('input',e=>{
+  if(['tStart','tRent','tPeriods'].includes(e.target.id)) updatePreview();
 });
 document.addEventListener('change',e=>{
   const a=e.target.closest('[data-act="selAssoc"]'); if(a){state.activeAssoc=a.value;commit();return;}
