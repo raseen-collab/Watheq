@@ -445,7 +445,7 @@ function render(){
   const body = state.mode==='association'?renderAssociation():renderProperty();
   const hasEntity = state.mode==='association'?state.associations.length:state.properties.length;
   app.innerHTML = (hasEntity?toolbar():'') + body +
-    `<div class="foot"><a href="index.html" style="color:var(--gold-ink);font-weight:600;text-decoration:underline">← العودة إلى الموقع الرئيسي</a><br><span style="display:block;max-width:560px;margin:8px auto 0;line-height:1.7">وثيق أداة تنظيمية تُنشئ <b>نماذج خطابات تذكير</b> تستخدمها بنفسك. لا نقدّم خدمات قانونية، ولا نرفع دعاوى، ولا نستلم أي مبالغ.</span></div>` + renderModal();
+    `<div class="foot"><a href="index.html" style="color:var(--gold-ink);font-weight:600;text-decoration:underline">← العودة إلى الموقع الرئيسي</a><br><span style="display:block;max-width:560px;margin:8px auto 0;line-height:1.7">وثيق أداة تنظيمية تُنشئ <b>نماذج خطابات تذكير</b> تستخدمها بنفسك. لا نقدّم خدمات قانونية، ولا نرفع دعاوى، ولا نستلم أي مبالغ.<br><a href="https://t.me/+966550165210" target="_blank" rel="noreferrer" style="color:var(--gold-ink)">📨 تليجرام</a> · <a href="mailto:watheqdocs@gmail.com" style="color:var(--gold-ink)">✉️ watheqdocs@gmail.com</a></span></div>` + renderModal();
 }
 
 /* ============================ الأحداث ============================ */
