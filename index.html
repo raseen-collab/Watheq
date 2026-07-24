@@ -252,6 +252,40 @@
   .btn-tg:hover{background:#1b87ba}
   .soon-tag{display:inline-block;background:var(--amber-bg);color:var(--gold-ink);font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:999px;border:1px solid rgba(184,121,31,.3);margin-inline-start:7px;vertical-align:middle}
   @media(max-width:820px){.chans{grid-template-columns:1fr}}
+
+  /* فاتورة النسيان */
+  .bill{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);margin-top:28px}
+  .bill-h{background:var(--late-bg);border-bottom:1px solid rgba(208,69,63,.22);padding:16px 22px;font-family:"Readex Pro";font-weight:700;color:#8f2b26;font-size:1.05rem}
+  .bill-row{display:flex;align-items:center;gap:16px;padding:16px 22px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .bill-row:last-child{border-bottom:0}
+  .bill-row .t{flex:1;min-width:200px}
+  .bill-row .t b{display:block;font-weight:600;font-size:1rem;color:var(--ink)}
+  .bill-row .t span{color:var(--muted);font-size:.85rem}
+  .bill-row .amt{font-family:"Readex Pro";font-weight:700;font-size:1.35rem;color:var(--late);white-space:nowrap}
+  .bill-f{background:var(--paper-2);padding:13px 22px;font-size:.82rem;color:var(--muted);text-align:center}
+  /* شريط الثقة */
+  .marq{background:var(--deep);color:#EAF1EE;border-radius:16px;padding:18px 22px;margin-top:26px;text-align:center}
+  .marq .l{font-size:.8rem;color:#9FB8B3;margin-bottom:11px}
+  .marq .items{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .marq .items span{background:rgba(255,255,255,.09);border:1px solid rgba(231,200,119,.28);color:var(--gold-soft);padding:7px 16px;border-radius:999px;font-weight:600;font-size:.87rem}
+  /* رسائل تليجرام */
+  .tgwrap{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+  .tgcard{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+  .tgcard .cap{background:var(--paper-2);border-bottom:1px solid var(--line);padding:9px 15px;font-size:.8rem;font-weight:700;color:var(--gold-ink)}
+  .tgbody{padding:15px;background:#EDF3F6}
+  .bub{background:#fff;border-radius:13px;border-top-right-radius:4px;padding:12px 14px;font-size:.85rem;line-height:1.85;box-shadow:0 1px 3px rgba(0,0,0,.09);color:#1a2b28}
+  .bub .hh{font-weight:700;color:#0E3A37;display:block;margin-bottom:5px}
+  .bub .mm{color:#5C6B67;font-size:.78rem;display:block;margin-top:7px}
+  .bub b{color:#B8791F}
+  /* أسئلة شائعة */
+  .faq{max-width:820px;margin:28px auto 0}
+  .fq{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:11px;overflow:hidden;box-shadow:var(--shadow)}
+  .fq summary{padding:16px 20px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center;color:var(--deep);font-size:.98rem}
+  .fq summary::-webkit-details-marker{display:none}
+  .fq summary::after{content:"+";font-family:"Readex Pro";font-weight:700;color:var(--gold);font-size:1.3rem;flex:none;transition:transform .2s ease}
+  .fq[open] summary::after{transform:rotate(45deg)}
+  .fq .a{padding:0 20px 18px;color:#33413d;font-size:.93rem;line-height:1.85;border-top:1px solid var(--paper-2);padding-top:14px}
+  @media(max-width:820px){.tgwrap{grid-template-columns:1fr}}
   [data-svc]{display:none}
   [data-svc].show{display:block}
 </style>
@@ -290,6 +324,63 @@
   }
 }
 </script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "inLanguage": "ar-SA",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "ماذا يحدث بعد انتهاء التجربة المجانية؟",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "تبدأ التجربة بـ30 يومًا كاملة بكل المزايا بلا بطاقة بنكية ولا أي سحب. قبل انتهائها نراسلك لتختار باقتك. إن لم ترغب بالاستمرار لا يُخصم منك شيء وبياناتك تبقى محفوظة."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "ما الفرق بين وثيق ومنصة إيجار أو ملاك؟",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "المنصات الحكومية تُسجّل وتوثّق: إيجار يسجّل عقد الإيجار وملاك تسجّل الجمعية. وثيق يُدير ما بعد التسجيل: يتابع الاستحقاقات ويحسب المتأخرات وينبّهك ويجهّز خطاباتك."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "هل وثيق يستلم الأموال أو يحصّلها نيابةً عني؟",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "لا. وثيق لا يستلم ولا يحوّل ولا يحتفظ بأي مبلغ. التحصيل يتم بين المالك والمستأجر مباشرة. دور وثيق تنظيمي وتذكيري فقط."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "هل ترسلون الرسائل تلقائيًّا للمستأجرين؟",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "التنبيهات الآلية تصل للمالك على تليجرام. أما رسائل المستأجرين فيجهّز وثيق نصّها ويفتح واتساب، والمالك هو من يرسلها من رقمه الخاص."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "هل يدعم وثيق دورات دفع غير شهرية؟",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "نعم: يومي وأسبوعي وشهري وكل 3 أشهر وكل 6 أشهر وسنوي. يكفي إدخال تاريخ البداية والقيمة والدورة ليستنتج النظام كل تواريخ الدفعات ونهاية العقد تلقائيًّا."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "هل بياناتي آمنة في وثيق؟",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "البيانات مخزّنة في قاعدة بيانات سحابية مع عزل تام على مستوى الصف، والاتصال مشفّر عبر HTTPS، ولا تُباع أو تُشارك لأي غرض تسويقي، بالتزام بنظام حماية البيانات الشخصية السعودي PDPL."
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
 
@@ -304,6 +395,7 @@
     </div>
 
     <div class="nav-end">
+      <a class="lnk" href="calculators.html">الحاسبات</a>
       <a class="lnk" href="#pricing">الباقات</a>
       <a class="lnk" href="https://watheq-app.vercel.app">تسجيل الدخول</a>
       <a class="btn btn-gold" href="https://watheq-app.vercel.app">ابدأ مجانًا</a>
@@ -315,6 +407,8 @@
     <a href="#dash">لوحة التحكم</a>
     <a href="#samples">النماذج</a>
     <a href="#pricing">الباقات</a>
+    <a href="calculators.html">الحاسبات المجانية</a>
+    <a href="#faq">الأسئلة الشائعة</a>
     <a href="dashboard.html">جرّب اللوحة</a>
     <a href="https://watheq-app.vercel.app">تسجيل الدخول</a>
     <a href="#contact">تواصل معنا</a>
@@ -404,6 +498,72 @@
           <div class="ptype"><span class="e">🗺️</span><span class="n">أرض</span></div>
         </div>
       </div>
+    </div>
+  </section>
+
+
+  <section class="band" id="cost">
+    <div class="wrap">
+      <span class="sec-eyebrow">كلفة النسيان</span>
+      <h2 class="sec-title">النسيان يكلّفك آلاف الريالات</h2>
+      <p class="sec-sub">هذه ليست مبالغة — هذه حسابات مباشرة من واقع محفظة عقارية متوسطة.</p>
+
+      <div class="bill">
+        <div class="bill-h">🧾 فاتورة النسيان — سنويًّا</div>
+        <div class="bill-row">
+          <div class="t"><b>مستأجر يتأخّر ٣ أشهر ولا أحد يلاحقه</b><span>إيجار ٣٬٠٠٠ ريال × ٣ أشهر — مبلغ مجمّد لا يعمل لصالحك</span></div>
+          <div class="amt">9,000 ر.س</div>
+        </div>
+        <div class="bill-row">
+          <div class="t"><b>عقد ينتهي دون تجديد أو إخلاء</b><span>وحدة تبقى شاغرة شهرين حتى تنتبه وتُعيد التأجير</span></div>
+          <div class="amt">6,000 ر.س</div>
+        </div>
+        <div class="bill-row">
+          <div class="t"><b>وقتك في المطاردة والمتابعة</b><span>٦ ساعات شهريًّا × ٧٥ ريال/ساعة — تقدير متحفّظ</span></div>
+          <div class="amt">5,400 ر.س</div>
+        </div>
+        <div class="bill-row" style="background:var(--paper-2)">
+          <div class="t"><b style="font-size:1.1rem">الإجمالي المُهدَر</b><span>مقابل اشتراك وثيق السنوي: <b style="display:inline;color:var(--paid)">1,188 ريال</b></span></div>
+          <div class="amt" style="font-size:1.7rem">20,400 ر.س</div>
+        </div>
+        <div class="bill-f">الأرقام تقديرية وتختلف حسب حالتك — <a href="calculators.html#arrears" style="color:var(--gold-ink);font-weight:700;text-decoration:underline">احسب رقمك أنت بالحاسبة المجانية ←</a></div>
+      </div>
+
+      <div class="marq">
+        <div class="l">مصمّم ليعمل بجانب منصاتك الرسمية — لا بديلًا عنها</div>
+        <div class="items"><span>إيجار</span><span>ملاك</span><span>ناجز</span><span>الهيئة العامة للعقار</span><span>الأمانات والبلديات</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <span class="sec-eyebrow">تنبيهات تليجرام</span>
+      <h2 class="sec-title">التنبيه يصلك قبل الموعد — لا بعده</h2>
+      <p class="sec-sub">وثيق يمشّط عقودك يوميًّا ويرسل لك ملخّصًا على تليجرام. لا تطبيق إضافي، ولا بريد يُهمَل.</p>
+      <div class="tgwrap">
+        <div class="tgcard">
+          <div class="cap">قبل الاستحقاق</div>
+          <div class="tgbody"><div class="bub"><span class="hh">🟡 يستحق خلال ٥ أيام</span>
+            عبدالله الحربي — معرض 1<br>المبلغ: <b>9,500 ريال</b><br>تاريخ الاستحقاق: 28 يوليو
+            <span class="mm">اضغط لفتح واتساب برسالة تذكير جاهزة</span></div></div>
+        </div>
+        <div class="tgcard">
+          <div class="cap">عند التأخّر</div>
+          <div class="tgbody"><div class="bub"><span class="hh">🔴 متأخر — دفعة واحدة</span>
+            مؤسسة النور التجارية — معرض 2<br>المتأخر: <b>18,000 ريال</b><br>استُحقّت: 23 يونيو
+            <span class="mm">نموذج إشعار سداد جاهز في لوحتك</span></div></div>
+        </div>
+        <div class="tgcard">
+          <div class="cap">قبل انتهاء العقد</div>
+          <div class="tgbody"><div class="bub"><span class="hh">📄 عقد ينتهي خلال ٤١ يومًا</span>
+            خالد القحطاني — معرض 3<br>ينتهي: <b>1 سبتمبر</b>
+            <span class="mm">جهّز التجديد الآن قبل أن تشغر الوحدة</span></div></div>
+        </div>
+      </div>
+      <p class="center" style="margin-top:18px;font-size:.88rem;color:var(--muted)">
+        ملخّص يومي واحد في الصباح — <b>ولا رسالة في الأيام التي لا جديد فيها</b>. أنت تختار كم يومًا قبل الاستحقاق يصلك التنبيه.
+      </p>
     </div>
   </section>
 
@@ -557,6 +717,38 @@
     </div>
   </section>
 
+
+  <section class="band">
+    <div class="wrap">
+      <span class="sec-eyebrow">كلفة النسيان</span>
+      <h2 class="sec-title">موعد يفوت الجمعية = مشكلة تُكلّف الجميع</h2>
+      <div class="bill">
+        <div class="bill-h">🧾 ما يخسره اتحاد الملاك سنويًّا</div>
+        <div class="bill-row">
+          <div class="t"><b>اشتراكات متأخرة عند ٣ ملّاك</b><span>٣٠٠ ريال × ٣ ملّاك × ٤ أشهر — صندوق الجمعية عاجز عن الصيانة</span></div>
+          <div class="amt">3,600 ر.س</div>
+        </div>
+        <div class="bill-row">
+          <div class="t"><b>شهادة جمعية منتهية دون تجديد</b><span>تتعطّل قرارات الجمعية ومعاملاتها حتى تُجدَّد</span></div>
+          <div class="amt">تعطّل كامل</div>
+        </div>
+        <div class="bill-row">
+          <div class="t"><b>وقت مدير الاتحاد في تجهيز المستندات</b><span>محضر وموازنة من الصفر قبل كل اجتماع — ٥ ساعات × ٧٥ ريال</span></div>
+          <div class="amt">1,500 ر.س</div>
+        </div>
+        <div class="bill-row" style="background:var(--paper-2)">
+          <div class="t"><b style="font-size:1.1rem">الإجمالي</b><span>مقابل اشتراك وثيق السنوي: <b style="display:inline;color:var(--paid)">708 ريال</b> (الباقة الأساسية)</span></div>
+          <div class="amt" style="font-size:1.7rem">5,100+ ر.س</div>
+        </div>
+        <div class="bill-f">الأرقام تقديرية — <a href="calculators.html#hoa" style="color:var(--gold-ink);font-weight:700;text-decoration:underline">احسب اشتراك جمعيتك العادل مجانًا ←</a></div>
+      </div>
+      <div class="marq">
+        <div class="l">مصمّم ليعمل بجانب منصاتك الرسمية — لا بديلًا عنها</div>
+        <div class="items"><span>ملاك</span><span>ناجز</span><span>الهيئة العامة للعقار</span><span>الأمانات والبلديات</span></div>
+      </div>
+    </div>
+  </section>
+
   <section class="band tint" style="padding-top:44px">
     <div class="wrap">
       <div class="center">
@@ -682,6 +874,70 @@
   </section>
 </div>
 
+<!-- ===================== مشترك: أدوات مجانية ===================== -->
+<section class="band tint" id="tools">
+  <div class="wrap center">
+    <span class="sec-eyebrow">مجانية · بلا تسجيل</span>
+    <h2 class="sec-title">أدوات تعطيك رقمك الحقيقي</h2>
+    <p class="sec-sub">أربع حاسبات مبنية على واقع السوق السعودي — استخدمها الآن دون حساب ودون بريد إلكتروني.</p>
+    <div class="feats" style="text-align:right;margin-top:28px">
+      <a class="feat" href="calculators.html#schedule"><div class="ico">📅</div><h3>جدول دفعات العقد</h3><p>أدخل تاريخ البداية والقيمة والدورة — واحصل على كل تواريخ الدفعات ونهاية العقد فورًا.</p><span class="ben">جرّبها مجانًا ←</span></a>
+      <a class="feat" href="calculators.html#roi"><div class="ico">📈</div><h3>عائد العقار الصافي</h3><p>كم يعود عقارك فعليًّا بعد الصيانة والرسوم والشواغر؟ الرقم غالبًا أقل مما تتوقّع.</p><span class="ben">جرّبها مجانًا ←</span></a>
+      <a class="feat" href="calculators.html#arrears"><div class="ico">🔴</div><h3>حاسبة المتأخرات</h3><p>كم من أموالك مجمّد عند المتأخرين — وكم يكلّفك وقتك في المطاردة؟</p><span class="ben">جرّبها مجانًا ←</span></a>
+      <a class="feat" href="calculators.html#hoa"><div class="ico">🏗️</div><h3>اشتراك صيانة الجمعية</h3><p>احسب الاشتراك العادل لكل وحدة من مصروفات عمارتك — جاهز لعرضه في الاجتماع.</p><span class="ben">جرّبها مجانًا ←</span></a>
+    </div>
+    <a class="btn btn-ghost" href="calculators.html" style="margin-top:26px">شوف كل الحاسبات ←</a>
+  </div>
+</section>
+
+<!-- ===================== مشترك: الأسئلة الشائعة ===================== -->
+<section class="band" id="faq">
+  <div class="wrap">
+    <div class="center">
+      <span class="sec-eyebrow">أسئلتك — مُجاب عليها</span>
+      <h2 class="sec-title">قبل أن تبدأ</h2>
+    </div>
+    <div class="faq">
+      <details class="fq" open>
+        <summary>ماذا يحدث بعد انتهاء التجربة المجانية؟</summary>
+        <div class="a">تبدأ تجربتك بـ ٣٠ يومًا كاملة بكل المزايا، <b>بلا بطاقة بنكية ولا أي سحب</b>. قبل انتهائها بأيام نراسلك لتختار باقتك. إن لم ترغب بالاستمرار، لا يُخصم منك شيء و<b>بياناتك تبقى محفوظة</b> — تعود إليها متى اشتركت. لا رسوم خفية ولا التزام.</div>
+      </details>
+      <details class="fq">
+        <summary>ما الفرق بين وثيق ومنصة «إيجار» أو «ملاك»؟</summary>
+        <div class="a">المنصات الحكومية <b>تُسجّل وتوثّق</b>: إيجار يسجّل عقد الإيجار، وملاك تسجّل الجمعية. وثيق لا يفعل ذلك ولا يُغني عنه — وثيق <b>يُدير ما بعد التسجيل</b>: يتابع الاستحقاقات، يحسب المتأخرات، ينبّهك، ويجهّز خطاباتك. باختصار: هم يسجّلون، ونحن نُدير.</div>
+      </details>
+      <details class="fq">
+        <summary>هل وثيق يستلم الأموال أو يحصّلها نيابةً عني؟</summary>
+        <div class="a"><b>لا إطلاقًا.</b> لا نستلم ولا نحوّل ولا نحتفظ بأي مبلغ. التحصيل يتم بينك وبين المستأجر أو المالك مباشرة بالطريقة التي تتفقان عليها. دورنا تنظيمي وتذكيري فقط.</div>
+      </details>
+      <details class="fq">
+        <summary>هل ترسلون الرسائل تلقائيًّا للمستأجرين؟</summary>
+        <div class="a">لا. <b>التنبيهات الآلية تصلك أنت</b> على تليجرام. أمّا رسائل المستأجرين فيجهّز وثيق نصّها ويفتح واتساب لديك، ثم <b>أنت</b> من يضغط إرسال من رقمك الخاص. لا نرسل شيئًا نيابةً عنك.</div>
+      </details>
+      <details class="fq">
+        <summary>عندي عشرات المستأجرين — هل أُدخلهم واحدًا واحدًا؟</summary>
+        <div class="a">لا. حمّل قالب Excel الجاهز من داخل المنصة، املأه ببياناتك، وارفعه — تُضاف كل الوحدات دفعة واحدة بعد معاينة وتحقّق من كل صف.</div>
+      </details>
+      <details class="fq">
+        <summary>ما قيمة النماذج والخطابات القانونية؟</summary>
+        <div class="a">هي <b>نماذج استرشادية</b> تساعدك على صياغة خطاب مرتّب بسرعة. ليست وثائق معتمدة قانونيًّا، ومسؤولية استخدامها عليك. ننصح بمراجعتها مع مختص مرخّص قبل أي استخدام رسمي.</div>
+      </details>
+      <details class="fq">
+        <summary>هل بياناتي آمنة؟</summary>
+        <div class="a">بياناتك مخزّنة في قاعدة بيانات سحابية مع <b>عزل تام على مستوى الصف</b> — لا يستطيع أي مستخدم آخر الاطلاع عليها. الاتصال مشفّر عبر HTTPS، ولا نبيع بياناتك ولا نشاركها لأي غرض تسويقي. ملتزمون بمتطلبات نظام حماية البيانات الشخصية السعودي (PDPL).</div>
+      </details>
+      <details class="fq">
+        <summary>هل يدعم دورات دفع غير شهرية؟</summary>
+        <div class="a">نعم: يومي، أسبوعي، شهري، كل ٣ أشهر، كل ٦ أشهر، وسنوي. يكفي أن تُدخل تاريخ البداية والقيمة والدورة، ويستنتج النظام كل تواريخ الدفعات ونهاية العقد تلقائيًّا. <a href="calculators.html#schedule" style="color:var(--gold-ink);font-weight:600;text-decoration:underline">جرّبها مجانًا الآن ←</a></div>
+      </details>
+    </div>
+    <p class="center" style="margin-top:20px;color:var(--muted);font-size:.9rem">
+      لم تجد سؤالك؟ راسلنا على <a href="https://t.me/+966550165210" target="_blank" rel="noreferrer" style="color:var(--gold-ink);font-weight:600">تليجرام</a>
+      أو <a href="mailto:watheqdocs@gmail.com" style="color:var(--gold-ink);font-weight:600">watheqdocs@gmail.com</a>
+    </p>
+  </div>
+</section>
+
 <!-- ===================== مشترك: قنوات التواصل ===================== -->
 <section class="band tint" id="contact">
   <div class="wrap">
@@ -779,6 +1035,8 @@
       <div class="links">
         <a href="?mode=properties">إدارة الأملاك</a>
         <a href="?mode=hoa">جمعيات الملاك</a>
+        <a href="calculators.html">الحاسبات</a>
+        <a href="#faq">الأسئلة</a>
         <a href="dashboard.html">جرّب اللوحة</a>
         <a href="https://watheq-app.vercel.app">تسجيل الدخول</a>
         <a href="legal.html">الشروط والخصوصية</a>

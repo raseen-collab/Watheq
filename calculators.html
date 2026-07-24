@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E3A37'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='%23E7C877' font-weight='bold' font-family='Arial'%3E%D9%88%3C/text%3E%3C/svg%3E">
+<title>حاسبات عقارية مجانية — جدول دفعات، عائد استثمار، متأخرات، اشتراك جمعية | وثيق</title>
+<meta name="description" content="أربع حاسبات عقارية مجانية بلا تسجيل: جدول دفعات العقد، العائد على الاستثمار العقاري، المتأخرات المستحقة، واشتراك صيانة جمعية الملاك. مبنية على واقع السوق السعودي.">
+<meta property="og:title" content="حاسبات عقارية مجانية | وثيق">
+<meta property="og:description" content="احسب جدول دفعات عقدك، عائد عقارك، ومتأخراتك — مجانًا وبلا تسجيل.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://watheqapp.netlify.app/calculators">
+<meta property="og:image" content="https://watheqapp.netlify.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://watheqapp.netlify.app/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0B211F;--deep:#0E3A37;--deep-2:#0A2C2A;--paper:#FBF8F1;--paper-2:#F3EEE2;--card:#fff;
+    --line:#E4DDCD;--muted:#5C6B67;--gold:#B8791F;--gold-ink:#8a5a11;--gold-soft:#E7C877;
+    --paid:#1E9E6A;--late:#D0453F;--paid-bg:#E6F4EC;--late-bg:#FBE9E7;--amber-bg:#FBF1DF;
+    --shadow:0 1px 2px rgba(11,33,31,.04),0 12px 34px -18px rgba(11,33,31,.28);
+    --shadow-lg:0 30px 70px -30px rgba(11,33,31,.45)}
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:"Readex Pro","IBM Plex Sans Arabic",sans-serif}
+  a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:.96rem;padding:12px 22px;border-radius:12px;border:1px solid transparent;transition:all .15s ease}
+  .btn-gold{background:var(--gold);color:#fff;box-shadow:0 10px 24px -12px rgba(184,121,31,.7)}
+  .btn-gold:hover{background:var(--gold-ink)}
+  .btn-ghost{background:var(--card);color:var(--deep);border-color:var(--line)}
+  .btn-ghost:hover{background:var(--paper-2)}
+  .btn-light{background:rgba(255,255,255,.12);color:#EAF1EE;border-color:rgba(255,255,255,.28)}
+  .btn-light:hover{background:rgba(255,255,255,.22)}
+  a:focus-visible,button:focus-visible{outline:2.5px solid var(--gold-soft);outline-offset:2px;border-radius:8px}
+
+  .nav{position:sticky;top:0;z-index:60;background:rgba(251,248,241,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav .row{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:"Readex Pro";font-weight:700;font-size:1.15rem;color:var(--deep)}
+  .seal{width:32px;height:32px;border-radius:9px;background:linear-gradient(150deg,#12403c,#0A2C2A);display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px rgba(231,200,119,.42);flex:none}
+  .seal::after{content:"و";color:var(--gold-soft);font-weight:700}
+  .nav .lnks{display:flex;gap:18px;font-size:.92rem;font-weight:500;color:var(--muted)}
+  .nav .lnks a:hover{color:var(--deep)}
+  @media(max-width:760px){.nav .lnks{display:none}}
+
+  .hd{background:linear-gradient(160deg,var(--deep),var(--deep-2));color:#EAF1EE;padding:52px 0 46px;position:relative;overflow:hidden}
+  .hd::after{content:"";position:absolute;inset-inline-start:-80px;bottom:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(184,121,31,.24),transparent 62%)}
+  .hd .in{position:relative;max-width:44em}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:600;color:var(--gold-soft);background:rgba(231,200,119,.12);border:1px solid rgba(231,200,119,.3);padding:6px 15px;border-radius:999px}
+  .hd h1{font-size:clamp(1.8rem,3.6vw,2.6rem);line-height:1.35;margin:16px 0 12px}
+  .hd p{color:#B9CCC7;font-size:1.05rem;margin:0}
+  .freebadge{display:inline-flex;gap:9px;align-items:center;background:var(--paid-bg);color:#137a50;border:1px solid #B7DFC7;padding:8px 17px;border-radius:999px;font-weight:700;font-size:.88rem;margin-top:18px}
+
+  .tabs{display:flex;gap:9px;flex-wrap:wrap;margin:-24px auto 0;position:relative;z-index:5;max-width:1080px;padding:0 22px}
+  .tab{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 18px;font-weight:600;font-size:.9rem;color:var(--muted);box-shadow:var(--shadow);transition:all .16s ease}
+  .tab:hover{border-color:var(--gold-soft);color:var(--deep)}
+  .tab.on{background:var(--deep);color:#F6F1E4;border-color:var(--deep)}
+
+  main{padding:36px 0 60px}
+  .calc{display:none}.calc.show{display:block}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+  .card-h{padding:22px 26px;border-bottom:1px solid var(--line);background:var(--paper-2)}
+  .card-h h2{margin:0 0 5px;font-size:1.25rem;color:var(--deep)}
+  .card-h p{margin:0;color:var(--muted);font-size:.9rem}
+  .card-b{padding:24px 26px}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .row3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  label{display:block;font-size:.88rem;font-weight:600;margin-bottom:6px}
+  label small{color:var(--muted);font-weight:400;font-size:.78rem}
+  .fld{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-size:.95rem;width:100%;color:var(--ink);font-family:inherit}
+  .fld:focus{outline:2px solid var(--gold-soft);outline-offset:1px}
+  .fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .fbtn{border:2px solid var(--line);background:var(--card);border-radius:10px;padding:10px 4px;font-size:.82rem;font-weight:600;color:var(--ink);transition:all .15s ease}
+  .fbtn:hover{border-color:var(--gold-soft)}
+  .fbtn.on{border-color:var(--gold);background:var(--amber-bg);color:var(--gold-ink)}
+  .field{margin-bottom:15px}
+
+  .out{background:linear-gradient(160deg,var(--deep),var(--deep-2));color:#EAF1EE;border-radius:16px;padding:22px 24px;margin-top:20px}
+  .out .big{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+  .out .big .v{font-family:"Readex Pro";font-weight:700;font-size:2.4rem;color:var(--gold-soft);line-height:1}
+  .out .big .l{color:#B9CCC7;font-size:.95rem}
+  .outgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .oc{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:11px;padding:12px}
+  .oc .v{font-family:"Readex Pro";font-weight:700;font-size:1.2rem}
+  .oc .l{color:#9FB8B3;font-size:.73rem;margin-top:4px}
+  .oc.g .v{color:#7FE0A8}.oc.r .v{color:#F5A9A4}
+
+  table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:18px}
+  th{background:var(--paper-2);padding:10px;text-align:right;font-weight:700;font-size:.82rem;border-bottom:2px solid var(--line)}
+  td{padding:9px 10px;border-bottom:1px solid #EFE9DA}
+  tr:last-child td{border-bottom:0}
+  .pill{font-size:.73rem;font-weight:700;padding:3px 9px;border-radius:6px;display:inline-block}
+  .pill.p{background:var(--paid-bg);color:#137a50}
+  .pill.l{background:var(--late-bg);color:#a5322c}
+  .pill.u{background:var(--paper-2);color:var(--muted)}
+  .scroll{max-height:340px;overflow-y:auto;border:1px solid var(--line);border-radius:12px;margin-top:18px}
+  .scroll table{margin:0}.scroll thead th{position:sticky;top:0}
+
+  .hint{background:var(--amber-bg);border:1px solid rgba(184,121,31,.28);color:var(--gold-ink);border-radius:11px;padding:13px 16px;font-size:.85rem;margin-top:18px;line-height:1.7}
+  .cta{background:var(--card);border:2px solid var(--gold-soft);border-radius:16px;padding:22px 26px;margin-top:22px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  .cta .t{font-family:"Readex Pro";font-weight:700;color:var(--deep);font-size:1.05rem}
+  .cta .s{color:var(--muted);font-size:.88rem;margin-top:3px}
+
+  footer{background:var(--deep-2);color:#B9CCC7;padding:36px 0 28px;margin-top:40px}
+  footer .r{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+  footer a:hover{color:#EAF1EE}
+  footer .lnks{display:flex;gap:18px;font-size:.9rem;flex-wrap:wrap}
+  footer small{color:#7E938E;font-size:.78rem;display:block;margin-top:14px;line-height:1.7}
+
+  @media(max-width:820px){.row2,.row3,.outgrid{grid-template-columns:1fr}.outgrid{grid-template-columns:1fr 1fr}.fgrid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap row">
+    <a href="index.html" class="brand"><span class="seal"></span> وثيق</a>
+    <nav class="lnks">
+      <a href="index.html?mode=properties">إدارة الأملاك</a>
+      <a href="index.html?mode=hoa">جمعيات الملاك</a>
+      <a href="index.html#pricing">الأسعار</a>
+      <a href="dashboard.html">جرّب اللوحة</a>
+    </nav>
+    <a class="btn btn-gold" href="https://watheq-app.vercel.app">ابدأ مجانًا ٣٠ يومًا</a>
+  </div>
+</header>
+
+<div class="hd">
+  <div class="wrap in">
+    <span class="eyebrow">◆ أدوات مجانية · بلا تسجيل</span>
+    <h1>احسب رقمك الحقيقي — لا تقديرًا في الرأس.</h1>
+    <p>أربع حاسبات لأصحاب العقارات ومديري الجمعيات: جدول دفعات أي عقد، عائد عقارك الفعلي، متأخراتك المستحقة، واشتراك الصيانة العادل لكل وحدة.</p>
+    <div class="freebadge">🎁 مجانية بالكامل · بلا تسجيل · بلا بريد إلكتروني</div>
+  </div>
+</div>
+
+<div class="tabs" id="tabs">
+  <button class="tab on" data-calc="schedule">📅 جدول دفعات العقد</button>
+  <button class="tab" data-calc="roi">📈 عائد العقار</button>
+  <button class="tab" data-calc="arrears">🔴 المتأخرات</button>
+  <button class="tab" data-calc="hoa">🏗️ اشتراك الجمعية</button>
+</div>
+
+<main class="wrap">
+<!-- ١) جدول دفعات العقد -->
+<section class="calc show" data-calc="schedule">
+  <div class="card">
+    <div class="card-h">
+      <h2>📅 جدول دفعات العقد</h2>
+      <p>أدخل تاريخ البداية والقيمة والدورة — واحصل على كل تواريخ الدفعات وتاريخ نهاية العقد فورًا.</p>
+    </div>
+    <div class="card-b">
+      <div class="row3">
+        <div class="field"><label>تاريخ بداية العقد</label><input class="fld" type="date" id="sStart"></div>
+        <div class="field"><label>قيمة الدفعة <small>ريال</small></label><input class="fld" type="number" id="sRent" value="3000" placeholder="3000"></div>
+        <div class="field"><label>عدد الدفعات <small>مدة العقد</small></label><input class="fld" type="number" id="sPeriods" value="12" placeholder="12"></div>
+      </div>
+      <div class="field">
+        <label>دورة السداد</label>
+        <div class="fgrid" id="sFreq">
+          <button class="fbtn" data-f="daily">يومي</button>
+          <button class="fbtn" data-f="weekly">أسبوعي</button>
+          <button class="fbtn on" data-f="monthly">شهري</button>
+          <button class="fbtn" data-f="quarterly">كل ٣ أشهر</button>
+          <button class="fbtn" data-f="semiannual">كل ٦ أشهر</button>
+          <button class="fbtn" data-f="annual">سنوي</button>
+        </div>
+      </div>
+      <div class="field"><label>الدفعات المسدّدة حتى الآن <small>اختياري — لمعرفة متأخراتك</small></label><input class="fld" type="number" id="sPaid" value="0" min="0"></div>
+      <div id="sOut"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ٢) عائد العقار -->
+<section class="calc" data-calc="roi">
+  <div class="card">
+    <div class="card-h">
+      <h2>📈 حاسبة عائد العقار</h2>
+      <p>كم يعود عقارك فعليًّا بعد المصروفات والوحدات الشاغرة؟ الرقم الصافي غالبًا أقل مما تتوقّع.</p>
+    </div>
+    <div class="card-b">
+      <div class="row2">
+        <div class="field"><label>سعر شراء العقار <small>ريال</small></label><input class="fld" type="number" id="rPrice" value="1500000"></div>
+        <div class="field"><label>إجمالي الإيجار السنوي <small>ريال</small></label><input class="fld" type="number" id="rRent" value="120000"></div>
+      </div>
+      <div class="row3">
+        <div class="field"><label>صيانة سنوية <small>ريال</small></label><input class="fld" type="number" id="rMaint" value="8000"></div>
+        <div class="field"><label>رسوم وخدمات سنوية <small>كهرباء مشترك، نظافة…</small></label><input class="fld" type="number" id="rFees" value="6000"></div>
+        <div class="field"><label>نسبة الشواغر <small>٪ من السنة</small></label><input class="fld" type="number" id="rVac" value="8" min="0" max="100"></div>
+      </div>
+      <div id="rOut"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ٣) المتأخرات -->
+<section class="calc" data-calc="arrears">
+  <div class="card">
+    <div class="card-h">
+      <h2>🔴 حاسبة المتأخرات</h2>
+      <p>كم من أموالك معلّق عند المستأجرين المتأخرين — وكم يكلّفك التأخير فعليًّا؟</p>
+    </div>
+    <div class="card-b">
+      <div class="row3">
+        <div class="field"><label>عدد الوحدات المتأخرة</label><input class="fld" type="number" id="aUnits" value="3" min="1"></div>
+        <div class="field"><label>متوسط الإيجار <small>ريال / شهر</small></label><input class="fld" type="number" id="aRent" value="3000"></div>
+        <div class="field"><label>متوسط أشهر التأخّر</label><input class="fld" type="number" id="aMonths" value="2" min="1"></div>
+      </div>
+      <div class="field"><label>ساعات تقضيها شهريًّا في المتابعة والمطالبة <small>لتقدير كلفة وقتك</small></label><input class="fld" type="number" id="aHours" value="6" min="0"></div>
+      <div id="aOut"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ٤) اشتراك الجمعية -->
+<section class="calc" data-calc="hoa">
+  <div class="card">
+    <div class="card-h">
+      <h2>🏗️ حاسبة اشتراك صيانة الجمعية</h2>
+      <p>احسب الاشتراك الشهري العادل لكل وحدة بناءً على مصروفات عمارتك الفعلية — جاهز لعرضه في الاجتماع.</p>
+    </div>
+    <div class="card-b">
+      <div class="row2">
+        <div class="field"><label>عدد الوحدات في العمارة</label><input class="fld" type="number" id="hUnits" value="18" min="1"></div>
+        <div class="field"><label>نسبة احتياطي الطوارئ <small>٪ فوق المصروفات</small></label><input class="fld" type="number" id="hReserve" value="15" min="0" max="100"></div>
+      </div>
+      <div class="row3">
+        <div class="field"><label>نظافة <small>ريال / شهر</small></label><input class="fld" type="number" id="hClean" value="1800"></div>
+        <div class="field"><label>صيانة المصعد <small>ريال / شهر</small></label><input class="fld" type="number" id="hLift" value="900"></div>
+        <div class="field"><label>كهرباء المشترك <small>ريال / شهر</small></label><input class="fld" type="number" id="hPower" value="1200"></div>
+      </div>
+      <div class="row3">
+        <div class="field"><label>حارس / أمن <small>ريال / شهر</small></label><input class="fld" type="number" id="hGuard" value="0"></div>
+        <div class="field"><label>مياه ومسطحات <small>ريال / شهر</small></label><input class="fld" type="number" id="hWater" value="400"></div>
+        <div class="field"><label>أخرى <small>ريال / شهر</small></label><input class="fld" type="number" id="hOther" value="300"></div>
+      </div>
+      <div id="hOut"></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <div>
+    <div class="t">أعجبتك الحاسبة؟ وثيق يفعل هذا تلقائيًّا لكل عقودك.</div>
+    <div class="s">جدول دفعات لكل مستأجر، تنبيه قبل كل استحقاق، ونماذج خطابات جاهزة — تجربة ٣٠ يومًا بلا بطاقة بنكية.</div>
+  </div>
+  <a class="btn btn-gold" href="https://watheq-app.vercel.app">ابدأ مجانًا ٣٠ يومًا ←</a>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="r">
+      <div class="brand" style="color:#EAF1EE"><span class="seal"></span> وثيق</div>
+      <div class="lnks">
+        <a href="index.html?mode=properties">إدارة الأملاك</a>
+        <a href="index.html?mode=hoa">جمعيات الملاك</a>
+        <a href="calculators.html">الحاسبات</a>
+        <a href="dashboard.html">جرّب اللوحة</a>
+        <a href="legal.html">الشروط والخصوصية</a>
+      </div>
+    </div>
+    <div style="margin-top:14px;display:flex;gap:18px;flex-wrap:wrap;font-size:.87rem">
+      <a href="https://t.me/+966550165210" target="_blank" rel="noreferrer" style="color:#E7C877;font-weight:600">📨 تليجرام</a>
+      <a href="mailto:watheqdocs@gmail.com" style="color:#E7C877;font-weight:600">✉️ watheqdocs@gmail.com</a>
+    </div>
+    <small>© وثيق ٢٠٢٦. نتائج هذه الحاسبات <b>تقديرية استرشادية</b> مبنية على المدخلات التي تُدخلها، ولا تُعدّ استشارة مالية أو قانونية أو محاسبية. راجع مختصًّا قبل أي قرار.</small>
+  </div>
+</footer>
+<script>
+(function(){
+  "use strict";
+  var money=function(n){return (Math.round(Number(n)||0)).toLocaleString('en-US')};
+  var pct=function(n){return (Math.round((Number(n)||0)*10)/10).toLocaleString('en-US')};
+
+  /* ===== محرّك العقود (نفس منطق التطبيق) ===== */
+  var PER_YEAR={daily:365,weekly:52,monthly:12,quarterly:4,semiannual:2,annual:1};
+  var FLBL={daily:'يوم',weekly:'أسبوع',monthly:'شهر',quarterly:'٣ أشهر',semiannual:'٦ أشهر',annual:'سنة'};
+  function sod(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate())}
+  function addPeriods(date,freq,n){
+    var d=new Date(date.getTime());
+    if(freq==='daily'){d.setDate(d.getDate()+n)}
+    else if(freq==='weekly'){d.setDate(d.getDate()+n*7)}
+    else{
+      var m=freq==='monthly'?1:freq==='quarterly'?3:freq==='semiannual'?6:12;
+      var day=d.getDate();d.setDate(1);d.setMonth(d.getMonth()+m*n);
+      var last=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();
+      d.setDate(Math.min(day,last));
+    }
+    return d;
+  }
+  var iso=function(d){return d.toISOString().slice(0,10)};
+
+  /* ===== التبويبات ===== */
+  document.getElementById('tabs').addEventListener('click',function(e){
+    var t=e.target.closest('.tab'); if(!t) return;
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.toggle('on',x===t)});
+    document.querySelectorAll('.calc').forEach(function(c){c.classList.toggle('show',c.dataset.calc===t.dataset.calc)});
+    try{ history.replaceState(null,'','#'+t.dataset.calc) }catch(err){}
+  });
+
+  /* ===== ١) جدول الدفعات ===== */
+  var sFreq='monthly';
+  document.getElementById('sFreq').addEventListener('click',function(e){
+    var b=e.target.closest('.fbtn'); if(!b) return;
+    sFreq=b.dataset.f;
+    document.querySelectorAll('#sFreq .fbtn').forEach(function(x){x.classList.toggle('on',x===b)});
+    calcSchedule();
+  });
+  function calcSchedule(){
+    var start=document.getElementById('sStart').value;
+    var rent=+document.getElementById('sRent').value||0;
+    var per=+document.getElementById('sPeriods').value||PER_YEAR[sFreq];
+    var paid=Math.max(0,+document.getElementById('sPaid').value||0);
+    var out=document.getElementById('sOut');
+    if(!start||!rent){out.innerHTML='<div class="hint">أدخل تاريخ البداية وقيمة الدفعة لعرض الجدول.</div>';return}
+    var st=sod(new Date(start)), today=sod(new Date());
+    per=Math.min(per,200);
+    var rows=[],due=0;
+    for(var i=0;i<per;i++){
+      var d=addPeriods(st,sFreq,i), isDue=d<=today;
+      if(isDue) due++;
+      rows.push({n:i+1,date:iso(d),status:i<paid?'paid':(isDue?'late':'upcoming')});
+    }
+    var unpaid=Math.max(0,due-paid), total=rent*per, amountDue=unpaid*rent;
+    var endDate=iso(addPeriods(st,sFreq,per));
+    var nextDue=iso(addPeriods(st,sFreq,Math.min(paid,per)));
+    out.innerHTML=
+      '<div class="out">'
+      + '<div class="big"><span class="v">'+money(total)+'</span><span class="l">ريال — إجمالي قيمة العقد</span></div>'
+      + '<div class="outgrid">'
+      +   '<div class="oc"><div class="v">'+per+'</div><div class="l">عدد الدفعات</div></div>'
+      +   '<div class="oc g"><div class="v">'+paid+'</div><div class="l">مسدّدة</div></div>'
+      +   '<div class="oc '+(unpaid?'r':'')+'"><div class="v">'+money(amountDue)+'</div><div class="l">ريال متأخر ('+unpaid+' دفعة)</div></div>'
+      +   '<div class="oc"><div class="v" style="font-size:.95rem">'+endDate+'</div><div class="l">نهاية العقد</div></div>'
+      + '</div></div>'
+      + '<div class="hint">الدفعة القادمة: <b>'+nextDue+'</b> · دورة السداد: كل <b>'+FLBL[sFreq]+'</b> · قيمة الدفعة: <b>'+money(rent)+' ريال</b></div>'
+      + '<div class="scroll"><table><thead><tr><th>#</th><th>تاريخ الاستحقاق</th><th>المبلغ</th><th>الحالة</th></tr></thead><tbody>'
+      + rows.map(function(r){return '<tr><td>'+r.n+'</td><td>'+r.date+'</td><td>'+money(rent)+'</td><td>'
+          +(r.status==='paid'?'<span class="pill p">مسدّدة</span>':r.status==='late'?'<span class="pill l">متأخرة</span>':'<span class="pill u">قادمة</span>')
+          +'</td></tr>'}).join('')
+      + '</tbody></table></div>';
+  }
+
+  /* ===== ٢) عائد العقار ===== */
+  function calcRoi(){
+    var price=+document.getElementById('rPrice').value||0;
+    var rent=+document.getElementById('rRent').value||0;
+    var maint=+document.getElementById('rMaint').value||0;
+    var fees=+document.getElementById('rFees').value||0;
+    var vac=Math.min(100,Math.max(0,+document.getElementById('rVac').value||0));
+    var out=document.getElementById('rOut');
+    if(!price||!rent){out.innerHTML='<div class="hint">أدخل سعر العقار والإيجار السنوي.</div>';return}
+    var effRent=rent*(1-vac/100);
+    var noi=effRent-maint-fees;
+    var gross=(rent/price)*100, net=(noi/price)*100;
+    var payback=noi>0?price/noi:0;
+    var monthly=noi/12;
+    out.innerHTML=
+      '<div class="out">'
+      + '<div class="big"><span class="v">'+pct(net)+'٪</span><span class="l">العائد الصافي السنوي</span></div>'
+      + '<div class="outgrid">'
+      +   '<div class="oc"><div class="v">'+pct(gross)+'٪</div><div class="l">العائد الإجمالي</div></div>'
+      +   '<div class="oc g"><div class="v">'+money(noi)+'</div><div class="l">صافي الدخل السنوي (ريال)</div></div>'
+      +   '<div class="oc"><div class="v">'+money(monthly)+'</div><div class="l">صافي شهري (ريال)</div></div>'
+      +   '<div class="oc"><div class="v">'+(payback?pct(payback)+' سنة':'—')+'</div><div class="l">استرداد رأس المال</div></div>'
+      + '</div></div>'
+      + '<div class="hint">الفرق بين الإجمالي والصافي هو <b>'+money(rent-noi)+' ريال سنويًّا</b> تذهب للشواغر والمصروفات. '
+      + (net<4?'عائد صافي أقل من ٤٪ يستحق مراجعة الإيجار أو خفض المصروفات.':net>8?'عائد صافي ممتاز — حافظ على انتظام التحصيل لتثبيته.':'عائد صافي معقول لسوق العقار السكني.')
+      + '</div>';
+  }
+
+  /* ===== ٣) المتأخرات ===== */
+  function calcArrears(){
+    var units=+document.getElementById('aUnits').value||0;
+    var rent=+document.getElementById('aRent').value||0;
+    var months=+document.getElementById('aMonths').value||0;
+    var hours=+document.getElementById('aHours').value||0;
+    var out=document.getElementById('aOut');
+    if(!units||!rent||!months){out.innerHTML='<div class="hint">أدخل بيانات المتأخرات لعرض النتيجة.</div>';return}
+    var frozen=units*rent*months;
+    var HOURLY=75;
+    var timeCostYear=hours*12*HOURLY;
+    var annualLoss=frozen+timeCostYear;
+    var watheqYear=99*12;
+    out.innerHTML=
+      '<div class="out">'
+      + '<div class="big"><span class="v">'+money(frozen)+'</span><span class="l">ريال مجمّدة عند المستأجرين الآن</span></div>'
+      + '<div class="outgrid">'
+      +   '<div class="oc r"><div class="v">'+units+'</div><div class="l">وحدة متأخرة</div></div>'
+      +   '<div class="oc"><div class="v">'+money(units*rent)+'</div><div class="l">قيمة الدفعة الواحدة (ريال)</div></div>'
+      +   '<div class="oc r"><div class="v">'+money(timeCostYear)+'</div><div class="l">كلفة وقتك سنويًّا (ريال)</div></div>'
+      +   '<div class="oc r"><div class="v">'+money(annualLoss)+'</div><div class="l">الكلفة الإجمالية (ريال)</div></div>'
+      + '</div></div>'
+      + '<div class="hint">كلفة وقتك محسوبة بـ <b>'+hours+' ساعة شهريًّا × ٧٥ ريال/ساعة</b> — وهو تقدير متحفّظ لوقت صاحب عقار. '
+      + 'اشتراك وثيق السنوي <b>'+money(watheqYear)+' ريال</b> — أي ما يعادل <b>'+pct(watheqYear/Math.max(frozen,1)*100)+'٪</b> فقط من المبلغ المجمّد عندك حاليًّا.</div>';
+  }
+
+  /* ===== ٤) اشتراك الجمعية ===== */
+  function calcHoa(){
+    var units=+document.getElementById('hUnits').value||1;
+    var reserve=Math.max(0,+document.getElementById('hReserve').value||0);
+    var items=[['نظافة','hClean'],['صيانة المصعد','hLift'],['كهرباء المشترك','hPower'],['حارس / أمن','hGuard'],['مياه ومسطحات','hWater'],['أخرى','hOther']];
+    var rows=[],monthly=0;
+    items.forEach(function(it){
+      var v=+document.getElementById(it[1]).value||0;
+      if(v>0){rows.push([it[0],v]);monthly+=v}
+    });
+    var out=document.getElementById('hOut');
+    if(!monthly){out.innerHTML='<div class="hint">أدخل مصروفًا واحدًا على الأقل.</div>';return}
+    var withReserve=monthly*(1+reserve/100);
+    var perUnit=withReserve/units;
+    var annual=withReserve*12;
+    var reserveAnnual=(withReserve-monthly)*12;
+    out.innerHTML=
+      '<div class="out">'
+      + '<div class="big"><span class="v">'+money(perUnit)+'</span><span class="l">ريال شهريًّا — اشتراك الوحدة الواحدة</span></div>'
+      + '<div class="outgrid">'
+      +   '<div class="oc"><div class="v">'+money(monthly)+'</div><div class="l">مصروفات شهرية (ريال)</div></div>'
+      +   '<div class="oc"><div class="v">'+money(withReserve)+'</div><div class="l">مع الاحتياطي (ريال)</div></div>'
+      +   '<div class="oc g"><div class="v">'+money(annual)+'</div><div class="l">الموازنة السنوية (ريال)</div></div>'
+      +   '<div class="oc g"><div class="v">'+money(reserveAnnual)+'</div><div class="l">احتياطي الطوارئ سنويًّا</div></div>'
+      + '</div></div>'
+      + '<div class="scroll"><table><thead><tr><th>البند</th><th>شهريًّا</th><th>سنويًّا</th><th>حصة الوحدة شهريًّا</th></tr></thead><tbody>'
+      + rows.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+money(r[1])+'</td><td>'+money(r[1]*12)+'</td><td>'+money(r[1]/units)+'</td></tr>'}).join('')
+      + '<tr style="background:var(--paper-2);font-weight:700"><td>الإجمالي + احتياطي '+reserve+'٪</td><td>'+money(withReserve)+'</td><td>'+money(annual)+'</td><td>'+money(perUnit)+'</td></tr>'
+      + '</tbody></table></div>'
+      + '<div class="hint">هذه الأرقام جاهزة لعرضها في محضر الجمعية العمومية. '
+      + 'احتياطي الطوارئ (<b>'+reserve+'٪</b>) يغطّي الأعطال المفاجئة كعطل المصعد أو تسرّب المياه — ويُنصح ألّا يقلّ عن ١٠٪.</div>';
+  }
+
+  /* ===== ربط ===== */
+  document.addEventListener('input',function(e){
+    if(!e.target.classList.contains('fld')) return;
+    var sec=e.target.closest('.calc');
+    if(!sec) return;
+    var k=sec.dataset.calc;
+    if(k==='schedule') calcSchedule();
+    else if(k==='roi') calcRoi();
+    else if(k==='arrears') calcArrears();
+    else if(k==='hoa') calcHoa();
+  });
+
+  /* إقلاع */
+  var d=new Date(); d.setMonth(d.getMonth()-3);
+  document.getElementById('sStart').value=iso(d);
+  calcSchedule(); calcRoi(); calcArrears(); calcHoa();
+
+  var h=(location.hash||'').replace('#','');
+  if(h){var t=document.querySelector('.tab[data-calc="'+h+'"]'); if(t) t.click();}
+})();
+</script>
+</body>
+</html>
