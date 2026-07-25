@@ -182,7 +182,7 @@
   </div>
 </header>
 
-<div class="cloudbar">معاينة سريعة — بياناتك هنا محفوظة على هذا الجهاز فقط. <a href="https://watheq-app.vercel.app" target="_blank" rel="noreferrer">ابدأ تجربة ٣٠ يومًا مجانًا لحفظها سحابيًّا ←</a></div>
+<div class="cloudbar">معاينة سريعة — بياناتك هنا محفوظة على هذا الجهاز فقط. <a href="https://watheq-app.vercel.app" target="_blank" rel="noreferrer">ابدأ تجربة 30 يومًا مجانًا لحفظها سحابيًّا ←</a></div>
 
 <main class="wrap" id="app"></main>
 
@@ -217,7 +217,7 @@ async function commit(){ await save(); render(); }
 
 /* ============ محرّك العقود — مطابق للتطبيق السحابي ============ */
 const FREQS=[{v:'daily',l:'يومي',s:'يوم'},{v:'weekly',l:'أسبوعي',s:'أسبوع'},{v:'monthly',l:'شهري',s:'شهر'},
-             {v:'quarterly',l:'كل ٣ أشهر',s:'٣ أشهر'},{v:'semiannual',l:'كل ٦ أشهر',s:'٦ أشهر'},{v:'annual',l:'سنوي',s:'سنة'}];
+             {v:'quarterly',l:'كل 3 أشهر',s:'3 أشهر'},{v:'semiannual',l:'كل 6 أشهر',s:'6 أشهر'},{v:'annual',l:'سنوي',s:'سنة'}];
 const PER_YEAR={daily:365,weekly:52,monthly:12,quarterly:4,semiannual:2,annual:1};
 const PER_MONTH={daily:30,weekly:4.33,monthly:1,quarterly:1/3,semiannual:1/6,annual:1/12};
 const freqL=f=>(FREQS.find(x=>x.v===f)||FREQS[2]).l;
@@ -415,7 +415,7 @@ function propNoteDel(id){ prop().notes=prop().notes.filter(x=>x.id!==id); commit
 
 /* ============================ نماذج تجريبية ============================ */
 function seedAssoc(){ const d=new Date();d.setDate(d.getDate()+47);
-  assocAdd({id:uid(),name:'عمارة النرجس ٢٤',units:18,fee:300,certExpiry:d.toISOString().slice(0,10),fundBalance:14200,
+  assocAdd({id:uid(),name:'عمارة النرجس 24',units:18,fee:300,certExpiry:d.toISOString().slice(0,10),fundBalance:14200,
    owners:[{id:uid(),name:'أبو محمد',unit:'3',phone:'',monthsLate:0,lastPaid:null},{id:uid(),name:'مالك الوحدة 7',unit:'7',phone:'',monthsLate:1,lastPaid:null},{id:uid(),name:'مالك الوحدة 11',unit:'11',phone:'',monthsLate:2,lastPaid:null},{id:uid(),name:'أبو ريان',unit:'14',phone:'',monthsLate:0,lastPaid:null}],
    notes:[{id:uid(),date:today(),text:'صيانة المصعد الرئيسي — تم التعاقد السنوي.'}]}); }
 function seedProp(){
@@ -437,7 +437,7 @@ function seedProp(){
 }
 /* ============================ نماذج (Modals) ============================ */
 function assocFields(a={}){ return `
-  <div class="field"><label>اسم الجمعية / العمارة</label><input class="fld" id="fName" value="${esc(a.name||'')}" placeholder="عمارة النرجس ٢٤"></div>
+  <div class="field"><label>اسم الجمعية / العمارة</label><input class="fld" id="fName" value="${esc(a.name||'')}" placeholder="عمارة النرجس 24"></div>
   <div class="field two"><div><label>عدد الوحدات</label><input class="fld" id="fUnits" type="number" value="${a.units||''}" placeholder="18"></div><div><label>الاشتراك الشهري (ريال)</label><input class="fld" id="fFee" type="number" value="${a.fee||''}" placeholder="300"></div></div>
   <div class="field two"><div><label>انتهاء الشهادة</label><input class="fld" id="fCert" type="date" value="${a.certExpiry||''}"></div><div><label>رصيد الصندوق (ريال)</label><input class="fld" id="fBal" type="number" value="${a.fundBalance??''}" placeholder="0"></div></div>`; }
 function readAssoc(){ return {name:v('fName'),units:+v('fUnits')||0,fee:+v('fFee')||0,certExpiry:v('fCert'),fundBalance:+v('fBal')||0}; }
@@ -523,7 +523,7 @@ function renderAssociation(){
   if(dl!==null&&dl<0) alert=`<div class="alert red"><span class="ico">🔴</span><span><b>انتهت شهادة الجمعية.</b> بادر بالتجديد فورًا.</span><button class="btn btn-gold btn-sm" data-act="assocRenew">جهّز مستندات التجديد</button></div>`;
   else if(dl!==null&&dl<=60) alert=`<div class="alert ${dl<=30?'red':'amber'}"><span class="ico">${dl<=30?'🔴':'⚠️'}</span><span><b>تنتهي شهادة الجمعية خلال ${dl} يومًا</b> (${a.certExpiry}). جهّز محضر التجديد والموازنة الآن.</span><button class="btn btn-gold btn-sm" data-act="assocRenew">جهّز مستندات التجديد</button></div>`;
   const stats=`<div class="stats">
-    <div class="stat"><div class="v ok">${pct}٪</div><div class="lbl">نسبة السداد</div></div>
+    <div class="stat"><div class="v ok">${pct}%</div><div class="lbl">نسبة السداد</div></div>
     <div class="stat"><div class="v ${late.length?'warn':''}">${late.length}</div><div class="lbl">ملاك متأخرون</div></div>
     <div class="stat"><div class="v">${money(a.fundBalance)}</div><div class="lbl">رصيد الصندوق (ريال)</div></div>
     <div class="stat"><div class="v ${dl!==null&&dl<=30?'warn':''}">${dl===null?'—':dl}</div><div class="lbl">يوم حتى انتهاء الشهادة</div></div></div>`;
@@ -574,7 +574,7 @@ function renderProperty(){
       <span><b>${agg.units}</b><small>وحدة</small></span>
       <span class="${agg.late?'r':''}"><b>${agg.late}</b><small>متأخرة</small></span>
       <span class="${agg.overdue?'r':''}"><b>${money(agg.overdue)}</b><small>ريال متأخر</small></span>
-      <span><b>${agg.soon}</b><small>تستحق خلال ٧ أيام</small></span>
+      <span><b>${agg.soon}</b><small>تستحق خلال 7 أيام</small></span>
       <span><b>${agg.exp}</b><small>عقود تنتهي قريبًا</small></span>
       <span><b>${money(Math.round(agg.monthly))}</b><small>دخل شهري تقريبي</small></span>
     </div>`;
@@ -584,10 +584,10 @@ function renderProperty(){
   if(expiring) alert=`<div class="alert ${expiring.st.daysToEnd<=30?'red':'amber'}"><span class="ico">📄</span><span><b>عقد ${esc(expiring.t.name)} (${ul} ${esc(expiring.t.unit||'—')}) ينتهي خلال ${expiring.st.daysToEnd} يومًا</b> (${expiring.st.endDate}). جهّز التجديد أو الإخلاء.</span></div>`;
 
   const stats=`<div class="stats">
-    <div class="stat"><div class="v ok">${pct}٪</div><div class="lbl">نسبة الانتظام</div></div>
+    <div class="stat"><div class="v ok">${pct}%</div><div class="lbl">نسبة الانتظام</div></div>
     <div class="stat"><div class="v ${late.length?'warn':''}">${late.length}</div><div class="lbl">وحدات متأخرة</div></div>
     <div class="stat"><div class="v ${overdue?'warn':''}">${money(overdue)}</div><div class="lbl">إجمالي المتأخر (ريال)</div></div>
-    <div class="stat"><div class="v">${soon.length}</div><div class="lbl">دفعات خلال ٧ أيام</div></div></div>`;
+    <div class="stat"><div class="v">${soon.length}</div><div class="lbl">دفعات خلال 7 أيام</div></div></div>`;
 
   const list=rows.length?rows.map(({t,st})=>`<div class="row-item" style="flex-wrap:wrap">
     <span class="av">${esc((t.name||'?').trim().charAt(0))}</span>
@@ -612,7 +612,7 @@ function renderProperty(){
     <div class="panel"><div class="panel-h"><h2>سجل العقار</h2></div>
       <div class="panel-b"><div class="note-add"><input class="fld" id="pNote" placeholder="ملاحظة (صيانة، تجديد عقد…)"><button class="btn btn-primary btn-sm" data-act="propNote">حفظ</button></div>${notes}</div></div>
   </div>
-  <div class="upsell">في النسخة الكاملة أيضًا: <b>رفع جماعي من Excel</b> · <b>كشوف حساب وفواتير PDF</b> · <b>تنبيهات تليجرام يومية</b> — <a href="https://watheq-app.vercel.app" target="_blank" rel="noreferrer">جرّبها مجانًا ٣٠ يومًا ←</a></div>`;
+  <div class="upsell">في النسخة الكاملة أيضًا: <b>رفع جماعي من Excel</b> · <b>كشوف حساب وفواتير PDF</b> · <b>تنبيهات تليجرام يومية</b> — <a href="https://watheq-app.vercel.app" target="_blank" rel="noreferrer">جرّبها مجانًا 30 يومًا ←</a></div>`;
 }
 
 function render(){
