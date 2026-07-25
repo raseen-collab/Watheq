@@ -169,6 +169,9 @@
     .field.two{grid-template-columns:1fr}
   }
 </style>
+<!-- 🔗 دومين الموقع الرسمي — بدّله هنا وفي وسمي og أدناه -->
+<link rel="canonical" href="https://watheqapp.netlify.app/dashboard.html">
+<meta property="og:image" content="https://watheqapp.netlify.app/og-image.png">
 </head>
 <body>
 
@@ -481,7 +484,8 @@ const v=id=>document.getElementById(id).value.trim();
 
 function renderModal(){
   if(state.ui.doc){ const d=state.ui.doc; return `<div class="overlay" data-close><div class="modal" style="max-width:640px">
-    <h2>${esc(d.title)}</h2>
+    <h1 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">لوحة تحكّم وثيق — عرض تجريبي</h1>
+<h2>${esc(d.title)}</h2>
     <p class="disc">مسودّة استرشادية — راجعها مع مختص مرخّص قبل الاعتماد الرسمي. التنفيذ عبر ناجز يتطلب عقدًا موحّدًا موثّقًا في شبكة إيجار.</p>
     <div class="doc" id="docBox">${esc(d.body)}</div>
     <div class="modal-actions"><button class="btn btn-primary" data-act="copyDoc">نسخ النص</button><button class="btn btn-ghost" data-act="printDoc">طباعة / PDF</button><button class="btn" style="color:var(--muted)" data-act="closeModal">إغلاق</button></div>
