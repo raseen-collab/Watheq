@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+<script>
+(function(){try{
+  var t=localStorage.getItem("watheq_theme");
+  if(!t)t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+  if(t==="dark")document.documentElement.setAttribute("data-theme","dark");
+}catch(e){}})();
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E3A37'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='%23E7C877' font-weight='bold' font-family='Arial'%3E%D9%88%3C/text%3E%3C/svg%3E">
@@ -201,6 +209,32 @@
   .legal h4{font-size:.95rem;margin-bottom:10px;color:var(--deep)}
   @media(max-width:860px){.ptypes{grid-template-columns:repeat(3,1fr)}.demo-stats{grid-template-columns:1fr 1fr}.legal .two{grid-template-columns:1fr}}
   @media(max-width:860px){.services,.steps{grid-template-columns:1fr}.packs{grid-template-columns:1fr;max-width:420px}.pain,.preview{border-radius:18px}}
+
+  /* ═══ الوضع الليلي ═══ */
+  html[data-theme="dark"]{
+    --ink:#E8EFEC; --deep:#123A35; --deep-2:#0D2B27;
+    --paper:#081513; --paper-2:#102421; --card:#0F221F;
+    --line:#1E3B36; --muted:#93AAA4;
+    --gold:#E7C877; --gold-ink:#F0D89A; --gold-soft:#E7C877;
+    --paid:#3FD199; --late:#F58A84;
+    --paid-bg:#0F2F24; --late-bg:#331A1B; --amber-bg:#2E2415;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 34px -18px rgba(0,0,0,.7);
+    --shadow-lg:0 30px 70px -30px rgba(0,0,0,.85);
+    color-scheme:dark;
+  }
+  /* تصحيحات لعناصر بألوان ثابتة */
+  html[data-theme="dark"] img,
+  html[data-theme="dark"] .shot{filter:brightness(.92) contrast(1.02)}
+  html[data-theme="dark"] .nav{background:rgba(8,21,19,.86);border-bottom-color:var(--line)}
+  html[data-theme="dark"] .pack.feature{box-shadow:0 24px 58px -30px rgba(231,200,119,.35)}
+
+  /* زر تبديل الوضع */
+  .theme-btn{border:1px solid var(--line);background:var(--card);color:var(--ink);
+    width:38px;height:38px;border-radius:11px;display:inline-grid;place-items:center;
+    cursor:pointer;font-size:1rem;line-height:1;transition:all .18s ease;padding:0}
+  .theme-btn:hover{border-color:var(--gold-soft)}
+  .mmenu .theme-btn{width:auto;height:auto;padding:10px 14px;justify-content:flex-start}
+  @media(max-width:900px){.nav-end .theme-btn{display:none}}
 </style>
 <!-- 🔗 دومين الموقع الرسمي — بدّله هنا وفي وسمي og أدناه -->
 <link rel="canonical" href="https://watheqapp.netlify.app/properties.html">
@@ -219,6 +253,7 @@
       <a href="dashboard.html#property">جرّب اللوحة</a>
       <a href="https://watheq-app.vercel.app" style="color:#fff;font-weight:700">تسجيل الدخول</a>
     </nav>
+        <button class="theme-btn" data-theme-btn aria-label="الوضع الليلي">☾</button>
     <div style="display:flex;align-items:center;gap:10px">
       <a class="btn btn-gold" data-wa href="#">تواصل عبر واتساب</a>
       <button class="nav-toggle" aria-label="Menu" data-menu>☰</button>
@@ -575,6 +610,32 @@
       navToggle.textContent = "☰";
     }));
   }
+</script>
+<script>
+(function(){
+  var KEY="watheq_theme";
+  function cur(){return document.documentElement.getAttribute("data-theme")==="dark"?"dark":"light";}
+  function paint(){
+    var d=cur()==="dark";
+    document.querySelectorAll("[data-theme-btn]").forEach(function(b){
+      b.textContent=d?"\u2600":"\u263E";
+      b.setAttribute("aria-label",d?"الوضع النهاري":"الوضع الليلي");
+      b.setAttribute("title",d?"الوضع النهاري":"الوضع الليلي");
+    });
+  }
+  function toggle(){
+    var d=cur()==="dark";
+    if(d)document.documentElement.removeAttribute("data-theme");
+    else document.documentElement.setAttribute("data-theme","dark");
+    try{localStorage.setItem(KEY,d?"light":"dark");}catch(e){}
+    paint();
+  }
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-theme-btn]");
+    if(b){e.preventDefault();toggle();}
+  });
+  paint();
+})();
 </script>
 </body>
 </html>
