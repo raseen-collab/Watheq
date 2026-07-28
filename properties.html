@@ -3,9 +3,9 @@
 <head>
 <script>
 (function(){try{
-  var t=localStorage.getItem("watheq_theme");
-  if(!t)t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
-  if(t==="dark")document.documentElement.setAttribute("data-theme","dark");
+  /* الافتراضي: الوضع النهاري دائمًا — الليلي باختيار صريح من المستخدم فقط */
+  if(localStorage.getItem("watheq_theme")==="dark")
+    document.documentElement.setAttribute("data-theme","dark");
 }catch(e){}})();
 </script>
 
@@ -13,9 +13,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E3A37'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='%23E7C877' font-weight='bold' font-family='Arial'%3E%D9%88%3C/text%3E%3C/svg%3E">
 <title>وثيق · إدارة الأملاك — حصّل إيجاراتك في وقتها</title>
-<meta name="description" content="وثيق لإدارة الأملاك: أدر مستأجريك، حصّل الإيجارات في وقتها بنظام تحصيل آلي، إنذارات نظامية جاهزة للتنفيذ عبر ناجز، وتنبيه انتهاء العقود — للمُلّاك ومكاتب إدارة الأملاك.">
-<meta property="og:title" content="وثيق · إدارة الأملاك">
-<meta property="og:description" content="حصّل إيجاراتك في وقتها، دون أن تطارد أحدًا.">
+<meta name="description" content="أدر مستأجريك وحصّل الإيجارات في وقتها: تنبيه قبل كل استحقاق، تذكير واتساب جاهز، كشوف وفواتير، وإشعارات نظامية — للمُلّاك ومكاتب إدارة الأملاك.">
+<meta property="og:title" content="وثيق · إدارة الأملاك — حصّل إيجاراتك في وقتها">
+<meta property="og:description" content="أدر مستأجريك وحصّل الإيجارات في وقتها: تنبيه قبل كل استحقاق، تذكير واتساب جاهز، كشوف وفواتير، وإشعارات نظامية — للمُلّاك ومكاتب إدارة الأملاك.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://watheqapp.netlify.app/properties.html">
 <meta property="og:image" content="https://watheqapp.netlify.app/og-image.png">

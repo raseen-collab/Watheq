@@ -3,9 +3,9 @@
 <head>
 <script>
 (function(){try{
-  var t=localStorage.getItem("watheq_theme");
-  if(!t)t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
-  if(t==="dark")document.documentElement.setAttribute("data-theme","dark");
+  /* الافتراضي: الوضع النهاري دائمًا — الليلي باختيار صريح من المستخدم فقط */
+  if(localStorage.getItem("watheq_theme")==="dark")
+    document.documentElement.setAttribute("data-theme","dark");
 }catch(e){}})();
 </script>
 

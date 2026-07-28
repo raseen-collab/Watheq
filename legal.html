@@ -3,22 +3,22 @@
 <head>
 <script>
 (function(){try{
-  var t=localStorage.getItem("watheq_theme");
-  if(!t)t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
-  if(t==="dark")document.documentElement.setAttribute("data-theme","dark");
+  /* الافتراضي: الوضع النهاري دائمًا — الليلي باختيار صريح من المستخدم فقط */
+  if(localStorage.getItem("watheq_theme")==="dark")
+    document.documentElement.setAttribute("data-theme","dark");
 }catch(e){}})();
 </script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E3A37'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='%23E7C877' font-weight='bold' font-family='Arial'%3E%D9%88%3C/text%3E%3C/svg%3E">
-<title>وثيق — عن المنصة، الأسئلة الشائعة، الشروط والخصوصية</title>
-<meta property="og:title" content="وثيق — عن المنصة والشروط">
-<meta property="og:description" content="عن منصة وثيق، الأسئلة الشائعة، شروط الاستخدام، وسياسة الخصوصية.">
+<title>وثيق — الشروط والخصوصية والاسترداد</title>
+<meta property="og:title" content="وثيق — الشروط والخصوصية والاسترداد">
+<meta property="og:description" content="عن منصة وثيق وحدودها، والأسئلة الشائعة، وشروط الاستخدام، وسياسة الخصوصية ومكان معالجة البيانات، وسياسة الاشتراك والاسترداد.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://watheqapp.netlify.app/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="description" content="عن منصة وثيق، الأسئلة الشائعة، شروط الاستخدام، وسياسة الخصوصية.">
+<meta name="description" content="عن منصة وثيق وحدودها، والأسئلة الشائعة، وشروط الاستخدام، وسياسة الخصوصية ومكان معالجة البيانات، وسياسة الاشتراك والاسترداد.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -320,7 +320,7 @@
     </p>
 
     <h3>9. التواصل</h3>
-    <p>لأي استفسار يخصّ الخصوصية أو لطلب حذف البيانات: <a href="mailto:watheqdocs@gmail.com">watheqdocs@gmail.com</a> أو عبر <a href="https://t.me/+966550165210" target="_blank" rel="noreferrer">تليجرام (+966550165210)</a>.</p>
+    <p>لأي استفسار يخصّ الخصوصية أو لطلب حذف البيانات: <a href="mailto:watheqdocs@gmail.com">watheqdocs@gmail.com</a> أو عبر <a href="https://t.me/+966550165210" target="_blank" rel="noreferrer">تليجرام (+966550165210)</a> · <a href="https://wa.me/966596300591" target="_blank" rel="noreferrer">واتساب: 0596300591</a>.</p>
 
     <p class="updated">آخر تحديث: يوليو 2026</p>
   </section>
