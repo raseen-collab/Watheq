@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<script>
+(function(){try{
+  /* الافتراضي: الوضع النهاري دائمًا — الليلي باختيار صريح من المستخدم فقط */
+  if(localStorage.getItem("watheq_theme")==="dark")
+    document.documentElement.setAttribute("data-theme","dark");
+}catch(e){}})();
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E3A37'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='%23E7C877' font-weight='bold' font-family='Arial'%3E%D9%88%3C/text%3E%3C/svg%3E">
+<title>من نحن — وثيق</title>
+<meta property="og:title" content="من نحن — وثيق">
+<meta property="og:description" content="لماذا بُنيت وثيق، ماذا تفعل بالضبط، وما لا تفعله. الكيان النظامي، المبادئ، وكيف نكسب — بوضوح.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://watheqapp.netlify.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="لماذا بُنيت وثيق، ماذا تفعل بالضبط، وما لا تفعله. الكيان النظامي، المبادئ، وكيف نكسب — بوضوح.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--surface-deep:#0E3A37;--surface-deep-2:#0A2C2A;
+    --ink:#0B211F;--deep:#0E3A37;--deep-2:#0A2C2A;--paper:#FBF8F1;--paper-2:#F3EEE2;--card:#fff;--line:#E4DDCD;--muted:#5C6B67;--gold:#B8791F;--gold-ink:#8a5a11;--gold-soft:#E7C877;--paid:#1E9E6A;--late:#D0453F}
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;line-height:1.85;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:"Readex Pro","IBM Plex Sans Arabic",sans-serif}
+  a{color:var(--gold-ink)}
+  .wrap{max-width:820px;margin:0 auto;padding:0 22px}
+  .nav{background:var(--surface-deep);color:#EAF1EE;position:sticky;top:0;z-index:40}
+  .nav .row{display:flex;align-items:center;justify-content:space-between;height:62px;gap:12px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:"Readex Pro";font-weight:700;font-size:1.15rem;color:#EAF1EE;text-decoration:none}
+  .seal{width:32px;height:32px;border-radius:9px;background:var(--surface-deep-2);display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px rgba(231,200,119,.4)}
+  .seal::after{content:"و";color:var(--gold-soft);font-weight:700}
+  .nav a.back{color:#B9CCC7;font-size:.9rem;text-decoration:none}
+  .nav a.back:hover{color:#fff}
+  .hd{background:linear-gradient(160deg,var(--surface-deep),var(--surface-deep-2));color:#EAF1EE;padding:44px 0 40px}
+  .hd h1{font-size:clamp(1.7rem,3.4vw,2.4rem);margin:0 0 10px}
+  .hd p{color:#B9CCC7;margin:0;max-width:44em}
+  .toc{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 0}
+  .toc a{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#EAF1EE;padding:8px 16px;border-radius:999px;font-size:.88rem;font-weight:600;text-decoration:none}
+  .toc a:hover{background:rgba(255,255,255,.18)}
+  main{padding:44px 0 60px}
+  section{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px clamp(20px,4vw,36px);margin-bottom:22px;box-shadow:0 1px 2px rgba(11,33,31,.04),0 10px 26px -18px rgba(11,33,31,.25)}
+  section h2{font-size:1.4rem;color:var(--deep);margin:0 0 6px;scroll-margin-top:80px}
+  section .lead{color:var(--muted);margin:0 0 20px;font-size:.95rem}
+  h3{font-size:1.03rem;margin:22px 0 6px;color:var(--deep)}
+  p{margin:0 0 12px}
+  ul{padding-inline-start:20px;margin:0 0 14px}
+  li{margin-bottom:7px}
+  .box{border-radius:12px;padding:16px 18px;margin:18px 0;font-size:.93rem}
+  .box.warn{background:#FBF1DF;border:1px solid rgba(184,121,31,.32);color:var(--gold-ink)}
+  .box.ok{background:#E6F4EC;border:1px solid #B7DFC7;color:var(--paid)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:16px}
+  .two ul{list-style:none;padding:0}
+  .two li{display:flex;gap:9px;font-size:.93rem}
+  .two .m{flex:none;font-weight:700;width:16px}
+  .yes .m{color:var(--paid)}.no .m{color:var(--late)}
+  /* بطاقات المبادئ */
+  .vals{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+  .val{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .val b{display:block;color:var(--deep);font-family:"Readex Pro";font-size:.98rem;margin-bottom:4px}
+  .val span{font-size:.88rem;color:var(--muted);line-height:1.8}
+  /* المسارات */
+  .tracks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+  .track{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .track .ic{font-size:1.5rem;display:block;margin-bottom:8px}
+  .track b{display:block;color:var(--deep);font-family:"Readex Pro";font-size:1.02rem;margin-bottom:6px}
+  .track ul{padding-inline-start:18px;margin:0;font-size:.9rem;color:#33413d}
+  /* التواصل */
+  .contact{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+  .cbtn{display:inline-flex;align-items:center;gap:9px;border-radius:12px;padding:12px 20px;font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid transparent}
+  .cbtn.wa{background:#1FA855;color:#fff}
+  .cbtn.tg{background:#229ED9;color:#fff}
+  .cbtn.em{background:var(--card);color:var(--deep);border-color:var(--line)}
+  .cta{background:linear-gradient(160deg,var(--surface-deep),var(--surface-deep-2));color:#EAF1EE;text-align:center}
+  .cta h2{color:#fff}
+  .cta p{color:#B9CCC7}
+  .cta .btn-gold{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#fff;border-radius:12px;padding:13px 26px;font-weight:600;text-decoration:none;margin-top:10px}
+  footer{background:var(--surface-deep-2);color:#B9CCC7;padding:30px 0;text-align:center;font-size:.85rem}
+  footer a{color:var(--gold-soft);text-decoration:none}
+  @media(max-width:720px){.two,.vals,.tracks{grid-template-columns:1fr}}
+  /* ═══ الوضع الليلي ═══ */
+  html[data-theme="dark"]{
+    --ink:#DCE8E4; --deep:#F2F7F5; --deep-2:#E3EDEA;
+    --surface-deep:#12332F; --surface-deep-2:#0D2724;
+    --paper:#081513; --paper-2:#102421; --card:#0F221F;
+    --line:#22423C; --muted:#A3B8B2;
+    --gold:#E7C877; --gold-ink:#F2DCA4; --gold-soft:#E7C877;
+    --paid:#4BD9A2; --late:#F79A94;
+    color-scheme:dark;
+  }
+  html[data-theme="dark"] .nav{background:var(--surface-deep)}
+  html[data-theme="dark"] .box.warn{background:#312615;border-color:rgba(231,200,119,.3);color:#F2DCA4}
+  html[data-theme="dark"] .box.ok{background:#0E3226;border-color:rgba(75,217,162,.35);color:#4BD9A2}
+  /* زر تبديل الوضع */
+  .theme-btn{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#EAF1EE;
+    width:38px;height:38px;border-radius:11px;display:inline-grid;place-items:center;
+    cursor:pointer;font-size:1rem;line-height:1;transition:all .18s ease;padding:0;font-family:inherit}
+  .theme-btn:hover{border-color:var(--gold-soft)}
+</style>
+<link rel="canonical" href="https://watheqapp.netlify.app/about.html">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap row">
+    <a href="index.html" class="brand"><span class="seal"></span> وثيق</a>
+    <button class="theme-btn" data-theme-btn aria-label="الوضع الليلي">☾</button>
+    <a href="index.html" class="back">← العودة إلى الموقع</a>
+  </div>
+</header>
+
+<div class="hd">
+  <div class="wrap">
+    <h1>من نحن</h1>
+    <p>وثيق أداة تنظيمية سعودية لإدارة الأملاك العقارية وجمعيات الملاك. هذي الصفحة تشرح لماذا بُنيت، وماذا تفعل بالضبط، وما لا تفعله — بلا مبالغة.</p>
+    <div class="toc">
+      <a href="#why">لماذا وثيق</a>
+      <a href="#what">ماذا نفعل</a>
+      <a href="#values">مبادئنا</a>
+      <a href="#legal">الكيان النظامي</a>
+      <a href="#money">كيف نكسب</a>
+      <a href="#contact">تواصل معنا</a>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- لماذا وثيق -->
+  <section id="why">
+    <h2>لماذا وُجدت وثيق</h2>
+    <p class="lead">من مشكلة صغيرة ومتكرّرة — لا من فكرة كبيرة على ورق.</p>
+    <p>
+      مالك عقار يطارد إيجارًا متأخرًا برسالة يكتبها من الصفر كل مرة، ويحسب المتأخرات على ورقة جانبية،
+      ويكتشف أن عقدًا انتهى قبل أسبوعين وهو لا يدري. ومدير جمعية ملاك يبحث عن صيغة محضر قبل موعد
+      الاجتماع بيومين، ويتابع اشتراكات الصيانة في ملف إكسل يُنسى، ثم تنتهي شهادة الجمعية وهو مشغول
+      بغيرها.
+    </p>
+    <p>
+      المنصات الحكومية حلّت الجزء الأهم: «إيجار» توثّق العقد، و«ملاك» تسجّل الجمعية. لكن ما بعد التسجيل
+      بقي على الورق — المتابعة اليومية، والمواعيد، والمستندات التي تُطلب منك جاهزة. هذه المسافة
+      بالضبط هي ما بُنيت وثيق لتغطيته.
+    </p>
+    <div class="box ok">
+      <b>مبدأ ثابت:</b> لا نُغني عن المنصات الحكومية ولا نزاحمها — نُكمل ما بعدها. والتسجيل فيها مجاني،
+      ونرشدك إليه بلا مقابل.
+    </div>
+  </section>
+
+  <!-- ماذا نفعل -->
+  <section id="what">
+    <h2>ماذا نفعل بالضبط</h2>
+    <p class="lead">مساران مستقلّان، لكل منهما لوحته وأدواته.</p>
+
+    <div class="tracks">
+      <div class="track">
+        <span class="ic">🏢</span>
+        <b>إدارة الأملاك</b>
+        <ul>
+          <li>محرّك عقود يستنتج كل تواريخ الدفعات ونهاية العقد</li>
+          <li>متابعة التحصيل والسداد الجزئي والمتأخرات</li>
+          <li>تنبيهات تليجرام قبل الاستحقاق وقبل انتهاء العقد</li>
+          <li>كشوف حساب وفواتير مرقّمة ونماذج إشعارات</li>
+          <li>دورة الإخلاء ومخالصة التسليم</li>
+        </ul>
+      </div>
+      <div class="track">
+        <span class="ic">🏗️</span>
+        <b>جمعيات الملاك</b>
+        <ul>
+          <li>متابعة اشتراكات الصيانة ورصيد الصندوق</li>
+          <li>الموازنة التقديرية واحتساب الاشتراك العادل لكل وحدة</li>
+          <li>محاضر الاجتماعات — التأسيسي والسنوي</li>
+          <li>حزمة تجديد شهادة الجمعية (المحضر + الموازنة)</li>
+          <li>خطابات التذكير والتحصيل للمتأخرين</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>وفي المسارين معًا</h3>
+    <p>
+      <b>المستشار الذكي</b> — مساعد يجيب على أسئلتك التنظيمية من قاعدة معرفة موثّقة بالمصادر الرسمية،
+      ويذكر مصدره في كل إجابة، ويقول صراحةً «هذا خارج ما أستطيع تأكيده» حين لا يجد إجابة موثّقة
+      بدل أن يخمّن.
+    </p>
+
+    <div class="box warn">
+      <b>حدودنا بوضوح:</b> وثيق أداة تنظيمية ومساعدة في الصياغة. لسنا مكتبًا قانونيًّا، ولا جهة مالية،
+      ولا بديلًا عن المنصات الحكومية الرسمية.
+    </div>
+
+    <div class="two">
+      <ul class="yes">
+        <li><span class="m">✓</span> ننظّم بياناتك ونحسب استحقاقاتك</li>
+        <li><span class="m">✓</span> ننبّهك قبل المواعيد لا بعدها</li>
+        <li><span class="m">✓</span> نجهّز نماذج خطابات ومستندات إدارية</li>
+        <li><span class="m">✓</span> نرشدك لخطوات المنصات الرسمية</li>
+      </ul>
+      <ul class="no">
+        <li><span class="m">✕</span> لا نستلم أو نحوّل أي مبالغ</li>
+        <li><span class="m">✕</span> لا نرفع دعاوى ولا نمثّلك أمام أي جهة</li>
+        <li><span class="m">✕</span> لا نقدّم رأيًا قانونيًّا أو محاسبيًّا</li>
+        <li><span class="m">✕</span> لا نتواصل مع مستأجريك أو ملّاكك نيابةً عنك</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- المبادئ -->
+  <section id="values">
+    <h2>ما نلتزم به</h2>
+    <p class="lead">مبادئ نُحاسَب عليها، لا شعارات.</p>
+
+    <div class="vals">
+      <div class="val">
+        <b>لا نبالغ في ما نقدر عليه</b>
+        <span>نذكر حدود الأداة في كل مستند تُصدره، ونصف ما تفعله بالضبط — لا أكثر.</span>
+      </div>
+      <div class="val">
+        <b>لا أرقام مزخرفة</b>
+        <span>لا نعرض شهادات عملاء غير حقيقية ولا إحصاءات مصنوعة. ما تراه هنا يمكن التحقّق منه.</span>
+      </div>
+      <div class="val">
+        <b>بياناتك ملكك</b>
+        <span>عزل على مستوى الصف، اتصال مشفّر، وبلا كوكيز تتبّع. تطلب حذف بياناتك فتُحذف.</span>
+      </div>
+      <div class="val">
+        <b>لا نلمس أموالك</b>
+        <span>التحصيل يتمّ بينك وبين الطرف الآخر مباشرة. نحن نحسب ونذكّر ونوثّق فقط.</span>
+      </div>
+      <div class="val">
+        <b>كل مستند استرشادي</b>
+        <span>نماذجنا مصاغة لتوفّر وقتك، وننبّه صراحةً على مراجعتها مع مختص قبل الاعتماد الرسمي.</span>
+      </div>
+      <div class="val">
+        <b>إلغاء بلا عوائق</b>
+        <span>تجربة 30 يومًا بلا بطاقة بنكية، وإلغاء متى شئت بلا رسوم ولا مكالمات إقناع.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- الكيان النظامي -->
+  <section id="legal">
+    <h2>الكيان النظامي</h2>
+    <p class="lead">من تتعامل معه، وكيف تتحقّق منه بنفسك.</p>
+    <p>
+      تُشغَّل منصة وثيق بموجب <strong>وثيقة عمل حر رقم FL-763162251</strong>، صادرة من وزارة الموارد
+      البشرية والتنمية الاجتماعية عبر منصة العمل الحر. ويمكنك التحقّق من سريانها عبر
+      <a href="https://freelance.sa" target="_blank" rel="noreferrer">منصة العمل الحر</a>.
+    </p>
+    <p>
+      وهذا يعني أن التعاقد وإصدار الفواتير يتمّان بصفة نظامية موثّقة، وأن لك مرجعًا رسميًّا يمكن
+      الرجوع إليه — لا حسابًا مجهولًا على الإنترنت.
+    </p>
+
+    <h3>منصة حديثة الإطلاق — ونقولها بصراحة</h3>
+    <p>
+      وثيق منصة جديدة، وهذا يعني أمرين: أنك تحصل على <b>سعر المؤسسين</b> الذي يبقى ثابتًا لك مدى
+      اشتراكك، وأن ملاحظتك اليوم تُنفَّذ في أيام لا في أرباع سنة — لأنك تتحدّث مباشرة إلى من يبني
+      المنتج، لا إلى مركز اتصال.
+    </p>
+    <p>
+      ولأننا جدد، لن تجد هنا شهادات عملاء ولا أرقام استخدام. بدلًا عنها نعرض
+      <a href="index.html#samples">نماذج حقيقية من المستندات التي تُنتجها المنصة</a>، و<a href="dashboard.html">لوحة
+      تجريبية تتصفّحها بلا تسجيل</a> — احكم على العمل نفسه.
+    </p>
+  </section>
+
+  <!-- كيف نكسب -->
+  <section id="money">
+    <h2>كيف نكسب</h2>
+    <p class="lead">نموذج عمل واضح بلا مصادر دخل خفيّة.</p>
+    <p>
+      دخلنا من <b>اشتراكات شهرية معلنة</b> على صفحة الباقات، ومن <b>خدمات تجهيز لمرة واحدة</b>
+      (تأسيس جمعية أو تجهيز مستندات) بأسعار منشورة أيضًا. هذا كل شيء.
+    </p>
+    <ul>
+      <li>لا نبيع بياناتك ولا نشاركها مع معلنين</li>
+      <li>لا نتقاضى عمولة على تحصيلك — لا نلمس المبالغ أصلًا</li>
+      <li>لا نأخذ مقابلًا على التسجيل في المنصات الحكومية، فهو مجاني ونرشدك إليه</li>
+      <li>لا رسوم خفية ولا تجديد تلقائي مفاجئ</li>
+    </ul>
+    <p>
+      التفاصيل الكاملة في <a href="index.html#pricing">صفحة الباقات</a> و<a href="legal.html#refund">سياسة
+      الاشتراك والاسترداد</a>.
+    </p>
+  </section>
+
+  <!-- التواصل -->
+  <section id="contact">
+    <h2>تواصل معنا</h2>
+    <p class="lead">سؤال، ملاحظة، أو طلب خدمة — نردّ على كل رسالة.</p>
+    <div class="contact">
+      <a class="cbtn wa" data-wa href="#">💬 واتساب الأعمال</a>
+      <a class="cbtn tg" href="https://t.me/+966550165210" target="_blank" rel="noreferrer">📨 تليجرام</a>
+      <a class="cbtn em" href="mailto:watheqdocs@gmail.com">✉️ watheqdocs@gmail.com</a>
+    </div>
+    <p style="margin-top:18px;font-size:.9rem;color:var(--muted)">
+      نعمل بتوقيت المملكة. إن راسلتنا خارج ساعات العمل فسنردّ في أول فرصة —
+      ولن تجد ردًّا آليًّا يدور بك في حلقة.
+    </p>
+  </section>
+
+  <!-- دعوة -->
+  <section class="cta">
+    <h2>جرّبها قبل أن تقرّر</h2>
+    <p>30 يومًا بكل المزايا — بلا بطاقة بنكية، وبلا التزام.</p>
+    <a class="btn-gold" href="https://watheq-app.vercel.app">ابدأ مجانًا ←</a>
+    <p style="margin-top:14px;font-size:.85rem">
+      أو <a href="dashboard.html" style="color:var(--gold-soft)">تصفّح اللوحة التجريبية</a> بلا تسجيل.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="index.html">وثيق</a> · <a href="about.html">من نحن</a> · <a href="calculators.html">الحاسبات</a>
+    · <a href="legal.html">الشروط والخصوصية</a> · <a href="https://watheq-app.vercel.app">تسجيل الدخول</a>
+    <div style="margin-top:12px;font-size:.85rem"><a href="https://t.me/+966550165210" target="_blank" rel="noreferrer">📨 +966550165210</a> · <a href="mailto:watheqdocs@gmail.com">✉️ watheqdocs@gmail.com</a></div>
+    <div style="margin-top:10px;color:#7E938E">© وثيق 2026
+    <small style="display:block;margin-top:10px;color:#9FB8B3">
+      🪪 مرخّص بوثيقة عمل حر رقم <b style="color:#E7C877">FL-763162251</b> — صادرة من وزارة الموارد البشرية والتنمية الاجتماعية عبر منصة العمل الحر.
+    </small></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* روابط واتساب — رقم واحد في مكان واحد */
+  var WA = "966596300591";
+  var MSG = "مرحبًا، وصلت من صفحة «من نحن» في موقع وثيق وأرغب بالاستفسار.";
+  document.querySelectorAll("[data-wa]").forEach(function(a){
+    a.href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(MSG);
+    a.target = "_blank"; a.rel = "noreferrer";
+  });
+})();
+(function(){
+  var KEY="watheq_theme";
+  function cur(){return document.documentElement.getAttribute("data-theme")==="dark"?"dark":"light";}
+  function paint(){
+    var d=cur()==="dark";
+    document.querySelectorAll("[data-theme-btn]").forEach(function(b){
+      b.textContent=d?"\u2600":"\u263E";
+      b.setAttribute("aria-label",d?"الوضع النهاري":"الوضع الليلي");
+      b.setAttribute("title",d?"الوضع النهاري":"الوضع الليلي");
+    });
+  }
+  function toggle(){
+    var d=cur()==="dark";
+    if(d)document.documentElement.removeAttribute("data-theme");
+    else document.documentElement.setAttribute("data-theme","dark");
+    try{localStorage.setItem(KEY,d?"light":"dark");}catch(e){}
+    paint();
+  }
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-theme-btn]");
+    if(b){e.preventDefault();toggle();}
+  });
+  paint();
+})();
+</script>
+</body>
+</html>
