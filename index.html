@@ -309,6 +309,17 @@
   .cmp .pr{font-family:"Readex Pro",sans-serif;font-weight:700;color:var(--deep);font-size:1.05rem}
   .cmp .pr small{display:block;font-weight:400;font-size:.68rem;color:var(--muted);margin-top:2px}
   .cmp-note{text-align:center;font-size:.78rem;color:var(--muted);margin-top:12px;line-height:1.8}
+  /* ===== دليل اختيار الباقة ===== */
+  .chooser{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+  .ch{display:flex;flex-direction:column;gap:10px;background:var(--card);border:1.5px solid var(--line);
+    border-radius:16px;padding:20px;text-align:right;transition:all .2s ease}
+  .ch:hover{border-color:var(--gold-soft);transform:translateY(-3px);box-shadow:var(--shadow)}
+  .ch .q{font-size:.95rem;color:var(--ink);line-height:1.7}
+  .ch .q b{color:var(--deep)}
+  .ch .r{margin-top:auto;padding-top:11px;border-top:1px dashed var(--line);
+    font-size:.85rem;color:var(--muted);line-height:1.8}
+  .ch .r b{color:var(--gold-ink);font-family:"Readex Pro";font-size:1.02rem}
+  @media(max-width:820px){.chooser{grid-template-columns:1fr}}
   /* ===== المستشار الذكي ===== */
   .advgrid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px;align-items:start}
   .advchat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
@@ -493,8 +504,7 @@
     <a href="#advisor">🧠 المستشار الذكي</a>
     <a href="#dash">لوحة التحكم</a>
     <a href="#samples">النماذج</a>
-    <a href="#renewal">حزمة التجديد</a>
-    <a href="#pricing">الباقات</a>
+    <a href="#pricing" data-pricing-link>الباقات والأسعار</a>
     <a href="calculators.html">الحاسبات المجانية</a>
     <a href="#faq">الأسئلة الشائعة</a>
     <a href="dashboard.html">جرّب اللوحة</a>
@@ -751,10 +761,11 @@
             <th><div class="pr">باقة المكتب<small>199 ريال / شهريًا</small></div></th>
           </tr></thead>
           <tbody>
-            <tr class="grp"><th colspan="3">النطاق</th></tr>
-            <tr><th>عدد العقارات</th><td>عقار واحد</td><td>غير محدودة</td></tr>
+            <tr class="grp"><th colspan="3">النطاق — هنا يقع الفرق</th></tr>
+            <tr><th>عدد العقارات</th><td>عقار واحد</td><td><span class="yes">غير محدودة</span></td></tr>
             <tr><th>عدد الوحدات</th><td>غير محدودة</td><td>غير محدودة</td></tr>
-            <tr><th>أنواع العقارات</th><td>سكني</td><td>كل الأنواع</td></tr>
+            <tr><th>أنواع العقارات (سكني، معارض، مكاتب، مستودعات، أراضٍ)</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+            <tr><th>🧠 أسئلة المستشار يوميًا</th><td>5</td><td><span class="yes">30</span></td></tr>
             <tr class="grp"><th colspan="3">المتابعة والتنبيه</th></tr>
             <tr><th>تنبيه تليجرام قبل الاستحقاق</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
             <tr><th>فترة سماح قابلة للضبط</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
@@ -763,23 +774,24 @@
             <tr><th>تذكير واتساب برسالة جاهزة</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
             <tr><th>سداد جزئي ومتابعة المتبقّي</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
             <tr><th>سجل مدفوعات موثّق بالتاريخ والطريقة</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+            <tr><th>تذكير واتساب جماعي للمتأخرين</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
             <tr class="grp"><th colspan="3">المستندات</th></tr>
             <tr><th>كشوف حساب وفواتير</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
             <tr><th>ضريبة القيمة المضافة للعقارات التجارية</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
             <tr><th>نماذج الإشعارات والخطابات</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
             <tr><th>دورة الإخلاء ومخالصة التسليم</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr class="grp"><th colspan="3">🧠 المستشار الذكي</th></tr>
-            <tr><th>أسئلة نظامية بمصادرها الرسمية</th><td>5 يوميًا</td><td>30 يوميًا</td></tr>
             <tr class="grp"><th colspan="3">الإدارة</th></tr>
             <tr><th>محرّك العقود وكل دورات السداد</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
             <tr><th>رفع جماعي من Excel</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+            <tr><th>تصدير Excel/CSV لبيانات الوحدات</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
             <tr><th>نظرة المحفظة عبر كل العقارات</th><td><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
             <tr><th>اسم المكتب في كل الخطابات</th><td><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
             <tr><th>دعم بأولوية</th><td><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
           </tbody>
         </table>
       </div>
-          <p class="cmp-note">كل الباقات تشمل تجربة 30 يومًا مجانًا بلا بطاقة بنكية، وإلغاء في أي وقت بلا رسوم.</p>
+          <p class="cmp-note">كل الباقات تشمل تجربة 30 يومًا مجانًا بلا بطاقة بنكية، وإلغاء في أي وقت بلا رسوم.<br>
+            المستندات المُصدَرة خلال التجربة تحمل علامة «نسخة تجريبية» ولا تصلح للرفع الرسمي.</p>
         </details>
       </div>
       <p class="center" style="margin-top:22px;font-size:.8rem;color:var(--muted);line-height:1.9">
@@ -897,19 +909,45 @@
     </div>
   </section>
 
-  <section class="band" id="renewal">
+  <!-- ===================== الأسعار: جمعيات الملاك ===================== -->
+  <section class="band tint" id="pricing-hoa">
     <div class="wrap">
       <div class="center">
-        <span class="sec-eyebrow">خدمة سنوية · لمرّة واحدة</span>
-        <h2 class="sec-title">حزمة تجديد شهادة الجمعية</h2>
-        <p class="sec-sub">شهادة تسجيل الجمعية صالحة <b>١٢ شهرًا فقط</b>، وتجديدها عبر منصة «ملاك» يتطلّب مستندين اثنين لا أكثر — نجهّزهما لك جاهزين للرفع.</p>
+        <span class="sec-eyebrow">الأسعار</span>
+        <h2 class="sec-title">ابدأ من حالتك — لا من قائمة أسعار</h2>
+        <p class="sec-sub">لدينا مساران فقط: <b>نجهّزها لك</b> كخدمة لمرّة واحدة، أو <b>تجهّزها بنفسك</b> باشتراك شهري. اختر سطرك من الثلاثة أدناه.</p>
       </div>
 
-      <div class="packs p2" style="max-width:820px;margin-inline:auto">
+      <!-- دليل الاختيار -->
+      <div class="chooser">
+        <a class="ch" href="#svc-setup">
+          <span class="q">جمعيتنا <b>جديدة</b> ولم تُسجَّل بعد</span>
+          <span class="r">باقة التأسيس — نجهّزها لك<br><b>من 690 ريال</b> · مرّة واحدة</span>
+        </a>
+        <a class="ch" href="#svc-renewal">
+          <span class="q">جمعيتنا <b>مسجّلة</b> وشهادتها تقترب من الانتهاء</span>
+          <span class="r">حزمة التجديد — نجهّزها لك<br><b>299 ريال</b> · خلال 48 ساعة</span>
+        </a>
+        <a class="ch" href="#svc-sub">
+          <span class="q">نريد <b>إدارتها بأنفسنا</b> على مدار السنة</span>
+          <span class="r">اشتراك شهري — أنت تجهّزها<br><b>من 59 ريال</b> / شهريًا</span>
+        </a>
+      </div>
+
+      <!-- ── ① خدمات لمرّة واحدة ── -->
+      <div class="center" style="margin-top:52px">
+        <span class="sec-eyebrow">① خدمات لمرّة واحدة · نجهّزها لك</span>
+        <h2 class="sec-title" style="font-size:clamp(1.25rem,2.1vw,1.7rem)">مستنداتك جاهزة دون أن تفتح اللوحة</h2>
+        <p class="sec-sub">أنت ترسل البيانات، ونحن نُخرج المستندات جاهزة للرفع. مناسبة لمن يحتاجها مرّة ولا يريد اشتراكًا.</p>
+      </div>
+
+      <!-- التجديد -->
+      <div id="svc-renewal" style="scroll-margin-top:80px"></div>
+      <div class="packs p2" style="max-width:860px;margin-inline:auto;margin-top:26px">
         <div class="pack feature">
           <span class="pack-flag">الأكثر طلبًا سنويًّا</span>
-          <h3>حزمة التجديد</h3>
-          <p class="who">لكل جمعية مسجّلة تقترب شهادتها من الانتهاء</p>
+          <h3>حزمة تجديد الشهادة</h3>
+          <p class="who">لجمعية مسجّلة تقترب شهادتها من الانتهاء</p>
           <div class="price"><span class="n">299</span> <span class="c">ريال · مرّة واحدة</span></div>
           <p class="cancel">تُسلَّم خلال 48 ساعة</p>
           <ul>
@@ -924,47 +962,31 @@
         </div>
 
         <div class="pack">
-          <h3>أو جهّزها بنفسك</h3>
-          <p class="who">لمن يريد إنتاجها متى شاء، ولأكثر من جمعية</p>
-          <div class="price"><span class="n">99</span> <span class="c">ريال / شهريًا</span></div>
-          <p class="cancel">باقة الاحترافية — قابلة للإلغاء في أي وقت</p>
+          <h3>لماذا هي سنوية؟</h3>
+          <p class="who">معلومة تهمّ كل جمعية مسجّلة</p>
+          <div style="font-size:2.4rem;margin:14px 0 4px">📅</div>
           <ul>
-            <li><span class="c">✓</span> تُنشئ المحضر والموازنة بنفسك في دقائق</li>
-            <li><span class="c">✓</span> تعديل وإعادة إصدار بلا حدود</li>
-            <li><span class="c">✓</span> ومعها متابعة الاشتراكات والمتأخرات وخطابات التحصيل</li>
-            <li><span class="c">✓</span> بياناتكم محفوظة للعام القادم</li>
+            <li><span class="c">◆</span> شهادة تسجيل الجمعية صالحة <b>12 شهرًا فقط</b></li>
+            <li><span class="c">◆</span> تجديدها عبر «ملاك» يتطلّب <b>مستندين لا أكثر</b>: محضر الاجتماع السنوي، وموازنة العام القادم</li>
+            <li><span class="c">◆</span> وهذان بالضبط ما نجهّزه — أو تُنتجه بنفسك من اللوحة إن كنت مشتركًا</li>
           </ul>
-          <a class="btn btn-ghost" href="https://watheq-app.vercel.app">ابدأ مجانًا 30 يومًا</a>
+          <a class="btn btn-ghost" href="#svc-sub">قارنها بالاشتراك ↓</a>
         </div>
       </div>
 
-      <p class="center" style="margin-top:20px;font-size:.85rem;color:var(--muted);line-height:1.9">
-        💡 <b>أيّهما أنسب؟</b> إن كان همّك التجديد السنوي فقط، فحزمة المرّة الواحدة أوفر.
-        وإن كنت تتابع اشتراكات الصيانة والمتأخرات على مدار السنة، فالاشتراك يغطّي الاثنين.
-        <br>
-        <span style="font-size:.8rem">المستندات المُصدَرة خلال التجربة المجانية تحمل علامة «نسخة تجريبية» ولا تصلح للرفع الرسمي.</span>
-      </p>
-    </div>
-  </section>
-
-  <section class="band" id="setup">
-    <div class="wrap">
+      <!-- التأسيس -->
+      <div id="svc-setup" style="scroll-margin-top:80px;margin-top:44px"></div>
       <div class="center">
-        <span class="sec-eyebrow">خدمة لمرّة واحدة</span>
-        <h2 class="sec-title">تجهيز ملف تأسيس جمعية الملاك</h2>
-        <p class="sec-sub">التسجيل في منصة «ملاك» مجاني تمامًا وندلّك عليه بلا مقابل — الشاق هو ما بعده: الموازنة، والاشتراك العادل، والمحضر التأسيسي. هذا ما نجهّزه لك كاملًا.</p>
+        <h3 style="font-family:'Readex Pro';font-size:1.15rem;color:var(--deep);margin-bottom:6px">باقة تأسيس جمعية جديدة</h3>
+        <p class="sec-sub" style="margin-top:0">للمباني المفروزة حديثًا والمشاريع تحت التسليم — يشمل ملف التأسيس كاملًا وتجهيز حسابكم في وثيق.</p>
       </div>
 
-      <div class="founder" style="background:#E6F4EC;border-color:#B7DFC7;color:#137a50">
-        🚀 <b>سعر الإطلاق — لأول 10 عملاء فقط.</b> السعر المعتاد يبدأ من 2,500 ريال.
-      </div>
-
-      <div class="packs p3">
+      <div class="packs p3" style="margin-top:22px">
         <div class="pack">
           <h3>حتى 20 وحدة</h3>
           <p class="who">عمارة أو مجمّع صغير</p>
           <div class="price"><span class="n">690</span> <span class="c">ريال · مرّة واحدة</span></div>
-          <p class="cancel">يشمل اشتراك 3 أشهر في الباقة الشاملة</p>
+          <p class="cancel">يشمل 3 أشهر من باقة الاحترافية</p>
           <ul>
             <li><span class="c">✓</span> الموازنة التقديرية للسنة الأولى</li>
             <li><span class="c">✓</span> جدول اشتراكات عادل لكل وحدة</li>
@@ -973,15 +995,15 @@
             <li><span class="c">✓</span> حزمة رسائل التواصل مع الملّاك</li>
             <li><span class="c">✓</span> تجهيز حسابكم في وثيق ببياناتكم</li>
           </ul>
-          <a class="btn btn-gold" data-wa href="#">اطلب الخدمة</a>
+          <a class="btn btn-ghost" data-wa href="#">اطلب الخدمة</a>
         </div>
 
         <div class="pack feature">
-          <div class="pack-flag">الأكثر طلبًا</div>
+          <span class="pack-flag">الأكثر طلبًا</span>
           <h3>21 – 50 وحدة</h3>
           <p class="who">عمارة متوسطة أو مشروع تحت التسليم</p>
           <div class="price"><span class="n">850</span> <span class="c">ريال · مرّة واحدة</span></div>
-          <p class="cancel">يشمل اشتراك 3 أشهر في الباقة الشاملة</p>
+          <p class="cancel">يشمل 3 أشهر من باقة الاحترافية</p>
           <ul>
             <li><span class="c">✓</span> كل ما في الباقة السابقة</li>
             <li><span class="c">✓</span> تكييف النظام الأساسي الاسترشادي</li>
@@ -996,7 +1018,7 @@
           <h3>51 وحدة فأكثر</h3>
           <p class="who">مشاريع المطوّرين والمجمّعات الكبيرة</p>
           <div class="price"><span class="n">990</span> <span class="c">ريال · مرّة واحدة</span></div>
-          <p class="cancel">يشمل اشتراك 3 أشهر في الباقة الشاملة</p>
+          <p class="cancel">يشمل 3 أشهر من باقة الشاملة</p>
           <ul>
             <li><span class="c">✓</span> كل ما سبق</li>
             <li><span class="c">✓</span> موازنة مفصّلة ببنود التشغيل والاحتياطي</li>
@@ -1004,65 +1026,67 @@
             <li><span class="c">✓</span> تجهيز ملف التسليم للملّاك</li>
             <li><span class="c">✓</span> أولوية في الدعم</li>
           </ul>
-          <a class="btn btn-gold" data-wa href="#">اطلب الخدمة</a>
+          <a class="btn btn-ghost" data-wa href="#">اطلب الخدمة</a>
         </div>
       </div>
 
-      <div class="note-legal" style="max-width:760px;margin:26px auto 0;text-align:center;font-size:.82rem;color:var(--muted);line-height:1.9">
-        <b>بوضوح:</b> تسجيل الجمعية في منصة «ملاك» خدمة حكومية مجانية تقوم بها بنفسك عبر نفاذ — لا نتقاضى عليها شيئًا وندلّك عليها مجانًا.
+      <div class="note-legal" style="max-width:780px;margin:24px auto 0;text-align:center;font-size:.82rem;color:var(--muted);line-height:1.9">
+        <b>بوضوح:</b> تسجيل الجمعية في منصة «ملاك» خدمة حكومية مجانية تقوم بها بنفسك عبر النفاذ الوطني — لا نتقاضى عليها شيئًا وندلّك عليها مجانًا.
         أجرنا مقابل العمل الإداري الذي لا تقوم به المنصة: إعداد الموازنة والمحاضر وجداول الاشتراكات وتنظيم التواصل.
-        ووثيق أداة تنظيمية لا تقدّم خدمات قانونية ولا تمثّل الجمعية أمام أي جهة.
       </div>
-    </div>
-  </section>
 
-  <section class="band tint">
-    <div class="wrap">
+      <!-- ── ② الاشتراك الشهري ── -->
+      <div id="svc-sub" style="scroll-margin-top:80px;margin-top:56px"></div>
       <div class="center">
-        <span class="sec-eyebrow">الباقات</span>
-        <h2 class="sec-title">باقة لكل جمعية — اختر ما يناسب حجمكم</h2>
-        <p class="sec-sub">💡 غرامة التأخّر عن تجديد شهادة الجمعية وحدها تتجاوز اشتراك وثيق لسنة كاملة.</p>
+        <span class="sec-eyebrow">② اشتراك شهري · تجهّزها بنفسك</span>
+        <h2 class="sec-title" style="font-size:clamp(1.25rem,2.1vw,1.7rem)">أنشئ مستنداتك متى شئت، وأدِر جمعيتك طوال السنة</h2>
+        <p class="sec-sub">المحاضر والموازنات بلا حدود، ومعها متابعة اشتراكات الصيانة والمتأخرات وخطابات التحصيل.</p>
       </div>
+
       <div class="trialbar">🎁 جرّب كل المزايا مجانًا 30 يومًا — بلا بطاقة بنكية، وبلا التزام</div>
-      <div class="founder">🎉 <b>سعر المؤسسين</b> — الأسعار أدناه هي أسعار الإطلاق لأول <b>20 مشتركًا</b>، وتبقى ثابتة لك مدى اشتراكك حتى لو رفعناها لاحقًا.</div>
+      <div class="founder">🎉 <b>سعر المؤسسين</b> — أسعار الإطلاق لأول <b>20 مشتركًا</b>، وتبقى ثابتة لك مدى اشتراكك حتى لو رفعناها لاحقًا.</div>
+
       <div class="packs p3">
         <div class="pack">
           <h3>الأساسية</h3>
-          <p class="who">للجمعيات الصغيرة حتى 15 وحدة</p>
+          <p class="who">جمعية واحدة حتى 20 وحدة</p>
           <div class="price"><span class="n">59</span> <span class="c">ريال / شهريًا</span></div>
           <p class="cancel">قابل للإلغاء في أي وقت</p>
           <ul>
-            <li><span class="c">✓</span> جمعية واحدة · حتى 15 وحدة</li>
-            <li><span class="c">✓</span> محاضر الاجتماعات الأساسية</li>
-            <li><span class="c">✓</span> متابعة اشتراكات الصيانة</li>
+            <li><span class="c">✓</span> جمعية واحدة · حتى 20 وحدة</li>
+            <li><span class="c">✓</span> كل المحاضر والموازنات بلا حدود</li>
+            <li><span class="c">✓</span> متابعة الاشتراكات والمتأخرات</li>
+            <li><span class="c">✓</span> خطابات التذكير والتحصيل</li>
             <li><span class="c">✓</span> تنبيه انتهاء الشهادة</li>
             <li><span class="c">✓</span> 🧠 المستشار الذكي — 5 أسئلة يوميًا</li>
           </ul>
           <a class="btn btn-ghost" href="https://watheq-app.vercel.app">ابدأ مجانًا 30 يومًا</a>
         </div>
+
         <div class="pack feature">
           <span class="pack-flag">الأكثر اختيارًا</span>
           <h3>الاحترافية</h3>
-          <p class="who">للعمائر المتوسطة والكبيرة</p>
+          <p class="who">جمعية واحدة بوحدات غير محدودة</p>
           <div class="price"><span class="n">99</span> <span class="c">ريال / شهريًا</span></div>
           <p class="cancel">الأنسب لأغلب الجمعيات</p>
           <ul>
-            <li><span class="c">✓</span> وحدات غير محدودة</li>
-            <li><span class="c">✓</span> كل أنواع المحاضر + الموازنة السنوية</li>
-            <li><span class="c">✓</span> خطابات تذكير وتحصيل للمتأخرين</li>
+            <li><span class="c">✓</span> كل مزايا الأساسية</li>
+            <li><span class="c">✓</span> <b>وحدات غير محدودة</b></li>
             <li><span class="c">✓</span> سجل العمارة الكامل</li>
+            <li><span class="c">✓</span> تصدير Excel/CSV لبيانات الملّاك</li>
             <li><span class="c">✓</span> 🧠 المستشار الذكي — 15 سؤالًا يوميًا</li>
           </ul>
           <a class="btn btn-gold" href="https://watheq-app.vercel.app">ابدأ مجانًا 30 يومًا</a>
         </div>
+
         <div class="pack">
           <h3>الشاملة</h3>
           <p class="who">لمن يدير أكثر من جمعية</p>
           <div class="price"><span class="n">149</span> <span class="c">ريال / شهريًا</span></div>
           <p class="cancel">إدارة متعددة من حساب واحد</p>
           <ul>
-            <li><span class="c">✓</span> جمعيات غير محدودة</li>
             <li><span class="c">✓</span> كل مزايا الاحترافية</li>
+            <li><span class="c">✓</span> <b>جمعيات غير محدودة</b></li>
             <li><span class="c">✓</span> 🧠 المستشار الذكي — 30 سؤالًا يوميًا</li>
             <li><span class="c">✓</span> دعم بأولوية</li>
             <li><span class="c">✓</span> مزايا جديدة أولًا</li>
@@ -1073,46 +1097,47 @@
 
       <div class="cmp-wrap">
         <details>
-          <summary class="cmp-toggle">قارن الباقات الثلاث بالتفصيل ↓</summary>
-      <div class="cmp-box">
-        <table class="cmp">
-          <thead><tr><th></th>
-            <th><div class="pr">الأساسية<small>59 ريال / شهريًا</small></div></th>
-            <th><div class="pr">الاحترافية<small>99 ريال / شهريًا</small></div></th>
-            <th><div class="pr">الشاملة<small>149 ريال / شهريًا</small></div></th>
-          </tr></thead>
-          <tbody>
-            <tr class="grp"><th colspan="4">النطاق</th></tr>
-            <tr><th>عدد الجمعيات</th><td>جمعية واحدة</td><td>جمعية واحدة</td><td>غير محدودة</td></tr>
-            <tr><th>عدد الوحدات</th><td>حتى 15</td><td>غير محدودة</td><td>غير محدودة</td></tr>
-            <tr class="grp"><th colspan="4">المتابعة والتنبيه</th></tr>
-            <tr><th>تنبيه تليجرام بالمستحقات</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr><th>تنبيه انتهاء شهادة الجمعية</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr class="grp"><th colspan="4">التحصيل</th></tr>
-            <tr><th>متابعة اشتراكات الصيانة</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr><th>تذكير واتساب للمتأخرين</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr><th>سداد جزئي ومتابعة المتبقّي</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr><th>سجل مدفوعات موثّق</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr><th>خطابات تذكير وتحصيل رسمية</th><td><span class="no">—</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr class="grp"><th colspan="4">المستندات</th></tr>
-            <tr><th>محاضر الاجتماعات الأساسية</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr><th>محضر الجمعية العمومية التأسيسية</th><td><span class="no">—</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr><th>الموازنة التقديرية السنوية</th><td><span class="no">—</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr><th>حساب الاشتراك المقترح لكل وحدة</th><td><span class="no">—</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr><th>كشف حساب مالك وكشف الجمعية</th><td><span class="no">—</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr><th>سجل العمارة الكامل</th><td><span class="no">—</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-            <tr class="grp"><th colspan="4">🧠 المستشار الذكي</th></tr>
-            <tr><th>أسئلة نظامية بمصادرها الرسمية</th><td>5 يوميًا</td><td>15 يوميًا</td><td>30 يوميًا</td></tr>
-            <tr class="grp"><th colspan="4">الإدارة</th></tr>
-            <tr><th>إدارة أكثر من جمعية بحساب واحد</th><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
-            <tr><th>دعم بأولوية</th><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
-            <tr><th>مزايا جديدة أولًا</th><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-          <p class="cmp-note">كل الباقات تشمل تجربة 30 يومًا مجانًا بلا بطاقة بنكية، وإلغاء في أي وقت بلا رسوم.</p>
+          <summary class="cmp-toggle">قارن باقات الاشتراك بالتفصيل ↓</summary>
+          <div class="cmp-box">
+            <table class="cmp">
+              <thead><tr><th></th>
+                <th><div class="pr">الأساسية<small>59 ريال / شهريًا</small></div></th>
+                <th><div class="pr">الاحترافية<small>99 ريال / شهريًا</small></div></th>
+                <th><div class="pr">الشاملة<small>149 ريال / شهريًا</small></div></th>
+              </tr></thead>
+              <tbody>
+                <tr class="grp"><th colspan="4">النطاق — هنا يقع الفرق</th></tr>
+                <tr><th>عدد الجمعيات</th><td>واحدة</td><td>واحدة</td><td><span class="yes">غير محدودة</span></td></tr>
+                <tr><th>عدد الوحدات</th><td>حتى 20</td><td><span class="yes">غير محدودة</span></td><td><span class="yes">غير محدودة</span></td></tr>
+                <tr><th>🧠 أسئلة المستشار يوميًا</th><td>5</td><td>15</td><td><span class="yes">30</span></td></tr>
+
+                <tr class="grp"><th colspan="4">المستندات — متاحة في كل الباقات</th></tr>
+                <tr><th>محضر الجمعية التأسيسي</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+                <tr><th>محضر الاجتماع السنوي (للتجديد)</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+                <tr><th>الموازنة التقديرية السنوية</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+                <tr><th>حساب الاشتراك المقترح لكل وحدة</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+                <tr><th>كشف حساب مالك وكشف الجمعية</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+                <tr><th>خطابات التذكير والتحصيل</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+
+                <tr class="grp"><th colspan="4">المتابعة والتحصيل</th></tr>
+                <tr><th>متابعة اشتراكات الصيانة والمتأخرات</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+                <tr><th>تذكير واتساب للمتأخرين (فردي وجماعي)</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+                <tr><th>سداد جزئي وسجل مدفوعات موثّق</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+                <tr><th>تنبيهات تليجرام وانتهاء الشهادة</th><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+
+                <tr class="grp"><th colspan="4">إضافات</th></tr>
+                <tr><th>سجل العمارة الكامل</th><td><span class="no">—</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+                <tr><th>تصدير Excel/CSV</th><td><span class="no">—</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+                <tr><th>دعم بأولوية</th><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
+                <tr><th>مزايا جديدة أولًا</th><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="cmp-note">كل الباقات تشمل تجربة 30 يومًا مجانًا بلا بطاقة بنكية، وإلغاء في أي وقت بلا رسوم.<br>
+            المستندات المُصدَرة خلال التجربة تحمل علامة «نسخة تجريبية» ولا تصلح للرفع الرسمي.</p>
         </details>
       </div>
+
       <p class="center" style="margin-top:22px;font-size:.8rem;color:var(--muted);line-height:1.9">
         🔒 عزل على مستوى الصف · اتصال مشفّر · بلا كوكيز تتبّع · التزام بنظام حماية البيانات الشخصية (PDPL)
         — <a href="legal.html#privacy" style="color:var(--gold-ink);font-weight:600">تفاصيل الخصوصية</a>
@@ -1449,6 +1474,10 @@
     for (var j = 0; j < picks.length; j++) {
       picks[j].classList.toggle("active", !none && picks[j].getAttribute("data-set") === next);
     }
+
+    // رابط «الباقات» يشير للقسم الظاهر فعليًّا — لكل مسار قسم أسعار مختلف
+    var plink = document.querySelector("[data-pricing-link]");
+    if (plink) plink.setAttribute("href", next === "hoa" ? "#pricing-hoa" : "#pricing");
 
     // مبدّل القائمة
     var tabs = document.querySelectorAll("#navSwitch button");
