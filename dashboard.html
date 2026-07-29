@@ -387,7 +387,7 @@ function ownerRemind(id){
    : `تحية طيبة ${o.name}،\nنودّ تذكيركم بأن اشتراكاتكم المتأخرة (${o.monthsLate} أشهر)${total?` بمبلغ ${money(total)} ريال`:''} لا تزال غير مسدّدة. نأمل سدادها حرصًا على حقوق بقية الملاك. — إدارة الجمعية`;
   openWa(o.phone,msg);
 }
-function assocRenew(){ const a=assoc(),dl=daysLeft(a.certExpiry); openWa(WATHEQ_WA,`مرحبًا، أرغب بتجهيز مستندات تجديد شهادة جمعيتنا عبر وثيق.\nالجمعية: ${a.name}\nتاريخ انتهاء الشهادة: ${a.certExpiry||'غير محدد'}${dl!==null?` (خلال ${dl} يومًا)`:''}\nالمطلوب: محضر التجديد + الموازنة.`); }
+function assocRenew(){ const a=assoc(),dl=daysLeft(a.certExpiry); openWa(WATHEQ_WA,`مرحبًا، أرغب بمساعدتكم في تفعيل جمعيتنا وتجهيز أرقام الاشتراك.\nالجمعية: ${a.name}\nتاريخ انتهاء الشهادة: ${a.certExpiry||'غير محدد'}${dl!==null?` (خلال ${dl} يومًا)`:''}\nالمطلوب: الموازنة وبنود رسوم الاشتراك.`); }
 function ownerNotice(id){ const a=assoc(),o=a.owners.find(x=>x.id===id),total=o.monthsLate*Number(a.fee||0); openWa(WATHEQ_WA,`مرحبًا، أرغب بإصدار إنذار سداد رسمي عبر وثيق.\nالجمعية: ${a.name}\nمالك الوحدة: ${o.unit||'—'} (${o.name})\nالمتأخرات: ${o.monthsLate} أشهر${total?` بمبلغ ${money(total)} ريال`:''}.`); }
 function assocNote(){ const el=document.getElementById('aNote'),t=el.value.trim(); if(!t)return; assoc().notes.unshift({id:uid(),date:today(),text:t}); commit(); }
 function assocNoteDel(id){ assoc().notes=assoc().notes.filter(x=>x.id!==id); commit(); }
@@ -569,8 +569,8 @@ function renderAssociation(){
   if(!a){ return `<div class="onboard"><span class="seal"></span><h2>ابدأ بإضافة جمعيتك</h2><p>أدر ملّاك جمعيتك، حالات السداد، ورصيد الصندوق من مكان واحد.</p><button class="btn btn-gold" data-act="newAssoc">+ إنشاء جمعية</button><div style="margin-top:14px"><button class="link-btn" data-act="seedAssoc">أو جرّب ببيانات تجريبية</button></div></div>`; }
   const total=a.owners.length, late=a.owners.filter(o=>o.monthsLate>0), pct=total?Math.round((total-late.length)/total*100):0, dl=daysLeft(a.certExpiry);
   let alert='';
-  if(dl!==null&&dl<0) alert=`<div class="alert red"><span class="ico">🔴</span><span><b>انتهت شهادة الجمعية.</b> بادر بالتجديد فورًا.</span><button class="btn btn-gold btn-sm" data-act="assocRenew">جهّز مستندات التجديد</button></div>`;
-  else if(dl!==null&&dl<=60) alert=`<div class="alert ${dl<=30?'red':'amber'}"><span class="ico">${dl<=30?'🔴':'⚠️'}</span><span><b>تنتهي شهادة الجمعية خلال ${dl} يومًا</b> (${a.certExpiry}). جهّز محضر التجديد والموازنة الآن.</span><button class="btn btn-gold btn-sm" data-act="assocRenew">جهّز مستندات التجديد</button></div>`;
+  if(dl!==null&&dl<0) alert=`<div class="alert red"><span class="ico">🔴</span><span><b>انتهت شهادة الجمعية.</b> إصدارها من منصة «ملاك» إجراء مباشر ويتطلّب الرقم الموحّد 700 أولًا.</span><button class="btn btn-gold btn-sm" data-act="assocRenew">جهّز أرقام الاشتراك</button></div>`;
+  else if(dl!==null&&dl<=60) alert=`<div class="alert ${dl<=30?'red':'amber'}"><span class="ico">${dl<=30?'🔴':'⚠️'}</span><span><b>تنتهي شهادة الجمعية خلال ${dl} يومًا</b> (${a.certExpiry}). إصدارها من منصة «ملاك» يتطلّب الرقم الموحّد 700 أولًا.</span><button class="btn btn-gold btn-sm" data-act="assocRenew">جهّز أرقام الاشتراك</button></div>`;
   const stats=`<div class="stats">
     <div class="stat"><div class="v ok">${pct}%</div><div class="lbl">نسبة السداد</div></div>
     <div class="stat"><div class="v ${late.length?'warn':''}">${late.length}</div><div class="lbl">ملاك متأخرون</div></div>
