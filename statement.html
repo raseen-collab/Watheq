@@ -405,9 +405,20 @@
   .pill.paid{background:var(--paid-bg);color:var(--paid)}
   .pill.late{background:var(--late-bg);color:var(--late)}
   .pill.due{background:var(--amber-bg);color:var(--gold-ink)}
+  .print-only{display:none}
+  .doc-head{display:flex;align-items:center;justify-content:space-between;gap:14px;
+    border-bottom:2px solid var(--deep);padding-bottom:12px;margin-bottom:14px}
+  .doc-brand{display:flex;align-items:center;gap:9px;font-family:"Readex Pro",sans-serif;
+    font-weight:700;color:var(--deep);font-size:1.05rem}
+  .doc-brand .sq{width:26px;height:26px;border-radius:8px;background:var(--deep);color:var(--gold-soft);
+    display:flex;align-items:center;justify-content:center;font-size:.9rem;flex:none}
+  table.st tr.r-late td{background:var(--late-bg)}
+  .doc-foot{display:none}
   .totals{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
   @media(max-width:640px){.totals{grid-template-columns:1fr 1fr}}
   .totals div{background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:12px}
+  .totals div.hero{background:var(--late-bg);border-color:var(--late)}
+  .totals div.hero b{font-size:1.7rem;color:var(--late)}
   .totals span{display:block;font-size:.76rem;color:var(--muted)}
   .totals b{font-size:1.28rem;font-variant-numeric:tabular-nums;font-family:"Readex Pro",sans-serif}
   .sign{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:34px;font-size:.85rem;color:var(--muted)}
@@ -420,7 +431,12 @@
     .tool-grid{display:block;margin:0}
     .stmt{border:none;box-shadow:none;padding:0}
     body{background:#fff}
-    table.st input[type=date]{border:none;background:none;padding:0}
+    .print-only{display:inline}
+    /* الألوان تُطبع كما تُعرض — بدونها يخرج الصف المتأخر أبيض */
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .doc-foot{display:block;margin-top:26px;padding-top:10px;border-top:1px solid var(--line);
+      font-size:.72rem;color:var(--muted);text-align:center;direction:ltr}
+    @page{margin:14mm}
   }
 </style>
 </head>
@@ -512,8 +528,13 @@
 
   <div>
     <div class="stmt" id="stmt">
-      <h3>كشف حساب مستأجر</h3>
-      <p class="meta" id="issued"></p>
+      <div class="doc-head">
+        <div>
+          <h3 style="margin:0">كشف حساب مستأجر</h3>
+          <p class="meta" id="issued" style="margin:3px 0 0"></p>
+        </div>
+        <div class="doc-brand"><span class="sq">و</span> وثيق</div>
+      </div>
 
       <div class="parties">
         <div><b>المالك / المكتب</b><span id="oOut">—</span></div>
@@ -545,6 +566,9 @@
         <div><i>توقيع المستأجر بالاستلام</i></div>
       </div>
 
+      <p class="doc-foot">
+        أُعدّ بأداة وثيق المجانية · watheqapp.netlify.app/statement.html
+      </p>
       <p class="legal">
         هذا الكشف بيان حسابي بين الطرفين أُعدّ بأداة وثيق المجانية، ولا يُعدّ عقدًا ولا مطالبة رسمية
         ولا بديلًا عن توثيق العقد في منصة إيجار. أي تنفيذ أو تصعيد نظامي يتم عبر القنوات الرسمية.
@@ -621,7 +645,8 @@
     return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
   }
   function ar(d){
-    return d.toLocaleDateString('ar-SA-u-ca-gregory', {year:'numeric', month:'long', day:'numeric'});
+    // nu-latn: أرقام غربية دائمًا — ar-SA وحدها تُخرج ٠١٢
+    return d.toLocaleDateString('ar-SA-u-ca-gregory-nu-latn', {year:'numeric', month:'long', day:'numeric'});
   }
 
   function build(){
@@ -668,18 +693,21 @@
       if(isLate) late += r.amount;
       var cls = r.paid ? 'paid' : (isLate ? 'late' : 'due');
       var txt = r.paid ? 'مسدَّدة' : (isLate ? 'متأخرة' : 'لم تحن');
-      html += '<tr>'
+      html += '<tr class="' + (isLate ? 'r-late' : '') + '">'
         + '<td>' + (i+1) + '</td>'
         + '<td>' + ar(r.due) + (r.label ? ' <small style="color:var(--muted)">— ' + r.label + '</small>' : '') + '</td>'
         + '<td class="num">' + fmt(r.amount) + '</td>'
         + '<td><label style="display:inline-flex;align-items:center;gap:7px;cursor:pointer">'
         +   '<input type="checkbox" data-i="' + i + '" class="ck no-print"' + (r.paid?' checked':'') + '>'
         +   '<span class="pill ' + cls + '">' + txt + '</span></label></td>'
-        + '<td><input type="date" data-d="' + i + '" value="' + (r.on||'') + '"></td>'
+        + '<td><input type="date" class="no-print" data-d="' + i + '" value="' + (r.on||'') + '">'
+        +   '<span class="print-only">' + (r.on ? ar(new Date(r.on + 'T00:00:00')) : '—') + '</span></td>'
         + '</tr>';
     });
 
     $('rows').innerHTML = html;
+    var lateBox = $('tLate').parentNode;
+    if(late > 0) lateBox.classList.add('hero'); else lateBox.classList.remove('hero');
     $('tTotal').textContent = fmt(total);
     $('tPaid').textContent  = fmt(paid);
     $('tLate').textContent  = fmt(late);
@@ -695,7 +723,11 @@
     });
     Array.prototype.forEach.call(document.querySelectorAll('input[data-d]'), function(el){
       el.addEventListener('change', function(){
-        rows[Number(this.getAttribute('data-d'))].on = this.value;
+        var i = Number(this.getAttribute('data-d'));
+        rows[i].on = this.value;
+        // كتابة تاريخ سداد = سداد. بدون هذا تُطبع «لم تحن» بجانب تاريخ دفع — تناقض ظاهر
+        rows[i].paid = !!this.value;
+        render();
       });
     });
   }
