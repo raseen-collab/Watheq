@@ -962,7 +962,7 @@
             <li><span class="c">✓</span> حزمة رسائل التواصل مع الملّاك</li>
             <li><span class="c">✓</span> تجهيز حسابكم في وثيق ببياناتكم</li>
           </ul>
-          <a class="btn btn-ghost" data-wa href="#">اطلب الخدمة</a>
+          <a class="btn btn-ghost" data-wa data-msg="مرحبًا، أرغب بباقة التأسيس — حتى 20 وحدة." href="#">اطلب الخدمة</a>
         </div>
 
         <div class="pack feature">
@@ -978,7 +978,7 @@
             <li><span class="c">✓</span> جلسة استشارية لمراجعة الموازنة</li>
             <li><span class="c">✓</span> متابعة 30 يومًا بعد التسليم</li>
           </ul>
-          <a class="btn btn-gold" data-wa href="#">اطلب الخدمة</a>
+          <a class="btn btn-gold" data-wa data-msg="مرحبًا، أرغب بباقة التأسيس — 21 إلى 50 وحدة." href="#">اطلب الخدمة</a>
         </div>
 
         <div class="pack">
@@ -993,7 +993,7 @@
             <li><span class="c">✓</span> تجهيز ملف التسليم للملّاك</li>
             <li><span class="c">✓</span> أولوية في الدعم</li>
           </ul>
-          <a class="btn btn-ghost" data-wa href="#">اطلب الخدمة</a>
+          <a class="btn btn-ghost" data-wa data-msg="مرحبًا، أرغب بباقة التأسيس — 51 وحدة فأكثر." href="#">اطلب الخدمة</a>
         </div>
       </div>
 
@@ -1467,7 +1467,7 @@
     // روابط واتساب برسالة المسار
     var waLinks = document.querySelectorAll("[data-wa]");
     for (var m = 0; m < waLinks.length; m++) {
-      waLinks[m].href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(cfg.wa);
+      waLinks[m].href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(waLinks[m].getAttribute("data-msg") || cfg.wa);
     }
 
     // مزامنة الرابط (قابل للمشاركة) دون إعادة تحميل
