@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://watheqapp.netlify.app/sitemap.xml
+Sitemap: https://watheqapp.com/sitemap.xml
