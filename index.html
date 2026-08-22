@@ -381,6 +381,26 @@
     background:var(--paid-bg);color:var(--paid);border:1px solid var(--paid);
     border-radius:999px;padding:2px 8px;margin-inline-start:6px}
   @media(max-width:900px){.nav-end .theme-btn{display:none}}
+
+  /* معرض اللقطات الحقيقية */
+  .gal-tabs{flex-wrap:wrap;gap:2px}
+  .gal-tabs button{border:0;background:transparent;padding:5px 12px;border-radius:7px;font:inherit;font-size:.78rem;font-weight:600;color:#CFE0DB;cursor:pointer;white-space:nowrap}
+  .gal-tabs button.on{background:var(--gold-soft);color:#0A2C2A}
+  .gal-body{background:var(--paper-2);line-height:0}
+  .gal-body img{display:block;width:100%;height:auto;max-height:860px;object-fit:cover;object-position:top;transition:opacity .2s ease}
+  .gal-body img.fade{opacity:0}
+  @media(max-width:640px){.gal-body img{max-height:none;object-fit:contain}}
+  /* قائمة المستندات */
+  .dl-wrap{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow)}
+  .dl-title{margin:0 0 12px;font-weight:700;color:var(--deep)}
+  .dl{display:flex;flex-wrap:wrap;gap:8px}
+  .dl span{background:var(--paper-2);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:.88rem;font-weight:600;color:var(--deep)}
+  .dl-note{margin:12px 0 0;color:var(--muted);font-size:.85rem}
+  /* مقابل إكسل */
+  .vsx th,.vsx td{text-align:right}
+  .vsx thead th:first-child{min-width:150px}
+  .vsx tbody td:last-child{font-weight:700;color:var(--deep);background:var(--paper)}
+  .vsx tbody td:nth-child(2){color:var(--muted)}
 </style>
 <script type="application/ld+json">
 {
@@ -572,36 +592,27 @@
   <section class="band tint" id="dash" style="padding-top:44px">
     <div class="wrap">
       <div class="center">
-        <span class="sec-eyebrow">هكذا تبدو لوحتك</span>
+        <span class="sec-eyebrow">لقطات حقيقية من اللوحة</span>
         <h2 class="sec-title">كيف يُدير وثيق محفظتك فعليًّا</h2>
-        <p class="sec-sub">كل مبلغ وتاريخ هنا <b>محسوب تلقائيًّا</b> — لم يُدخل يدويًّا.</p>
+        <p class="sec-sub">صور من حساب تجريبي كما تراه أنت — لا تصاميم ولا وعود. كل مبلغ وتاريخ هنا <b>محسوب تلقائيًّا</b>.</p>
       </div>
-      <div class="demo">
+      <div class="demo gal" id="gallery">
         <div class="demo-bar">
-          <span style="font-family:'Readex Pro';font-weight:600">🏬 مجمّع الياسمين · معرض تجاري · الرياض</span>
-          <span class="demo-tabs"><span class="on">عقاراتي</span><span>رفع Excel</span></span>
+          <span style="font-family:'Readex Pro';font-weight:600">🏢 برج الياسمين · عمارة سكنية · الرياض</span>
+          <span class="demo-tabs gal-tabs" role="tablist">
+            <button class="on" data-img="shots/dashboard-property.webp" data-cap="لوحة العقار: الدخل الشهري، المتأخر، ما يستحق خلال 7 أيام — ثم كل مستأجر بحالته وأزراره">لوحة العقار</button>
+            <button data-img="shots/dashboard-property-vacancy.webp" data-cap="الوحدات الشاغرة ظاهرة بعدد أيامها، ومخالصة الإخلاء وتأجير جديد بضغطة — وسجل العقار يوثّق كل صيانة وإخلاء">الشواغر والإخلاء</button>
+            <button data-img="shots/property-settings.webp" data-cap="إعدادات العقار: فترة السماح، نسبة أتعاب الإدارة التي تُخصم في تقرير المالك، وضريبة القيمة المضافة للوحدات التجارية">إعدادات العقار</button>
+            <button data-img="shots/excel-import.webp" data-cap="عندك عشرات المستأجرين في ملف؟ حمّل القالب، املأه، وارفعه دفعة واحدة مع تحقّق قبل الحفظ">رفع Excel</button>
+            <button data-img="shots/settings-telegram.webp" data-cap="بوت تليجرام: ملخّص يومي بالمستحقات والمتأخرات والعقود المنتهية — التنبيهات لك وحدك، ورسائل المستأجرين تبقى من واتسابك">بوت تليجرام</button>
+            <button data-img="shots/advisor.webp" data-cap="المستشار الذكي: إجابات استرشادية تحيلك إلى المصدر الرسمي — الهيئة العامة للعقار، إيجار، ناجز — وليست استشارة قانونية">المستشار</button>
+            <button data-img="shots/dashboard-association.webp" data-cap="لوحة الجمعية: تنبيه انتهاء الشهادة قبل موعدها، نسبة السداد، وحزمة الاجتماع السنوي جاهزة بضغطة">لوحة الجمعية</button>
+          </span>
         </div>
-        <div class="pfbar">
-          <span class="ttl">محفظتك · 3 عقارات</span>
-          <span><b>12</b><small>وحدة</small></span>
-          <span class="r"><b>2</b><small>متأخرة</small></span>
-          <span class="r"><b>26,500</b><small>ريال متأخر</small></span>
-          <span><b>1</b><small>عقد ينتهي قريبًا</small></span>
-          <span><b>94,500</b><small>دخل شهري تقريبي</small></span>
+        <div class="gal-body">
+          <img id="gal-img" src="shots/dashboard-property.webp" alt="لوحة العقار في وثيق" width="1400" height="1144" decoding="async">
         </div>
-        <div class="demo-body">
-          <div class="demo-stats">
-            <div class="dstat"><div class="v g">75%</div><div class="l">نسبة الانتظام</div></div>
-            <div class="dstat"><div class="v r">1</div><div class="l">وحدات متأخرة</div></div>
-            <div class="dstat"><div class="v r">18,000</div><div class="l">إجمالي المتأخر (ريال)</div></div>
-            <div class="dstat"><div class="v">1</div><div class="l">دفعات خلال 7 أيام</div></div>
-          </div>
-          <div class="drow"><span class="av">م</span><span class="info"><span class="nm">مؤسسة النور التجارية</span><span class="mt">معرض 2 · 18,000 ريال / 3 أشهر · متأخر 18,000 ريال</span></span><span class="dpill r"><i></i> متأخر دفعة واحدة</span></div>
-          <div class="drow"><span class="av">ع</span><span class="info"><span class="nm">عبدالله الحربي</span><span class="mt">معرض 1 · 9,500 ريال / شهر · القادمة 2026-07-28</span></span><span class="dpill a"><i></i> يستحق خلال 5 أيام</span></div>
-          <div class="drow"><span class="av">خ</span><span class="info"><span class="nm">خالد القحطاني</span><span class="mt">معرض 3 · 12,000 ريال / 6 أشهر · العقد ينتهي بعد 41 يومًا</span></span><span class="dpill a"><i></i> تجديد العقد</span></div>
-          <div class="drow"><span class="av">ش</span><span class="info"><span class="nm">شركة الأفق للتجارة</span><span class="mt">معرض 4 · 60,000 ريال / سنة · القادمة 2027-01-15</span></span><span class="dpill g"><i></i> منتظم</span></div>
-        </div>
-        <div class="demo-cap">أدخلت تاريخ بداية العقد ودورته وقيمته فقط — <b>الدفعات والمتأخرات ونهاية العقد استُنتجت تلقائيًّا</b>.</div>
+        <div class="demo-cap" id="gal-cap">لوحة العقار: الدخل الشهري، المتأخر، ما يستحق خلال 7 أيام — ثم كل مستأجر بحالته وأزراره</div>
       </div>
       <div class="center" style="margin-top:24px"><a class="btn btn-ghost" href="dashboard.html#property">جرّب اللوحة الآن بلا تسجيل ←</a></div>
     </div>
@@ -666,6 +677,22 @@
           <div class="doc-f">يُسجَّل تلقائيًّا في سجل العقار</div>
         </div>
       </div>
+      <div class="dl-wrap">
+        <p class="dl-title">ومن البيانات نفسها — بلا إعادة كتابة — تخرج أيضًا:</p>
+        <div class="dl">
+          <span>🧾 كشف حساب مستأجر</span>
+          <span>🏢 كشف حساب العقار</span>
+          <span>🧾 فاتورة مرقّمة</span>
+          <span>📋 عرض سعر تأجير</span>
+          <span>📊 تقرير المالك الشهري بالصافي</span>
+          <span>🔗 رابط المالك الحي</span>
+          <span>📋 سجل المعروضات للطباعة</span>
+          <span>🔑 مخالصة إخلاء</span>
+          <span>⚖️ سجل التزامات المكتب</span>
+          <span>📨 رسالة مطابقة معروض لطالب</span>
+        </div>
+        <p class="dl-note">تكتب بيانات المستأجر مرة واحدة عند إضافته، ويُبنى كل مستند منها ويُطبع جاهزًا.</p>
+      </div>
     </div>
   </section>
 
@@ -711,6 +738,31 @@
         <div class="feat"><div class="ico">📋</div><h3>سجل المعروضات — مع مطابقة الطلبات</h3><p>كل أرض وشقة بكود ثابت وصور وحالة واضحة وتاريخ آخر تأكيد للتوفر. وسجّل طلبات الباحثين — وعند دخول معروض يناسب أحدهم تظهر المطابقة فورًا برسالة واتساب جاهزة بالكود والسعر.</p><span class="ben">↑ «منو كان يدوّر مثلها؟» — يجيبها النظام لا الذاكرة</span></div>
         <div class="feat"><div class="ico">⚖️</div><h3>التزامات المكتب — قبل فوات وقتها</h3><p>سجّل عقود وساطتك وتراخيص إعلاناتك ورخصة فال، وتصلك التنبيهات قبل انتهاء مددها — ومع كل عقد وساطة يظهر آخر يوم في نافذة استحقاق العمولة والعمولة المتوقعة.</p><span class="ben">↑ عقد منسي قد يعني عمولة ساقطة — صياغات استرشادية بمرجعية نظام الوساطة</span></div>
       </div>
+    </div>
+  </section>
+
+  <section class="band" id="vs-excel">
+    <div class="wrap">
+      <div class="center">
+        <span class="sec-eyebrow">سؤال صريح</span>
+        <h2 class="sec-title">«عندي ملف إكسل يكفيني» — متى يكفي فعلًا، ومتى لا</h2>
+        <p class="sec-sub">ملفات الإيجارات الجاهزة تُباع بنحو 150–200 ريال لمرة واحدة. إن كان عندك وحدتان وتفتح اللابتوب كل شهر، فالملف يكفيك فعلًا. الفرق يبدأ بعد ذلك:</p>
+      </div>
+      <div class="cmp-box">
+        <table class="cmp vsx">
+          <thead><tr><th></th><th>ملف إكسل / شيتس</th><th>وثيق</th></tr></thead>
+          <tbody>
+            <tr><th>من يذكّرك بالمتأخر؟</th><td>أنت — حين تفتح الملف</td><td>البوت يراسلك صباحًا على تليجرام</td></tr>
+            <tr><th>من الجوال</th><td>قراءة فقط؛ الأتمتة تحتاج لابتوب</td><td>كل الوظائف</td></tr>
+            <tr><th>تسجيل دفعة</th><td>خلية قد تُمسح أو تُزاح معادلتها</td><td>سجل لا ينكسر، وقابل للرجوع</td></tr>
+            <tr><th>المستندات</th><td>سند قبض</td><td>13 مستندًا ونموذجًا من البيانات نفسها</td></tr>
+            <tr><th>المالك يريد تقريره</th><td>ترسل لقطة شاشة</td><td>رابط حيّ يفتحه متى شاء</td></tr>
+            <tr><th>سؤال نظامي</th><td>—</td><td>المستشار يحيلك للمصدر الرسمي</td></tr>
+            <tr><th>التكلفة</th><td>مرة واحدة</td><td>من 99 ريالًا/شهر — وأول 30 يومًا مجانًا</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cmp-note">بصراحة: إن كانت الصفوف الستة الأولى لا تهمّك، فالملف أرخص. وإن كان واحد منها يكلّفك وقتًا كل شهر، فالفرق يدفع نفسه.</p>
     </div>
   </section>
 
@@ -1591,6 +1643,20 @@
     if(b){e.preventDefault();toggle();}
   });
   paint();
+})();
+</script>
+
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.gal-tabs button'),img=document.getElementById('gal-img'),cap=document.getElementById('gal-cap');
+  if(!tabs.length||!img)return;
+  tabs.forEach(function(b){b.addEventListener('click',function(){
+    tabs.forEach(function(x){x.classList.remove('on')});b.classList.add('on');
+    img.classList.add('fade');
+    var n=new Image();n.onload=function(){img.src=b.dataset.img;img.alt=b.textContent.trim()+' في وثيق';img.classList.remove('fade')};n.src=b.dataset.img;
+    cap.textContent=b.dataset.cap;
+  })});
+  tabs.forEach(function(b){var pre=new Image();pre.src=b.dataset.img});
 })();
 </script>
 </body>
