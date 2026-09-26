@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/demo",
+      "destination": "https://app.watheqapp.com/demo",
+      "permanent": false
+    }
+  ]
+}
