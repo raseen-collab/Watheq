@@ -4,6 +4,11 @@
       "source": "/demo",
       "destination": "https://app.watheqapp.com/demo",
       "permanent": false
+    },
+    {
+      "source": "/dashboard.html",
+      "destination": "https://app.watheqapp.com/demo",
+      "permanent": false
     }
   ]
 }
