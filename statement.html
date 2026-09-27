@@ -10,11 +10,16 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E3A37'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='%23E7C877' font-weight='bold' font-family='Arial'%3E%D9%88%3C/text%3E%3C/svg%3E">
-<title>كشف حساب مستأجر — اطبعه مجانًا في دقيقة | وثيق</title>
-<meta name="description" content="أنشئ كشف حساب مستأجر جاهزًا للطباعة: الدفعات المستحقة، المدفوع، المتأخر، والرصيد. مجاني وبلا تسجيل، ويعمل داخل متصفحك ولا نحفظ أي بيانات.">
-<meta property="og:title" content="كشف حساب مستأجر — اطبعه مجانًا في دقيقة">
-<meta property="og:description" content="جدول دفعات، مدفوع ومتأخر ورصيد، جاهز للطباعة. بلا تسجيل وبلا بريد.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0E3A37">
+<title>كشف حساب مستأجر — بالهجري والميلادي، اطبعه مجانًا | وثيق</title>
+<meta name="description" content="أنشئ كشف حساب مستأجر جاهزًا للطباعة: الدفعات المستحقة، المدفوع، المتأخر، والرصيد — بالتقويم الهجري أو الميلادي، والتاريخان معًا في كل سطر. مجاني وبلا تسجيل، ويعمل داخل متصفحك ولا نحفظ أي بيانات.">
+<meta property="og:title" content="كشف حساب مستأجر — بالهجري والميلادي، اطبعه مجانًا">
+<meta property="og:description" content="جدول دفعات بالتقويم الهجري أو الميلادي، ومدفوع ومتأخر ورصيد، جاهز للطباعة. بلا تسجيل وبلا بريد.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://watheqapp.com/statement.html">
 <meta property="og:image" content="https://watheqapp.com/og-image.png">
@@ -378,8 +383,14 @@
   .tool-head{padding:34px 0 6px}
   .crumb{font-size:.85rem;color:var(--muted)}
   .crumb a{color:var(--muted)}
-  .tool-grid{display:grid;grid-template-columns:340px minmax(0,1fr);gap:22px;align-items:start;margin:26px 0 60px}
-  @media(max-width:900px){.tool-grid{grid-template-columns:1fr}}
+  /* auto لا 0: كانت margin:26px 0 فتُلغي توسيط .wrap، فتلتصق الصفحة كلها
+     بحافة واحدة على الشاشات العريضة (قيست: 305px يمينًا مقابل 15px يسارًا) */
+  .tool-grid{display:grid;grid-template-columns:340px minmax(0,1fr);gap:22px;align-items:start;margin:26px auto 60px}
+  /* minmax(0,1fr) لا 1fr: العمود 1fr حدّه الأدنى min-content، وأدنى محتوى
+     لوحة الإدخال (صفّان من input) نحو 412px — فكانت الصفحة تتسع إلى 477px على
+     جوال 390px ويظهر سحب جانبي. minmax(0,…) يسمح للعمود بالنزول تحت ذلك. */
+  @media(max-width:900px){.tool-grid{grid-template-columns:minmax(0,1fr)}}
+  .tool-grid > *{min-width:0}
   .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
   .fld{margin-bottom:13px}
   .fld label{display:block;font-size:.83rem;color:var(--muted);margin-bottom:5px}
@@ -395,12 +406,22 @@
   .parties{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0;font-size:.9rem}
   @media(max-width:560px){.parties{grid-template-columns:1fr}}
   .parties div b{display:block;font-size:.78rem;color:var(--muted);font-weight:500;margin-bottom:2px}
-  table.st{width:100%;border-collapse:collapse;margin-top:14px;font-size:.88rem}
+  /* الجدول يجري داخل صندوقه لا يجرّ الصفحة: قبل هذا كان عرض الصفحة على جوال
+     390px يتسع إلى 490px بعد بناء الكشف (input[type=date] له عرض داخلي كبير،
+     وخمسة أعمدة لا تتسع)، فيصير في الصفحة سحب جانبي يخفي عمود الحالة. */
+  .st-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:14px}
+  table.st{width:100%;border-collapse:collapse;font-size:.88rem;min-width:420px}
   table.st th,table.st td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:start;vertical-align:middle}
   table.st th{font-family:"Readex Pro",sans-serif;font-size:.78rem;color:var(--muted);font-weight:600;background:var(--paper-2)}
   table.st td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
   table.st input[type=date]{border:1px solid var(--line);border-radius:8px;padding:5px 7px;background:var(--paper);
-    color:var(--ink);font-family:inherit;font-size:.82rem;width:100%}
+    color:var(--ink);font-family:inherit;font-size:.82rem;width:100%;min-width:0}
+  /* التقويم الآخر في سطر تحته: إنقاص أدنى عرض للخلية، وقراءة أوضح من قوسين وسط السطر */
+  .dalt{display:block;font-size:.76rem;color:var(--muted);line-height:1.5}
+  @media(max-width:560px){
+    .stmt{padding:16px}
+    table.st th,table.st td{padding:8px 6px;font-size:.84rem}
+  }
   .pill{display:inline-block;font-size:.74rem;font-weight:600;padding:3px 9px;border-radius:100px;white-space:nowrap}
   .pill.paid{background:var(--paid-bg);color:var(--paid)}
   .pill.late{background:var(--late-bg);color:var(--late)}
@@ -437,15 +458,38 @@
   .totals b{font-size:1.28rem;font-variant-numeric:tabular-nums;font-family:"Readex Pro",sans-serif}
   .sign{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:34px;font-size:.85rem;color:var(--muted)}
   .sign i{display:block;border-top:1px dashed var(--line);margin-top:38px;padding-top:6px;font-style:normal}
-  .legal{margin-top:22px;font-size:.78rem;color:var(--muted);line-height:1.9;border-top:1px solid var(--line);padding-top:12px}
+  /* doc-legal لا legal: الاسم كان يصطدم بـ.legal الخاصة ببطاقة «الحدود
+     القانونية» في الصفحة الرئيسية، فترث حافة ذهبية 2px وحشوة 40px داخل
+     المستند المطبوع (قيست: padding 12px 40px 30px و border-radius 18px) */
+  .doc-legal{margin-top:22px;font-size:.78rem;color:var(--muted);line-height:1.9;border-top:1px solid var(--line);padding-top:12px}
   .acts{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
 
   @media print{
-    header,footer,.tool-head,.panel,.acts,.no-print{display:none!important}
+    /* #faq أُضيف حديثًا: بدونه في هذي القائمة تخرج صفحة ثانية من الأسئلة
+       التسويقية ملحقةً بكشف الحساب المطبوع — والمستند يجب أن يكون المستند وحده */
+    header,footer,.tool-head,.panel,.acts,.no-print,#faq{display:none!important}
     .tool-grid{display:block;margin:0}
     .stmt{border:none;box-shadow:none;padding:0}
+    .st-scroll{overflow:visible!important}
+    table.st{min-width:0!important}
     body{background:#fff}
     .print-only{display:inline}
+    /* كشف قصير كان يفيض سطورًا قليلة إلى صفحة ثانية فتخرج ورقة شبه فارغة.
+       تضييق الفراغات الرأسية وحدها يُرجعه إلى ورقة واحدة، بلا تصغير الخط. */
+    .doc-sec{margin:13px 0 5px}
+    .parties{margin:11px 0;gap:9px}
+    .totals{margin-top:11px;gap:7px}
+    .totals div{padding:9px}
+    .sign{margin-top:16px;gap:24px}
+    .sign i{margin-top:18px}
+    .doc-head{padding-bottom:10px}
+    .doc-foot{font-size:.68rem;line-height:1.7}
+    .doc-legal{margin-top:11px;padding-top:8px}
+    .doc-foot{margin-top:9px;padding-top:7px}
+    .st-scroll{margin-top:9px}
+    /* لا يُقصّ سطر دفعة بين ورقتين، ولا يُفصل الذيل عن المستند */
+    table.st tr{break-inside:avoid;page-break-inside:avoid}
+    .totals,.sign,.doc-legal,.doc-foot{break-inside:avoid;page-break-inside:avoid}
     /* الألوان تُطبع كما تُعرض — بدونها يخرج الصف المتأخر أبيض */
     *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
     @page{margin:14mm}
@@ -462,6 +506,13 @@
   "inLanguage": "ar",
   "description": "أنشئ كشف حساب مستأجر جاهزًا للطباعة: الدفعات المستحقة والمدفوع والمتأخر والرصيد. مجاني وبلا تسجيل.",
   "isAccessibleForFree": true,
+  "featureList": [
+    "جدول دفعات تلقائي من بيانات العقد",
+    "التقويم الهجري (أم القرى) والميلادي معًا في كل سطر",
+    "حساب المستحق والمسدَّد والمتأخر والرصيد",
+    "جاهز للطباعة أو الحفظ PDF",
+    "يعمل داخل المتصفح بلا تسجيل وبلا إرسال بيانات"
+  ],
   "offers": {
     "@type": "Offer",
     "price": "0",
@@ -469,12 +520,44 @@
   }
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "وثيق", "item": "https://watheqapp.com/" },
+    { "@type": "ListItem", "position": 2, "name": "أدوات مجانية", "item": "https://watheqapp.com/calculators.html" },
+    { "@type": "ListItem", "position": 3, "name": "كشف حساب مستأجر", "item": "https://watheqapp.com/statement.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "هل كشف حساب المستأجر مُلزم نظامًا؟",
+      "acceptedAnswer": { "@type": "Answer", "text": "لا. الكشف بيان حسابي بين المالك أو المكتب والمستأجر يوضّح ما استُحق وما سُدِّد وما تبقّى. ليس عقدًا ولا مطالبة رسمية ولا بديلًا عن توثيق العقد في منصة إيجار، وأي تصعيد نظامي يتم عبر القنوات الرسمية." } },
+    { "@type": "Question", "name": "كيف تُحسب أقساط العقد بالتقويم الهجري؟",
+      "acceptedAnswer": { "@type": "Answer", "text": "تُحسب بالأشهر الهجرية نفسها (أم القرى) لا بالأشهر الميلادية. السنة الهجرية أقصر بنحو ١١ يومًا، فالحساب بالأشهر الميلادية يزحف تاريخ الاستحقاق ٣–٥ أيام كل قسط ويتراكم على مدى العقد. ويُطبع التاريخان الهجري والميلادي معًا في كل سطر." } },
+    { "@type": "Question", "name": "هل تُحفظ بيانات المستأجر؟",
+      "acceptedAnswer": { "@type": "Answer", "text": "لا. الحساب كله يجري داخل متصفحك ولا يُرسل أي شيء إلى خادم، ولا يُطلب تسجيل ولا بريد. إن أغلقت الصفحة ذهب الكشف، فاطبعه أو احفظه PDF قبل الإغلاق." } },
+    { "@type": "Question", "name": "كيف أحفظ كشف الحساب PDF؟",
+      "acceptedAnswer": { "@type": "Answer", "text": "اضغط «اطبع أو احفظ PDF» ثم اختر الطابعة Save as PDF في نافذة الطباعة. على الآيفون: زر المشاركة ثم طباعة، ثم باعد إصبعيك على المعاينة فتُفتح كملف PDF." } },
+    { "@type": "Question", "name": "هل الأداة مجانية؟",
+      "acceptedAnswer": { "@type": "Answer", "text": "نعم، مجانية بلا حد ولا تسجيل. لوحة وثيق المدفوعة تبدأ من ٩٩ ريالًا شهريًّا للمالك و١٩٩ للمكتب، وفيها تجربة ٣٠ يومًا مجانًا بلا بطاقة بنكية." } }
+  ]
+}
+</script>
 </head>
 <body>
 <header style="border-bottom:1px solid var(--line);background:var(--paper)">
   <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:66px">
     <a href="index.html" style="font-family:'Readex Pro',sans-serif;font-weight:700;font-size:1.2rem">وثيق</a>
-    <a href="index.html" style="font-size:.87rem;color:var(--muted)">← الرئيسية</a>
+    <span style="display:flex;align-items:center;gap:14px">
+      <a href="https://app.watheqapp.com/demo" style="font-size:.87rem;font-weight:600;color:var(--gold-ink)">👀 جرّب لوحة كاملة</a>
+      <a href="index.html" style="font-size:.87rem;color:var(--muted)">← الرئيسية</a>
+    </span>
   </div>
 </header>
 <div class="wrap tool-head">
@@ -506,10 +589,23 @@
       <input id="cno" placeholder="مثال: 1447-084">
     </div>
 
+    <div class="fld">
+      <label for="cal">تقويم العقد</label>
+      <select id="cal">
+        <option value="gregory" selected>ميلادي</option>
+        <option value="hijri">هجري (أم القرى)</option>
+      </select>
+      <div class="hint">
+        العقد الهجري تُحسب أقساطه بالأشهر الهجرية، فلا يزحف الاستحقاق ٣–٥ أيام كل قسط.
+        والتاريخان يُطبعان معًا في كل الحالات.
+      </div>
+    </div>
+
     <div class="row2">
       <div class="fld">
         <label for="start">بداية العقد</label>
         <input id="start" type="date">
+        <div class="hint" id="startH">—</div>
       </div>
       <div class="fld">
         <label for="months">مدة العقد</label>
@@ -548,6 +644,9 @@
       <input id="extraLabel" placeholder="مثال: فاتورة كهرباء متأخرة">
     </div>
 
+    <div id="formMsg" style="display:none;background:var(--late-bg);border:1px solid var(--late);
+      color:var(--late);border-radius:10px;padding:10px 12px;font-size:.86rem;margin-bottom:10px"></div>
+
     <button class="btn btn-primary" id="build" style="width:100%;justify-content:center;margin-top:6px">
       ابنِ الكشف
     </button>
@@ -577,10 +676,13 @@
         <div><b>المستأجر</b><span id="tOut">—</span></div>
         <div><b>العقار / الوحدة</b><span id="uOut">—</span></div>
         <div><b>رقم العقد</b><span id="cOut">—</span></div>
+        <div><b>مدة العقد</b><span id="pOut">—</span></div>
+        <div><b>تقويم العقد</b><span id="calOut">—</span></div>
       </div>
 
       <div class="doc-sec">جدول الدفعات</div>
 
+      <div class="st-scroll">
       <table class="st">
         <thead>
           <tr><th>#</th><th>الاستحقاق</th><th>المبلغ</th><th>الحالة</th><th>تاريخ السداد</th></tr>
@@ -591,6 +693,7 @@
           </td></tr>
         </tbody>
       </table>
+      </div>
 
       <div class="doc-sec">الملخص</div>
 
@@ -606,15 +709,14 @@
         <div><i>توقيع المستأجر بالاستلام</i></div>
       </div>
 
-      <p class="legal">
+      <p class="doc-legal">
         هذا الكشف بيان حسابي بين الطرفين أُعدّ بأداة وثيق المجانية، ولا يُعدّ عقدًا ولا مطالبة رسمية
         ولا بديلًا عن توثيق العقد في منصة إيجار. أي تنفيذ أو تصعيد نظامي يتم عبر القنوات الرسمية.
       </p>
 
       <div class="doc-foot">
-        <p>صدر هذا المستند عبر منصة وثيق — أداة تنظيمية لإدارة الأملاك.</p>
-        <p>وثيق لا يقدّم خدمات قانونية أو محاسبية، ولا يستلم أو يحوّل أي مبالغ. هذا المستند للاستخدام
-           الإداري بين الطرفين، ومسؤولية اعتماده على مُصدِره.</p>
+        <p>صدر عبر منصة وثيق — أداة تنظيمية لإدارة الأملاك. لا تقدّم خدمات قانونية أو محاسبية،
+           ولا تستلم أو تحوّل أي مبالغ، ومسؤولية اعتماد هذا المستند على مُصدِره.</p>
         <p class="fl">وثيقة عمل حر رقم FL-763162251 — وزارة الموارد البشرية والتنمية الاجتماعية</p>
         <p class="fl">watheqdocs@gmail.com · watheqapp.com</p>
       </div>
@@ -627,22 +729,93 @@
 
     <div class="panel no-print" style="margin-top:18px">
       <b style="font-family:'Readex Pro',sans-serif">تديّر أكثر من مستأجر؟</b>
-      <p style="color:var(--muted);font-size:.9rem;margin:8px 0 14px">
+      <p style="color:var(--muted);font-size:.9rem;margin:8px 0 12px">
         هذي الأداة لمستأجر واحد في كل مرة، وتبدأ من الصفر مع كل كشف. لوحة وثيق تحفظ عقودك
-        مرة واحدة، وتحسب المتأخرات وحدها، وتجهّز رسائل التذكير جاهزة ترسلها أنت من واتساب،
-        وتطبع الكشوف والمخالصات ومحاضر التسليم بضغطة.
+        مرة واحدة ثم تعمل وحدها:
       </p>
+      <ul style="color:var(--muted);font-size:.88rem;line-height:1.9;margin:0 0 14px;padding-inline-start:16px">
+        <li>المتأخرات تُحسب وحدها لكل وحدة، وتعرف المسدَّد والمتبقي بالضبط</li>
+        <li>كشف حساب مستأجر · كشف حساب عقار · مخالصة إخلاء · فواتير مرقّمة بتسلسل</li>
+        <li><b>رابط المالك</b> — تُرسل للمالك رابطًا يفتحه من جواله فيشوف تقرير عقاره محدَّثًا، بلا حساب</li>
+        <li><b>المصروفات وصافي المالك</b> — تسجّل المصروف وتحدّد نسبة الأتعاب فيطلع الصافي محسوبًا</li>
+        <li><b>رسائل التذكير</b> جاهزة بمبلغ كل متأخر وتواريخه، ترسلها أنت بضغطة على واتساب</li>
+        <li><b>حسابات الموظفين</b> بصلاحيات محدودة، وكل عملية مسجّلة باسم من أجراها</li>
+        <li><b>ملخّص تليجرام يومي</b> بالمتأخرين والعقود اللي قربت تنتهي</li>
+        <li>كل تاريخ بالهجري والميلادي معًا — والعقود الهجرية تُحسب أقساطها بالأشهر الهجرية</li>
+      </ul>
       <p style="color:var(--muted);font-size:.86rem;margin:0 0 14px">
-        راسلنا ونمشي معك على عقار واحد — ونجهّز لك أول كشف بنفسنا.
+        <b>شوفها قبل ما تسجّل:</b> نفتح لك مكتبًا تجريبيًا كاملًا — ٥ عقارات و٨٠ وحدة فيها متأخرون
+        وشواغر — وكل زر فيه يشتغل فعلًا. بلا بريد ولا جوال ولا كلمة مرور.
       </p>
       <div style="display:flex;gap:9px;flex-wrap:wrap">
+        <a class="btn btn-gold" href="https://app.watheqapp.com/demo">👀 جرّب لوحة كاملة — بلا تسجيل</a>
         <a class="btn btn-primary" href="https://wa.me/966596300591?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A7%D8%B3%D8%AA%D8%AE%D8%AF%D9%85%D8%AA%20%D9%83%D8%B4%D9%81%20%D8%A7%D9%84%D8%AD%D8%B3%D8%A7%D8%A8%20%D9%88%D8%A3%D8%A8%D8%BA%D9%89%20%D9%86%D8%B3%D8%AE%D8%A9%20%D8%AA%D8%AA%D8%AD%D8%AF%D8%AB%20%D8%AA%D9%84%D9%82%D8%A7%D8%A6%D9%8A%D9%8B%D8%A7" target="_blank" rel="noopener">
           💬 راسلنا على واتساب
         </a>
-        <a class="btn btn-ghost" href="index.html#pricing">اعرف أكثر عن لوحة الأملاك</a>
+        <a class="btn btn-ghost" href="index.html#pricing">الأسعار</a>
+      </div>
+      <div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:9px">
         <a class="btn btn-ghost" href="tenant-statement-guide.html">📘 ماذا يجب أن يحتوي كشف الحساب؟</a>
+        <a class="btn btn-ghost" href="property-management-contract-guide.html">📘 دليل عقد إدارة الأملاك</a>
+        <a class="btn btn-ghost" href="move-out-settlement-guide.html">📘 دليل مخالصة الإخلاء</a>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- كان تذييل الصفحة يشير إلى #faq وهو لا وجود له — رابط ميت في كل صفحات الأدوات.
+     والقسم يخدم البحث أيضًا: أسئلة كشف الحساب تُكتب في جوجل بهذه الصيغة. -->
+<div class="wrap" id="faq" style="margin-bottom:56px">
+  <h2 class="sec-title" style="font-size:clamp(1.3rem,2.4vw,1.8rem)">أسئلة شائعة عن كشف حساب المستأجر</h2>
+  <div class="faq" style="margin-inline:0">
+    <details class="fq">
+      <summary>هل كشف الحساب هذا مُلزم نظامًا؟</summary>
+      <div class="a">
+        لا. الكشف بيان حسابي بين المالك أو المكتب والمستأجر، يوضّح ما استُحق وما سُدِّد وما تبقّى.
+        ليس عقدًا ولا مطالبة رسمية ولا بديلًا عن توثيق العقد في منصة «إيجار». أي تصعيد نظامي
+        يتم عبر القنوات الرسمية.
+      </div>
+    </details>
+    <details class="fq">
+      <summary>عقدي بالتقويم الهجري — هل تُحسب الأقساط صحيحة؟</summary>
+      <div class="a">
+        نعم. اختر «هجري (أم القرى)» في تقويم العقد، فتُحسب مواعيد الأقساط بالأشهر الهجرية نفسها
+        لا بالميلادية. الفرق ليس شكليًّا: السنة الهجرية أقصر بنحو ١١ يومًا، فالحساب بالأشهر
+        الميلادية يزحف الاستحقاق ٣–٥ أيام كل قسط، ويتراكم الزحف على مدى العقد.
+        وفي كل الحالات يُطبع التاريخان معًا في كل سطر.
+      </div>
+    </details>
+    <details class="fq">
+      <summary>هل تُحفظ بيانات المستأجر عندكم؟</summary>
+      <div class="a">
+        لا. الحساب كله يجري داخل متصفحك، ولا يُرسل أي شيء إلى خادم. إن أغلقت الصفحة ذهب الكشف،
+        فاطبعه أو احفظه PDF قبل الإغلاق. ولهذا أيضًا لا تحتاج تسجيلًا ولا بريدًا.
+      </div>
+    </details>
+    <details class="fq">
+      <summary>كيف أحفظه PDF بدل الطباعة؟</summary>
+      <div class="a">
+        اضغط «اطبع أو احفظ PDF»، ثم في نافذة الطباعة اختر الطابعة =
+        <b>Save as PDF</b> (أو «حفظ بصيغة PDF»). على الآيفون: زر المشاركة ثم «طباعة»، ثم
+        باعد إصبعيك على المعاينة فتُفتح كملف PDF تحفظه أو ترسله.
+      </div>
+    </details>
+    <details class="fq">
+      <summary>عندي أكثر من مستأجر — هل أكرّر هذي الأداة لكل واحد؟</summary>
+      <div class="a">
+        تقدر، لكنها تبدأ من الصفر كل مرة ولا تحفظ شيئًا. لو تديّر عدة وحدات فلوحة وثيق تحفظ
+        العقود مرة واحدة وتحسب المتأخرات وحدها وتطبع الكشوف بضغطة. تقدر
+        <a href="https://app.watheqapp.com/demo" style="color:var(--gold-ink);font-weight:600;text-decoration:underline">تفتح مكتبًا تجريبيًا كاملًا</a>
+        وتجرّبها بلا تسجيل.
+      </div>
+    </details>
+    <details class="fq">
+      <summary>هل الأداة مجانية فعلًا؟</summary>
+      <div class="a">
+        نعم، مجانية بلا حد ولا تسجيل. لوحة وثيق المدفوعة شيء آخر: تبدأ من ٩٩ ريالًا شهريًّا
+        للمالك و١٩٩ للمكتب، وفيها تجربة ٣٠ يومًا مجانًا بلا بطاقة بنكية.
+      </div>
+    </details>
   </div>
 </div>
 <footer>
@@ -651,14 +824,14 @@
       <div class="brand" style="display:flex;align-items:center;gap:10px"><span class="seal"></span> وثيق</div>
       <div class="links">
         <a href="about.html">من نحن</a>
-        <a href="?mode=properties">إدارة الأملاك</a>
-        <a href="?mode=hoa">جمعيات الملاك</a>
+        <a href="index.html?mode=properties">إدارة الأملاك</a>
+        <a href="index.html?mode=hoa">جمعيات الملاك</a>
         <a href="calculators.html">الحاسبات</a>
         <a href="#faq">الأسئلة</a>
-        <a href="dashboard.html">جرّب اللوحة</a>
+        <a href="https://app.watheqapp.com/demo">جرّب اللوحة</a>
         <a href="https://app.watheqapp.com">تسجيل الدخول</a>
         <a href="legal.html">الشروط والخصوصية</a> · <a href="legal.html#refund">الاسترداد</a>
-        <a href="#contact">تواصل معنا</a>
+        <a href="https://wa.me/966596300591">تواصل معنا</a>
       </div>
     </div>
     <div style="margin-top:14px;display:flex;gap:18px;flex-wrap:wrap;font-size:.88rem">
@@ -695,24 +868,110 @@
     return d.toLocaleDateString('ar-SA-u-ca-gregory-nu-latn', {year:'numeric', month:'long', day:'numeric'});
   }
 
+  /* ═══════════ التقويم الهجري (أم القرى) ═══════════
+     العقد الهجري لا يُحسب بالأشهر الميلادية: السنة الهجرية أقصر بنحو 11 يومًا،
+     فعقد 12 قسطًا شهريًّا يبدأ 1 محرم ينتهي 1 ذي الحجة — لا بعد سنة ميلادية.
+     خطوة ميلادية على عقد هجري تزحف الاستحقاق 3–5 أيام كل قسط، وهو أكثر ما
+     يُربك المكاتب. نحسب هنا بالأشهر الهجرية نفسها.
+
+     لا مكتبة خارجية: Intl تُحوّل ميلادي → هجري، والعكس نجده بتقدير ثم مسح
+     ±3 أيام حول التقدير. أُثبت بمطابقة عكسية لكل يوم في 3 سنوات: 1096/1096. */
+  var HFMT = null, HPARTS = null;
+  function hijriOK(){
+    if(HFMT !== null) return !!HFMT;
+    try{
+      HFMT = new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura-nu-latn',
+        {year:'numeric',month:'long',day:'numeric'});
+      HPARTS = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura-nu-latn',
+        {year:'numeric',month:'numeric',day:'numeric'});
+      // تحقّق أن المتصفح يعرف أم القرى فعلًا لا يتجاهلها
+      var t = HPARTS.resolvedOptions().calendar;
+      if(t && t.indexOf('umalqura') === -1){ HFMT = false; return false; }
+    }catch(e){ HFMT = false; }
+    return !!HFMT;
+  }
+  function hParts(d){
+    var o = {};
+    HPARTS.formatToParts(d).forEach(function(x){ if(x.type!=='literal') o[x.type]=Number(x.value); });
+    return {y:o.year, m:o.month, d:o.day};
+  }
+  function hFmt(d){ return HFMT.format(d); }
+  /** يبني تاريخًا ميلاديًّا من أجزاء هجرية، أو null إن لم يوجد ذلك اليوم في ذلك الشهر */
+  function fromH(y,m,day){
+    var approx = Math.round((y-1)*354.367 + (m-1)*29.530588 + (day-1));
+    var base = new Date(622, 6, 19); base.setHours(0,0,0,0);
+    var g = new Date(base.getTime() + approx*86400000);
+    for(var off=-3; off<=3; off++){
+      var c = new Date(g.getTime() + off*86400000); c.setHours(0,0,0,0);
+      var p = hParts(c);
+      if(p.y===y && p.m===m && p.d===day) return c;
+    }
+    return null;
+  }
+  /** يضيف أشهرًا هجرية، ويقصّ اليوم 30 إلى 29 إن لم يوجد في الشهر الهدف */
+  function addHijriMonths(d, add){
+    var s = hParts(d);
+    var m = s.m + add, y = s.y + Math.floor((m-1)/12);
+    m = ((m-1)%12+12)%12 + 1;
+    var tries = [s.d, Math.min(s.d,29), Math.min(s.d,28)];
+    for(var i=0;i<tries.length;i++){
+      var g = fromH(y, m, tries[i]);
+      if(g) return g;
+    }
+    return null;
+  }
+  /** inline=true يضع التقويم الآخر بين قوسين في نفس السطر (للجُمل)،
+      و=false يضعه في سطر تحته (لخلايا الجدول، فتضيق الخلية) */
+  function bothDates(d, hijriFirst, inline){
+    if(!hijriOK()) return ar(d);
+    var h = hFmt(d), g = ar(d);
+    var first = hijriFirst ? h : g, second = hijriFirst ? g : h;
+    return inline
+      ? first + ' <small style="color:var(--muted)">(' + second + ')</small>'
+      : first + '<span class="dalt">' + second + '</span>';
+  }
+  function bothPlain(d, hijriFirst){
+    if(!hijriOK()) return ar(d);
+    return hijriFirst ? hFmt(d) + ' (' + ar(d) + ')' : ar(d) + ' (' + hFmt(d) + ')';
+  }
+
+  function say(msg){
+    // بدل alert: الحوار المنبثق يقطع الصفحة ويُقرأ كخطأ تقني لا كتوجيه
+    var b = $('formMsg');
+    b.textContent = msg;
+    b.style.display = msg ? 'block' : 'none';
+  }
+
   function build(){
     var annual = Number($('annual').value) || 0;
     var months = Number($('months').value) || 12;
     var freq   = Number($('freq').value) || 1;
     var startV = $('start').value;
     if(!startV || !annual){
-      alert('اكتب تاريخ بداية العقد والإيجار السنوي أولًا');
+      say('اكتب تاريخ بداية العقد والإيجار السنوي أولًا.');
       return;
     }
+    say('');
+    var hijri = $('cal').value === 'hijri' && hijriOK();
     var start = new Date(startV + 'T00:00:00');
     var years = months / 12;
     var count = Math.max(1, Math.round(freq * years));
     var step  = Math.round(12 / freq);
-    var each  = (annual * years) / count;
+    var gross = annual * years;
+
+    /* التقريب على القسط لا على العرض: كان each كسريًّا فيُعرض مقرَّبًا بينما
+       الإجمالي يُجمع بلا تقريب — فيخالف مجموع السطور الظاهرة الإجماليَ بالهللات
+       في مستند مالي يُطبع ويُوقَّع. نقرّب كل قسط، ونضع الفرق على الأخير. */
+    var each = Math.round((gross / count) * 100) / 100;
+    var lastFix = Math.round((gross - each * count) * 100) / 100;
 
     rows = [];
     for(var i=0;i<count;i++){
-      rows.push({ due: addMonths(start, i*step), amount: each, paid:false, on:'' , label:'' });
+      var due = hijri ? addHijriMonths(start, i*step) : addMonths(start, i*step);
+      if(!due) due = addMonths(start, i*step);   // تعذّر التحويل — لا نُسقط قسطًا
+      rows.push({ due: due,
+                  amount: (i === count-1) ? Math.round((each + lastFix)*100)/100 : each,
+                  paid:false, on:'', label:'' });
     }
     var extra = Number($('extra').value) || 0;
     if(extra > 0){
@@ -720,19 +979,30 @@
                   label: ($('extraLabel').value || 'مبلغ آخر') });
     }
 
+    // نهاية العقد = يوم قبل بداية الدورة التالية للمدة كاملة
+    var endNext = hijri ? addHijriMonths(start, months) : addMonths(start, months);
+    var end = endNext ? new Date(endNext.getTime() - 86400000) : null;
+
     $('oOut').textContent = $('owner').value || '—';
     $('tOut').textContent = $('tenant').value || '—';
     $('uOut').textContent = $('unit').value || '—';
     $('cOut').textContent = $('cno').value || '—';
-    $('issued').textContent = 'صدر بتاريخ ' + ar(new Date());
+    $('pOut').innerHTML = end
+      ? bothDates(start, hijri, true) + ' — ' + bothDates(end, hijri, true)
+      : bothDates(start, hijri, true);
+    $('calOut').textContent = hijri ? 'هجري (أم القرى)' : 'ميلادي';
+    $('issued').innerHTML = 'صدر بتاريخ ' + bothDates(new Date(), hijri, true);
     var sub = [];
     if($('tenant').value) sub.push($('tenant').value);
     if($('unit').value)   sub.push($('unit').value);
     $('docSub').innerHTML = sub.length ? '<b>' + sub.join('</b> · <b>') + '</b>' : '';
-    render();
+    render(hijri);
   }
 
-  function render(){
+  var lastHijri = false;
+  function render(hijri){
+    if(typeof hijri === 'boolean') lastHijri = hijri;
+    hijri = lastHijri;
     var today = new Date(); today.setHours(0,0,0,0);
     var html = '', total=0, paid=0, late=0;
 
@@ -745,13 +1015,13 @@
       var txt = r.paid ? 'مسدَّدة' : (isLate ? 'متأخرة' : 'لم تحن');
       html += '<tr class="' + (isLate ? 'r-late' : '') + '">'
         + '<td>' + (i+1) + '</td>'
-        + '<td>' + ar(r.due) + (r.label ? ' <small style="color:var(--muted)">— ' + r.label + '</small>' : '') + '</td>'
+        + '<td>' + bothDates(r.due, hijri) + (r.label ? ' <small style="color:var(--muted)">— ' + r.label + '</small>' : '') + '</td>'
         + '<td class="num">' + fmt(r.amount) + '</td>'
         + '<td><label style="display:inline-flex;align-items:center;gap:7px;cursor:pointer">'
         +   '<input type="checkbox" data-i="' + i + '" class="ck no-print"' + (r.paid?' checked':'') + '>'
         +   '<span class="pill ' + cls + '">' + txt + '</span></label></td>'
         + '<td><input type="date" class="no-print" data-d="' + i + '" value="' + (r.on||'') + '">'
-        +   '<span class="print-only">' + (r.on ? ar(new Date(r.on + 'T00:00:00')) : '—') + '</span></td>'
+        +   '<span class="print-only">' + (r.on ? bothPlain(new Date(r.on + 'T00:00:00'), hijri) : '—') + '</span></td>'
         + '</tr>';
     });
 
@@ -786,9 +1056,10 @@
   $('print').addEventListener('click', function(){ window.print(); });
 
   $('copy').addEventListener('click', function(){
-    if(!rows.length){ alert('ابنِ الكشف أولًا'); return; }
+    if(!rows.length){ say('ابنِ الكشف أولًا.'); return; }
     var t = 'كشف حساب — ' + ($('tenant').value || 'المستأجر') + '\n'
       + ($('unit').value ? $('unit').value + '\n' : '')
+      + 'مدة العقد: ' + $('pOut').textContent + '\n'
       + 'إجمالي المستحق: ' + $('tTotal').textContent + ' ريال\n'
       + 'المسدَّد: ' + $('tPaid').textContent + ' ريال\n'
       + 'المتأخر: ' + $('tLate').textContent + ' ريال\n'
@@ -802,8 +1073,33 @@
     }
   });
 
+  /** يُظهر ما يقابل تاريخ البداية في التقويم الآخر — قبل البناء لا بعده */
+  function syncStartHint(){
+    var v = $('start').value;
+    var box = $('startH');
+    if(!v || !hijriOK()){ box.textContent = ''; return; }
+    var dd = new Date(v + 'T00:00:00');
+    box.textContent = ($('cal').value === 'hijri')
+      ? 'يقابل ' + ar(dd)
+      : 'يقابل ' + hFmt(dd);
+  }
+  $('start').addEventListener('change', syncStartHint);
+  $('cal').addEventListener('change', function(){
+    syncStartHint();
+    if(rows.length) build();     // التقويم يغيّر التواريخ كلها — يُعاد البناء فورًا
+  });
+
+  if(!hijriOK()){
+    // متصفح قديم لا يعرف أم القرى: نُخفي الخيار بدل أن نعرض تواريخ خاطئة
+    var co = $('cal').querySelector('option[value="hijri"]');
+    if(co) co.remove();
+    $('cal').parentNode.querySelector('.hint').textContent =
+      'متصفحك لا يدعم التقويم الهجري — حدّثه أو استخدم كروم أو سفاري لعرض التاريخين.';
+  }
+
   var d = new Date();
   $('start').value = iso(new Date(d.getFullYear(), d.getMonth(), 1));
+  syncStartHint();
 })();
 </script>
 
