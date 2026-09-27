@@ -282,7 +282,9 @@
   .fq summary::-webkit-details-marker{display:none}
   .fq summary::after{content:"+";font-family:"Readex Pro";font-weight:700;color:var(--gold);font-size:1.3rem;flex:none;transition:transform .2s ease}
   .fq[open] summary::after{transform:rotate(45deg)}
-  .fq .a{padding:0 20px 18px;color:#33413d;font-size:.93rem;line-height:1.85;border-top:1px solid var(--paper-2);padding-top:14px}
+  /* var(--ink) لا #33413d: اللون المثبّت على خلفية الوضع الليلي أعطى تباينًا
+     1.55:1 (الحدّ المقبول 4.5:1) فصارت الإجابات شبه غير مرئية ليلًا. */
+  .fq .a{padding:0 20px 18px;color:var(--ink);font-size:.93rem;line-height:1.85;border-top:1px solid var(--paper-2);padding-top:14px}
   @media(max-width:820px){.tgwrap{grid-template-columns:1fr}}
   [data-svc]{display:none}
   [data-svc].show{display:block}
@@ -471,24 +473,28 @@
     .tool-grid{display:block;margin:0}
     .stmt{border:none;box-shadow:none;padding:0}
     .st-scroll{overflow:visible!important}
+    /* التقويم الثاني داخل الجدول يجعل كل سطر سطرين، فعقد شهري (12 قسطًا)
+       يفيض إلى ورقة ثانية. يبقى التقويمان في «مدة العقد» وتاريخ الإصدار. */
+    table.st .dalt{display:none}
     table.st{min-width:0!important}
     body{background:#fff}
     .print-only{display:inline}
     /* كشف قصير كان يفيض سطورًا قليلة إلى صفحة ثانية فتخرج ورقة شبه فارغة.
        تضييق الفراغات الرأسية وحدها يُرجعه إلى ورقة واحدة، بلا تصغير الخط. */
-    .doc-sec{margin:13px 0 5px}
-    .parties{margin:11px 0;gap:9px}
+    .doc-sec{margin:10px 0 4px}
+    .parties{margin:9px 0;gap:7px}
     .totals{margin-top:11px;gap:7px}
     .totals div{padding:9px}
     .sign{margin-top:16px;gap:24px}
     .sign i{margin-top:18px}
-    .doc-head{padding-bottom:10px}
+    .doc-head{padding-bottom:8px}
     .doc-foot{font-size:.68rem;line-height:1.7}
     .doc-legal{margin-top:11px;padding-top:8px}
     .doc-foot{margin-top:9px;padding-top:7px}
     .st-scroll{margin-top:9px}
     /* لا يُقصّ سطر دفعة بين ورقتين، ولا يُفصل الذيل عن المستند */
     table.st tr{break-inside:avoid;page-break-inside:avoid}
+    table.st th,table.st td{padding:7px 8px}
     .totals,.sign,.doc-legal,.doc-foot{break-inside:avoid;page-break-inside:avoid}
     /* الألوان تُطبع كما تُعرض — بدونها يخرج الصف المتأخر أبيض */
     *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -848,7 +854,13 @@
 </footer><script>
 (function(){
   var $ = function(id){ return document.getElementById(id); };
-  var fmt = function(n){ return (Math.round(n*100)/100).toLocaleString('en-US'); };
+  /* خانتان للهللات دائمًا حين توجد كسور: 6,172.5 تُقرأ في مستند مطبوع
+     كرقم منقوص. والصحيح 6,172.50 — والأعداد الصحيحة تبقى بلا كسور. */
+  var fmt = function(n){
+    var v = Math.round(n*100)/100;
+    var frac = Math.abs(v % 1) > 0.0001 ? 2 : 0;
+    return v.toLocaleString('en-US',{minimumFractionDigits:frac, maximumFractionDigits:2});
+  };
   var rows = [];
 
   function addMonths(d, m){
@@ -979,9 +991,26 @@
                   label: ($('extraLabel').value || 'مبلغ آخر') });
     }
 
-    // نهاية العقد = يوم قبل بداية الدورة التالية للمدة كاملة
+    /* نهاية العقد = يوم قبل بداية الدورة التالية. لكن بداية الدورة التالية
+       تُقصّ حين لا يوجد اليوم في الشهر الهدف (31 → 28)، فيُخصم اليوم مرتين:
+       عقد يبدأ 31 أغسطس لستة أشهر كان يُعرض «27 فبراير» بدل «28 فبراير».
+       الحل: نبني الشهر التالي بيومه الأصلي ثم نطرح يومًا، فإن قُصّ اليوم
+       فالنهاية هي آخر يوم في الشهر السابق مباشرةً. */
     var endNext = hijri ? addHijriMonths(start, months) : addMonths(start, months);
-    var end = endNext ? new Date(endNext.getTime() - 86400000) : null;
+    var end = null;
+    if(endNext){
+      var wanted = hijri ? null : start.getDate();
+      if(!hijri && endNext.getDate() !== wanted){
+        // قُصّ اليوم: بداية الدورة التالية هي أصلًا آخر يوم في شهرها
+        end = new Date(endNext.getTime());
+      } else {
+        end = new Date(endNext.getTime() - 86400000);
+      }
+      if(hijri){
+        var ph = hParts(endNext), ps = hParts(start);
+        end = (ph.d !== ps.d) ? new Date(endNext.getTime()) : new Date(endNext.getTime() - 86400000);
+      }
+    }
 
     $('oOut').textContent = $('owner').value || '—';
     $('tOut').textContent = $('tenant').value || '—';
@@ -1086,7 +1115,16 @@
   $('start').addEventListener('change', syncStartHint);
   $('cal').addEventListener('change', function(){
     syncStartHint();
-    if(rows.length) build();     // التقويم يغيّر التواريخ كلها — يُعاد البناء فورًا
+    if(!rows.length) return;
+    /* التقويم يغيّر التواريخ كلها فيلزم إعادة البناء — لكن إعادة البناء تبدأ من
+       الصفر، فكان من أشّر اثنتي عشرة دفعة وكتب تواريخ سدادها يفقدها كلها بنقرة
+       على قائمة منسدلة، بلا تحذير وبلا استرجاع. نحفظ ما أشّره ونعيده بعدها. */
+    var keep = rows.map(function(r){ return {paid:r.paid, on:r.on}; });
+    build();
+    for(var i=0;i<rows.length && i<keep.length;i++){
+      rows[i].paid = keep[i].paid; rows[i].on = keep[i].on;
+    }
+    render();
   });
 
   if(!hijriOK()){

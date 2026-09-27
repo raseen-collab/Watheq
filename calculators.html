@@ -226,7 +226,7 @@
       <div class="row3">
         <div class="field"><label>تاريخ بداية العقد</label><input class="fld" type="date" id="sStart"></div>
         <div class="field"><label>قيمة الدفعة <small>ريال</small></label><input class="fld" type="number" id="sRent" value="3000" placeholder="3000"></div>
-        <div class="field"><label>عدد الدفعات <small>مدة العقد</small></label><input class="fld" type="number" id="sPeriods" value="12" placeholder="12"></div>
+        <div class="field"><label>عدد الدفعات <small>مدة العقد</small></label><input class="fld" type="number" id="sPeriods" value="12" placeholder="12" min="1" step="1"></div>
       </div>
       <div class="field">
         <label>تقويم العقد</label>
@@ -287,10 +287,11 @@
     </div>
     <div class="card-b">
       <div class="row3">
-        <div class="field"><label>عدد الوحدات المتأخرة</label><input class="fld" type="number" id="aUnits" value="3" min="1"></div>
+        <div class="field"><label>عدد الوحدات المتأخرة</label><input class="fld" type="number" id="aUnits" value="3" min="1" step="1"></div>
         <div class="field"><label>متوسط الإيجار <small>ريال / شهر</small></label><input class="fld" type="number" id="aRent" value="3000"></div>
         <div class="field"><label>متوسط أشهر التأخّر</label><input class="fld" type="number" id="aMonths" value="2" min="1"></div>
       </div>
+      <div class="field"><label>عدد العقارات التي تديرها <small>يحدّد الباقة المناسبة</small></label><input class="fld" type="number" id="aProps" value="1" min="1" step="1"></div>
       <div class="field"><label>ساعات تقضيها شهريًّا في المتابعة والمطالبة <small>لتقدير كلفة وقتك</small></label><input class="fld" type="number" id="aHours" value="6" min="0"></div>
       <div id="aOut"></div>
     </div>
@@ -360,6 +361,14 @@
   "use strict";
   var money=function(n){return (Math.round(Number(n)||0)).toLocaleString('en-US')};
   var pct=function(n){return (Math.round((Number(n)||0)*10)/10).toLocaleString('en-US')};
+  /** تصريف عربي: 1 / 2 / 3-10 / 11+ */
+  function plural(n,one,two,few,many){
+    var x=Math.abs(Math.round(Number(n)||0));
+    if(x===1) return one;
+    if(x===2) return two;
+    var r=x%100;
+    return (r>=3&&r<=10)? few : many;
+  }
 
   /* ===== محرّك العقود (نفس منطق التطبيق) ===== */
   var PER_YEAR={daily:365,weekly:52,monthly:12,quarterly:4,semiannual:2,annual:1};
@@ -439,6 +448,18 @@
   /* ===== 1) جدول الدفعات ===== */
   var sFreq='monthly';
   var sHijri=false;
+  if(!hijriOK()){
+    /* بلا أم القرى كان الزر يبقى ظاهرًا ويُضاء، فتقول الواجهة «هجري» والجدول
+       يخطو ميلاديًّا — انحراف ~11 يومًا في آخر قسط سنة، بلا حرف تحذير. */
+    var hb=document.querySelector('#sCal .fbtn[data-c="hijri"]');
+    if(hb) hb.remove();
+    var cf=document.getElementById('sCal');
+    if(cf){
+      cf.style.gridTemplateColumns='1fr';
+      var hint=cf.parentNode.querySelector('.hint');
+      if(hint) hint.textContent='متصفحك لا يدعم التقويم الهجري (أم القرى) — حدّثه أو استخدم كروم أو سفاري لعرض التاريخين.';
+    }
+  }
   document.getElementById('sCal').addEventListener('click',function(e){
     var b=e.target.closest('.fbtn'); if(!b) return;
     sHijri = b.dataset.c==='hijri';
@@ -458,31 +479,46 @@
     var paid=Math.max(0,+document.getElementById('sPaid').value||0);
     var out=document.getElementById('sOut');
     if(!start||!rent){out.innerHTML='<div class="hint">أدخل تاريخ البداية وقيمة الدفعة لعرض الجدول.</div>';return}
-    var st=sod(new Date(start)), today=sod(new Date());
-    per=Math.min(per,200);
+    /* 'T00:00:00' لازمة: new Date("2026-06-16") تُفسَّر UTC بالمواصفة، فيخرج
+       الجدول كله بيوم ناقص لكل من إزاحته سالبة. إصلاح iso() وحده لم يكن كافيًا. */
+    var st=sod(new Date(start+'T00:00:00')), today=sod(new Date());
+    per=Math.max(1,Math.min(Math.floor(per),200));   // كسر أو سالب كان يُنتج سطورًا لا تطابق الإجمالي
     var rows=[],due=0;
     for(var i=0;i<per;i++){
       var d=addPeriods(st,sFreq,i), isDue=d<=today;
       if(isDue) due++;
       rows.push({n:i+1,date:dAr(d),status:i<paid?'paid':(isDue?'late':'upcoming')});
     }
-    var unpaid=Math.max(0,due-paid), total=rent*per, amountDue=unpaid*rent;
-    /* نهاية العقد = يوم قبل بداية الدورة التالية، لا يوم بدايتها */
-    var endD=addPeriods(st,sFreq,per); endD=new Date(endD.getTime()-86400000);
+    /* التقريب على السطر لا على العرض: قيمة دفعة 3000.5 × 12 كانت تُعرض
+       12 سطرًا بـ 3,001 (مجموعها 36,012) وإجمالي 36,006 في الشاشة نفسها. */
+    var rentR = Math.round(rent*100)/100;
+    /** يُظهر الهللات حين توجد — money() تقرّب إلى ريال صحيح فتفكّ التسوية */
+    var money2=function(n){var v=Math.round(n*100)/100;
+      return v.toLocaleString('en-US',{minimumFractionDigits:(Math.abs(v%1)>0.0001?2:0),maximumFractionDigits:2});};
+    var unpaid=Math.max(0,due-paid), total=Math.round(rentR*per*100)/100, amountDue=Math.round(unpaid*rentR*100)/100;
+    /* نهاية العقد = يوم قبل بداية الدورة التالية. لكن بداية الدورة التالية
+       تُقصّ حين لا يوجد اليوم في الشهر الهدف (31 → 28)، فكان اليوم يُخصم
+       مرتين: عقد يبدأ 31 أغسطس لستة أشهر عُرض «27 فبراير» بدل «28 فبراير». */
+    var nxt=addPeriods(st,sFreq,per);
+    var clipped = (sFreq!=='daily' && sFreq!=='weekly') &&
+      (sHijri && hijriOK() ? hParts(nxt).d !== hParts(st).d : nxt.getDate() !== st.getDate());
+    var endD = clipped ? nxt : new Date(nxt.getTime()-86400000);
     var endDate=dAr(endD);
-    var nextDue=dAr(addPeriods(st,sFreq,Math.min(paid,per)));
+    /* لا «دفعة قادمة» بعد انتهاء العقد: عند سداد كل الدفعات كانت تعرض دورة زائدة */
+    var nextDue = paid>=per ? '<span style="color:var(--muted)">لا توجد — سُدِّدت كل الدفعات</span>'
+                            : dAr(addPeriods(st,sFreq,paid));
     out.innerHTML=
       '<div class="out">'
-      + '<div class="big"><span class="v">'+money(total)+'</span><span class="l">ريال — إجمالي قيمة العقد</span></div>'
+      + '<div class="big"><span class="v">'+money2(total)+'</span><span class="l">ريال — إجمالي قيمة العقد</span></div>'
       + '<div class="outgrid">'
       +   '<div class="oc"><div class="v">'+per+'</div><div class="l">عدد الدفعات</div></div>'
       +   '<div class="oc g"><div class="v">'+paid+'</div><div class="l">مسدّدة</div></div>'
-      +   '<div class="oc '+(unpaid?'r':'')+'"><div class="v">'+money(amountDue)+'</div><div class="l">ريال متأخر ('+unpaid+' دفعة)</div></div>'
+      +   '<div class="oc '+(unpaid?'r':'')+'"><div class="v">'+money2(amountDue)+'</div><div class="l">ريال متأخر ('+unpaid+' دفعة)</div></div>'
       +   '<div class="oc"><div class="v" style="font-size:.8rem;line-height:1.5">'+endDate+'</div><div class="l">نهاية العقد</div></div>'
       + '</div></div>'
-      + '<div class="hint">الدفعة القادمة: <b>'+nextDue+'</b> · دورة السداد: كل <b>'+FLBL[sFreq]+'</b> · قيمة الدفعة: <b>'+money(rent)+' ريال</b></div>'
+      + '<div class="hint">الدفعة القادمة: <b>'+nextDue+'</b> · دورة السداد: كل <b>'+FLBL[sFreq]+'</b> · قيمة الدفعة: <b>'+money2(rentR)+' ريال</b></div>'
       + '<div class="scroll"><table><thead><tr><th>#</th><th>تاريخ الاستحقاق</th><th>المبلغ</th><th>الحالة</th></tr></thead><tbody>'
-      + rows.map(function(r){return '<tr><td>'+r.n+'</td><td>'+r.date+'</td><td>'+money(rent)+'</td><td>'
+      + rows.map(function(r){return '<tr><td>'+r.n+'</td><td>'+r.date+'</td><td>'+money2(rentR)+'</td><td>'
           +(r.status==='paid'?'<span class="pill p">مسدّدة</span>':r.status==='late'?'<span class="pill l">متأخرة</span>':'<span class="pill u">قادمة</span>')
           +'</td></tr>'}).join('')
       + '</tbody></table></div>';
@@ -528,9 +564,11 @@
     var HOURLY=75;
     var timeCostYear=hours*12*HOURLY;
     var annualLoss=frozen+timeCostYear;
-    /* السعر يتبع الباقة الصحيحة لا 99 دائمًا: من عنده عدة وحدات متأخرة يشترك
-       بباقة المكتب (199)، فذكر 1,188 ريالًا له رقم أقل من الواقع في صفحة عامة. */
-    var isOffice = units > 3;
+    /* حدّ الباقتين هو عدد **العقارات** لا الوحدات — صفحة الأسعار نفسها تقول
+       «باقة المالك: عقار واحد · وحدات غير محدودة». الربط بالوحدات كان يعرض على
+       مالك عمارة فيها 4 وحدات متأخرة «باقة المكتب 2,388 ريال» بدل 99 شهريًّا. */
+    var props = Math.max(1, Math.floor(+document.getElementById('aProps').value||1));
+    var isOffice = props > 1;
     var monthly = isOffice ? 199 : 99;
     var planName = isOffice ? 'باقة المكتب' : 'باقة المالك';
     var watheqYear = monthly*12;
@@ -543,7 +581,7 @@
       +   '<div class="oc r"><div class="v">'+money(timeCostYear)+'</div><div class="l">كلفة وقتك سنويًّا (ريال)</div></div>'
       +   '<div class="oc r"><div class="v">'+money(annualLoss)+'</div><div class="l">الكلفة الإجمالية (ريال)</div></div>'
       + '</div></div>'
-      + '<div class="hint">كلفة وقتك محسوبة بـ <b>'+hours+' ساعة شهريًّا × 75 ريال/ساعة</b> — وهو تقدير متحفّظ لوقت صاحب عقار. '
+      + '<div class="hint">كلفة وقتك محسوبة بـ <b>'+hours+' '+plural(hours,'ساعة','ساعتين','ساعات','ساعة')+' شهريًّا × 75 ريال/ساعة</b> — وهو تقدير متحفّظ لوقت صاحب عقار. '
       + '<b>'+planName+'</b> ('+monthly+' ريال شهريًّا) تكلّف <b>'+money(watheqYear)+' ريال</b> في السنة — أي ما يعادل <b>'+pct(watheqYear/Math.max(frozen,1)*100)+'%</b> من المبلغ المجمّد عندك حاليًّا. '
       + 'والتجربة ٣٠ يومًا مجانًا بلا بطاقة بنكية.</div>';
   }
@@ -594,7 +632,9 @@
   });
 
   /* إقلاع */
-  var d=new Date(); d.setMonth(d.getMonth()-3);
+  /* setDate(1) أولًا: على 31 مايو كان setMonth(-3) يعطي «31 فبراير» فيفيض إلى 3 مارس */
+  var d=new Date(); var dd=d.getDate(); d.setDate(1); d.setMonth(d.getMonth()-3);
+  d.setDate(Math.min(dd, new Date(d.getFullYear(), d.getMonth()+1, 0).getDate()));
   document.getElementById('sStart').value=iso(d);
   calcSchedule(); calcRoi(); calcArrears(); calcHoa();
 
