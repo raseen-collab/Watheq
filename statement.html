@@ -17,7 +17,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0E3A37">
 <title>كشف حساب مستأجر — بالهجري والميلادي، اطبعه مجانًا | وثيق</title>
-<meta name="description" content="أنشئ كشف حساب مستأجر جاهزًا للطباعة: الدفعات المستحقة، المدفوع، المتأخر، والرصيد — بالتقويم الهجري أو الميلادي، والتاريخان معًا في كل سطر. مجاني وبلا تسجيل، ويعمل داخل متصفحك ولا نحفظ أي بيانات.">
+<meta name="description" content="أنشئ كشف حساب مستأجر جاهزًا للطباعة: المستحق والمدفوع والمتأخر والرصيد، بالهجري أو الميلادي. مجاني وبلا تسجيل، ويعمل داخل متصفحك.">
 <meta property="og:title" content="كشف حساب مستأجر — بالهجري والميلادي، اطبعه مجانًا">
 <meta property="og:description" content="جدول دفعات بالتقويم الهجري أو الميلادي، ومدفوع ومتأخر ورصيد، جاهز للطباعة. بلا تسجيل وبلا بريد.">
 <meta property="og:type" content="website">
@@ -499,6 +499,16 @@
     /* الألوان تُطبع كما تُعرض — بدونها يخرج الصف المتأخر أبيض */
     *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
     @page{margin:14mm}
+  }
+
+  /* ══ حدّ القراءة على الجوال — 29 سبتمبر 2026 ══
+     قياس فعلي على عرض 375 بكسل أظهر نصوصًا بين 10.9 و11.8 بكسل، ومنها
+     إخلاءات المسؤولية ومصادر المستشار — وهي أَولى ما يُقرأ لا أقلّه.
+     تُرفع على الجوال وحده إلى 13 بكسل تقريبًا، فتبقى كثافة الشاشات
+     الكبيرة كما صُمّمت بلا تغيير. */
+  @media (max-width:640px){
+    .pick .badge, .dstat .l, .drow .mt, .advsrc, .advnote,
+    .dpill, .pfbar small, .brand small{font-size:.82rem}
   }
 </style>
 <script type="application/ld+json">

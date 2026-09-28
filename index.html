@@ -443,6 +443,16 @@
 .cloud-strip .cs b{display:block;font-size:.9rem;color:var(--deep,#0E3A37)}
 .cloud-strip .cs i{display:block;font-style:normal;font-size:.74rem;color:var(--muted,#5C6B67);margin-top:3px;line-height:1.5}
 @media(max-width:820px){.cloud-strip{grid-template-columns:repeat(2,1fr)}}
+
+  /* ══ حدّ القراءة على الجوال — 29 سبتمبر 2026 ══
+     قياس فعلي على عرض 375 بكسل أظهر نصوصًا بين 10.9 و11.8 بكسل، ومنها
+     إخلاءات المسؤولية ومصادر المستشار — وهي أَولى ما يُقرأ لا أقلّه.
+     تُرفع على الجوال وحده إلى 13 بكسل تقريبًا، فتبقى كثافة الشاشات
+     الكبيرة كما صُمّمت بلا تغيير. */
+  @media (max-width:640px){
+    .pick .badge, .dstat .l, .drow .mt, .advsrc, .advnote,
+    .dpill, .pfbar small, .brand small{font-size:.82rem}
+  }
 </style>
 <script type="application/ld+json">
 {
