@@ -242,6 +242,7 @@
   .pack .price{font-family:"Readex Pro";font-weight:700;color:var(--deep);margin:15px 0 2px}
   .pack .price .n{font-size:2.4rem}.pack .price .c{font-size:.95rem;color:var(--muted);font-weight:500}
   .pack .cancel{color:var(--muted);font-size:.8rem;margin:0 0 15px}
+    .yearly{color:var(--deep);font-size:.88rem;font-weight:600;margin:2px 0 3px}
   .pack ul{list-style:none;margin:0 0 20px;padding:0;display:flex;flex-direction:column;gap:10px}
   .pack li{display:flex;gap:9px;align-items:flex-start;font-size:.93rem}
   .pack li .c{flex:none;color:var(--paid);font-weight:700}
@@ -845,7 +846,7 @@
         <p class="sec-sub">💡 مستأجر واحد يتأخّر شهرًا بإيجار 3,000 ريال = أكثر من اشتراك وثيق لسنتين.</p>
       </div>
       <div class="trialbar">🎁 جرّب كل المزايا مجانًا 30 يومًا — بلا بطاقة بنكية، وبلا التزام</div>
-      <div class="founder">🎉 <b>سعر المؤسسين</b> — الأسعار أدناه هي أسعار الإطلاق لأول <b>20 مشتركًا</b>، وتبقى ثابتة لك مدى اشتراكك حتى لو رفعناها لاحقًا.</div>
+      <div class="founder">🎉 <b>سعر المؤسسين</b> — الأسعار أدناه هي أسعار الإطلاق لأول <b>5 مشتركين</b>، وتبقى ثابتة لك مدى اشتراكك حتى لو رفعناها لاحقًا.</div>
       <div class="packs p2">
         <div class="pack">
           <h3>باقة المالك</h3>
@@ -868,6 +869,7 @@
           <h3>باقة المكتب</h3>
           <p class="who">لمكاتب إدارة الأملاك وأصحاب العقارات المتعددة</p>
           <div class="price"><span class="n">199</span> <span class="c">ريال / شهريًا</span></div>
+          <p class="yearly">أو <b>1,990</b> ريال سنويًا — شهران مجانًا</p>
           <p class="cancel">أفضل قيمة لإدارة أكثر</p>
           <ul>
             <li><span class="c">✓</span> عقارات غير محدودة · كل مزايا المالك</li>
@@ -1158,7 +1160,7 @@
       </div>
 
       <div class="trialbar">🎁 جرّب كل المزايا مجانًا 30 يومًا — بلا بطاقة بنكية، وبلا التزام</div>
-      <div class="founder">🎉 <b>سعر المؤسسين</b> — أسعار الإطلاق لأول <b>20 مشتركًا</b>، وتبقى ثابتة لك مدى اشتراكك حتى لو رفعناها لاحقًا.</div>
+      <div class="founder">🎉 <b>سعر المؤسسين</b> — أسعار الإطلاق لأول <b>5 مشتركين</b>، وتبقى ثابتة لك مدى اشتراكك حتى لو رفعناها لاحقًا.</div>
 
       <div class="packs p3">
         <div class="pack">
@@ -1740,6 +1742,53 @@
     cap.textContent=b.dataset.cap;
   })});
   tabs.forEach(function(b){var pre=new Image();pre.src=b.dataset.img});
+})();
+</script>
+<!-- مصدر الزيارة: يُشتق من الرابط أو من الصفحة التي أتى منها الزائر، ثم يُمرَّر
+     في روابط الموقع فقط. بلا كوكيز وبلا تخزين وبلا طرف ثالث — نفس مبدأ
+     lib/signup-sources.ts: القيمة تأتي من رابطنا أو مما يرسله المتصفح، لا من
+     بصمة. وما لا نعرفه يبقى فارغًا؛ مصدر خاطئ أسوأ من مصدر مجهول. -->
+<script>
+(function () {
+  try {
+    var KNOWN = ["haraj", "group", "twitter", "search", "referral", "direct", "other", "demo"];
+
+    function fromReferrer() {
+      var r = document.referrer || "";
+      if (!r) return "";
+      var h;
+      try { h = new URL(r).hostname.replace(/^www\./, "").toLowerCase(); } catch (e) { return ""; }
+      if (h === "watheqapp.com" || /\.watheqapp\.com$/.test(h)) return "";  // من موقعنا: لا جديد
+      var L = h.split(".");
+      function has(x) { return L.indexOf(x) >= 0; }
+      if (has("google") || has("bing") || has("duckduckgo") || has("yandex") || has("ecosia")
+          || h.indexOf("search.yahoo.") === 0) return "search";
+      if (has("twitter") || h === "x.com" || h === "t.co") return "twitter";
+      if (has("haraj")) return "haraj";
+      if (has("whatsapp") || h === "wa.me" || has("telegram") || h === "t.me") return "group";
+      return "";   // مصدر لا نعرفه: يبقى فارغًا عمدًا
+    }
+
+    var src = "";
+    try { src = new URL(location.href).searchParams.get("src") || ""; } catch (e) {}
+    if (KNOWN.indexOf(src) < 0) src = fromReferrer();
+    if (KNOWN.indexOf(src) < 0) return;
+
+    var a = document.getElementsByTagName("a");
+    for (var i = 0; i < a.length; i++) {
+      var href = a[i].getAttribute("href") || "";
+      if (!href || href.charAt(0) === "#") continue;
+      var u;
+      try { u = new URL(href, location.href); } catch (e) { continue; }
+      if (u.protocol !== "http:" && u.protocol !== "https:") continue;
+      var mine = u.hostname === location.hostname
+              || u.hostname === "watheqapp.com" || /\.watheqapp\.com$/.test(u.hostname);
+      if (!mine) continue;                       // لا يُرسَل إلى أي موقع خارجي
+      if (u.searchParams.get("src")) continue;   // رابط حملة صريح: لا يُلمس
+      u.searchParams.set("src", src);
+      a[i].setAttribute("href", u.toString());
+    }
+  } catch (e) { /* لا يعطّل الصفحة أبدًا */ }
 })();
 </script>
 </body>

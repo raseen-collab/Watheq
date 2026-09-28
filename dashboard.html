@@ -763,5 +763,52 @@ document.addEventListener('keydown',e=>{
   paint();
 })();
 </script>
+<!-- مصدر الزيارة: يُشتق من الرابط أو من الصفحة التي أتى منها الزائر، ثم يُمرَّر
+     في روابط الموقع فقط. بلا كوكيز وبلا تخزين وبلا طرف ثالث — نفس مبدأ
+     lib/signup-sources.ts: القيمة تأتي من رابطنا أو مما يرسله المتصفح، لا من
+     بصمة. وما لا نعرفه يبقى فارغًا؛ مصدر خاطئ أسوأ من مصدر مجهول. -->
+<script>
+(function () {
+  try {
+    var KNOWN = ["haraj", "group", "twitter", "search", "referral", "direct", "other", "demo"];
+
+    function fromReferrer() {
+      var r = document.referrer || "";
+      if (!r) return "";
+      var h;
+      try { h = new URL(r).hostname.replace(/^www\./, "").toLowerCase(); } catch (e) { return ""; }
+      if (h === "watheqapp.com" || /\.watheqapp\.com$/.test(h)) return "";  // من موقعنا: لا جديد
+      var L = h.split(".");
+      function has(x) { return L.indexOf(x) >= 0; }
+      if (has("google") || has("bing") || has("duckduckgo") || has("yandex") || has("ecosia")
+          || h.indexOf("search.yahoo.") === 0) return "search";
+      if (has("twitter") || h === "x.com" || h === "t.co") return "twitter";
+      if (has("haraj")) return "haraj";
+      if (has("whatsapp") || h === "wa.me" || has("telegram") || h === "t.me") return "group";
+      return "";   // مصدر لا نعرفه: يبقى فارغًا عمدًا
+    }
+
+    var src = "";
+    try { src = new URL(location.href).searchParams.get("src") || ""; } catch (e) {}
+    if (KNOWN.indexOf(src) < 0) src = fromReferrer();
+    if (KNOWN.indexOf(src) < 0) return;
+
+    var a = document.getElementsByTagName("a");
+    for (var i = 0; i < a.length; i++) {
+      var href = a[i].getAttribute("href") || "";
+      if (!href || href.charAt(0) === "#") continue;
+      var u;
+      try { u = new URL(href, location.href); } catch (e) { continue; }
+      if (u.protocol !== "http:" && u.protocol !== "https:") continue;
+      var mine = u.hostname === location.hostname
+              || u.hostname === "watheqapp.com" || /\.watheqapp\.com$/.test(u.hostname);
+      if (!mine) continue;                       // لا يُرسَل إلى أي موقع خارجي
+      if (u.searchParams.get("src")) continue;   // رابط حملة صريح: لا يُلمس
+      u.searchParams.set("src", src);
+      a[i].setAttribute("href", u.toString());
+    }
+  } catch (e) { /* لا يعطّل الصفحة أبدًا */ }
+})();
+</script>
 </body>
 </html>
