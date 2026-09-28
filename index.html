@@ -243,6 +243,13 @@
   .pack .price .n{font-size:2.4rem}.pack .price .c{font-size:.95rem;color:var(--muted);font-weight:500}
   .pack .cancel{color:var(--muted);font-size:.8rem;margin:0 0 15px}
     .yearly{color:var(--deep);font-size:.88rem;font-weight:600;margin:2px 0 3px}
+    .says{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:980px;margin:26px auto 0}
+    .say{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 24px;box-shadow:var(--shadow);display:flex;flex-direction:column;margin:0}
+    .say blockquote{margin:0}
+    .say p{margin:0;color:var(--ink);line-height:2.05;font-size:.97rem}
+    .say .who{margin-top:auto;padding-top:20px;color:var(--deep);font-weight:600;font-size:.92rem}
+    .say .who span{display:block;color:var(--muted);font-weight:400;font-size:.8rem;margin-top:4px}
+    @media(max-width:820px){.says{grid-template-columns:minmax(0,1fr);gap:16px}}
   .pack ul{list-style:none;margin:0 0 20px;padding:0;display:flex;flex-direction:column;gap:10px}
   .pack li{display:flex;gap:9px;align-items:flex-start;font-size:.93rem}
   .pack li .c{flex:none;color:var(--paid);font-weight:700}
@@ -835,6 +842,26 @@
         </table>
       </div>
       <p class="cmp-note">بصراحة: إن كانت الصفوف الستة الأولى لا تهمّك، فالملف أرخص. وإن كان واحد منها يكلّفك وقتًا كل شهر، فالفرق يدفع نفسه.</p>
+    </div>
+  </section>
+
+  <section class="band" id="says">
+    <div class="wrap">
+      <div class="center">
+        <span class="sec-eyebrow">من المشتركين</span>
+        <h2 class="sec-title">قالوا عن وثيق</h2>
+        <p class="sec-sub">مكتبا إدارة أملاك يعملان على وثيق يوميًا. هذا كلامهم كما أرسلوه، منشور بإذنهم.</p>
+      </div>
+      <div class="says">
+        <figure class="say">
+          <blockquote><p>«كنت على إكسل شيت — وأول ما دخلت وثيق عرفت إن المتأخرات أكبر من المتوقع. سهل وواضح، وصاحب الموقع بنفسه يرد عليك. وفكرة رابط المالك حلوة ومريحة، تريحني من المالك في أسئلته. كذلك التواصل مع المستأجرين أسرع وأسهل.»</p></blockquote>
+          <figcaption class="who">تميز التطوير للعقارات<span>مكتب إدارة أملاك</span></figcaption>
+        </figure>
+        <figure class="say">
+          <blockquote><p>«كنت أتابع الإيجارات والمتأخرات يدويًا، بين الإكسل والملاحظات ومراجعة العقود — متابعة مستمرة وتاخذ وقت، خصوصًا مع تعدد العمائر والوحدات. أول فرق حسّيته أن المعلومات صارت مجمّعة ومرتّبة في مكان واحد، وأعرف حالة العقود والإيجارات والمتأخرات أسرع — بدل ما أرجع لأكثر من ملف ومصدر.»</p></blockquote>
+          <figcaption class="who">إدارة أملاك بإدارة عمرو باعبدالله<span>مكتب إدارة أملاك</span></figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
