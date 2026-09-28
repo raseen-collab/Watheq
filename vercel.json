@@ -9,6 +9,21 @@
       "source": "/dashboard.html",
       "destination": "https://app.watheqapp.com/demo",
       "permanent": false
+    },
+    {
+      "source": "/haraj",
+      "destination": "/?src=haraj",
+      "permanent": false
+    },
+    {
+      "source": "/x",
+      "destination": "/?src=twitter",
+      "permanent": false
+    },
+    {
+      "source": "/g",
+      "destination": "/?src=group",
+      "permanent": false
     }
   ]
 }
