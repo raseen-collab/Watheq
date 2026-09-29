@@ -266,6 +266,7 @@
           <button class="fbtn" data-f="weekly">أسبوعي</button>
           <button class="fbtn on" data-f="monthly">شهري</button>
           <button class="fbtn" data-f="quarterly">كل 3 أشهر</button>
+          <button class="fbtn" data-f="trimester">كل 4 أشهر</button>
           <button class="fbtn" data-f="semiannual">كل 6 أشهر</button>
           <button class="fbtn" data-f="annual">سنوي</button>
         </div>
@@ -391,15 +392,15 @@
   }
 
   /* ===== محرّك العقود (نفس منطق التطبيق) ===== */
-  var PER_YEAR={daily:365,weekly:52,monthly:12,quarterly:4,semiannual:2,annual:1};
-  var FLBL={daily:'يوم',weekly:'أسبوع',monthly:'شهر',quarterly:'3 أشهر',semiannual:'6 أشهر',annual:'سنة'};
+  var PER_YEAR={daily:365,weekly:52,monthly:12,quarterly:4,trimester:3,semiannual:2,annual:1};
+  var FLBL={daily:'يوم',weekly:'أسبوع',monthly:'شهر',quarterly:'3 أشهر',trimester:'4 أشهر',semiannual:'6 أشهر',annual:'سنة'};
   function sod(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate())}
   function addPeriods(date,freq,n){
     var d=new Date(date.getTime());
     if(freq==='daily'){d.setDate(d.getDate()+n)}
     else if(freq==='weekly'){d.setDate(d.getDate()+n*7)}
     else{
-      var m=freq==='monthly'?1:freq==='quarterly'?3:freq==='semiannual'?6:12;
+      var m=freq==='monthly'?1:freq==='quarterly'?3:freq==='trimester'?4:freq==='semiannual'?6:12;
       /* العقد الهجري يُخطى بالأشهر الهجرية: السنة الهجرية أقصر بنحو 11 يومًا،
          فالخطوة الميلادية تزحف الاستحقاق 3–5 أيام كل قسط ويتراكم الزحف. */
       if(sHijri && hijriOK()){
