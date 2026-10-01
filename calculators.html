@@ -439,7 +439,8 @@
     var base=new Date(622,6,19); base.setHours(0,0,0,0);
     var g=new Date(base.getTime()+approx*86400000);
     for(var off=-3;off<=3;off++){
-      var c=new Date(g.getTime()+off*86400000); c.setHours(0,0,0,0);
+      /* بالأيام التقويمية لا بالمللي ثانية: يوم تغيير التوقيت الصيفي (23 ساعة) كان يُقفز فيُرفض تاريخ موجود */
+      var c=new Date(g.getFullYear(),g.getMonth(),g.getDate()+off);
       var p=hParts(c); if(p.y===y&&p.m===m&&p.d===day) return c;
     }
     return null;

@@ -766,8 +766,11 @@
   function fmt(d) {
     var g = d.getDate() + " " + AR_M[d.getMonth()] + " " + d.getFullYear() + "م";
     try {
-      var h = new Intl.DateTimeFormat("ar-SA-u-ca-islamic-umalqura",
-        { day: "numeric", month: "long", year: "numeric" }).format(d);
+      var hf = new Intl.DateTimeFormat("ar-SA-u-ca-islamic-umalqura-nu-latn",
+        { day: "numeric", month: "long", year: "numeric" });
+      /* متصفح لا يعرف أم القرى يتجاهلها بصمت ويُخرج ميلاديًّا — فلا نطبعه كهجري */
+      if (hf.resolvedOptions().calendar !== "islamic-umalqura") return g;
+      var h = hf.format(d);
       return g + " (" + h + ")";
     } catch (e) { return g; }
   }
