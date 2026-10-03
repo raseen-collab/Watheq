@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<title>جرّب صفحة المستأجر — وثيق</title><meta name="description" content="صفحة تجريبية ببيانات وهمية: هكذا يرى المستأجر رابطه الخاص في وثيق — الدفعة القادمة، سجل الدفعات، بلاغ الحوالة، وطلبات الصيانة بمراحلها."><link rel="icon" href="/favicon.ico" sizes="any"><style>
+*{box-sizing:border-box}
+body{margin:0;background:#F4F1EA;color:#0B211F;font-family:Tahoma,"Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.7;-webkit-text-size-adjust:100%}
+.wrap{max-width:640px;margin:0 auto;padding:16px 16px 40px}
+.top{background:#0E3A37;color:#F6F1E4;padding:18px 16px 22px}
+.top .in{max-width:640px;margin:0 auto}
+.org{font-size:12px;opacity:.75}
+.top h1{margin:2px 0 4px;font-size:20px}
+.who{font-size:14px;opacity:.9}
+.card{background:#fff;border:1px solid #E4DDCD;border-radius:14px;padding:16px;margin-top:14px}
+.card h2{font-size:15px;margin:0 0 10px;color:#0E3A37}
+.muted{color:#5C6B67;font-size:12.5px}
+.big{font-size:28px;font-weight:700;letter-spacing:.3px}
+.cur{font-size:14px;font-weight:600;color:#5C6B67;margin-inline-start:4px}
+.st-late{border-color:#EFC2BD;background:#FDF3F2}.st-late .big{color:#A5322C}
+.st-credit{border-color:#BFE3CF;background:#F1FAF5}.st-credit .big{color:#137A50}
+.st-clear{border-color:#BFE3CF;background:#F1FAF5}
+.row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid #F0EBDF;font-size:14px}
+.row:first-of-type{border-top:0}
+.chip{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:99px;background:#EEF1EF;color:#35514C;white-space:nowrap}
+.c-ok{background:#E6F4EC;color:#137A50}.c-no{background:#FBE9E7;color:#A5322C}.c-wait{background:#FDF0DC;color:#9A5B00}
+.doc{display:block;text-decoration:none;color:inherit;padding:12px 0;border-top:1px solid #F0EBDF}
+.doc:first-of-type{border-top:0}
+.doc .t{font-weight:700;font-size:14.5px}
+.btn{display:inline-block;border:0;border-radius:10px;padding:11px 18px;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;text-decoration:none;text-align:center}
+.b-deep{background:#0E3A37;color:#F6F1E4}.b-gold{background:#9A6314;color:#fff}.b-ghost{background:#fff;color:#0E3A37;border:1px solid #E4DDCD}
+.b-ok{background:#137A50;color:#fff}.b-no{background:#fff;color:#A5322C;border:1.5px solid #A5322C}
+.flash{border-radius:12px;padding:12px 14px;margin-top:14px;font-size:14px;font-weight:600}
+.f-ok{background:#E6F4EC;color:#0F5E3D}.f-warn{background:#FDF0DC;color:#7A4800}.f-err{background:#FBE9E7;color:#8F2B26}
+.pend{border:1.5px solid #E7C877;background:#FFFBF0}
+a{color:#0E3A37}
+.foot{margin-top:22px;font-size:11.5px;color:#5C6B67;text-align:center}
+.docbody{border:1px solid #E4DDCD;border-radius:12px;padding:14px;background:#FFFEFB;overflow-x:auto;font-size:14.5px}
+.docbody table{border-collapse:collapse;width:100%}.docbody th,.docbody td{border:1px solid #DDD5C2;padding:6px 8px;text-align:start}
+.docbody h1{font-size:19px}.docbody h2{font-size:17px}.docbody h3,.docbody h4{font-size:15px}
+.f{display:block;font-size:13px;font-weight:700;margin:12px 0 5px}
+input.fld,textarea.fld{width:100%;border:1px solid #D9D1BE;border-radius:10px;padding:11px 12px;font:inherit;font-size:16px;background:#FBF8F1;color:#0B211F}
+.ack{display:flex;gap:10px;align-items:flex-start;margin:14px 0;font-size:14px}
+.ack input{width:20px;height:20px;margin-top:3px;flex:none}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.two .btn{white-space:normal}
+.note{font-size:12px;color:#5C6B67;background:#F6F2E8;border-radius:10px;padding:10px 12px;margin-top:12px}
+select.fld{width:100%;border:1px solid #D9D1BE;border-radius:10px;padding:11px 12px;font:inherit;font-size:16px;background:#FBF8F1;color:#0B211F;min-height:46px}
+.radio{display:flex;gap:10px;flex-wrap:wrap}.radio label{display:flex;gap:8px;align-items:center;border:1px solid #D9D1BE;border-radius:10px;padding:10px 12px;min-height:46px;flex:1 1 140px;font-size:14px}
+.radio input{width:20px;height:20px;flex:none}
+.item{padding:11px 0;border-top:1px solid #F0EBDF;font-size:14px}.item:first-of-type{border-top:0}
+.item .h{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.mk{display:inline-block;font-size:11px;font-weight:700;color:#137A50;margin-top:2px}
+details.more summary{cursor:pointer;font-weight:700;color:#0E3A37;min-height:44px;display:flex;align-items:center}
+.btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+@media print{.noprint{display:none!important}body{background:#fff}.card{border-color:#ccc}}
+</style></head><body><div style="position:sticky;top:0;z-index:5;background:#E7C877;color:#0A2C2A;padding:10px 14px;font-size:13.5px;font-weight:700;text-align:center;line-height:1.6">
+صفحة تجريبية ببيانات وهمية — هكذا يرى المستأجر رابطه الخاص في وثيق. جرّب «أرسلت الحوالة» أو «طلب صيانة» تحت.
+<a href="index.html#pricing" style="display:inline-block;margin-inline-start:8px;background:#0E3A37;color:#F6F1E4;border-radius:8px;padding:4px 12px;text-decoration:none">جرّب وثيق 30 يومًا مجانًا</a></div>
+
+<header class="top"><div class="in">
+  <div class="org">مكتب تجريبي للعقار · صفحة المستأجر</div>
+  <h1>عمارة النخيل</h1>
+  <div class="who">فهد السبيعي · شقة 7</div>
+</div></header><main class="wrap">
+<section class="card st-late"><h2>حالة حسابك</h2>
+  <div class="muted">المستحق عليك</div>
+  <div><span class="big">4,000</span><span class="cur">ريال</span></div>
+  <div class="row"><span>دفعات متأخرة</span><b>دفعة واحدة</b></div>
+  <div class="row"><span>متأخر منذ</span><b>1 أكتوبر 2026</b></div>
+  
+  
+  <div class="muted" style="margin-top:6px">حسب سجل المكتب حتى 3 أكتوبر 2026</div>
+</section>
+<section class="card"><h2>عقدك</h2>
+  <div class="row"><span>شقة</span><b>7</b></div>
+  <div class="row"><span>رقم العقد</span><b dir="ltr">10458812233</b></div>
+  <div class="row"><span>قيمة الدفعة</span><b>4,000 ريال</b></div>
+  <div class="row"><span>دورة السداد</span><b>شهري</b></div>
+  <div class="row"><span>الدفعة القادمة</span><b style="text-align:left">1 نوفمبر 2026</b></div>
+  <div class="row"><span>بداية العقد</span><b>1 أبريل 2026</b></div>
+  <div class="row"><span>نهاية العقد</span><b>1 أبريل 2027</b></div>
+</section>
+<section class="card" id="claim"><h2>أرسلت الحوالة؟</h2>
+  <div class="muted">أبلغ المكتب بحوالتك ليطابقها مع الحساب البنكي ثم يسجّل دفعتك. لا تحتاج صورة.</div>
+  
+  <form method="post" action="#" id="demoClaim" data-once="1" class="noprint">
+    <label class="f" for="ca">المبلغ المحوَّل (ريال)</label>
+    <input class="fld" id="ca" name="amount" required inputmode="decimal" autocomplete="off" dir="ltr" placeholder="4000">
+    <label class="f" for="cd">تاريخ الحوالة</label>
+    <input class="fld" id="cd" name="transfer_date" type="date" required value="2026-10-03" min="2026-07-05" max="2026-10-03">
+    <label class="f" for="cr">رقم المرجع في البنك (اختياري)</label>
+    <input class="fld" id="cr" name="bank_ref" maxlength="80" dir="ltr" autocomplete="off">
+    <label class="f" for="cn">ملاحظة (اختياري)</label>
+    <input class="fld" id="cn" name="note" maxlength="300" placeholder="مثال: إيجار شهر أكتوبر">
+    <button class="btn b-gold" type="submit" style="width:100%;margin-top:12px">أرسل بلاغ الحوالة</button>
+  </form>
+  
+  <div style="margin-top:12px"><div class="item"><div class="h">
+    <div><b>4,000 ريال</b><div class="muted">حوالة 1 سبتمبر 2026 · مرجع <span dir="ltr">4415</span></div></div>
+    <span class="chip c-ok">سُجّلت ✓</span></div>
+    
+  </div></div>
+</section>
+<section class="card"><h2>دفعاتك المسجّلة</h2>
+  <div class="row">
+    <div><b>4,000 ريال</b>
+      <div class="muted">1 سبتمبر 2026 · نقدًا</div></div>
+    
+  </div><div class="row">
+    <div><b>4,000 ريال</b>
+      <div class="muted">2 أغسطس 2026 · تحويل بنكي</div></div>
+    <span class="muted" dir="ltr" style="align-self:center">4414</span>
+  </div><div class="row">
+    <div><b>4,000 ريال</b>
+      <div class="muted">1 يوليو 2026 · نقدًا</div></div>
+    
+  </div><div class="row">
+    <div><b>4,000 ريال</b>
+      <div class="muted">3 يونيو 2026 · تحويل بنكي</div></div>
+    <span class="muted" dir="ltr" style="align-self:center">4412</span>
+  </div><div class="row">
+    <div><b>4,000 ريال</b>
+      <div class="muted">1 مايو 2026 · نقدًا</div></div>
+    
+  </div><div class="row">
+    <div><b>4,000 ريال</b>
+      <div class="muted">2 أبريل 2026 · تحويل بنكي</div></div>
+    <span class="muted" dir="ltr" style="align-self:center">4410</span>
+  </div>
+</section>
+<section class="card" id="req"><h2>طلبات الصيانة</h2>
+  <div class="item"><div class="h">
+    <div style="min-width:0"><b>تكييف</b> <span class="muted">· داخل شقة</span></div>
+    <span class="chip c-ok">تمت الصيانة ✓</span></div>
+    <div style="overflow-wrap:anywhere;margin-top:4px">المكيف في غرفة النوم لا يبرد</div>
+    <ol style="list-style:none;margin:8px 0 0;padding:0 12px 0 0;border-inline-start:2px solid #E4DDCD">
+    <li style="position:relative;padding:3px 0 6px;font-size:13px">
+      <span aria-hidden="true" style="position:absolute;inset-inline-start:-19px;top:9px;width:10px;height:10px;border-radius:99px;background:#9A5B00"></span>
+      <b style="color:#9A5B00">تم استلام الطلب</b> <span class="muted">· 20 سبتمبر 2026</span>
+      
+    </li>
+    <li style="position:relative;padding:3px 0 6px;font-size:13px">
+      <span aria-hidden="true" style="position:absolute;inset-inline-start:-19px;top:9px;width:10px;height:10px;border-radius:99px;background:#9A5B00"></span>
+      <b style="color:#9A5B00">تمت المراجعة — جارٍ التنفيذ</b> <span class="muted">· 21 سبتمبر 2026</span>
+      <div style="overflow-wrap:anywhere">الفني يزوركم الأحد بعد العصر</div>
+    </li>
+    <li style="position:relative;padding:3px 0 6px;font-size:13px">
+      <span aria-hidden="true" style="position:absolute;inset-inline-start:-19px;top:9px;width:10px;height:10px;border-radius:99px;background:#137A50"></span>
+      <b style="color:#137A50">تمت الصيانة ✓</b> <span class="muted">· 22 سبتمبر 2026</span>
+      <div style="overflow-wrap:anywhere">تم تعبئة الفريون وتنظيف الفلتر</div>
+    </li></ol>
+  </div>
+  
+  <details class="more noprint" style="margin-top:10px"><summary>+ طلب صيانة جديد</summary>
+  <form method="post" action="#" id="demoReq" data-once="1">
+    <label class="f" for="rc">نوع المشكلة</label>
+    <select class="fld" id="rc" name="category" required><option value="plumbing">سباكة وتسريب</option><option value="electric">كهرباء وإنارة</option><option value="elevator">المصعد</option><option value="cleaning">نظافة</option><option value="security">حراسة وأبواب</option><option value="ac">تكييف</option><option value="other">أخرى</option></select>
+    <div class="f">مكانها</div>
+    <div class="radio"><label><input type="radio" name="location" value="unit" checked> داخل شقة</label><label><input type="radio" name="location" value="common"> الأجزاء المشتركة</label></div>
+    <label class="f" for="rd">الوصف</label>
+    <textarea class="fld" id="rd" name="description" rows="3" required minlength="3" maxlength="1000" placeholder="مثال: تسريب مياه تحت مغسلة المطبخ"></textarea>
+    <button class="btn b-deep" type="submit" style="width:100%;margin-top:12px">أرسل الطلب</button>
+  </form></details>
+</section><section class="card" style="border-color:#E7C877;background:#FFFBF0"><h2>هذي صفحة مستأجرينك في وثيق</h2>
+<div class="muted" style="font-size:14px">رابط خاص لكل وحدة ترسله واتساب. المستأجر يشوف دفعاته ويبلّغك عن حوالته وطلب الصيانة، ويوصلك تنبيه فوري على تليجرام، وتعتمد الحوالة بضغطة فتُسجَّل دفعته.</div>
+<div class="two" style="margin-top:12px"><a class="btn b-gold" href="index.html#pricing">جرّب وثيق 30 يومًا مجانًا</a><a class="btn b-ghost" href="https://app.watheqapp.com/demo">شوف لوحة المكتب</a></div></section><div class="foot">صفحة تجريبية — الأسماء والأرقام وهمية.<br>أي ملاحظة على الأرقام؟ تواصل مع مكتب تجريبي للعقار.<br>عبر منصة وثيق</div></main><script>
+(function(){
+  var M=["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
+  function today(){ var d=new Date(); return d.getDate()+" "+M[d.getMonth()]+" "+d.getFullYear(); }
+  function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
+  function flash(sec, msg){ var f=document.createElement("div"); f.className="flash f-ok"; f.setAttribute("role","status");
+    f.innerHTML=msg+'<div style="font-weight:400;font-size:12.5px;margin-top:4px">في الحساب الحقيقي يوصل المكتب الآن تنبيه فوري على تليجرام 🔔</div>';
+    sec.insertBefore(f, sec.querySelector("h2").nextSibling); f.scrollIntoView({behavior:"smooth",block:"center"}); }
+  var c=document.getElementById("demoClaim");
+  if(c) c.addEventListener("submit",function(e){ e.preventDefault();
+    var a=parseFloat(String(c.amount.value).replace(/[^0-9.]/g,"")); if(!(a>0)){ c.amount.focus(); return; }
+    var sec=document.getElementById("claim"), box=sec.querySelector(".item")?sec.querySelector(".item").parentNode:null;
+    if(!box){ box=document.createElement("div"); box.style.marginTop="12px"; sec.appendChild(box); }
+    var it=document.createElement("div"); it.className="item";
+    it.innerHTML='<div class="h"><div><b>'+a.toLocaleString("en-US")+' ريال</b><div class="muted">حوالة '+today()+(c.bank_ref.value?' · مرجع <span dir="ltr">'+esc(c.bank_ref.value)+'</span>':'')+'</div></div><span class="chip c-wait">بانتظار المراجعة</span></div>';
+    box.insertBefore(it, box.firstChild); flash(sec,"وصل بلاغ الحوالة للمكتب. بعد مطابقتها تُسجَّل دفعتك وتظهر هنا."); c.reset(); });
+  var r=document.getElementById("demoReq");
+  if(r) r.addEventListener("submit",function(e){ e.preventDefault();
+    var d=String(r.description.value||"").trim(); if(d.length<3){ r.description.focus(); return; }
+    var sec=document.getElementById("req"), first=sec.querySelector(".item");
+    var cat=r.category.options[r.category.selectedIndex].text, loc=r.location.value==="unit"?"داخل شقة":"الأجزاء المشتركة";
+    var it=document.createElement("div"); it.className="item";
+    it.innerHTML='<div class="h"><div style="min-width:0"><b>'+esc(cat)+'</b> <span class="muted">· '+loc+'</span></div><span class="chip c-wait">تم استلام الطلب</span></div><div style="overflow-wrap:anywhere;margin-top:4px">'+esc(d)+'</div><ol style="list-style:none;margin:8px 0 0;padding:0 12px 0 0;border-inline-start:2px solid #E4DDCD"><li style="position:relative;padding:3px 0 6px;font-size:13px"><span style="position:absolute;inset-inline-start:-19px;top:9px;width:10px;height:10px;border-radius:99px;background:#9A5B00"></span><b style="color:#9A5B00">تم استلام الطلب</b> <span class="muted">· '+today()+'</span></li></ol>';
+    if(first) first.parentNode.insertBefore(it, first); else sec.insertBefore(it, sec.querySelector("details"));
+    flash(sec,"وصل طلب الصيانة للمكتب. تتابع مراحله هنا: تمت المراجعة ← تمت الصيانة."); r.reset(); r.closest("details").open=false; });
+})();
+</script><!-- مصدر الزيارة: يُشتق من الرابط أو من الصفحة التي أتى منها الزائر، ثم يُمرَّر
+     في روابط الموقع فقط. بلا كوكيز وبلا تخزين وبلا طرف ثالث — نفس مبدأ
+     lib/signup-sources.ts: القيمة تأتي من رابطنا أو مما يرسله المتصفح، لا من
+     بصمة. وما لا نعرفه يبقى فارغًا؛ مصدر خاطئ أسوأ من مصدر مجهول. -->
+<script>
+(function () {
+  try {
+    var KNOWN = ["haraj", "group", "twitter", "search", "referral", "direct", "other", "demo"];
+
+    function fromReferrer() {
+      var r = document.referrer || "";
+      if (!r) return "";
+      var h;
+      try { h = new URL(r).hostname.replace(/^www\./, "").toLowerCase(); } catch (e) { return ""; }
+      if (h === "watheqapp.com" || /\.watheqapp\.com$/.test(h)) return "";  // من موقعنا: لا جديد
+      var L = h.split(".");
+      function has(x) { return L.indexOf(x) >= 0; }
+      if (has("google") || has("bing") || has("duckduckgo") || has("yandex") || has("ecosia")
+          || h.indexOf("search.yahoo.") === 0) return "search";
+      if (has("twitter") || h === "x.com" || h === "t.co") return "twitter";
+      if (has("haraj")) return "haraj";
+      if (has("whatsapp") || h === "wa.me" || has("telegram") || h === "t.me") return "group";
+      return "";   // مصدر لا نعرفه: يبقى فارغًا عمدًا
+    }
+
+    var src = "";
+    try { src = new URL(location.href).searchParams.get("src") || ""; } catch (e) {}
+    if (KNOWN.indexOf(src) < 0) src = fromReferrer();
+    if (KNOWN.indexOf(src) < 0) return;
+
+    var a = document.getElementsByTagName("a");
+    for (var i = 0; i < a.length; i++) {
+      var href = a[i].getAttribute("href") || "";
+      if (!href || href.charAt(0) === "#") continue;
+      var u;
+      try { u = new URL(href, location.href); } catch (e) { continue; }
+      if (u.protocol !== "http:" && u.protocol !== "https:") continue;
+      var mine = u.hostname === location.hostname
+              || u.hostname === "watheqapp.com" || /\.watheqapp\.com$/.test(u.hostname);
+      if (!mine) continue;                       // لا يُرسَل إلى أي موقع خارجي
+      if (u.searchParams.get("src")) continue;   // رابط حملة صريح: لا يُلمس
+      u.searchParams.set("src", src);
+      a[i].setAttribute("href", u.toString());
+    }
+  } catch (e) { /* لا يعطّل الصفحة أبدًا */ }
+})();
+</script>
+</body></html>
