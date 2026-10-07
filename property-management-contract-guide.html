@@ -681,7 +681,7 @@
         <a href="calculators.html">الحاسبات</a>
         <a href="index.html#faq">الأسئلة</a>
         <a href="https://app.watheqapp.com/demo">جرّب اللوحة</a>
-        <a href="https://app.watheqapp.com">تسجيل الدخول</a>
+        <a href="https://app.watheqapp.com/login">تسجيل الدخول</a>
         <a href="legal.html">الشروط والخصوصية</a> · <a href="legal.html#refund">الاسترداد</a>
         <a href="index.html#contact">تواصل معنا</a>
       </div>
@@ -698,10 +698,14 @@
     </small>
   </div>
 </footer>
-<!-- مصدر الزيارة: يُشتق من الرابط أو من الصفحة التي أتى منها الزائر، ثم يُمرَّر
-     في روابط الموقع فقط. بلا كوكيز وبلا تخزين وبلا طرف ثالث — نفس مبدأ
-     lib/signup-sources.ts: القيمة تأتي من رابطنا أو مما يرسله المتصفح، لا من
-     بصمة. وما لا نعرفه يبقى فارغًا؛ مصدر خاطئ أسوأ من مصدر مجهول. -->
+<!-- مصدر الزيارة وقمع الزوار (7 أكتوبر 2026).
+     المصدر يُشتق من الرابط أو من الصفحة التي أتى منها الزائر، ويُحفظ للجلسة
+     ويُمرَّر في روابط الموقع — نفس مبدأ lib/signup-sources.ts: ما لا نعرفه يبقى
+     فارغًا؛ مصدر خاطئ أسوأ من مصدر مجهول.
+     القمع: تُرسل «زيارة» واحدة لكل جلسة إلى app.watheqapp.com/api/track بمعرّف
+     عشوائي في sessionStorage يموت بإغلاق التبويب. بلا كوكيز وبلا IP وبلا طرف
+     ثالث. والمعرّف يُضاف لرابط التطبيق لحظة الضغط فقط (wv) — لا يُكتب في
+     الروابط مسبقًا حتى لا يراه زاحف جوجل فيفهرس روابط عشوائية. -->
 <script>
 (function () {
   try {
@@ -723,11 +727,47 @@
       return "";   // مصدر لا نعرفه: يبقى فارغًا عمدًا
     }
 
+    var ss = null;
+    try { ss = window.sessionStorage; } catch (e) {}
+    function sget(k) { try { return (ss && ss.getItem(k)) || ""; } catch (e) { return ""; } }
+    function sset(k, v) { try { if (ss) ss.setItem(k, v); } catch (e) {} }
+
     var src = "";
     try { src = new URL(location.href).searchParams.get("src") || ""; } catch (e) {}
     if (KNOWN.indexOf(src) < 0) src = fromReferrer();
-    if (KNOWN.indexOf(src) < 0) return;
+    if (KNOWN.indexOf(src) >= 0) sset("wq_src", src);
+    else { src = sget("wq_src"); if (KNOWN.indexOf(src) < 0) src = ""; }
 
+    var sid = sget("wq_sid");
+    if (!/^[A-Za-z0-9]{10,40}$/.test(sid)) {
+      var A = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", b = [];
+      try { b = Array.prototype.slice.call(crypto.getRandomValues(new Uint8Array(20))); }
+      catch (e) { for (var j = 0; j < 20; j++) b.push(Math.floor(Math.random() * 256)); }
+      sid = ""; for (var k = 0; k < b.length; k++) sid += A.charAt(b[k] % A.length);
+      sset("wq_sid", sid);
+    }
+
+    try {
+      var body = JSON.stringify({ e: "visit", v: sid, s: src || undefined, p: location.pathname });
+      var T = "https://app.watheqapp.com/api/track", sent = false;
+      if (navigator.sendBeacon) sent = navigator.sendBeacon(T, new Blob([body], { type: "text/plain" }));
+      if (!sent && window.fetch) fetch(T, { method: "POST", mode: "no-cors", keepalive: true, body: body, headers: { "content-type": "text/plain" } })["catch"](function () {});
+    } catch (e) {}
+
+    function addWv(ev) {
+      try {
+        var a = ev.target && ev.target.closest ? ev.target.closest("a[href]") : null;
+        if (!a) return;
+        var u = new URL(a.href);
+        if (u.hostname !== "app.watheqapp.com" || u.searchParams.get("wv")) return;
+        u.searchParams.set("wv", sid);
+        a.href = u.toString();
+      } catch (e) {}
+    }
+    document.addEventListener("click", addWv, true);
+    document.addEventListener("auxclick", addWv, true);
+
+    if (!src) return;
     var a = document.getElementsByTagName("a");
     for (var i = 0; i < a.length; i++) {
       var href = a[i].getAttribute("href") || "";

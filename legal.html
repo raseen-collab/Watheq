@@ -463,6 +463,7 @@
     <ul>
       <li><b>بيانات الحساب:</b> الاسم والبريد الإلكتروني وكلمة مرور مشفّرة.</li>
       <li><b>بيانات التشغيل التي تُدخلها أنت:</b> بيانات العقارات والوحدات، وأسماء المستأجرين أو الملّاك وأرقام تواصلهم وأرقام هوياتهم إن أدخلتها، وقيم العقود وتواريخها.</li>
+      <li><b>إحصاءات زيارة مجهولة:</b> نعدّ زيارات الموقع ومصدرها (مثل حراج أو بحث جوجل) وهل فُتحت التجربة أو صفحة التسجيل، بمعرّف عشوائي يُحذف بإغلاق التبويب. بلا ملفات تعريف ارتباط (كوكيز)، ولا نحفظ عنوان IP، ولا أي بيانات تعرّف بشخصك.</li>
     </ul>
 
     <p><b>بيانات الموظفين:</b> عند إضافة موظف، يُحفظ اسمه وارتباطه بحسابك ودوره، وتُسجَّل العمليات التي يجريها باسمه.
@@ -509,7 +510,7 @@
     <h3>9. التواصل</h3>
     <p>لأي استفسار يخصّ الخصوصية أو لطلب حذف البيانات: <a href="mailto:watheqdocs@gmail.com">watheqdocs@gmail.com</a> أو عبر <a href="https://t.me/+966550165210" target="_blank" rel="noreferrer">تليجرام (+966550165210)</a> · <a href="https://wa.me/966596300591?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D9%84%D8%AF%D9%8A%20%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D9%8A%D8%AE%D8%B5%20%D8%A7%D9%84%D8%AE%D8%B5%D9%88%D8%B5%D9%8A%D8%A9%20%D8%A3%D9%88%20%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA%D9%8A%20%D9%81%D9%8A%20%D9%88%D8%AB%D9%8A%D9%82." target="_blank" rel="noreferrer">واتساب: 0596300591</a>.</p>
 
-    <p class="updated">آخر تحديث: سبتمبر 2026</p>
+    <p class="updated">آخر تحديث: 7 أكتوبر 2026</p>
   </section>
 
   <section id="refund">
@@ -571,7 +572,7 @@
 <footer>
   <div class="wrap">
     <a href="index.html">وثيق</a> · <a href="about.html">من نحن</a> · <a href="properties.html">إدارة الأملاك</a>
-      <a href="calculators.html">الحاسبات</a> · <a href="https://app.watheqapp.com">تسجيل الدخول</a>
+      <a href="calculators.html">الحاسبات</a> · <a href="https://app.watheqapp.com/login">تسجيل الدخول</a>
     <div style="margin-top:12px;font-size:.85rem"><a href="https://t.me/+966550165210" target="_blank" rel="noreferrer">📨 +966550165210</a> · <a href="mailto:watheqdocs@gmail.com">✉️ watheqdocs@gmail.com</a></div>
     <div style="margin-top:10px;color:#7E938E">© وثيق 2026
     <small style="display:block;margin-top:10px;color:#9FB8B3">
@@ -606,10 +607,14 @@
   paint();
 })();
 </script>
-<!-- مصدر الزيارة: يُشتق من الرابط أو من الصفحة التي أتى منها الزائر، ثم يُمرَّر
-     في روابط الموقع فقط. بلا كوكيز وبلا تخزين وبلا طرف ثالث — نفس مبدأ
-     lib/signup-sources.ts: القيمة تأتي من رابطنا أو مما يرسله المتصفح، لا من
-     بصمة. وما لا نعرفه يبقى فارغًا؛ مصدر خاطئ أسوأ من مصدر مجهول. -->
+<!-- مصدر الزيارة وقمع الزوار (7 أكتوبر 2026).
+     المصدر يُشتق من الرابط أو من الصفحة التي أتى منها الزائر، ويُحفظ للجلسة
+     ويُمرَّر في روابط الموقع — نفس مبدأ lib/signup-sources.ts: ما لا نعرفه يبقى
+     فارغًا؛ مصدر خاطئ أسوأ من مصدر مجهول.
+     القمع: تُرسل «زيارة» واحدة لكل جلسة إلى app.watheqapp.com/api/track بمعرّف
+     عشوائي في sessionStorage يموت بإغلاق التبويب. بلا كوكيز وبلا IP وبلا طرف
+     ثالث. والمعرّف يُضاف لرابط التطبيق لحظة الضغط فقط (wv) — لا يُكتب في
+     الروابط مسبقًا حتى لا يراه زاحف جوجل فيفهرس روابط عشوائية. -->
 <script>
 (function () {
   try {
@@ -631,11 +636,47 @@
       return "";   // مصدر لا نعرفه: يبقى فارغًا عمدًا
     }
 
+    var ss = null;
+    try { ss = window.sessionStorage; } catch (e) {}
+    function sget(k) { try { return (ss && ss.getItem(k)) || ""; } catch (e) { return ""; } }
+    function sset(k, v) { try { if (ss) ss.setItem(k, v); } catch (e) {} }
+
     var src = "";
     try { src = new URL(location.href).searchParams.get("src") || ""; } catch (e) {}
     if (KNOWN.indexOf(src) < 0) src = fromReferrer();
-    if (KNOWN.indexOf(src) < 0) return;
+    if (KNOWN.indexOf(src) >= 0) sset("wq_src", src);
+    else { src = sget("wq_src"); if (KNOWN.indexOf(src) < 0) src = ""; }
 
+    var sid = sget("wq_sid");
+    if (!/^[A-Za-z0-9]{10,40}$/.test(sid)) {
+      var A = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", b = [];
+      try { b = Array.prototype.slice.call(crypto.getRandomValues(new Uint8Array(20))); }
+      catch (e) { for (var j = 0; j < 20; j++) b.push(Math.floor(Math.random() * 256)); }
+      sid = ""; for (var k = 0; k < b.length; k++) sid += A.charAt(b[k] % A.length);
+      sset("wq_sid", sid);
+    }
+
+    try {
+      var body = JSON.stringify({ e: "visit", v: sid, s: src || undefined, p: location.pathname });
+      var T = "https://app.watheqapp.com/api/track", sent = false;
+      if (navigator.sendBeacon) sent = navigator.sendBeacon(T, new Blob([body], { type: "text/plain" }));
+      if (!sent && window.fetch) fetch(T, { method: "POST", mode: "no-cors", keepalive: true, body: body, headers: { "content-type": "text/plain" } })["catch"](function () {});
+    } catch (e) {}
+
+    function addWv(ev) {
+      try {
+        var a = ev.target && ev.target.closest ? ev.target.closest("a[href]") : null;
+        if (!a) return;
+        var u = new URL(a.href);
+        if (u.hostname !== "app.watheqapp.com" || u.searchParams.get("wv")) return;
+        u.searchParams.set("wv", sid);
+        a.href = u.toString();
+      } catch (e) {}
+    }
+    document.addEventListener("click", addWv, true);
+    document.addEventListener("auxclick", addWv, true);
+
+    if (!src) return;
     var a = document.getElementsByTagName("a");
     for (var i = 0; i < a.length; i++) {
       var href = a[i].getAttribute("href") || "";

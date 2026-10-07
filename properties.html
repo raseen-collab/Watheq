@@ -323,7 +323,7 @@
       <a href="about.html">من نحن</a> · <a href="calculators.html">الحاسبات</a>
       <a href="index.html?mode=hoa">جمعيات الملاك</a>
       <a href="https://app.watheqapp.com/demo">جرّب اللوحة</a>
-      <a href="https://app.watheqapp.com" style="color:#fff;font-weight:700">تسجيل الدخول</a>
+      <a href="https://app.watheqapp.com/login" style="color:#fff;font-weight:700">تسجيل الدخول</a>
     </nav>
         <button class="theme-btn" data-theme-btn aria-label="الوضع الليلي">☾</button>
     <div style="display:flex;align-items:center;gap:10px">
@@ -336,7 +336,7 @@
     <a href="#pricing">الباقات</a>
     <a href="index.html?mode=hoa">جمعيات الملاك</a>
     <a href="https://app.watheqapp.com/demo">جرّب اللوحة</a>
-    <a href="https://app.watheqapp.com">تسجيل الدخول</a>
+    <a href="https://app.watheqapp.com/login">تسجيل الدخول</a>
   </div>
 </header>
 
@@ -348,7 +348,7 @@
     <p class="lead">وثيق ينظّم مستأجريك ويحسب استحقاقاتهم ومتأخراتهم تلقائيًّا، ويجهّز لك رسالة التذكير أو الإشعار مصاغة ببياناتك — ترسلها أنت من رقمك — وينبّهك قبل انتهاء أي عقد.</p>
     <div class="cta-row">
       <a class="btn btn-wa" data-wa href="#"><svg class="wa-ico" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.4A10 10 0 1 0 12 2z"/></svg> ابدأ عبر واتساب</a>
-      <a class="btn btn-light" href="https://app.watheqapp.com">ابدأ تجربة 30 يومًا مجانًا ←</a>
+      <a class="btn btn-light" href="https://app.watheqapp.com/login?mode=signup">ابدأ تجربة 30 يومًا مجانًا ←</a>
     </div>
     <div style="margin-top:18px;display:inline-flex;align-items:center;gap:9px;background:rgba(31,168,85,.14);border:1px solid rgba(31,168,85,.4);color:#7FE0A8;padding:9px 18px;border-radius:999px;font-size:.92rem;font-weight:600">
       🎁 تجربة مجانية 30 يومًا — كل المزايا، بلا بطاقة بنكية
@@ -590,7 +590,7 @@
           <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg> تتبّع العقود وتنبيه انتهائها</li>
           <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg> لوحة تحصيل بحالة كل مستأجر</li>
         </ul>
-        <a class="btn btn-ghost" href="https://app.watheqapp.com">ابدأ مجانًا 30 يومًا</a>
+        <a class="btn btn-ghost" href="https://app.watheqapp.com/login?mode=signup">ابدأ مجانًا 30 يومًا</a>
       </div>
       <div class="pack feature">
         <span class="pack-flag">الأنسب للمكاتب</span>
@@ -604,7 +604,7 @@
           <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg> كشوف وتقارير تحصيل لكل عقار</li>
           <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg> دعم بأولوية</li>
         </ul>
-        <a class="btn btn-gold" href="https://app.watheqapp.com">ابدأ مجانًا 30 يومًا</a>
+        <a class="btn btn-gold" href="https://app.watheqapp.com/login?mode=signup">ابدأ مجانًا 30 يومًا</a>
       </div>
     </div>
   </div>
@@ -742,10 +742,14 @@
   paint();
 })();
 </script>
-<!-- مصدر الزيارة: يُشتق من الرابط أو من الصفحة التي أتى منها الزائر، ثم يُمرَّر
-     في روابط الموقع فقط. بلا كوكيز وبلا تخزين وبلا طرف ثالث — نفس مبدأ
-     lib/signup-sources.ts: القيمة تأتي من رابطنا أو مما يرسله المتصفح، لا من
-     بصمة. وما لا نعرفه يبقى فارغًا؛ مصدر خاطئ أسوأ من مصدر مجهول. -->
+<!-- مصدر الزيارة وقمع الزوار (7 أكتوبر 2026).
+     المصدر يُشتق من الرابط أو من الصفحة التي أتى منها الزائر، ويُحفظ للجلسة
+     ويُمرَّر في روابط الموقع — نفس مبدأ lib/signup-sources.ts: ما لا نعرفه يبقى
+     فارغًا؛ مصدر خاطئ أسوأ من مصدر مجهول.
+     القمع: تُرسل «زيارة» واحدة لكل جلسة إلى app.watheqapp.com/api/track بمعرّف
+     عشوائي في sessionStorage يموت بإغلاق التبويب. بلا كوكيز وبلا IP وبلا طرف
+     ثالث. والمعرّف يُضاف لرابط التطبيق لحظة الضغط فقط (wv) — لا يُكتب في
+     الروابط مسبقًا حتى لا يراه زاحف جوجل فيفهرس روابط عشوائية. -->
 <script>
 (function () {
   try {
@@ -767,11 +771,47 @@
       return "";   // مصدر لا نعرفه: يبقى فارغًا عمدًا
     }
 
+    var ss = null;
+    try { ss = window.sessionStorage; } catch (e) {}
+    function sget(k) { try { return (ss && ss.getItem(k)) || ""; } catch (e) { return ""; } }
+    function sset(k, v) { try { if (ss) ss.setItem(k, v); } catch (e) {} }
+
     var src = "";
     try { src = new URL(location.href).searchParams.get("src") || ""; } catch (e) {}
     if (KNOWN.indexOf(src) < 0) src = fromReferrer();
-    if (KNOWN.indexOf(src) < 0) return;
+    if (KNOWN.indexOf(src) >= 0) sset("wq_src", src);
+    else { src = sget("wq_src"); if (KNOWN.indexOf(src) < 0) src = ""; }
 
+    var sid = sget("wq_sid");
+    if (!/^[A-Za-z0-9]{10,40}$/.test(sid)) {
+      var A = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", b = [];
+      try { b = Array.prototype.slice.call(crypto.getRandomValues(new Uint8Array(20))); }
+      catch (e) { for (var j = 0; j < 20; j++) b.push(Math.floor(Math.random() * 256)); }
+      sid = ""; for (var k = 0; k < b.length; k++) sid += A.charAt(b[k] % A.length);
+      sset("wq_sid", sid);
+    }
+
+    try {
+      var body = JSON.stringify({ e: "visit", v: sid, s: src || undefined, p: location.pathname });
+      var T = "https://app.watheqapp.com/api/track", sent = false;
+      if (navigator.sendBeacon) sent = navigator.sendBeacon(T, new Blob([body], { type: "text/plain" }));
+      if (!sent && window.fetch) fetch(T, { method: "POST", mode: "no-cors", keepalive: true, body: body, headers: { "content-type": "text/plain" } })["catch"](function () {});
+    } catch (e) {}
+
+    function addWv(ev) {
+      try {
+        var a = ev.target && ev.target.closest ? ev.target.closest("a[href]") : null;
+        if (!a) return;
+        var u = new URL(a.href);
+        if (u.hostname !== "app.watheqapp.com" || u.searchParams.get("wv")) return;
+        u.searchParams.set("wv", sid);
+        a.href = u.toString();
+      } catch (e) {}
+    }
+    document.addEventListener("click", addWv, true);
+    document.addEventListener("auxclick", addWv, true);
+
+    if (!src) return;
     var a = document.getElementsByTagName("a");
     for (var i = 0; i < a.length; i++) {
       var href = a[i].getAttribute("href") || "";
