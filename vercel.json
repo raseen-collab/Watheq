@@ -24,6 +24,16 @@
       "source": "/g",
       "destination": "/?src=group",
       "permanent": false
+    },
+    {
+      "source": "/tt",
+      "destination": "https://app.watheqapp.com/demo?src=tiktok",
+      "permanent": false
+    },
+    {
+      "source": "/in",
+      "destination": "https://app.watheqapp.com/demo?src=linkedin",
+      "permanent": false
     }
   ]
 }
