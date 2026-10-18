@@ -1,6 +1,6 @@
 <!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow">
 <title>مكتب تقارير للعقارات</title>
-<meta property="og:title" content="مكتب تقارير للعقارات"><meta property="og:description" content="إدارة أملاك في الرياض — تأجير، تحصيل، صيانة، وتقرير شهري للمالك"><meta property="og:image" content="https://watheqapp.com/img/dashboard.jpg">
+<meta property="og:title" content="مكتب تقارير للعقارات"><meta property="og:description" content="إدارة أملاك في الرياض — تأجير، تحصيل، صيانة، وتقرير شهري للمالك"><meta property="og:image" content="https://watheqapp.com/img/lp-dash.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 :root{--bg:#F4F3F0;--surface:#FFFFFF;--ink:#1D2320;--muted:#5D655F;--line:#E1DCD1;--brand:#1C2E4A;--brand2:#2B4770;--accent:#C88A55;--wash:#E6E4DE;--on:#FBF8F2;--note:#FFF6DA;--note-ink:#6B5418;--neg:#A4492F;
@@ -43,9 +43,9 @@ h3{font-size:19px;font-weight:700}
 .chip .mut{color:inherit;opacity:.75}
 .devices{position:relative;min-height:380px}
 .laptop{background:#0F1412;border-radius:16px;padding:10px 10px 14px;box-shadow:0 30px 60px -25px rgba(0,0,0,.6);transform:rotate(-2deg)}
-.laptop img{border-radius:8px;width:100%}
+.laptop img{border-radius:8px;width:100%;height:auto}
 .phone{position:absolute;width:38%;right:-6px;bottom:-34px;background:#0F1412;border-radius:26px;padding:7px;box-shadow:0 24px 50px -18px rgba(0,0,0,.65);transform:rotate(4deg)}
-.phone img{border-radius:20px;aspect-ratio:9/16;object-fit:cover;object-position:top;width:100%}
+.phone img{border-radius:20px;aspect-ratio:9/16;object-fit:cover;object-position:top;width:100%;height:auto}
 .trust{background:var(--surface);border-bottom:1px solid var(--line)}
 .trust .in{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
 .trust div{padding:22px 16px;display:flex;flex-direction:column;gap:2px;border-inline-start:1px solid var(--line)}
@@ -74,8 +74,8 @@ section{padding-block:72px}
 .gal{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
 .gal figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:12px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .gal .w3{grid-column:span 3}.gal .w2{grid-column:span 2}
-.shot{border-radius:11px;overflow:hidden;border:1px solid var(--line);background:#fff;height:250px}
-.shot img{width:100%;height:100%;object-fit:cover;object-position:top}
+.shot{border-radius:11px;overflow:hidden;border:1px solid var(--line);background:#fff;aspect-ratio:16/10}
+.shot img{width:100%;height:100%;object-fit:cover}
 .gal figcaption{padding:0 4px 4px}
 .gal figcaption b{display:block;font-family:var(--display);color:var(--brand)}
 .gal figcaption span{color:var(--muted);font-size:14.5px}
@@ -117,7 +117,7 @@ footer.site .in{display:flex;justify-content:space-between;gap:16px;flex-wrap:wr
 .slot{background:var(--note);color:var(--note-ink);border-radius:6px;padding:1px 8px}
 .fab{position:fixed;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:none;background:#1F7A4D;color:#fff;border-radius:999px;padding:12px 18px;font-weight:600;text-decoration:none;box-shadow:0 10px 24px -10px rgba(0,0,0,.5);z-index:30}
 @media (max-width:900px){.hero .in,.split,.contact{grid-template-columns:1fr}.devices{min-height:0;margin:10px 6px 30px}.svc{grid-template-columns:1fr 1fr}.gal{grid-template-columns:1fr 1fr}.gal .w3,.gal .w2{grid-column:span 1}.steps{grid-template-columns:1fr 1fr}.trust .in{grid-template-columns:1fr 1fr}.trust div:nth-child(3){border-inline-start:0}.rvs{grid-template-columns:1fr}.rv.big{grid-row:auto}.fab{display:inline-flex}.faq{grid-template-columns:1fr}}
-@media (max-width:560px){.svc,.gal,.steps{grid-template-columns:1fr}.top .btn{display:none}.cta{padding:28px}.shot{height:220px}}
+@media (max-width:560px){.svc,.gal,.steps{grid-template-columns:1fr}.top .btn{display:none}.cta{padding:28px}.shot{height:auto}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style></head><body>
 <div class="ribbon g">صفحة مبدئية أعدّها عبيد الصاعدي، مؤسس «وثيق لإدارة الأملاك»، لـمكتب تقارير للعقارات للمعاينة فقط. كل نص فيها قابل للتعديل.</div>
@@ -131,7 +131,7 @@ footer.site .in{display:flex;justify-content:space-between;gap:16px;flex-wrap:wr
   <div class="ctas"><a class="btn pri" href="https://wa.me/966504468292?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%B9%D9%82%D8%A7%D8%B1%D9%8A" target="_blank" rel="noopener">سلّمنا عقارك — تواصل واتساب</a><a class="btn ghost" href="#services">خدماتنا</a></div>
   
  </div>
- <div class="devices" aria-hidden="true"><div class="laptop"><img src="img/dashboard.jpg" alt=""></div><div class="phone"><img src="img/tenant.jpg" alt=""></div></div>
+ <div class="devices" aria-hidden="true"><div class="laptop"><img src="img/lp-dash.jpg" alt="" width="1600" height="1000"></div><div class="phone"><img src="img/lp-tenant.jpg" alt="" width="720" height="1280"></div></div>
 </div></header>
 
 <div class="trust g"><div class="in">
@@ -173,13 +173,13 @@ footer.site .in{display:flex;justify-content:space-between;gap:16px;flex-wrap:wr
 <section class="g"><div class="in">
  <div class="head"><div class="eyebrow">داخل نظامنا</div><h2>نخدمك بأدوات حديثة</h2><p class="sub">ندير عقارك على «وثيق لإدارة الأملاك»، فكل دفعة وكل عقد وكل طلب صيانة موثّق ومرتّب.</p></div>
  <div class="gal">
-  <figure class="w3"><div class="shot"><img src="img/dashboard.jpg" alt="لوحة العقار" loading="lazy"></div><figcaption><b>لوحة العقار</b><span>الدخل الشهري والمتأخر وحالة كل وحدة في شاشة وحدة.</span></figcaption></figure>
-  <figure class="w3"><div class="shot"><img src="img/owner.jpg" alt="تقرير المالك" loading="lazy"></div><figcaption><b>تقرير المالك</b><span>الإشغال والمحصّل والمصروفات وصافيك، جاهز كل شهر.</span></figcaption></figure>
-  <figure class="w2"><div class="shot"><img src="img/tenant.jpg" alt="صفحة المستأجر" loading="lazy"></div><figcaption><b>صفحة المستأجر</b><span>عقده ومستحقاته وطلب الصيانة من رابط واحد.</span></figcaption></figure>
-  <figure class="w2"><div class="shot"><img src="img/late.jpg" alt="متابعة المتأخرات" loading="lazy"></div><figcaption><b>متابعة المتأخرات</b><span>كل متأخر ومبلغه، وتذكير يوصله في وقته.</span></figcaption></figure>
-  <figure class="w2"><div class="shot"><img src="img/renew.jpg" alt="تجديد العقود" loading="lazy"></div><figcaption><b>تجديد العقود</b><span>تنبيه قبل الانتهاء، فما تطوّل الوحدة فاضية.</span></figcaption></figure>
-  <figure class="w3"><div class="shot"><img src="img/statement.jpg" alt="كشف الحساب" loading="lazy"></div><figcaption><b>كشف حساب مرتّب</b><span>كل دفعة بتاريخها، جاهز للطباعة أو الإرسال.</span></figcaption></figure>
-  <figure class="w3"><div class="shot"><img src="img/hoa.jpg" alt="لوحة اتحاد الملاك" loading="lazy"></div><figcaption><b>اتحادات الملّاك</b><span>الرسوم والاجتماعات والموازنات وتنبيه شهادة الجمعية.</span></figcaption></figure>
+  <figure class="w3"><div class="shot"><img src="img/lp-dash.jpg" alt="لوحة العقار" loading="lazy" width="1600" height="1000"></div><figcaption><b>لوحة العقار</b><span>الدخل الشهري والمتأخر وحالة كل وحدة في شاشة وحدة.</span></figcaption></figure>
+  <figure class="w3"><div class="shot"><img src="img/lp-owner.jpg" alt="تقرير المالك" loading="lazy" width="1600" height="1000"></div><figcaption><b>تقرير المالك</b><span>الإشغال والمحصّل والمصروفات وصافيك، جاهز كل شهر.</span></figcaption></figure>
+  <figure class="w2"><div class="shot"><img src="img/lp-tenant-g.jpg" alt="صفحة المستأجر" loading="lazy" width="1600" height="1000"></div><figcaption><b>صفحة المستأجر</b><span>عقده ومستحقاته وطلب الصيانة من رابط واحد.</span></figcaption></figure>
+  <figure class="w2"><div class="shot"><img src="img/lp-late.jpg" alt="متابعة المتأخرات" loading="lazy" width="1600" height="1000"></div><figcaption><b>متابعة المتأخرات</b><span>كل متأخر ومبلغه، وتذكير يوصله في وقته.</span></figcaption></figure>
+  <figure class="w2"><div class="shot"><img src="img/lp-renew.jpg" alt="تجديد العقود" loading="lazy" width="1600" height="1000"></div><figcaption><b>تجديد العقود</b><span>تنبيه قبل الانتهاء، فما تطوّل الوحدة فاضية.</span></figcaption></figure>
+  <figure class="w3"><div class="shot"><img src="img/lp-statement.jpg" alt="كشف الحساب" loading="lazy" width="1600" height="1000"></div><figcaption><b>كشف حساب مرتّب</b><span>كل دفعة بتاريخها، جاهز للطباعة أو الإرسال.</span></figcaption></figure>
+  <figure class="w3"><div class="shot"><img src="img/lp-hoa.jpg" alt="لوحة اتحاد الملاك" loading="lazy" width="1600" height="1000"></div><figcaption><b>اتحادات الملّاك</b><span>الرسوم والاجتماعات والموازنات وتنبيه شهادة الجمعية.</span></figcaption></figure>
  </div>
 </div></section>
 
