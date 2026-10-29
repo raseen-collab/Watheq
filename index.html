@@ -23,10 +23,10 @@
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "وثيق",
+  "name": "وثيق لإدارة الأملاك",
   "alternateName": [
+    "وثيق",
     "Watheq",
-    "وثيق لإدارة الأملاك",
     "برنامج وثيق",
     "تطبيق وثيق"
   ],
@@ -60,6 +60,7 @@
 </script>
 <title>برنامج وثيق لإدارة الأملاك وجمعيات الملاك في السعودية</title>
 <meta name="description" content="برنامج وثيق لإدارة الأملاك وجمعيات الملاك: عقود ودفعات ومتأخرات وتقارير ملّاك، بحسابات لموظفيك، من المتصفح والجوال بلا تثبيت. تجربة مجانية 30 يومًا.">
+<meta property="og:site_name" content="وثيق لإدارة الأملاك">
 <meta property="og:title" content="برنامج وثيق لإدارة الأملاك وجمعيات الملاك في السعودية">
 <meta property="og:description" content="برنامج وثيق لإدارة الأملاك وجمعيات الملاك: عقود ودفعات ومتأخرات وتقارير ملّاك، بحسابات لموظفيك، من المتصفح والجوال بلا تثبيت. تجربة مجانية 30 يومًا.">
 <meta property="og:type" content="website">
@@ -136,6 +137,18 @@
   .nav.dark .mmenu.open a{color:#EAF1EE;border-bottom-color:rgba(255,255,255,.08)}
   .mmenu.open a:last-child{border-bottom:0}
   @media(max-width:900px){.nav-end .lnk,.nav-end .btn{display:none}.nav-toggle{display:inline-flex}.switch button{padding:7px 11px;font-size:.79rem}}
+  /* (دراسة 29 أكتوبر 2026) على 390px كان الشعار + المبدّل + القائمة أعرض من الصف،
+     فيلتفّ «وثيق / إدارة الأملاك» سطرين مضغوطين بجانب المبدّل. السطر الصغير تحت
+     الشعار يكرّر ما يقوله زرّ المبدّل بجانبه حرفيًّا — يُخفى ويُضيَّق الباقي. */
+  @media(max-width:480px){
+    .nav .row{gap:8px}
+    .brand{font-size:1.02rem;gap:7px}
+    .brand small{display:none}
+    .seal{width:30px;height:30px}
+    .switch{padding:3px}
+    .switch button{padding:8px 8px;font-size:.73rem}
+    .nav-toggle{width:38px;height:38px}
+  }
 
   /* ===== بوابة الاختيار ===== */
   .gate{padding:52px 0 10px}
