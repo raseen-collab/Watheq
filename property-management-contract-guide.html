@@ -407,6 +407,19 @@
   @media print{.tooljump,.after-tool,.no-print{display:none!important}}
   /* (30 أكتوبر 2026) الوضع الليلي: الذهبي يفتح إلى #E7C877 فيصير النص الأبيض عليه ~1.6:1 — نص داكن بدلًا منه (~11:1) */
   html[data-theme="dark"] .btn-gold{color:#0B211F}
+
+  /* (30 أكتوبر 2026) شبكة الأدوات المجانية — كل دليل يربط بكل الأدوات */
+  .toolsgrid{margin:44px 0 10px}
+  .toolsgrid>b{display:block;font-family:"Readex Pro";font-size:1.12rem;color:var(--deep);margin-bottom:4px}
+  .toolsgrid>p{color:var(--muted);font-size:.9rem;margin:0 0 14px!important}
+  .tg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+  .tg a{display:flex;gap:12px;align-items:flex-start;padding:13px 14px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--deep);transition:border-color .15s ease,transform .15s ease,box-shadow .15s ease}
+  .tg a:hover{border-color:var(--gold-soft);transform:translateY(-1px);box-shadow:0 10px 24px -18px rgba(11,33,31,.5)}
+  .tg .i{flex:none;width:38px;height:38px;border-radius:11px;background:var(--paper-2);display:grid;place-items:center;font-size:1.15rem}
+  .tg b{display:block;font-size:.93rem;line-height:1.5}
+  .tg span{display:block;font-size:.8rem;color:var(--muted);line-height:1.6;margin-top:1px}
+  .tg-all{display:inline-block;margin-top:8px;padding:10px 0;min-height:40px;font-weight:700;color:var(--gold-ink);font-size:.92rem}
+  @media print{.toolsgrid{display:none!important}}
 </style><style>
   .art{max-width:780px;margin:0 auto;padding:0 22px}
   .art-head{padding:34px 0 4px}
@@ -565,7 +578,7 @@
 </header>
 <div class="art">
 <div class="art-head">
-  <p class="crumb"><a href="index.html">وثيق</a> · مقالات</p>
+  <p class="crumb"><a href="index.html">وثيق</a> · <a href="templates.html">النماذج المجانية</a></p>
   <h1>نموذج عقد إدارة أملاك — البنود التي تحمي المالك والمكتب</h1>
   <p class="lede">
     المالك سلّمك عمارته «بالكلمة»، واتفقتما على نسبة في مكالمة. بعد سنة يسأل: «ليش النسبة محسوبة على المحصّل وأنا فاهم إنها على الإيجار كامل؟»
@@ -726,6 +739,7 @@
         <a href="properties.html">إدارة الأملاك</a>
         <a href="index.html?mode=hoa">جمعيات الملاك</a>
         <a href="calculators.html">الحاسبات</a>
+        <a href="templates.html">النماذج المجانية</a>
         <a href="index.html#faq">الأسئلة</a>
         <a href="https://app.watheqapp.com/demo">جرّب اللوحة</a>
         <a href="https://app.watheqapp.com/login">تسجيل الدخول</a>

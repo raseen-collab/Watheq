@@ -415,6 +415,19 @@
   @media print{.tooljump,.after-tool,.no-print{display:none!important}}
   /* (30 أكتوبر 2026) الوضع الليلي: الذهبي يفتح إلى #E7C877 فيصير النص الأبيض عليه ~1.6:1 — نص داكن بدلًا منه (~11:1) */
   html[data-theme="dark"] .btn-gold{color:#0B211F}
+
+  /* (30 أكتوبر 2026) شبكة الأدوات المجانية — كل دليل يربط بكل الأدوات */
+  .toolsgrid{margin:44px 0 10px}
+  .toolsgrid>b{display:block;font-family:"Readex Pro";font-size:1.12rem;color:var(--deep);margin-bottom:4px}
+  .toolsgrid>p{color:var(--muted);font-size:.9rem;margin:0 0 14px!important}
+  .tg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+  .tg a{display:flex;gap:12px;align-items:flex-start;padding:13px 14px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--deep);transition:border-color .15s ease,transform .15s ease,box-shadow .15s ease}
+  .tg a:hover{border-color:var(--gold-soft);transform:translateY(-1px);box-shadow:0 10px 24px -18px rgba(11,33,31,.5)}
+  .tg .i{flex:none;width:38px;height:38px;border-radius:11px;background:var(--paper-2);display:grid;place-items:center;font-size:1.15rem}
+  .tg b{display:block;font-size:.93rem;line-height:1.5}
+  .tg span{display:block;font-size:.8rem;color:var(--muted);line-height:1.6;margin-top:1px}
+  .tg-all{display:inline-block;margin-top:8px;padding:10px 0;min-height:40px;font-weight:700;color:var(--gold-ink);font-size:.92rem}
+  @media print{.toolsgrid{display:none!important}}
 </style><style>
   .art{max-width:780px;margin:0 auto;padding:0 22px}
   .art-head{padding:34px 0 4px}
@@ -569,7 +582,7 @@
 </header>
 <div class="art">
 <div class="art-head">
-  <p class="crumb"><a href="index.html">وثيق</a> · مقالات</p>
+  <p class="crumb"><a href="index.html">وثيق</a> · <a href="templates.html">النماذج المجانية</a></p>
   <h1>نموذج محضر استلام وتسليم وحدة — ماذا تكتب فيه ولماذا يحميك</h1>
   <p class="lede">
     المستأجر يخلي الوحدة، وتكتشف بابًا مكسورًا وفاتورة كهرباء بألفين. تقول «كانت سليمة
@@ -581,7 +594,7 @@
 </div>
 <div class="tooljump no-print"><span class="tj-ic" aria-hidden="true">🔑</span><div class="tj-tx"><b>أنشئ محضر التسليم الآن</b><span>محضر بالعدادات والمفاتيح والحالة، جاهز للتوقيع والطباعة. مجانًا.</span></div><a class="btn btn-gold" href="#maker">أنشئ المحضر ↓</a></div>
 
-<h2>ما هو المحضر، ومتى يُكتب</h2>
+<h2>ما هو محضر تسليم الوحدة والمفاتيح، ومتى يُكتب</h2>
 <p>
   محضر الاستلام والتسليم ورقة موقّعة من الطرفين تصف <b>حالة الوحدة في لحظة معينة</b>:
   قراءات العدادات، وعدد المفاتيح، وحالة كل جزء، وما هو موجود فيها من أجهزة أو أثاث.
@@ -739,6 +752,7 @@
   <a class="btn btn-gold" href="index.html#pricing">شوف وثيق — تجربة 30 يومًا مجانًا</a>
 </div>
 
+<section class="toolsgrid no-print" aria-label="أدوات مجانية"><b>أدوات ونماذج مجانية — بلا تسجيل</b><p>كلها تعمل داخل متصفحك، ولا يُحفظ شيء عندنا.</p><div class="tg"><a href="rent-receipt-guide.html"><span class="i" aria-hidden="true">🧾</span><span><b>سند قبض إيجار</b><span>المبلغ يُكتب بالحروف تلقائيًا، وجاهز للطباعة أو PDF</span></span></a><a href="statement.html"><span class="i" aria-hidden="true">📑</span><span><b>كشف حساب مستأجر</b><span>الدفعات والمتأخر والرصيد في صفحة واحدة للطباعة</span></span></a><a href="late-rent-notice-guide.html"><span class="i" aria-hidden="true">⏰</span><span><b>إشعار تأخر سداد إيجار</b><span>يحسب مدة التأخر والمهلة ويجهّز الإشعار</span></span></a><a href="contract-end-notice-guide.html"><span class="i" aria-hidden="true">📩</span><span><b>إشعار انتهاء العقد وطلب التجديد</b><span>صيغ جاهزة للواتساب والطباعة</span></span></a><a href="move-out-settlement-guide.html"><span class="i" aria-hidden="true">📄</span><span><b>مخالصة إخلاء وحدة</b><span>التأمين والخصومات والعدادات — للطباعة</span></span></a><a href="maintenance-request-guide.html"><span class="i" aria-hidden="true">🔧</span><span><b>طلب صيانة من المستأجر</b><span>نص مرتّب برقم ووصف وموعد</span></span></a><a href="owner-monthly-report-guide.html"><span class="i" aria-hidden="true">📊</span><span><b>تقرير المالك الشهري</b><span>حاسبة الصافي بعد المصروفات والأتعاب</span></span></a><a href="property-management-contract-guide.html"><span class="i" aria-hidden="true">🤝</span><span><b>عقد إدارة أملاك</b><span>البنود بين المالك والمكتب — للطباعة</span></span></a><a href="real-estate-office-commission.html"><span class="i" aria-hidden="true">🧮</span><span><b>حاسبة سعي المكتب</b><span>2.5% من إيجار السنة الأولى</span></span></a><a href="rent-collection-excel-template.html"><span class="i" aria-hidden="true">📥</span><span><b>جدول تحصيل الإيجارات Excel</b><span>ملف جاهز للمحصّل والمتأخر</span></span></a><a href="calculators.html"><span class="i" aria-hidden="true">📅</span><span><b>حاسبات عقارية</b><span>جدول الدفعات، العائد الصافي، المتأخرات</span></span></a></div><a class="tg-all" href="templates.html">كل النماذج المجانية في صفحة واحدة ←</a></section>
 <div class="next">
   <b>اقرأ أيضًا</b>
   <a href="move-out-settlement-guide.html">نموذج مخالصة إخلاء وحدة — وكيف تسوّي التأمين</a>
@@ -910,6 +924,7 @@
         <a href="properties.html">إدارة الأملاك</a>
         <a href="index.html?mode=hoa">جمعيات الملاك</a>
         <a href="calculators.html">الحاسبات</a>
+        <a href="templates.html">النماذج المجانية</a>
         <a href="index.html#faq">الأسئلة</a>
         <a href="https://app.watheqapp.com/demo">جرّب اللوحة</a>
         <a href="https://app.watheqapp.com/login">تسجيل الدخول</a>
