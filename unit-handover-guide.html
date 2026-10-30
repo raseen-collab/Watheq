@@ -380,6 +380,41 @@
     background:var(--paid-bg);color:var(--paid);border:1px solid var(--paid);
     border-radius:999px;padding:2px 8px;margin-inline-start:6px}
   @media(max-width:900px){.nav-end .theme-btn{display:none}}
+
+  /* ═══ (30 أكتوبر 2026) صفحات قوقل: رأس بزر التجربة، بطاقة «الأداة أولًا»، ودعوة بعد الأداة ═══ */
+  .hdr{display:flex;align-items:center;justify-content:space-between;height:64px;gap:10px}
+  .hdr .brand{font-size:1.12rem}
+  .hdr-end{display:flex;align-items:center;gap:8px}
+  .hdr-link{font-size:.86rem;font-weight:600;color:var(--deep);padding:10px 6px}
+  .hdr-btn{padding:9px 16px!important;font-size:.88rem!important}
+  @media(max-width:420px){.hdr-link{display:none}}
+  .tooljump{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:6px 0 30px;padding:18px 20px;border-radius:18px;
+    background:linear-gradient(135deg,var(--card),var(--paper-2));border:1px solid var(--line);box-shadow:0 14px 34px -24px rgba(11,33,31,.45)}
+  .tooljump .tj-ic{flex:none;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--surface-deep);color:var(--gold-soft);font-size:1.35rem}
+  .tooljump .tj-tx{flex:1;min-width:190px}
+  .tooljump b{display:block;font-family:"Readex Pro";font-size:1.05rem;color:var(--deep);line-height:1.5}
+  .tooljump span{display:block;font-size:.88rem;color:var(--muted);margin-top:2px;line-height:1.7}
+  .tooljump .btn{flex:none}
+  @media(max-width:520px){.tooljump .btn{width:100%;justify-content:center}}
+  .after-tool{margin:18px 0 6px;padding:20px 22px;border-radius:18px;background:var(--surface-deep);color:#EAF1EE;position:relative;overflow:hidden}
+  .after-tool::after{content:"";position:absolute;inset-inline-end:-70px;top:-90px;width:230px;height:230px;border-radius:50%;background:radial-gradient(circle,rgba(231,200,119,.22),transparent 65%)}
+  .after-tool b{display:block;font-family:"Readex Pro";font-size:1.08rem;color:#fff;position:relative}
+  .after-tool p{margin:6px 0 14px!important;color:#C9D9D5;font-size:.93rem;line-height:1.85!important;position:relative}
+  .after-tool .row{display:flex;gap:10px;flex-wrap:wrap;position:relative}
+  .after-tool .btn-ghost{background:transparent;color:#EAF1EE;border-color:rgba(255,255,255,.3)}
+  .after-tool .btn-ghost:hover{background:rgba(255,255,255,.1)}
+
+  /* (30 أكتوبر 2026 — جولة جمالية ثانية) الأداة تبدو أداة لا فقرة */
+  html{scroll-behavior:smooth}
+  [id]{scroll-margin-top:84px}
+  .art h2.tool-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .art h2.tool-h::before{content:"أداة مجانية";font-family:"IBM Plex Sans Arabic";font-size:.72rem;font-weight:700;color:var(--gold-ink);background:var(--paper-2);border:1px solid var(--line);border-radius:999px;padding:4px 11px;letter-spacing:0}
+  .tool-card{border-color:rgba(184,121,31,.38)!important;box-shadow:0 0 0 4px rgba(231,200,119,.16),0 22px 46px -30px rgba(11,33,31,.45)!important;border-radius:18px!important}
+  .tool-card .grid,.tool-card [style*="grid-template-columns"]{align-items:end}
+  .tool-card input:focus,.tool-card select:focus,.tool-card textarea:focus{outline:2px solid var(--gold-soft);outline-offset:1px}
+  @media print{.tooljump,.after-tool,.no-print{display:none!important}}
+  /* (30 أكتوبر 2026) الوضع الليلي: الذهبي يفتح إلى #E7C877 فيصير النص الأبيض عليه ~1.6:1 — نص داكن بدلًا منه (~11:1) */
+  html[data-theme="dark"] .btn-gold{color:#0B211F}
 </style><style>
   .art{max-width:780px;margin:0 auto;padding:0 22px}
   .art-head{padding:34px 0 4px}
@@ -523,10 +558,13 @@
 </script>
 </head>
 <body>
-<header style="border-bottom:1px solid var(--line);background:var(--paper)">
-  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:66px">
-    <a href="index.html" style="font-family:'Readex Pro',sans-serif;font-weight:700;font-size:1.2rem">وثيق</a>
-    <a href="index.html" style="font-size:.87rem;color:var(--muted)">← الرئيسية</a>
+<header class="no-print" style="border-bottom:1px solid var(--line);background:var(--paper);position:sticky;top:0;z-index:50">
+  <div class="wrap hdr">
+    <a href="index.html" class="brand"><span class="seal"></span>وثيق</a>
+    <div class="hdr-end">
+      <a class="hdr-link" href="https://app.watheqapp.com/demo">جرّب بلا تسجيل</a>
+      <a class="btn btn-gold hdr-btn" href="https://app.watheqapp.com/login?mode=signup">ابدأ مجانًا</a>
+    </div>
   </div>
 </header>
 <div class="art">
@@ -541,6 +579,7 @@
   <p class="meta">سبتمبر 2026 · قراءة 7 دقائق</p>
   <p style="margin-top:12px"><a class="btn btn-gold" href="#maker">📝 أنشئ المحضر الآن — مجانًا</a></p>
 </div>
+<div class="tooljump no-print"><span class="tj-ic" aria-hidden="true">🔑</span><div class="tj-tx"><b>أنشئ محضر التسليم الآن</b><span>محضر بالعدادات والمفاتيح والحالة، جاهز للتوقيع والطباعة. مجانًا.</span></div><a class="btn btn-gold" href="#maker">أنشئ المحضر ↓</a></div>
 
 <h2>ما هو المحضر، ومتى يُكتب</h2>
 <p>
@@ -637,13 +676,13 @@
   مفاتيح، ولا توقيعًا. اجمع الاثنين: محضر موقّع، وصور مرفقة به.
 </p>
 
-<h2 id="maker">أنشئ المحضر الآن — واطبعه للتوقيع</h2>
+<h2 class="tool-h" id="maker">أنشئ المحضر الآن — واطبعه للتوقيع</h2>
 <p>
   املأ الحقول ويُبنى لك المحضر جاهزًا للطباعة بخانتي توقيع. كل شيء يجري داخل متصفحك،
   ولا يُرسَل شيء ولا يُحفظ عندنا.
 </p>
 
-<div class="box" style="padding:20px">
+<div class="tool-card box" style="padding:20px">
   <div id="hf" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px">
     <label>نوع المحضر
       <select id="h_kind">
@@ -976,6 +1015,16 @@
     }
   } catch (e) { /* لا يعطّل الصفحة أبدًا */ }
 })();
+</script>
+
+<script>
+/* (30 أكتوبر 2026) دعوة بعد الأداة: تظهر مرة واحدة أول ما يُبنى المستند — في لحظة الحاجة لا قبلها */
+(function(){var done=false;function add(box){if(done||!box)return;done=true;var d=document.createElement("div");d.className="after-tool no-print";
+d.innerHTML='<b>تسلّم وتستلم وحدات كثير؟</b><p>وثيق يحفظ محضر كل وحدة وقراءات عداداتها، والمخالصة عند الإخلاء من نفس البيانات.</p><div class="row"><a class="btn btn-gold" href="https://app.watheqapp.com/login?mode=signup">ابدأ تجربة 30 يومًا مجانًا</a><a class="btn btn-ghost" href="https://app.watheqapp.com/demo">شوف المكتب التجريبي</a></div>';
+var host=box.closest(".box")||box;host.parentNode.insertBefore(d,host.nextSibling);}
+var outs=document.querySelectorAll('.out,[id$="_out"]');if(!outs.length)return;
+var mo=new MutationObserver(function(){for(var i=0;i<outs.length;i++){if(!outs[i].hidden&&outs[i].offsetParent!==null){add(outs[i]);mo.disconnect();return;}}});
+for(var i=0;i<outs.length;i++)mo.observe(outs[i],{attributes:true,attributeFilter:["hidden","style"],childList:true});})();
 </script>
 </body>
 </html>
