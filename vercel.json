@@ -31,6 +31,11 @@
       "permanent": false
     },
     {
+      "source": "/marketer",
+      "destination": "/marketer.html",
+      "permanent": false
+    },
+    {
       "source": "/in",
       "destination": "https://app.watheqapp.com/demo?src=linkedin",
       "permanent": false
