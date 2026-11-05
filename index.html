@@ -343,6 +343,10 @@
   .bub .hh{font-weight:700;color:var(--deep);display:block;margin-bottom:5px}
   .bub .mm{color:var(--muted);font-size:.78rem;display:block;margin-top:7px}
   .bub b{color:#B8791F}
+  /* الوضع الليلي: إطار المحادثة كان يبقى فاتحًا والفقاعة داكنة ونصها داكن فلا يُقرأ (5 نوفمبر 2026) */
+  html[data-theme="dark"] .tgbody{background:#0B1A18}
+  html[data-theme="dark"] .bub{color:var(--ink,#DCE8E4);box-shadow:none;border:1px solid var(--line)}
+  html[data-theme="dark"] .bub b{color:#E7C877}
   /* أسئلة شائعة */
   .faq{max-width:820px;margin:28px auto 0}
   .fq{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:11px;overflow:hidden;box-shadow:var(--shadow)}
@@ -743,6 +747,17 @@
 </script>
 <!-- 🔗 دومين الموقع الرسمي — بدّله هنا وفي وسمي og أدناه -->
 <link rel="canonical" href="https://watheqapp.com/">
+<style id="wq-dark-fix">/* الوضع الليلي — ألوان ثابتة كانت داكنة على داكن أو فاتحة على فاتح (5 نوفمبر 2026) */
+html[data-theme="dark"] .doc-b,html[data-theme="dark"] .fq .a,html[data-theme="dark"] .q p,html[data-theme="dark"] .track ul{color:var(--ink,#DCE8E4)}
+html[data-theme="dark"] .tpl{background:var(--card,#0F221F);color:var(--ink,#DCE8E4)}
+html[data-theme="dark"] .box.warn{background:#312615;color:#F2DCA4}
+html[data-theme="dark"] .btn-gold,html[data-theme="dark"] .pack-flag{color:#0B211F}
+html[data-theme="dark"] [style*="background:var(--deep)"]{background:#12332F!important}
+html[data-theme="dark"] .box.ok{background:#0E3226}
+html[data-theme="dark"] .dpill.r,html[data-theme="dark"] .pill.late{background:#361B1C}
+html[data-theme="dark"] .foot,html[data-theme="dark"] footer{color:var(--muted,#A3B8B2)}
+html[data-theme="dark"] [style*="color:#5C6B67"]{color:var(--muted,#A3B8B2)!important}
+</style>
 </head>
 <body>
 
