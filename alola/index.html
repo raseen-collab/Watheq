@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>الأولى لإدارة الأملاك — إدارة أملاك وتأجير ووساطة عقارية</title>
+<meta name="description" content="مكتب الأولى لإدارة الأملاك في جدة: إدارة العقارات وتحصيل الإيجارات ومتابعة العقود والصيانة، والتأجير والتسويق العقاري. مرخّص من الهيئة العامة للعقار — رخصة فال 1200004968.">
+<meta property="og:title" content="الأولى لإدارة الأملاك">
+<meta property="og:description" content="إدارة أملاك وتأجير ووساطة عقارية — مرخّص من الهيئة العامة للعقار.">
+<meta property="og:image" content="https://watheqapp.com/alola/logo.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1c1c5a">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:"Aref Ruqaa";font-weight:700;font-style:normal;font-display:swap;src:url("aref-ruqaa-700.woff2") format("woff2")}
+  :root{
+    --navy:#1c1c5a; --navy-2:#26287a; --navy-3:#0f1040;
+    --gold:#c8a456; --gold-2:#e6cf94;
+    --ink:#171a33; --muted:#5d6180; --line:#e4e5ef; --bg:#f6f5f1; --paper:#fff; --wa:#1fa855;
+    --r:20px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.85;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+  .h-font{font-family:"Readex Pro",sans-serif}
+
+  /* header */
+  header{position:fixed;inset:0 0 auto 0;z-index:30;transition:background .3s,box-shadow .3s}
+  header.solid{background:rgba(255,255,255,.96);backdrop-filter:blur(8px);box-shadow:0 1px 0 var(--line)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:74px;gap:12px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .brand .logo{width:50px;height:50px;border-radius:50%;background:#fff;padding:2px;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+  .nm,.nm-hero,.nm-foot{font-family:"Aref Ruqaa",serif;font-weight:700;line-height:1.25;letter-spacing:0}
+  .brand .nm{font-size:1.45rem;color:#fff;-webkit-text-stroke:.6px var(--gold);text-shadow:2px 2px 0 rgba(10,10,50,.6);transition:color .3s}
+  header.solid .brand .nm{color:#fff;-webkit-text-stroke:.8px var(--navy);text-shadow:2px 2px 0 var(--navy)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:"Readex Pro",sans-serif;font-weight:600;border-radius:14px;padding:13px 22px;text-decoration:none;font-size:1rem;border:0;cursor:pointer;white-space:nowrap;transition:transform .2s,box-shadow .2s,background .2s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn svg{width:20px;height:20px;fill:currentColor}
+  .btn-wa{background:var(--wa);color:#fff;box-shadow:0 8px 22px rgba(31,168,85,.35)}
+  .btn-gold{background:linear-gradient(135deg,var(--gold),#b38d3f);color:#fff;box-shadow:0 8px 22px rgba(200,164,86,.35)}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1.5px solid rgba(255,255,255,.45)}
+  .btn-line{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
+  header .btn{padding:9px 16px;font-size:.92rem}
+  header:not(.solid) .btn-line{color:#fff;border-color:rgba(255,255,255,.55)}
+
+  /* hero */
+  .hero{position:relative;min-height:92vh;display:flex;align-items:center;color:#fff;overflow:hidden;
+        background:var(--navy-3) url("zahraa-tower.jpg") center/cover no-repeat}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(15,16,64,.97) 0%,rgba(28,28,90,.9) 45%,rgba(28,28,90,.45) 100%)}
+  .hero::after{content:"";position:absolute;width:640px;height:640px;border-radius:50%;border:2px solid rgba(200,164,86,.25);left:-180px;bottom:-260px;box-shadow:0 0 0 26px rgba(200,164,86,.06),0 0 0 60px rgba(200,164,86,.04)}
+  .hero .wrap{position:relative;z-index:2;padding-top:110px;padding-bottom:70px;width:100%}
+  .hero .inner{max-width:620px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;color:var(--gold-2);background:rgba(200,164,86,.12);border:1px solid rgba(200,164,86,.35);padding:5px 14px;border-radius:999px}
+  .hero .nm-hero{font-size:clamp(2.7rem,7.2vw,4.8rem);margin:20px 0 4px;color:#fff;-webkit-text-stroke:1.2px var(--gold);paint-order:stroke fill;text-shadow:4px 5px 0 #0b0c33,0 14px 30px rgba(0,0,0,.35)}
+  .hero .tag{font-family:"Readex Pro",sans-serif;font-size:clamp(1.25rem,2.6vw,1.6rem);font-weight:600;margin:6px 0 12px}
+  .hero p{color:#d9dbf3;font-size:1.06rem;margin:0 0 28px;max-width:540px}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .scroll-hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:2;color:rgba(255,255,255,.6);font-size:.8rem;letter-spacing:.5px}
+
+  /* sections */
+  section{padding:84px 0}
+  .head{text-align:center;max-width:640px;margin:0 auto 44px}
+  .kicker{color:var(--gold);font-weight:600;font-size:.9rem;letter-spacing:.3px}
+  .head h2{font-family:"Readex Pro",sans-serif;color:var(--navy);font-size:clamp(1.6rem,3.4vw,2.2rem);line-height:1.35;margin:6px 0 10px}
+  .head p{color:var(--muted);margin:0}
+  .divider{width:64px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--gold-2));margin:14px auto 0}
+
+  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .svc{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:28px 24px;transition:transform .25s,box-shadow .25s,border-color .25s;overflow:hidden}
+  .svc::after{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-2));transform:scaleX(0);transform-origin:right;transition:transform .35s}
+  .svc:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(28,28,90,.10);border-color:transparent}
+  .svc:hover::after{transform:scaleX(1)}
+  .svc .ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--navy),var(--navy-2));color:var(--gold-2)}
+  .svc .ic svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .svc h3{font-family:"Readex Pro",sans-serif;color:var(--navy);font-size:1.15rem;margin:16px 0 6px}
+  .svc p{margin:0;color:var(--muted);font-size:.96rem}
+
+  .props{background:var(--paper)}
+  .mosaic{display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:260px 260px;gap:14px}
+  .mosaic figure{position:relative;margin:0;border-radius:var(--r);overflow:hidden}
+  .mosaic figure:first-child{grid-row:1/3}
+  .mosaic img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+  .mosaic figure:hover img{transform:scale(1.05)}
+  .mosaic figcaption{position:absolute;inset:auto 0 0 0;padding:40px 18px 14px;color:#fff;font-weight:600;font-family:"Readex Pro",sans-serif;background:linear-gradient(transparent,rgba(15,16,64,.85))}
+  .wide{margin-top:14px;border-radius:var(--r);overflow:hidden;aspect-ratio:21/7}
+  .wide img{width:100%;height:100%;object-fit:cover}
+
+  .units{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .units figure{margin:0;border-radius:18px;overflow:hidden;aspect-ratio:3/4;background:#ddd;box-shadow:0 10px 30px rgba(28,28,90,.08)}
+  .units img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+  .units figure:hover img{transform:scale(1.06)}
+  .units-cta{text-align:center;margin-top:28px}
+
+  .trust{background:linear-gradient(135deg,var(--navy-3),var(--navy));color:#fff;position:relative;overflow:hidden}
+  .trust::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;border:2px solid rgba(200,164,86,.2);right:-140px;top:-160px}
+  .trust .head h2{color:#fff}
+  .trust .head p{color:#c9cbea}
+  .lic{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;position:relative}
+  .lic .c{display:flex;gap:18px;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:24px}
+  .lic .c .ic{flex:none;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:rgba(200,164,86,.15);color:var(--gold-2)}
+  .lic .c .ic svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .lic small{display:block;color:#c9cbea;font-size:.88rem}
+  .lic b{display:block;font-family:"Readex Pro",sans-serif;font-size:1.5rem;letter-spacing:1px;color:#fff;direction:ltr;text-align:right;margin:2px 0}
+
+  .contact{position:relative;border-radius:28px;padding:44px;display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;background:var(--paper);border:1px solid var(--line);box-shadow:0 24px 60px rgba(28,28,90,.10)}
+  .contact .logo-big{width:110px;height:110px}
+  .contact h2{font-family:"Readex Pro",sans-serif;color:var(--navy);font-size:clamp(1.4rem,2.8vw,1.9rem);margin:0 0 4px;line-height:1.4}
+  .contact p{color:var(--muted);margin:0}
+  .contact .acts{display:flex;flex-direction:column;gap:10px}
+
+  .addr{display:inline-flex;align-items:center;gap:10px;margin-top:14px;text-decoration:none;color:var(--navy)}
+  .addr svg{width:26px;height:26px;fill:none;stroke:var(--gold);stroke-width:1.8}
+  .addr b{display:block;font-family:"Readex Pro",sans-serif;font-size:1rem}
+  .addr small{display:block;color:var(--muted);font-size:.85rem}
+  .others{padding-top:0}
+  .olinks{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .ol{display:flex;align-items:center;gap:14px;min-width:240px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:16px 20px;text-decoration:none;transition:transform .25s,box-shadow .25s}
+  .ol:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(28,28,90,.10)}
+  .ol .oi{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--navy),var(--navy-2));color:var(--gold-2);font-size:1.2rem}
+  .ol b{display:block;font-family:"Readex Pro",sans-serif;color:var(--navy);direction:ltr;text-align:right}
+  .ol small{color:var(--muted)}
+  footer{padding:34px 0 40px;text-align:center;color:var(--muted);font-size:.86rem}
+  footer .nm-foot{font-size:1.6rem;color:#fff;-webkit-text-stroke:.8px var(--navy);paint-order:stroke fill;text-shadow:2px 2px 0 var(--navy);margin-bottom:6px}
+  footer a{color:var(--navy);text-decoration:none;font-weight:600}
+
+  .fab{position:fixed;left:18px;bottom:18px;z-index:40;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 10px 26px rgba(0,0,0,.25);animation:pulse 2.4s infinite}
+  .fab svg{width:30px;height:30px;fill:#fff}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(31,168,85,.45)}70%{box-shadow:0 0 0 16px rgba(31,168,85,0)}100%{box-shadow:0 0 0 0 rgba(31,168,85,0)}}
+
+  .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.fab{animation:none}*{scroll-behavior:auto}}
+
+  @media (max-width:900px){
+    .services{grid-template-columns:1fr 1fr}
+    .units{grid-template-columns:1fr 1fr}
+    .contact{grid-template-columns:1fr;text-align:center;justify-items:center;padding:32px 22px}
+    .contact .acts{flex-direction:row;flex-wrap:wrap;justify-content:center}
+  }
+  @media (max-width:640px){
+    section{padding:64px 0}
+    .services{grid-template-columns:1fr}
+    .mosaic{grid-template-columns:1fr;grid-template-rows:280px 220px 220px}
+    .mosaic figure:first-child{grid-row:auto}
+    .wide{aspect-ratio:16/9}
+    .lic{grid-template-columns:1fr}
+    .brand .nm{font-size:1.15rem}
+    header .call{display:none}
+    .hero{min-height:88vh;background-position:30% center}
+    .hero::before{background:linear-gradient(180deg,rgba(15,16,64,.88) 0%,rgba(28,28,90,.92) 100%)}
+  }
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="الأولى لإدارة الأملاك">
+      <img class="logo" src="logo.png" alt="شعار الأولى لإدارة الأملاك" width="50" height="50">
+      <span class="nm">الأولى لإدارة الأملاك</span>
+    </a>
+    <div style="display:flex;gap:8px">
+      <a class="btn btn-line call" href="tel:+966570376617">اتصال</a>
+      <a class="btn btn-wa" href="https://wa.me/966570376617?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%AA%D9%88%D8%A7%D8%B5%D9%84%D8%AA%20%D9%85%D8%B9%D9%83%D9%85%20%D9%85%D9%86%20%D8%B5%D9%81%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%83%D8%AA%D8%A8" target="_blank" rel="noopener">واتساب</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="inner">
+        <span class="eyebrow">✦ جدة · مرخّص من الهيئة العامة للعقار · فال 1200004968</span>
+        <h1 class="nm-hero">الأولى لإدارة الأملاك</h1>
+        <div class="tag">عقارك في أيدٍ أمينة</div>
+        <p>نتولّى عقارك من التأجير إلى التحصيل والصيانة، ونعطيك تقريرًا واضحًا كل شهر — وأنت مرتاح.</p>
+        <div class="cta">
+          <a class="btn btn-wa" href="https://wa.me/966570376617?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D9%8A%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D9%88%D8%AD%D8%AF%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%AA%D8%A7%D8%AD%D8%A9" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.7 1.9 6.7L3 29l6.9-2.1c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.6 12.7-12.6S23 3 16 3zm0 23.1c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.2 1.3-4-.3-.4c-1.1-1.7-1.7-3.6-1.7-5.6C5.4 9.8 10.1 5.2 16 5.2s10.6 4.6 10.6 10.4S21.9 26.1 16 26.1z"/></svg>اسأل عن الوحدات المتاحة</a>
+          <a class="btn btn-ghost" href="#services">تعرّف على خدماتنا</a>
+        </div>
+      </div>
+    </div>
+    <span class="scroll-hint">مرّر للأسفل ↓</span>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="head rv">
+        <div class="kicker">خدماتنا</div>
+        <h2>كل ما يحتاجه عقارك، عند مكتب واحد</h2>
+        <p>للملاك اللي يبون عقارهم يشتغل بدون صداع، وللمستأجرين اللي يدورون سكن أو محل مناسب.</p>
+        <div class="divider"></div>
+      </div>
+      <div class="services">
+        <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M14 9h1M9 13h1M14 13h1M10 21v-4h4v4"/></svg></div><h3>إدارة الأملاك</h3><p>نتولى عقارك بالكامل: المستأجرين والعقود والمتابعة اليومية، وأنت مرتاح.</p></div>
+        <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg></div><h3>تحصيل الإيجارات</h3><p>متابعة الدفعات في مواعيدها، ومتابعة المتأخرات أولًا بأول.</p></div>
+        <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div><h3>العقود والتجديد</h3><p>توثيق العقود في منصة إيجار، ومتابعة التجديد والإخلاء قبل موعدها.</p></div>
+        <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></div><h3>الصيانة</h3><p>استقبال طلبات الصيانة ومتابعتها مع الفنيين حتى تنجز.</p></div>
+        <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><h3>تقارير المالك</h3><p>تقرير واضح بالمحصّل والمتأخر والمصاريف والصافي.</p></div>
+        <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></svg></div><h3>التأجير والتسويق</h3><p>تسويق وحداتك الشاغرة واختيار المستأجر المناسب، بموجب رخصة فال للوساطة والتسويق العقاري.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="props">
+    <div class="wrap">
+      <div class="head rv">
+        <div class="kicker">عقاراتنا</div>
+        <h2>من العقارات التي نديرها</h2>
+        <p>عمائر سكنية ومراكز تجارية بمحلات ومكاتب.</p>
+        <div class="divider"></div>
+      </div>
+      <div class="mosaic rv">
+        <figure><img src="zahraa-entrance.jpg" alt="مدخل عمارة الزهراء بلازا" loading="lazy"><figcaption>الزهراء بلازا</figcaption></figure>
+        <figure><img src="center-entrance.jpg" alt="مدخل مركز الزهراء" loading="lazy"><figcaption>مركز الزهراء</figcaption></figure>
+        <figure><img src="zahraa-tower.jpg" alt="إحدى العمائر التي نديرها" loading="lazy" style="object-position:center 30%"></figure>
+      </div>
+      <div class="wide rv"><img src="street-shops.jpg" alt="محلات تجارية في أحد المراكز التي نديرها" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="head rv">
+        <div class="kicker">من الداخل</div>
+        <h2>وحدات نظيفة ومجهّزة</h2>
+        <p>تشطيب حديث، ومطابخ وحمامات جاهزة للسكن.</p>
+        <div class="divider"></div>
+      </div>
+      <div class="units">
+        <figure class="rv"><img src="unit-bedroom.jpg" alt="غرفة نوم في إحدى الوحدات" loading="lazy"></figure>
+        <figure class="rv"><img src="unit-kitchen.jpg" alt="مطبخ في إحدى الوحدات" loading="lazy"></figure>
+        <figure class="rv"><img src="unit-bath.jpg" alt="دورة مياه في إحدى الوحدات" loading="lazy"></figure>
+        <figure class="rv"><img src="unit-kitchenette.jpg" alt="مطبخ تحضيري في إحدى الوحدات" loading="lazy"></figure>
+      </div>
+      <div class="units-cta rv"><a class="btn btn-gold" href="https://wa.me/966570376617?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D9%8A%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D9%88%D8%AD%D8%AF%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%AA%D8%A7%D8%AD%D8%A9" target="_blank" rel="noopener">اسأل عن المتاح الآن</a></div>
+    </div>
+  </section>
+
+  <section class="trust">
+    <div class="wrap">
+      <div class="head rv">
+        <div class="kicker">الثقة أولًا</div>
+        <h2>مرخّصون رسميًا</h2>
+        <p>مكتب الأولى لإدارة الأملاك — مؤسسة مسجّلة ومرخّصة.</p>
+        <div class="divider"></div>
+      </div>
+      <div class="lic">
+        <div class="c rv"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.6-1.5 1.8-2 3-2s2.4.5 3 2M14 10h4M14 13h3"/></svg></div><div><small>رخصة فال — الهيئة العامة للعقار</small><b>1200004968</b><small>الوساطة والتسويق العقاري</small></div></div>
+        <div class="c rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M4 10h16M12 3l8 5H4zM6 10v8M10 10v8M14 10v8M18 10v8"/></svg></div><div><small>السجل التجاري — الرقم الوطني الموحد</small><b>7018004502</b><small>وزارة التجارة</small></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="contact rv">
+        <img class="logo-big" src="logo.png" alt="" width="110" height="110">
+        <div>
+          <h2>عندك عقار تبي تأجّره أو تديره؟</h2>
+          <p>كلّمنا على الواتساب ونرد عليك بأقرب وقت، أو زورنا في المكتب.</p>
+          <a class="addr" href="https://goo.gl/maps/vh1ktFjysnY26MaW8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><span><b>مركز الزهراء — الدور الأول، جدة</b><small>افتح الموقع في خرائط قوقل ←</small></span></a>
+        </div>
+        <div class="acts">
+          <a class="btn btn-wa" href="https://wa.me/966570376617" target="_blank" rel="noopener">واتساب 0570376617</a>
+          <a class="btn btn-line" href="tel:+966570376617">جوال 0570376617</a>
+          <a class="btn btn-line" href="tel:+966126646616">هاتف 0126646616</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="others">
+    <div class="wrap">
+      <div class="head rv">
+        <div class="kicker">أعمالنا الأخرى</div>
+        <h2>تابعونا أيضًا</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="olinks">
+        <a class="ol rv" href="https://nourascent.com/" target="_blank" rel="noopener"><span class="oi">✦</span><span><b>Noura</b><small>nourascent.com</small></span></a>
+        <a class="ol rv" href="https://www.instagram.com/oarsmanblue/" target="_blank" rel="noopener"><span class="oi">◎</span><span><b>@oarsmanblue</b><small>إنستقرام</small></span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="nm-foot">الأولى لإدارة الأملاك</div>
+  © الأولى لإدارة الأملاك · صفحة من <a href="https://watheqapp.com/?src=alola" target="_blank" rel="noopener">وثيق لإدارة الأملاك</a>
+</footer>
+
+<a class="fab" href="https://wa.me/966570376617" target="_blank" rel="noopener" aria-label="واتساب">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.7 1.9 6.7L3 29l6.9-2.1c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.6 12.7-12.6S23 3 16 3zm0 23.1c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.2 1.3-4-.3-.4c-1.1-1.7-1.7-3.6-1.7-5.6C5.4 9.8 10.1 5.2 16 5.2s10.6 4.6 10.6 10.4S21.9 26.1 16 26.1zm5.8-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
+</a>
+
+<script>
+(function(){
+  var h=document.getElementById('hdr');
+  function onScroll(){ if(window.scrollY>40) h.classList.add('solid'); else h.classList.remove('solid'); }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in')}); return; }
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }); },{threshold:.12});
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+</body>
+</html>
