@@ -72,6 +72,7 @@
   .divider{width:64px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--gold-2));margin:14px auto 0}
 
   .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .services .svc:last-child:nth-child(3n+1){grid-column:1/-1}
   .svc{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:28px 24px;transition:transform .25s,box-shadow .25s,border-color .25s;overflow:hidden}
   .svc::after{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-2));transform:scaleX(0);transform-origin:right;transition:transform .35s}
   .svc:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(28,28,90,.10);border-color:transparent}
@@ -101,7 +102,7 @@
   .trust::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;border:2px solid rgba(200,164,86,.2);right:-140px;top:-160px}
   .trust .head h2{color:#fff}
   .trust .head p{color:#c9cbea}
-  .lic{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;position:relative}
+  .lic{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative}
   .lic .c{display:flex;gap:18px;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:24px}
   .lic .c .ic{flex:none;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:rgba(200,164,86,.15);color:var(--gold-2)}
   .lic .c .ic svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
@@ -123,9 +124,24 @@
   .ol{display:flex;align-items:center;gap:14px;min-width:240px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:16px 20px;text-decoration:none;transition:transform .25s,box-shadow .25s}
   .ol:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(28,28,90,.10)}
   .ol .oi{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--navy),var(--navy-2));color:var(--gold-2);font-size:1.2rem}
-  .ol b{display:block;font-family:"Readex Pro",sans-serif;color:var(--navy);direction:ltr;text-align:right}
+  .ol b{display:block;font-family:"Readex Pro",sans-serif;color:var(--navy)}
   .ol small{color:var(--muted)}
-  footer{padding:34px 0 40px;text-align:center;color:var(--muted);font-size:.86rem}
+  /* lang + login */
+  .hacts{display:flex;gap:8px;align-items:center}
+  .btn-lang{padding:9px 12px!important;min-width:46px;background:transparent;color:var(--navy);border:1.5px solid var(--line);font-size:.86rem!important}
+  header:not(.solid) .btn-lang{color:#fff;border-color:rgba(255,255,255,.4)}
+  .btn-login{background:var(--navy);color:#fff}
+  header:not(.solid) .btn-login{background:rgba(255,255,255,.14);border:1.5px solid rgba(200,164,86,.7)}
+  .btn-login svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  /* English (LTR) */
+  html[lang=en] body{font-family:"Readex Pro",system-ui,sans-serif;line-height:1.7}
+  html[lang=en] .hero::before{background:linear-gradient(260deg,rgba(15,16,64,.97) 0%,rgba(28,28,90,.9) 45%,rgba(28,28,90,.45) 100%)}
+  html[lang=en] .hero::after{left:auto;right:-180px}
+  html[lang=en] .svc::after{transform-origin:left}
+  html[lang=en] .lic b{text-align:left}
+  html[lang=en] .fab{left:auto;right:18px}
+  html[lang=en] .kicker{letter-spacing:1px;text-transform:uppercase;font-size:.8rem}
+  footer{padding:34px 16px 40px;text-align:center;color:var(--muted);font-size:.86rem}
   footer .nm-foot{font-size:1.6rem;color:#fff;-webkit-text-stroke:.8px var(--navy);paint-order:stroke fill;text-shadow:2px 2px 0 var(--navy);margin-bottom:6px}
   footer a{color:var(--navy);text-decoration:none;font-weight:600}
 
@@ -139,7 +155,10 @@
 
   @media (max-width:900px){
     .services{grid-template-columns:1fr 1fr}
+    .services .svc:last-child:nth-child(3n+1){grid-column:auto}
+    .services .svc:last-child:nth-child(2n+1){grid-column:1/-1}
     .units{grid-template-columns:1fr 1fr}
+    .lic{grid-template-columns:1fr}
     .contact{grid-template-columns:1fr;text-align:center;justify-items:center;padding:32px 22px}
     .contact .acts{flex-direction:row;flex-wrap:wrap;justify-content:center}
   }
@@ -150,10 +169,23 @@
     .mosaic figure:first-child{grid-row:auto}
     .wide{aspect-ratio:16/9}
     .lic{grid-template-columns:1fr}
-    .brand .nm{font-size:1.15rem}
+    .ol{width:100%;min-width:0}
+    footer{padding-bottom:100px}
+    .brand .nm{font-size:1.1rem;white-space:nowrap}
     header .call{display:none}
+    header .btn .t{display:none}
+    header .btn-login,header .btn-wa{padding:9px 11px!important}
+    .brand{min-width:0;flex:1 1 auto}
+    .hacts{flex:none;gap:6px}
+    .brand .logo{flex:none}
+    header .btn{padding:9px 12px}
+    .brand .logo{width:42px;height:42px}
+    .brand{gap:8px}
     .hero{min-height:88vh;background-position:30% center}
     .hero::before{background:linear-gradient(180deg,rgba(15,16,64,.88) 0%,rgba(28,28,90,.92) 100%)}
+  }
+  @media (max-width:370px){
+    .brand .nm{font-size:.95rem;white-space:normal;line-height:1.2}
   }
 </style>
 </head>
@@ -161,13 +193,15 @@
 
 <header id="hdr">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="الأولى لإدارة الأملاك">
-      <img class="logo" src="logo.png" alt="شعار الأولى لإدارة الأملاك" width="50" height="50">
+    <a class="brand" href="#top" aria-label="الأولى لإدارة الأملاك" data-en-aria="الأولى لإدارة الأملاك">
+      <img class="logo" src="logo.png" alt="شعار الأولى لإدارة الأملاك" data-en-alt="الأولى لإدارة الأملاك logo" width="50" height="50">
       <span class="nm">الأولى لإدارة الأملاك</span>
     </a>
-    <div style="display:flex;gap:8px">
-      <a class="btn btn-line call" href="tel:+966570376617">اتصال</a>
-      <a class="btn btn-wa" href="https://wa.me/966570376617?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%AA%D9%88%D8%A7%D8%B5%D9%84%D8%AA%20%D9%85%D8%B9%D9%83%D9%85%20%D9%85%D9%86%20%D8%B5%D9%81%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%83%D8%AA%D8%A8" target="_blank" rel="noopener">واتساب</a>
+    <div class="hacts">
+      <button class="btn btn-lang" type="button" id="langBtn" lang="en" aria-label="English">EN</button>
+      <a class="btn btn-login" href="https://app.watheqapp.com/login" target="_blank" rel="noopener" aria-label="دخول المكتب" data-en-aria="Office login"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg><span class="t" data-en="Office login">دخول المكتب</span></a>
+      <a class="btn btn-line call" href="tel:+966570376617" data-en="Call">اتصال</a>
+      <a class="btn btn-wa" href="https://wa.me/966570376617?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%AA%D9%88%D8%A7%D8%B5%D9%84%D8%AA%20%D9%85%D8%B9%D9%83%D9%85%20%D9%85%D9%86%20%D8%B5%D9%81%D8%AD%D8%A9%20%D8%A7%D9%84%D9%85%D9%83%D8%AA%D8%A8" data-en-href="https://wa.me/966570376617?text=Hello%2C%20I%20found%20you%20through%20your%20website" target="_blank" rel="noopener" aria-label="واتساب" data-en-aria="WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.7 1.9 6.7L3 29l6.9-2.1c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.6 12.7-12.6S23 3 16 3zm0 23.1c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.2 1.3-4-.3-.4c-1.1-1.7-1.7-3.6-1.7-5.6C5.4 9.8 10.1 5.2 16 5.2s10.6 4.6 10.6 10.4S21.9 26.1 16 26.1z"/></svg><span class="t" data-en="WhatsApp">واتساب</span></a>
     </div>
   </div>
 </header>
@@ -176,34 +210,35 @@
   <section class="hero">
     <div class="wrap">
       <div class="inner">
-        <span class="eyebrow">✦ جدة · مرخّص من الهيئة العامة للعقار · فال 1200004968</span>
+        <span class="eyebrow" data-en="✦ Jeddah · Licensed by the Real Estate General Authority · FAL 1200004968">✦ جدة · مرخّص من الهيئة العامة للعقار · فال 1200004968</span>
         <h1 class="nm-hero">الأولى لإدارة الأملاك</h1>
-        <div class="tag">عقارك في أيدٍ أمينة</div>
-        <p>نتولّى عقارك من التأجير إلى التحصيل والصيانة، ونعطيك تقريرًا واضحًا كل شهر — وأنت مرتاح.</p>
+        <div class="tag" data-en="Your property, in trusted hands">عقارك في أيدٍ أمينة</div>
+        <p data-en="We take care of your property — from leasing to rent collection and maintenance — and send you a clear report every month, so you can relax.">نتولّى عقارك من التأجير إلى التحصيل والصيانة، ونعطيك تقريرًا واضحًا كل شهر — وأنت مرتاح.</p>
         <div class="cta">
-          <a class="btn btn-wa" href="https://wa.me/966570376617?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D9%8A%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D9%88%D8%AD%D8%AF%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%AA%D8%A7%D8%AD%D8%A9" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.7 1.9 6.7L3 29l6.9-2.1c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.6 12.7-12.6S23 3 16 3zm0 23.1c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.2 1.3-4-.3-.4c-1.1-1.7-1.7-3.6-1.7-5.6C5.4 9.8 10.1 5.2 16 5.2s10.6 4.6 10.6 10.4S21.9 26.1 16 26.1z"/></svg>اسأل عن الوحدات المتاحة</a>
-          <a class="btn btn-ghost" href="#services">تعرّف على خدماتنا</a>
+          <a class="btn btn-wa" href="https://wa.me/966570376617?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D9%8A%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D9%88%D8%AD%D8%AF%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%AA%D8%A7%D8%AD%D8%A9" data-en-href="https://wa.me/966570376617?text=Hello%2C%20I%27d%20like%20to%20ask%20about%20available%20units" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.7 1.9 6.7L3 29l6.9-2.1c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.6 12.7-12.6S23 3 16 3zm0 23.1c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.2 1.3-4-.3-.4c-1.1-1.7-1.7-3.6-1.7-5.6C5.4 9.8 10.1 5.2 16 5.2s10.6 4.6 10.6 10.4S21.9 26.1 16 26.1z"/></svg><span data-en="Ask about available units">اسأل عن الوحدات المتاحة</span></a>
+          <a class="btn btn-ghost" href="#services" data-en="Explore our services">تعرّف على خدماتنا</a>
         </div>
       </div>
     </div>
-    <span class="scroll-hint">مرّر للأسفل ↓</span>
+    <span class="scroll-hint" data-en="Scroll down ↓">مرّر للأسفل ↓</span>
   </section>
 
   <section id="services">
     <div class="wrap">
       <div class="head rv">
-        <div class="kicker">خدماتنا</div>
-        <h2>كل ما يحتاجه عقارك، عند مكتب واحد</h2>
-        <p>للملاك اللي يبون عقارهم يشتغل بدون صداع، وللمستأجرين اللي يدورون سكن أو محل مناسب.</p>
+        <div class="kicker" data-en="Our services">خدماتنا</div>
+        <h2 data-en="Everything your property needs, from one office">كل ما يحتاجه عقارك، عند مكتب واحد</h2>
+        <p data-en="For owners who want their property to run without the hassle, and for tenants looking for the right home or shop.">للملاك اللي يبون عقارهم يشتغل بدون صداع، وللمستأجرين اللي يدورون سكن أو محل مناسب.</p>
         <div class="divider"></div>
       </div>
       <div class="services">
-        <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M14 9h1M9 13h1M14 13h1M10 21v-4h4v4"/></svg></div><h3>إدارة الأملاك</h3><p>نتولى عقارك بالكامل: المستأجرين والعقود والمتابعة اليومية، وأنت مرتاح.</p></div>
-        <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg></div><h3>تحصيل الإيجارات</h3><p>متابعة الدفعات في مواعيدها، ومتابعة المتأخرات أولًا بأول.</p></div>
-        <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div><h3>العقود والتجديد</h3><p>توثيق العقود في منصة إيجار، ومتابعة التجديد والإخلاء قبل موعدها.</p></div>
-        <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></div><h3>الصيانة</h3><p>استقبال طلبات الصيانة ومتابعتها مع الفنيين حتى تنجز.</p></div>
-        <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><h3>تقارير المالك</h3><p>تقرير واضح بالمحصّل والمتأخر والمصاريف والصافي.</p></div>
-        <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></svg></div><h3>التأجير والتسويق</h3><p>تسويق وحداتك الشاغرة واختيار المستأجر المناسب، بموجب رخصة فال للوساطة والتسويق العقاري.</p></div>
+        <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M14 9h1M9 13h1M14 13h1M10 21v-4h4v4"/></svg></div><h3 data-en="Property management">إدارة الأملاك</h3><p data-en="We manage your property end to end: tenants, contracts and day-to-day follow-up.">نتولى عقارك بالكامل: المستأجرين والعقود والمتابعة اليومية، وأنت مرتاح.</p></div>
+        <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg></div><h3 data-en="Rent collection">تحصيل الإيجارات</h3><p data-en="Payments followed up on schedule, and arrears chased promptly.">متابعة الدفعات في مواعيدها، ومتابعة المتأخرات أولًا بأول.</p></div>
+        <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div><h3 data-en="Contracts &amp; renewals">العقود والتجديد</h3><p data-en="Leases registered on the Ejar platform, with renewals and move-outs handled ahead of time.">توثيق العقود في منصة إيجار، ومتابعة التجديد والإخلاء قبل موعدها.</p></div>
+        <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></div><h3 data-en="Maintenance">الصيانة</h3><p data-en="We receive maintenance requests and follow up with technicians until the job is done.">استقبال طلبات الصيانة ومتابعتها مع الفنيين حتى تنجز.</p></div>
+        <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><h3 data-en="Owner reports">تقارير المالك</h3><p data-en="A clear report of collected rent, arrears, expenses and net income.">تقرير واضح بالمحصّل والمتأخر والمصاريف والصافي.</p></div>
+        <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></svg></div><h3 data-en="Leasing &amp; marketing">التأجير والتسويق</h3><p data-en="We market your vacant units and find the right tenant, under our FAL license for real estate brokerage and marketing.">تسويق وحداتك الشاغرة واختيار المستأجر المناسب، بموجب رخصة فال للوساطة والتسويق العقاري.</p></div>
+        <div class="svc rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 10v10h14V10M10 20v-5h4v5"/></svg></div><h3 data-en="Buying &amp; selling">بيع وشراء العقارات</h3><p data-en="Buying and selling property with brokerage contracts documented on the Real Estate General Authority platform.">بيع وشراء العقارات بعقود وساطة موثّقة في منصة الهيئة العامة للعقار.</p></div>
       </div>
     </div>
   </section>
@@ -211,49 +246,50 @@
   <section class="props">
     <div class="wrap">
       <div class="head rv">
-        <div class="kicker">عقاراتنا</div>
-        <h2>من العقارات التي نديرها</h2>
-        <p>عمائر سكنية ومراكز تجارية بمحلات ومكاتب.</p>
+        <div class="kicker" data-en="Our properties">عقاراتنا</div>
+        <h2 data-en="Some of the properties we manage">من العقارات التي نديرها</h2>
+        <p data-en="Residential buildings, commercial centers with shops and offices, industrial complexes, car-service workshops, rest houses and beach chalets.">عمائر سكنية ومراكز تجارية بمحلات ومكاتب ومجمعات صناعية وورش خدمات سيارات واستراحات وشاليهات بحرية.</p>
         <div class="divider"></div>
       </div>
       <div class="mosaic rv">
-        <figure><img src="zahraa-entrance.jpg" alt="مدخل عمارة الزهراء بلازا" loading="lazy"><figcaption>الزهراء بلازا</figcaption></figure>
-        <figure><img src="center-entrance.jpg" alt="مدخل مركز الزهراء" loading="lazy"><figcaption>مركز الزهراء</figcaption></figure>
-        <figure><img src="zahraa-tower.jpg" alt="إحدى العمائر التي نديرها" loading="lazy" style="object-position:center 30%"></figure>
+        <figure><img src="zahraa-entrance.jpg" alt="مدخل عمارة الزهراء بلازا" data-en-alt="Al Zahraa Plaza building entrance" loading="lazy"><figcaption data-en="Al Zahraa Plaza">الزهراء بلازا</figcaption></figure>
+        <figure><img src="center-entrance.jpg" alt="مدخل مركز الزهراء" data-en-alt="Al Zahraa Center entrance" loading="lazy"><figcaption data-en="Al Zahraa Center">مركز الزهراء</figcaption></figure>
+        <figure><img src="zahraa-tower.jpg" alt="إحدى العمائر التي نديرها" data-en-alt="One of the buildings we manage" loading="lazy" style="object-position:center 30%"></figure>
       </div>
-      <div class="wide rv"><img src="street-shops.jpg" alt="محلات تجارية في أحد المراكز التي نديرها" loading="lazy"></div>
+      <div class="wide rv"><img src="street-shops.jpg" alt="محلات تجارية في أحد المراكز التي نديرها" data-en-alt="Shops in one of the centers we manage" loading="lazy"></div>
     </div>
   </section>
 
   <section>
     <div class="wrap">
       <div class="head rv">
-        <div class="kicker">من الداخل</div>
-        <h2>وحدات نظيفة ومجهّزة</h2>
-        <p>تشطيب حديث، ومطابخ وحمامات جاهزة للسكن.</p>
+        <div class="kicker" data-en="Inside">من الداخل</div>
+        <h2 data-en="Clean, well-equipped units">وحدات نظيفة ومجهّزة</h2>
+        <p data-en="Modern finishes, with kitchens and bathrooms ready to move in.">تشطيب حديث، ومطابخ وحمامات جاهزة للسكن.</p>
         <div class="divider"></div>
       </div>
       <div class="units">
-        <figure class="rv"><img src="unit-bedroom.jpg" alt="غرفة نوم في إحدى الوحدات" loading="lazy"></figure>
-        <figure class="rv"><img src="unit-kitchen.jpg" alt="مطبخ في إحدى الوحدات" loading="lazy"></figure>
-        <figure class="rv"><img src="unit-bath.jpg" alt="دورة مياه في إحدى الوحدات" loading="lazy"></figure>
-        <figure class="rv"><img src="unit-kitchenette.jpg" alt="مطبخ تحضيري في إحدى الوحدات" loading="lazy"></figure>
+        <figure class="rv"><img src="unit-bedroom.jpg" alt="غرفة نوم في إحدى الوحدات" data-en-alt="Bedroom in one of our units" loading="lazy"></figure>
+        <figure class="rv"><img src="unit-kitchen.jpg" alt="مطبخ في إحدى الوحدات" data-en-alt="Kitchen in one of our units" loading="lazy"></figure>
+        <figure class="rv"><img src="unit-bath.jpg" alt="دورة مياه في إحدى الوحدات" data-en-alt="Bathroom in one of our units" loading="lazy"></figure>
+        <figure class="rv"><img src="unit-kitchenette.jpg" alt="مطبخ تحضيري في إحدى الوحدات" data-en-alt="Kitchenette in one of our units" loading="lazy"></figure>
       </div>
-      <div class="units-cta rv"><a class="btn btn-gold" href="https://wa.me/966570376617?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D9%8A%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D9%88%D8%AD%D8%AF%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%AA%D8%A7%D8%AD%D8%A9" target="_blank" rel="noopener">اسأل عن المتاح الآن</a></div>
+      <div class="units-cta rv"><a class="btn btn-gold" href="https://wa.me/966570376617?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D9%8A%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D9%88%D8%AD%D8%AF%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%AA%D8%A7%D8%AD%D8%A9" data-en-href="https://wa.me/966570376617?text=Hello%2C%20I%27d%20like%20to%20ask%20about%20available%20units" target="_blank" rel="noopener"><span data-en="Ask what's available now">اسأل عن المتاح الآن</span></a></div>
     </div>
   </section>
 
   <section class="trust">
     <div class="wrap">
       <div class="head rv">
-        <div class="kicker">الثقة أولًا</div>
-        <h2>مرخّصون رسميًا</h2>
-        <p>مكتب الأولى لإدارة الأملاك — مؤسسة مسجّلة ومرخّصة.</p>
+        <div class="kicker" data-en="Trust first">الثقة أولًا</div>
+        <h2 data-en="Officially licensed">مرخّصون رسميًا</h2>
+        <p data-en-html="&lt;bdi&gt;الأولى لإدارة الأملاك&lt;/bdi&gt; — a registered, licensed establishment.">مكتب الأولى لإدارة الأملاك — مؤسسة مسجّلة ومرخّصة.</p>
         <div class="divider"></div>
       </div>
       <div class="lic">
-        <div class="c rv"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.6-1.5 1.8-2 3-2s2.4.5 3 2M14 10h4M14 13h3"/></svg></div><div><small>رخصة فال — الهيئة العامة للعقار</small><b>1200004968</b><small>الوساطة والتسويق العقاري</small></div></div>
-        <div class="c rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M4 10h16M12 3l8 5H4zM6 10v8M10 10v8M14 10v8M18 10v8"/></svg></div><div><small>السجل التجاري — الرقم الوطني الموحد</small><b>7018004502</b><small>وزارة التجارة</small></div></div>
+        <div class="c rv"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.6-1.5 1.8-2 3-2s2.4.5 3 2M14 10h4M14 13h3"/></svg></div><div><small data-en="FAL License — Real Estate General Authority">رخصة فال — الهيئة العامة للعقار</small><b>1200004968</b><small data-en="Real estate brokerage &amp; marketing">الوساطة والتسويق العقاري</small></div></div>
+        <div class="c rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M4 10h16M12 3l8 5H4zM6 10v8M10 10v8M14 10v8M18 10v8"/></svg></div><div><small data-en="Commercial Registration — Unified National Number">السجل التجاري — الرقم الوطني الموحد</small><b>7018004502</b><small data-en="Ministry of Commerce">وزارة التجارة</small></div></div>
+        <div class="c rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div><div><small data-en="Ejar membership — Certified real estate broker">عضوية إيجار — وسيط عقاري معتمد</small><b>98197343</b><small data-en="Ejar e-network for rental services">الشبكة الإلكترونية لخدمات الإيجار</small></div></div>
       </div>
     </div>
   </section>
@@ -263,14 +299,14 @@
       <div class="contact rv">
         <img class="logo-big" src="logo.png" alt="" width="110" height="110">
         <div>
-          <h2>عندك عقار تبي تأجّره أو تديره؟</h2>
-          <p>كلّمنا على الواتساب ونرد عليك بأقرب وقت، أو زورنا في المكتب.</p>
-          <a class="addr" href="https://goo.gl/maps/vh1ktFjysnY26MaW8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><span><b>مركز الزهراء — الدور الأول، جدة</b><small>افتح الموقع في خرائط قوقل ←</small></span></a>
+          <h2 data-en="Have a property to rent out, manage, sell, buy or develop?">عندك عقار تبي تأجّره أو تديره أو تبيعه أو تشتريه أو تطوّره؟</h2>
+          <p data-en="Message us on WhatsApp and we'll get back to you shortly — or visit us at the office.">كلّمنا على الواتساب ونرد عليك بأقرب وقت، أو زورنا في المكتب.</p>
+          <a class="addr" href="https://goo.gl/maps/vh1ktFjysnY26MaW8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><span><b data-en="Al Zahraa Center — First Floor, Jeddah">مركز الزهراء — الدور الأول، جدة</b><small data-en="Open in Google Maps →">افتح الموقع في خرائط قوقل ←</small></span></a>
         </div>
         <div class="acts">
-          <a class="btn btn-wa" href="https://wa.me/966570376617" target="_blank" rel="noopener">واتساب 0570376617</a>
-          <a class="btn btn-line" href="tel:+966570376617">جوال 0570376617</a>
-          <a class="btn btn-line" href="tel:+966126646616">هاتف 0126646616</a>
+          <a class="btn btn-wa" href="https://wa.me/966570376617" target="_blank" rel="noopener" data-en="WhatsApp 0570376617">واتساب 0570376617</a>
+          <a class="btn btn-line" href="tel:+966570376617" data-en="Mobile 0570376617">جوال 0570376617</a>
+          <a class="btn btn-line" href="tel:+966126646616" data-en="Landline 0126646616">هاتف 0126646616</a>
         </div>
       </div>
     </div>
@@ -278,13 +314,13 @@
   <section class="others">
     <div class="wrap">
       <div class="head rv">
-        <div class="kicker">أعمالنا الأخرى</div>
-        <h2>تابعونا أيضًا</h2>
+        <div class="kicker" data-en="Our other businesses">أعمالنا الأخرى</div>
+        <h2 data-en="Follow us too">تابعونا أيضًا</h2>
         <div class="divider"></div>
       </div>
       <div class="olinks">
-        <a class="ol rv" href="https://nourascent.com/" target="_blank" rel="noopener"><span class="oi">✦</span><span><b>Noura</b><small>nourascent.com</small></span></a>
-        <a class="ol rv" href="https://www.instagram.com/oarsmanblue/" target="_blank" rel="noopener"><span class="oi">◎</span><span><b>@oarsmanblue</b><small>إنستقرام</small></span></a>
+        <a class="ol rv" href="https://nourascent.com/" target="_blank" rel="noopener"><span class="oi">✦</span><span><b>Noura</b><small data-en="Online perfume store · nourascent.com">متجر عطور إلكتروني · nourascent.com</small></span></a>
+        <a class="ol rv" href="https://www.instagram.com/oarsmanblue/" target="_blank" rel="noopener"><span class="oi">◎</span><span><b data-en="Oarsman Blue">Oarsman Blue · أورزمن بلو</b><small data-en-html="Kayak rentals in Jeddah · &lt;bdi dir=&quot;ltr&quot;&gt;@oarsmanblue&lt;/bdi&gt;">تأجير قوارب الكاياك في جدة · <bdi dir="ltr">@oarsmanblue</bdi></small></span></a>
       </div>
     </div>
   </section>
@@ -292,14 +328,38 @@
 
 <footer>
   <div class="nm-foot">الأولى لإدارة الأملاك</div>
-  © الأولى لإدارة الأملاك · صفحة من <a href="https://watheqapp.com/?src=alola" target="_blank" rel="noopener">وثيق لإدارة الأملاك</a>
+  <span data-en-html="© &lt;bdi&gt;الأولى لإدارة الأملاك&lt;/bdi&gt; · A page by &lt;a href=&quot;https://watheqapp.com/?src=alola&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Watheq Property Management&lt;/a&gt;">© الأولى لإدارة الأملاك · صفحة من <a href="https://watheqapp.com/?src=alola" target="_blank" rel="noopener">وثيق لإدارة الأملاك</a></span>
 </footer>
 
-<a class="fab" href="https://wa.me/966570376617" target="_blank" rel="noopener" aria-label="واتساب">
+<a class="fab" href="https://wa.me/966570376617" target="_blank" rel="noopener" aria-label="واتساب" data-en-aria="WhatsApp">
   <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.7 1.9 6.7L3 29l6.9-2.1c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.6 12.7-12.6S23 3 16 3zm0 23.1c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.2 1.3-4-.3-.4c-1.1-1.7-1.7-3.6-1.7-5.6C5.4 9.8 10.1 5.2 16 5.2s10.6 4.6 10.6 10.4S21.9 26.1 16 26.1zm5.8-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
 </a>
 
 <script>
+(function(){
+  var META={ar:{t:document.title,d:document.querySelector('meta[name=description]').content},
+    en:{t:"الأولى لإدارة الأملاك — Property Management, Leasing & Brokerage in Jeddah",d:"الأولى لإدارة الأملاك — Jeddah: property management, rent collection, lease follow-up and maintenance, plus leasing and real estate marketing. Licensed by the Real Estate General Authority — FAL 1200004968."}};
+  var maps=[['data-en','textContent'],['data-en-html','innerHTML'],['data-en-alt','alt'],['data-en-aria','aria-label'],['data-en-href','href']];
+  function setLang(l){
+    maps.forEach(function(m){
+      document.querySelectorAll('['+m[0]+']').forEach(function(el){
+        var k='_ar_'+m[0];
+        if(el[k]===undefined) el[k]= (m[1]==='textContent'||m[1]==='innerHTML') ? el[m[1]] : el.getAttribute(m[1]);
+        var v= l==='en' ? el.getAttribute(m[0]) : el[k];
+        if(m[1]==='textContent') el.textContent=v; else if(m[1]==='innerHTML') el.innerHTML=v; else el.setAttribute(m[1],v);
+      });
+    });
+    var root=document.documentElement; root.lang=l; root.dir= l==='en'?'ltr':'rtl';
+    document.title=META[l].t; document.querySelector('meta[name=description]').content=META[l].d;
+    var b=document.getElementById('langBtn');
+    b.textContent= l==='en'?'عربي':'EN'; b.lang= l==='en'?'ar':'en'; b.setAttribute('aria-label', l==='en'?'العربية':'English');
+    try{ localStorage.setItem('alola-lang',l); }catch(e){}
+  }
+  var cur='ar';
+  try{ var q=new URLSearchParams(location.search).get('lang'); cur = q==='en'||q==='ar' ? q : (localStorage.getItem('alola-lang')||'ar'); }catch(e){}
+  if(cur==='en') setLang('en');
+  document.getElementById('langBtn').addEventListener('click',function(){ cur= cur==='en'?'ar':'en'; setLang(cur); });
+})();
 (function(){
   var h=document.getElementById('hdr');
   function onScroll(){ if(window.scrollY>40) h.classList.add('solid'); else h.classList.remove('solid'); }
