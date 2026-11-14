@@ -43,6 +43,7 @@
   .btn:hover{transform:translateY(-2px)}
   .btn svg{width:20px;height:20px;fill:currentColor}
   .btn-wa{background:var(--wa);color:#fff;box-shadow:0 8px 22px rgba(31,168,85,.35)}
+  .btn-tg{background:#229ED9;color:#fff;box-shadow:0 8px 22px rgba(34,158,217,.35)}
   .btn-gold{background:linear-gradient(135deg,var(--gold),#b38d3f);color:#fff;box-shadow:0 8px 22px rgba(200,164,86,.35)}
   .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1.5px solid rgba(255,255,255,.45)}
   .btn-line{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
@@ -141,12 +142,14 @@
   html[lang=en] .lic b{text-align:left}
   html[lang=en] .fab{left:auto;right:18px}
   html[lang=en] .kicker{letter-spacing:1px;text-transform:uppercase;font-size:.8rem}
-  footer{padding:34px 16px 40px;text-align:center;color:var(--muted);font-size:.86rem}
+  footer{padding:34px 16px 120px;text-align:center;color:var(--muted);font-size:.86rem}
   footer .nm-foot{font-size:1.6rem;color:#fff;-webkit-text-stroke:.8px var(--navy);paint-order:stroke fill;text-shadow:2px 2px 0 var(--navy);margin-bottom:6px}
   footer a{color:var(--navy);text-decoration:none;font-weight:600}
 
   .fab{position:fixed;left:18px;bottom:18px;z-index:40;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 10px 26px rgba(0,0,0,.25);animation:pulse 2.4s infinite}
   .fab svg{width:30px;height:30px;fill:#fff}
+  .fab-tg{bottom:90px;background:#229ED9;animation:none}
+  .fab-tg svg{width:28px;height:28px}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(31,168,85,.45)}70%{box-shadow:0 0 0 16px rgba(31,168,85,0)}100%{box-shadow:0 0 0 0 rgba(31,168,85,0)}}
 
   .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
@@ -170,7 +173,7 @@
     .wide{aspect-ratio:16/9}
     .lic{grid-template-columns:1fr}
     .ol{width:100%;min-width:0}
-    footer{padding-bottom:100px}
+    footer{padding-bottom:170px}
     .brand .nm{font-size:1.1rem;white-space:nowrap}
     header .call{display:none}
     header .btn .t{display:none}
@@ -300,11 +303,12 @@
         <img class="logo-big" src="logo.png" alt="" width="110" height="110">
         <div>
           <h2 data-en="Have a property to rent out, manage, sell, buy or develop?">عندك عقار تبي تأجّره أو تديره أو تبيعه أو تشتريه أو تطوّره؟</h2>
-          <p data-en="Message us on WhatsApp and we'll get back to you shortly — or visit us at the office.">كلّمنا على الواتساب ونرد عليك بأقرب وقت، أو زورنا في المكتب.</p>
+          <p data-en="Message us on WhatsApp or Telegram and we'll get back to you shortly — or visit us at the office.">كلّمنا على الواتساب أو التيليجرام ونرد عليك بأقرب وقت، أو زورنا في المكتب.</p>
           <a class="addr" href="https://goo.gl/maps/vh1ktFjysnY26MaW8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><span><b data-en="Al Zahraa Center — First Floor, Jeddah">مركز الزهراء — الدور الأول، جدة</b><small data-en="Open in Google Maps →">افتح الموقع في خرائط قوقل ←</small></span></a>
         </div>
         <div class="acts">
           <a class="btn btn-wa" href="https://wa.me/966570376617" target="_blank" rel="noopener" data-en="WhatsApp 0570376617">واتساب 0570376617</a>
+          <a class="btn btn-tg" href="https://t.me/ALOLAPM" target="_blank" rel="noopener" data-en-html="Telegram &lt;bdi dir=&quot;ltr&quot;&gt;@ALOLAPM&lt;/bdi&gt;">تيليجرام <bdi dir="ltr">@ALOLAPM</bdi></a>
           <a class="btn btn-line" href="tel:+966570376617" data-en="Mobile 0570376617">جوال 0570376617</a>
           <a class="btn btn-line" href="tel:+966126646616" data-en="Landline 0126646616">هاتف 0126646616</a>
         </div>
@@ -331,6 +335,9 @@
   <span data-en-html="© &lt;bdi&gt;الأولى لإدارة الأملاك&lt;/bdi&gt; · A page by &lt;a href=&quot;https://watheqapp.com/?src=alola&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Watheq Property Management&lt;/a&gt;">© الأولى لإدارة الأملاك · صفحة من <a href="https://watheqapp.com/?src=alola" target="_blank" rel="noopener">وثيق لإدارة الأملاك</a></span>
 </footer>
 
+<a class="fab fab-tg" href="https://t.me/ALOLAPM" target="_blank" rel="noopener" aria-label="تيليجرام" data-en-aria="Telegram">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 4.6 18.7 19.7c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.5-.6-.2L6.2 13.4 1.4 11.9c-1-.3-1.1-1 .2-1.5L20.5 3.1c.9-.3 1.6.2 1.4 1.5z"/></svg>
+</a>
 <a class="fab" href="https://wa.me/966570376617" target="_blank" rel="noopener" aria-label="واتساب" data-en-aria="WhatsApp">
   <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.7 1.9 6.7L3 29l6.9-2.1c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.6 12.7-12.6S23 3 16 3zm0 23.1c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.2 1.3-4-.3-.4c-1.1-1.7-1.7-3.6-1.7-5.6C5.4 9.8 10.1 5.2 16 5.2s10.6 4.6 10.6 10.4S21.9 26.1 16 26.1zm5.8-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
 </a>
