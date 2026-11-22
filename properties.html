@@ -38,7 +38,7 @@
     --paper:#FBF8F1; --paper-2:#F3EEE2; --card:#FFFFFF;
     --line:#E4DDCD; --muted:#5C6B67;
     --gold:#B8791F; --gold-ink:#8a5a11; --gold-soft:#E7C877;
-    --paid:#1E9E6A; --late:#D0453F; --paid-bg:#E6F4EC; --amber-bg:#FBF1DF;
+    --paid:#137A50; --late:#D0453F; --paid-bg:#E6F4EC; --amber-bg:#FBF1DF;
     --radius:16px;
     --shadow:0 1px 2px rgba(11,33,31,.04), 0 12px 34px -18px rgba(11,33,31,.28);
     --shadow-lg:0 30px 70px -30px rgba(11,33,31,.45);
@@ -265,22 +265,6 @@
   "operatingSystem": "Web",
   "inLanguage": "ar",
   "description": "منصة سعودية لإدارة العقارات المؤجّرة: عقود ودفعات ومستندات في مكان واحد، وتنبيهات قبل انتهاء العقد وعند تأخر الدفعة.",
-  "offers": [
-    {
-      "@type": "Offer",
-      "name": "باقة المالك",
-      "price": "99",
-      "priceCurrency": "SAR",
-      "description": "اشتراك شهري لمالك عقار واحد أو أكثر"
-    },
-    {
-      "@type": "Offer",
-      "name": "باقة المكتب",
-      "price": "199",
-      "priceCurrency": "SAR",
-      "description": "اشتراك شهري لمكاتب إدارة الأملاك"
-    }
-  ],
   "featureList": [
     "جدول دفعات تلقائي",
     "تنبيهات تلقرام قبل انتهاء العقد",
@@ -585,18 +569,17 @@ html[data-theme="dark"] [style*="color:#5C6B67"]{color:var(--muted,#A3B8B2)!impo
     <div style="text-align:center">
       <span class="sec-eyebrow">الباقات</span>
       <h2 class="sec-title">باقة للمالك، وباقة للمكتب</h2>
-      <p style="margin:14px auto 0;max-width:36em;font-weight:600;color:var(--gold-ink);font-size:.95rem">💡 مستأجر واحد يتأخّر شهرًا بإيجار 3,000 ريال = أكثر من اشتراك باقة المالك لسنتين (99 × 24 = 2,376 ريال). التذكير في وقته أرخص وسيلة تحصيل.</p>
+      <p style="margin:14px auto 0;max-width:36em;font-weight:600;color:var(--gold-ink);font-size:.95rem">السعر سنوي ويعتمد على عدد الوحدات اللي تديرها — أرسل لنا العدد ونرد عليك بسعرك. وكل الباقات تشمل المزايا كلها مع التحديثات الشهرية.</p>
     </div>
     <div style="max-width:760px;margin:22px auto 0;background:#E6F4EC;border:1px solid #B7DFC7;color:#137a50;border-radius:14px;padding:14px;text-align:center;font-weight:700">
       🎁 جرّب كل المزايا مجانًا 30 يومًا — بلا بطاقة بنكية، وبلا التزام
     </div>
-    <div class="founder">🎉 <b>سعر المؤسسين</b> — الأسعار أدناه هي أسعار الإطلاق لأول <b>5 مشتركين</b>، وتبقى ثابتة لك مدى اشتراكك حتى لو رفعناها لاحقًا.</div>
     <div class="packs">
       <div class="pack">
         <h3>باقة المالك</h3>
         <p class="who">لمالك عقار أو عمارة واحدة</p>
-        <div class="price"><span class="n">99</span> <span class="c">ريال / شهريًا</span></div>
-        <p class="cancel">قابل للإلغاء في أي وقت</p>
+        <div class="price"><span class="c" style="font-size:1.05rem;font-weight:700;color:var(--ink)">اشتراك سنوي حسب عدد الوحدات</span></div>
+        <p class="cancel"><a data-wa data-msg="السلام عليكم، أبغى سعر وثيق لعقاري — عدد الوحدات: " href="#" style="color:inherit;text-decoration:underline">اسأل عن سعر عقارك ←</a></p>
         <ul>
           <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg> عقار واحد · مستأجرون غير محدودين</li>
           <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg> رسائل تذكير جاهزة ترسلها أنت من واتساب</li>
@@ -609,8 +592,8 @@ html[data-theme="dark"] [style*="color:#5C6B67"]{color:var(--muted,#A3B8B2)!impo
         <span class="pack-flag">الأنسب للمكاتب</span>
         <h3>باقة المكتب</h3>
         <p class="who">لمكاتب إدارة الأملاك وأصحاب العقارات المتعددة</p>
-        <div class="price"><span class="n">199</span> <span class="c">ريال / شهريًا</span></div>
-        <p class="cancel">أفضل قيمة لإدارة أكثر</p>
+        <div class="price"><span class="c" style="font-size:1.05rem;font-weight:700;color:var(--ink)">اشتراك سنوي حسب عدد الوحدات</span></div>
+        <p class="cancel"><a data-wa data-msg="السلام عليكم، أبغى سعر وثيق لمكتبنا — عدد الوحدات: " href="#" style="color:inherit;text-decoration:underline">اسأل عن سعر مكتبك ←</a></p>
         <ul>
           <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg> عقارات غير محدودة · كل مزايا المالك</li>
           <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg> نماذج إشعارات ومطالبات مصاغة ببياناتك</li>

@@ -80,7 +80,7 @@
     --surface-deep:#0E3A37;--surface-deep-2:#0A2C2A;
     --ink:#0B211F;--deep:#0E3A37;--deep-2:#0A2C2A;--paper:#FBF8F1;--paper-2:#F3EEE2;
     --card:#fff;--line:#E4DDCD;--muted:#5C6B67;--gold:#B8791F;--gold-ink:#8a5a11;--gold-soft:#E7C877;
-    --paid:#1E9E6A;--late:#D0453F;--paid-bg:#E6F4EC;--late-bg:#FBE9E7;--amber-bg:#FBF1DF;
+    --paid:#137A50;--late:#D0453F;--paid-bg:#E6F4EC;--late-bg:#FBE9E7;--amber-bg:#FBF1DF;
     --radius:16px;--shadow:0 1px 2px rgba(11,33,31,.04),0 12px 34px -18px rgba(11,33,31,.28);
     --shadow-lg:0 30px 70px -30px rgba(11,33,31,.45);
   }
@@ -523,48 +523,6 @@
     "name": "SA"
   },
   "offers": [
-    {
-      "@type": "Offer",
-      "name": "باقة المالك",
-      "price": "99",
-      "priceCurrency": "SAR",
-      "category": "إدارة الأملاك",
-      "priceSpecification": {
-        "@type": "UnitPriceSpecification",
-        "price": "99",
-        "priceCurrency": "SAR",
-        "unitText": "شهريًا",
-        "billingDuration": "P1M"
-      }
-    },
-    {
-      "@type": "Offer",
-      "name": "باقة المكتب",
-      "price": "199",
-      "priceCurrency": "SAR",
-      "category": "إدارة الأملاك",
-      "priceSpecification": {
-        "@type": "UnitPriceSpecification",
-        "price": "199",
-        "priceCurrency": "SAR",
-        "unitText": "شهريًا",
-        "billingDuration": "P1M"
-      }
-    },
-    {
-      "@type": "Offer",
-      "name": "باقة المكتب — سنوي",
-      "price": "1990",
-      "priceCurrency": "SAR",
-      "category": "إدارة الأملاك",
-      "priceSpecification": {
-        "@type": "UnitPriceSpecification",
-        "price": "1990",
-        "priceCurrency": "SAR",
-        "unitText": "سنويًا",
-        "billingDuration": "P1Y"
-      }
-    },
     {
       "@type": "Offer",
       "name": "الأساسية",
@@ -1058,7 +1016,7 @@ html[data-theme="dark"] [style*="color:#5C6B67"]{color:var(--muted,#A3B8B2)!impo
             <tr><th>المالك يريد تقريره</th><td>ترسل لقطة شاشة</td><td>رابط حيّ يفتحه متى شاء</td></tr>
             <tr><th>سؤال نظامي</th><td>—</td><td>المستشار يحيلك للمصدر الرسمي</td></tr>
             <tr><th>موظفوك</th><td>ملف واحد وكلمة مرور تتناقلونها</td><td>حساب لكل موظف بدوره — وتعرف من سجّل كل قيد</td></tr>
-            <tr><th>التكلفة</th><td>مرة واحدة</td><td>من 99 ريالًا/شهر — وأول 30 يومًا مجانًا</td></tr>
+            <tr><th>التكلفة</th><td>مرة واحدة</td><td>اشتراك سنوي حسب عدد الوحدات — وأول 30 يومًا مجانًا</td></tr>
           </tbody>
         </table>
       </div>
@@ -1091,16 +1049,15 @@ html[data-theme="dark"] [style*="color:#5C6B67"]{color:var(--muted,#A3B8B2)!impo
       <div class="center">
         <span class="sec-eyebrow">الباقات</span>
         <h2 class="sec-title">باقة للمالك، وباقة للمكتب</h2>
-        <p class="sec-sub">💡 مستأجر واحد يتأخّر شهرًا بإيجار 3,000 ريال = أكثر من اشتراك باقة المالك لسنتين (99 × 24 = 2,376 ريال).</p>
+        <p class="sec-sub">السعر سنوي ويعتمد على عدد الوحدات اللي تديرها — أرسل لنا العدد ونرد عليك بسعرك. وكل الباقات تشمل المزايا كلها مع التحديثات الشهرية.</p>
       </div>
       <div class="trialbar">🎁 جرّب كل المزايا مجانًا 30 يومًا — بلا بطاقة بنكية، وبلا التزام</div>
-      <div class="founder">🎉 <b>سعر المؤسسين</b> — الأسعار أدناه هي أسعار الإطلاق لأول <b>5 مشتركين</b>، وتبقى ثابتة لك مدى اشتراكك حتى لو رفعناها لاحقًا.</div>
       <div class="packs p2">
         <div class="pack">
           <h3>باقة المالك</h3>
           <p class="who">لمالك عقار أو عمارة واحدة</p>
-          <div class="price"><span class="n">99</span> <span class="c">ريال / شهريًا</span></div>
-          <p class="cancel">قابل للإلغاء في أي وقت</p>
+          <div class="price"><span class="c" style="font-size:1.05rem;font-weight:700;color:var(--ink)">اشتراك سنوي حسب عدد الوحدات</span></div>
+          <p class="cancel"><a data-wa data-msg="السلام عليكم، أبغى سعر وثيق لعقاري — عدد الوحدات: " href="#" style="color:inherit;text-decoration:underline">اسأل عن سعر عقارك ←</a></p>
           <ul>
             <li><span class="c">✓</span> عقار واحد · وحدات غير محدودة</li>
             <li><span class="c">✓</span> محرّك العقود وكل دورات السداد</li>
@@ -1116,9 +1073,8 @@ html[data-theme="dark"] [style*="color:#5C6B67"]{color:var(--muted,#A3B8B2)!impo
           <span class="pack-flag">الأنسب للمكاتب</span>
           <h3>باقة المكتب</h3>
           <p class="who">لمكاتب إدارة الأملاك وأصحاب العقارات المتعددة</p>
-          <div class="price"><span class="n">199</span> <span class="c">ريال / شهريًا</span></div>
-          <p class="yearly">أو <b>1,990</b> ريال سنويًا — شهران مجانًا</p>
-          <p class="cancel">أفضل قيمة لإدارة أكثر</p>
+          <div class="price"><span class="c" style="font-size:1.05rem;font-weight:700;color:var(--ink)">اشتراك سنوي حسب عدد الوحدات</span></div>
+          <p class="cancel"><a data-wa data-msg="السلام عليكم، أبغى سعر وثيق لمكتبنا — عدد الوحدات: " href="#" style="color:inherit;text-decoration:underline">اسأل عن سعر مكتبك ←</a></p>
           <ul>
             <li><span class="c">✓</span> عقارات غير محدودة · كل مزايا المالك</li>
             <li><span class="c">✓</span> نظرة المحفظة الكاملة عبر كل العقارات</li>
@@ -1140,8 +1096,8 @@ html[data-theme="dark"] [style*="color:#5C6B67"]{color:var(--muted,#A3B8B2)!impo
       <div class="cmp-box">
         <table class="cmp">
           <thead><tr><th></th>
-            <th><div class="pr">باقة المالك<small>99 ريال / شهريًا</small></div></th>
-            <th><div class="pr">باقة المكتب<small>199 ريال / شهريًا</small></div></th>
+            <th><div class="pr">باقة المالك<small>عقار واحد</small></div></th>
+            <th><div class="pr">باقة المكتب<small>عقارات غير محدودة</small></div></th>
           </tr></thead>
           <tbody>
             <tr class="grp"><th colspan="3">النطاق — هنا يقع الفرق</th></tr>

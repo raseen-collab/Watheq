@@ -33,7 +33,7 @@
   :root{--surface-deep:#0E3A37;--surface-deep-2:#0A2C2A;
     --ink:#0B211F;--deep:#0E3A37;--deep-2:#0A2C2A;--paper:#FBF8F1;--paper-2:#F3EEE2;--card:#fff;
     --line:#E4DDCD;--muted:#5C6B67;--gold:#B8791F;--gold-ink:#8a5a11;--gold-soft:#E7C877;
-    --paid:#1E9E6A;--late:#D0453F;--paid-bg:#E6F4EC;--late-bg:#FBE9E7;--amber-bg:#FBF1DF;
+    --paid:#137A50;--late:#D0453F;--paid-bg:#E6F4EC;--late-bg:#FBE9E7;--amber-bg:#FBF1DF;
     --shadow:0 1px 2px rgba(11,33,31,.04),0 12px 34px -18px rgba(11,33,31,.28);
     --shadow-lg:0 30px 70px -30px rgba(11,33,31,.45)}
   *{box-sizing:border-box}html{scroll-behavior:smooth}
@@ -325,7 +325,6 @@ html[data-theme="dark"] [style*="color:#5C6B67"]{color:var(--muted,#A3B8B2)!impo
         <div class="field"><label>متوسط الإيجار <small>ريال / شهر</small></label><input class="fld" type="number" id="aRent" value="3000"></div>
         <div class="field"><label>متوسط أشهر التأخّر</label><input class="fld" type="number" id="aMonths" value="2" min="1"></div>
       </div>
-      <div class="field"><label>عدد العقارات التي تديرها <small>يحدّد الباقة المناسبة</small></label><input class="fld" type="number" id="aProps" value="1" min="1" step="1"></div>
       <div class="field"><label>ساعات تقضيها شهريًّا في المتابعة والمطالبة <small>لتقدير كلفة وقتك</small></label><input class="fld" type="number" id="aHours" value="6" min="0"></div>
       <div id="aOut"></div>
       <p style="margin:14px 0 0;font-size:.9rem;color:var(--muted)">عرفت المتأخر؟ جهّز <a href="late-rent-notice-guide.html" style="color:var(--gold-ink);font-weight:600">إشعار تأخر سداد إيجار</a> أو أصدر <a href="statement.html" style="color:var(--gold-ink);font-weight:600">كشف حساب مستأجر مجاني</a>.</p>
@@ -600,14 +599,7 @@ html[data-theme="dark"] [style*="color:#5C6B67"]{color:var(--muted,#A3B8B2)!impo
     var HOURLY=75;
     var timeCostYear=hours*12*HOURLY;
     var annualLoss=frozen+timeCostYear;
-    /* حدّ الباقتين هو عدد **العقارات** لا الوحدات — صفحة الأسعار نفسها تقول
-       «باقة المالك: عقار واحد · وحدات غير محدودة». الربط بالوحدات كان يعرض على
-       مالك عمارة فيها 4 وحدات متأخرة «باقة المكتب 2,388 ريال» بدل 99 شهريًّا. */
-    var props = Math.max(1, Math.floor(+document.getElementById('aProps').value||1));
-    var isOffice = props > 1;
-    var monthly = isOffice ? 199 : 99;
-    var planName = isOffice ? 'باقة المكتب' : 'باقة المالك';
-    var watheqYear = monthly*12;
+    /* (22 نوفمبر 2026) الأسعار لا تُنشر في الموقع — السعر سنوي حسب عدد الوحدات ويُطلب على واتساب */
     out.innerHTML=
       '<div class="out">'
       + '<div class="big"><span class="v">'+money(frozen)+'</span><span class="l">ريال مجمّدة عند المستأجرين الآن</span></div>'
@@ -618,7 +610,7 @@ html[data-theme="dark"] [style*="color:#5C6B67"]{color:var(--muted,#A3B8B2)!impo
       +   '<div class="oc r"><div class="v">'+money(annualLoss)+'</div><div class="l">الكلفة الإجمالية (ريال)</div></div>'
       + '</div></div>'
       + '<div class="hint">كلفة وقتك محسوبة بـ <b>'+hours+' '+plural(hours,'ساعة','ساعتين','ساعات','ساعة')+' شهريًّا × 75 ريال/ساعة</b> — وهو تقدير متحفّظ لوقت صاحب عقار. '
-      + '<b>'+planName+'</b> ('+monthly+' ريال شهريًّا) تكلّف <b>'+money(watheqYear)+' ريال</b> في السنة — أي ما يعادل <b>'+pct(watheqYear/Math.max(frozen,1)*100)+'%</b> من المبلغ المجمّد عندك حاليًّا. '
+      + 'اشتراك وثيق سنوي حسب عدد الوحدات — <a href="https://wa.me/966550165210?text='+encodeURIComponent('السلام عليكم، أبغى سعر وثيق — عدد الوحدات: ')+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">اسأل عن سعرك على واتساب</a>. '
       + 'والتجربة ٣٠ يومًا مجانًا بلا بطاقة بنكية.</div>';
   }
 

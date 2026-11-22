@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شاركنا رأيك — وثيق لإدارة الأملاك</title>
+<meta name="description" content="نموذج قصير لعملاء وثيق لمشاركة تجربتهم مع المنصة.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0E3A37">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;background:#FBF8F1;color:#0B211F;line-height:1.8;padding:28px 16px 48px}
+  .box{max-width:560px;margin:0 auto}
+  .seal{width:56px;height:56px;border-radius:14px;background:#0E3A37;display:grid;place-items:center;color:#E7C877;
+        font-family:"Readex Pro";font-weight:700;font-size:1.7rem;margin:0 auto 16px;box-shadow:inset 0 0 0 2px rgba(231,200,119,.35)}
+  h1{font-family:"Readex Pro";font-weight:600;font-size:1.4rem;color:#0E3A37;text-align:center;margin-bottom:6px}
+  .lead{color:#5C6B67;text-align:center;font-size:.95rem;margin-bottom:24px}
+  form{background:#fff;border:1px solid #E4DDCD;border-radius:16px;padding:22px 18px}
+  label{display:block;font-weight:600;color:#0E3A37;font-size:.92rem;margin:14px 0 6px}
+  label:first-child{margin-top:0}
+  .opt{font-weight:400;color:#8A9692;font-size:.8rem}
+  input[type=text],select,textarea{width:100%;font:inherit;font-size:1rem;border:1px solid #E4DDCD;border-radius:10px;
+        padding:.65rem .8rem;background:#FBF8F1;color:#0B211F}
+  input:focus,select:focus,textarea:focus{outline:2px solid #B8791F;outline-offset:1px;background:#fff}
+  textarea{min-height:130px;resize:vertical}
+  .hint{font-size:.8rem;color:#8A9692;margin-top:4px}
+  .stars{display:flex;gap:6px;direction:ltr;justify-content:flex-end}
+  .stars button{font-size:1.9rem;line-height:1;background:none;border:0;cursor:pointer;color:#E4DDCD;padding:2px}
+  .stars button.on{color:#B8791F}
+  .consent{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:.9rem;color:#0B211F}
+  .consent input{margin-top:7px;width:18px;height:18px;accent-color:#0E3A37;flex:none}
+  .btn{display:block;width:100%;margin-top:20px;background:#B8791F;color:#fff;font:inherit;font-weight:700;font-size:1rem;
+       border:0;border-radius:12px;padding:.85rem;cursor:pointer}
+  .btn:hover{background:#8a5a11}
+  .err{color:#B3261E;font-size:.88rem;margin-top:10px;min-height:1.2em}
+  .note{color:#5C6B67;font-size:.82rem;text-align:center;margin-top:16px}
+</style>
+</head>
+<body>
+<main class="box">
+  <div class="seal">و</div>
+  <h1>شاركنا رأيك في وثيق</h1>
+  <p class="lead">دقيقتين من وقتك. رأيك يساعدنا نطوّر، ويساعد المكاتب الثانية تعرف التجربة من صاحبها.</p>
+
+  <form id="f" novalidate>
+    <label for="office">اسم المكتب</label>
+    <input type="text" id="office" maxlength="80" autocomplete="organization">
+
+    <label for="name">اسمك وصفتك <span class="opt">(مثال: محمد — مدير المكتب)</span></label>
+    <input type="text" id="name" maxlength="80">
+
+    <label for="city">المدينة</label>
+    <input type="text" id="city" maxlength="40">
+
+    <label>تقييمك العام</label>
+    <div class="stars" id="stars" role="radiogroup" aria-label="التقييم من 5">
+      <button type="button" data-v="1" aria-label="1 من 5">★</button>
+      <button type="button" data-v="2" aria-label="2 من 5">★</button>
+      <button type="button" data-v="3" aria-label="3 من 5">★</button>
+      <button type="button" data-v="4" aria-label="4 من 5">★</button>
+      <button type="button" data-v="5" aria-label="5 من 5">★</button>
+    </div>
+
+    <label for="before">وش كان أصعب شي قبل وثيق؟ <span class="opt">(اختياري)</span></label>
+    <textarea id="before" maxlength="500" style="min-height:80px"></textarea>
+
+    <label for="opinion">رأيك في وثيق</label>
+    <textarea id="opinion" maxlength="800"></textarea>
+    <p class="hint">وش أكثر شي استفدت منه؟ وش تغيّر في شغل المكتب؟</p>
+
+    <label for="improve">وش تتمنى نضيف أو نحسّن؟ <span class="opt">(اختياري — لنا فقط، ما يُنشر)</span></label>
+    <textarea id="improve" maxlength="500" style="min-height:80px"></textarea>
+
+    <label class="consent"><input type="checkbox" id="ok">
+      <span>أوافق على نشر رأيي في موقع وثيق باسم المكتب واسمي وصفتي.</span></label>
+
+    <button class="btn" type="submit">إرسال الرأي عبر واتساب</button>
+    <p class="err" id="err" aria-live="polite"></p>
+  </form>
+  <p class="note">يفتح واتساب برسالة جاهزة فيها إجاباتك، وما يُرسل شي إلا بعد ما تضغط إرسال.</p>
+</main>
+<script>
+(function(){
+  var WHATSAPP_NUMBER="966550165210", rating=0;
+  var stars=[].slice.call(document.querySelectorAll("#stars button"));
+  function paint(){stars.forEach(function(b){b.classList.toggle("on",+b.dataset.v<=rating);b.setAttribute("aria-checked",+b.dataset.v===rating)})}
+  stars.forEach(function(b){b.setAttribute("role","radio");b.addEventListener("click",function(){rating=+b.dataset.v;paint()})});
+  try{var o=new URLSearchParams(location.search).get("o");if(o)document.getElementById("office").value=o.slice(0,80)}catch(e){}
+  function v(id){return (document.getElementById(id).value||"").trim()}
+  document.getElementById("f").addEventListener("submit",function(e){
+    e.preventDefault();
+    var err=document.getElementById("err");
+    if(!v("office")||!v("name")||!v("opinion")){err.textContent="فضلًا اكتب اسم المكتب، واسمك، ورأيك.";return}
+    err.textContent="";
+    var L=["رأي عميل — وثيق","","المكتب: "+v("office"),"الاسم والصفة: "+v("name")];
+    if(v("city"))L.push("المدينة: "+v("city"));
+    if(rating)L.push("التقييم: "+rating+" من 5");
+    if(v("before"))L.push("","قبل وثيق:",v("before"));
+    L.push("","الرأي:",v("opinion"));
+    if(v("improve"))L.push("","اقتراح (غير للنشر):",v("improve"));
+    L.push("","الموافقة على النشر: "+(document.getElementById("ok").checked?"نعم، بالاسم والصفة":"لا"));
+    location.href="https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(L.join("\n"));
+  });
+})();
+</script>
+</body>
+</html>
