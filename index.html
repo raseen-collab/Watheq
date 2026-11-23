@@ -281,6 +281,9 @@
     .say p{margin:0;color:var(--ink);line-height:2.05;font-size:.97rem}
     .say .who{margin-top:auto;padding-top:20px;color:var(--deep);font-weight:600;font-size:.92rem}
     .say .who span{display:block;color:var(--muted);font-weight:400;font-size:.8rem;margin-top:4px}
+    .say-wide{grid-column:1/-1}
+    .say .stars{color:#C9A227;font-size:1.05rem;letter-spacing:2px;margin-bottom:10px}
+    .say .stars span{color:var(--muted);font-size:.78rem;letter-spacing:0;margin-inline-start:8px}
     @media(max-width:820px){.says{grid-template-columns:minmax(0,1fr);gap:16px}}
   .pack ul{list-style:none;margin:0 0 20px;padding:0;display:flex;flex-direction:column;gap:10px}
   .pack li{display:flex;gap:9px;align-items:flex-start;font-size:.93rem}
@@ -814,9 +817,14 @@ html[data-theme="dark"] [style*="color:#5C6B67"]{color:var(--muted,#A3B8B2)!impo
       <div class="center">
         <span class="sec-eyebrow">من المشتركين</span>
         <h2 class="sec-title">قالوا عن وثيق</h2>
-        <p class="sec-sub">مكتبا إدارة أملاك يعملان على وثيق يوميًا. هذا كلامهم كما أرسلوه، منشور بإذنهم.</p>
+        <p class="sec-sub">مكاتب إدارة أملاك تعمل على وثيق يوميًا. هذا كلامهم كما أرسلوه، منشور بإذنهم.</p>
       </div>
       <div class="says">
+        <figure class="say say-wide">
+          <div class="stars" aria-label="تقييمهم: ٥ من ٥">★★★★★<span>تقييمهم ٥ من ٥</span></div>
+          <blockquote><p>«قبل وثيق كانت بيانات المكتب موزعة على العديد من صفحات إكسل، وما أعرف من المتأخر والمستحق ومتى تجديد العقود، وكان العمل كثير ويحتاج متابعة ومجهود مستمر يوميًا وموظفين لتجهيز ميزانية شهرية بالإيرادات والمصروفات لكل عقار. بعد وثيق أصبح شغل المكتب سهل وواضح، وتحديث البيانات لحظي، ولا أسهو عن أي استحقاق أو تجديد، وبدون انتظار لميزانيات آخر الشهر. وإرسال الإشعارات أصبح سهل جدًا بضغطة زر، وفي حالات كثيرة الإشعار تلقائي. بصراحة فرق كبير ويشجع على التوسع وإدارة عقارات أكثر.»</p></blockquote>
+          <figcaption class="who">الأولى لإدارة الأملاك<span>مكتب إدارة أملاك — جدة</span></figcaption>
+        </figure>
         <figure class="say">
           <blockquote><p>«كنت على إكسل شيت — وأول ما دخلت وثيق عرفت إن المتأخرات أكبر من المتوقع. سهل وواضح، وصاحب الموقع بنفسه يرد عليك. وفكرة رابط المالك حلوة ومريحة، تريحني من المالك في أسئلته. كذلك التواصل مع المستأجرين أسرع وأسهل.»</p></blockquote>
           <figcaption class="who">تميز التطوير للعقارات<span>مكتب إدارة أملاك</span></figcaption>
