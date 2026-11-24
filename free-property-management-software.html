@@ -555,6 +555,23 @@ html[data-theme="dark"] .dpill.r,html[data-theme="dark"] .pill.late{background:#
 html[data-theme="dark"] .foot,html[data-theme="dark"] footer{color:var(--muted,#A3B8B2)}
 html[data-theme="dark"] [style*="color:#5C6B67"]{color:var(--muted,#A3B8B2)!important}
 </style>
+<style id="wq-polish">/* تحسين موحّد للصفحات العامة — 24 نوفمبر 2026 (نفس الهوية) */
+::selection{background:#E7C877;color:#0A2C2A}
+html{caret-color:#B8791F;scrollbar-color:#CBBF9F transparent}
+h1,h2,h3{text-wrap:balance}
+p,li{text-wrap:pretty}
+/* العربية تتصل حروفها: لا تباعد ولا تضييق للأحرف */
+body,body *{letter-spacing:normal!important}
+table,.num,.price{font-variant-numeric:tabular-nums}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2.5px solid #B8791F;outline-offset:3px}
+/* مربعا «القاعدة» و«تنبيه»: إطار كامل وتظليل بدل الشريط الجانبي */
+.box.key{border-inline-start:1px solid var(--line,#E4DDCD)!important;background:var(--paper-2,#F3EEE2)}
+.box.warn{border:1px solid rgba(184,121,31,.38)!important;background:var(--amber-bg,#FBF1DF)}
+html[data-theme="dark"] .box.key{background:#102421}
+.btn-gold{background:#9A6314}.btn-gold:hover{background:#86560F}
+.btn-wa{background:#15803D}.btn-wa:hover{background:#116A33}
+html[data-theme="dark"] .btn-gold{background:#E7C877;color:#0B211F}
+</style>
 </head>
 <body>
 <header class="no-print" style="border-bottom:1px solid var(--line);background:var(--paper);position:sticky;top:0;z-index:50">
