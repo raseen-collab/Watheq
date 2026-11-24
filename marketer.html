@@ -158,6 +158,21 @@ html[data-theme="dark"] .box.key{background:#102421}
 .btn-wa{background:#15803D}.btn-wa:hover{background:#116A33}
 html[data-theme="dark"] .btn-gold{background:#E7C877;color:#0B211F}
 </style>
+<style id="wq-mk">/* المسوّق — 24 نوفمبر 2026 */
+.mk-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:34px;align-items:center}
+@media(min-width:960px){.hero{padding-top:60px}.mk-grid{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:56px}}
+.hero h1{letter-spacing:0;margin-top:0}
+.ic-svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;display:block}
+.feat .ic{width:44px;height:44px;border-radius:12px;background:var(--paper-2);color:var(--gold-ink);display:grid;place-items:center;font-size:0}
+.offer .ic{color:var(--gold-soft);padding-top:2px}.offer .ic .ic-svg{width:26px;height:26px}
+.hero-shot{margin:0;justify-self:center;width:min(280px,72vw);position:relative}
+.hero-shot::before{content:"";position:absolute;inset:7% -13% 9% -13%;border-radius:36px;background:var(--surface-deep);transform:rotate(4deg);z-index:0}
+.phone{position:relative;z-index:1;background:#081F1D;border-radius:40px;padding:9px;box-shadow:0 2px 4px rgba(11,33,31,.18),0 36px 70px -34px rgba(11,33,31,.6);max-height:560px;overflow:hidden}
+.phone img{display:block;width:100%;height:auto;border-radius:32px}
+.hero-shot figcaption{position:relative;z-index:1;text-align:center;font-size:.8rem;color:var(--muted);margin-top:14px}
+@media(max-width:600px){.cta-row .btn{flex:1 1 100%;justify-content:center}.hero-shot{width:min(240px,66vw)}.phone{max-height:440px}}
+@media (prefers-reduced-motion:no-preference){.phone{animation:wq-rise 1s cubic-bezier(.16,1,.3,1) .12s both}@keyframes wq-rise{from{opacity:.4;transform:translateY(28px)}to{opacity:1;transform:none}}}
+</style>
 </head>
 <body>
 <header>
@@ -171,24 +186,24 @@ html[data-theme="dark"] .btn-gold{background:#E7C877;color:#0B211F}
 </header>
 
 <section class="hero">
-  <div class="wrap">
-    <span class="eyebrow">📣 للمسوّق العقاري الفرد</span>
-    <h1>معروضاتك وزبائنك في مكان واحد —<br>ورابط لكل عقار ترسله بدل خمس صور</h1>
+  <div class="wrap mk-grid"><div class="mk-copy">
+        <h1>معروضاتك وزبائنك في مكان واحد —<br>ورابط لكل عقار ترسله بدل خمس صور</h1>
     <p class="sub">سجّل العقار مرة واحدة بصوره ومواصفاته، وأرسل للزبون رابطًا نظيفًا بلا جوال المالك. ولما يتصل زبون يطلب «شقة ٣ غرف في النرجس» يطلع لك المطابق من معروضاتك فورًا — ويتذكّر وثيق على من عرضت كل عقار.</p>
     <div class="cta-row">
       <a class="btn btn-gold" href="https://app.watheqapp.com/login?mode=signup&src=marketer">ابدأ 30 يومًا مجانًا — بلا بطاقة</a>
       <a class="btn btn-ghost" href="#features">شوف المزايا ↓</a>
     </div>
     <div class="offer">
-      <span class="ic">🎁</span>
+      <span class="ic"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></span>
       <div>
         <b>عرض الإطلاق:</b> أول 5 مسوّقين يسجّلون يأخذون <b>3 أشهر مجانًا</b> بدل شهر.
         <small>بعد التجربة: 399 ريالًا للسنة كاملة — يعني أقل من 34 ريالًا في الشهر. وما فيه اشتراك شهري ولا تجديد تلقائي.</small>
       </div>
     </div>
   </div>
+    <figure class="hero-shot"><div class="phone"><img src="shots/marketer-link.webp" width="780" height="1520" alt="صفحة العقار التي يراها الزبون من الرابط: الصور والمواصفات والسعر وزر واتساب" fetchpriority="high"></div><figcaption>اللي يشوفه زبونك من الرابط — بلا بيانات المالك</figcaption></figure>
+  </div>
 </section>
-
 <section class="band tint">
   <div class="wrap">
     <h2 class="sec-title">ثلاث مواقف يعرفها كل مسوّق</h2>
@@ -205,12 +220,12 @@ html[data-theme="dark"] .btn-gold{background:#E7C877;color:#0B211F}
     <h2 class="sec-title">وش تحصل في باقة المسوّق</h2>
     <p class="sec-sub">صفحة واحدة تفتح عليها كل يوم: المعروضات والطلبات. بلا عقود إيجار ولا تحصيل ولا شاشات ما تحتاجها.</p>
     <div class="feats">
-      <div class="feat"><div class="ic">🔗</div><h3>رابط عام لكل عقار</h3><p>صور ومواصفات وسعر وجوالك — بلا اسم المالك ولا جواله. ولما تغيّر الحالة إلى «متعاقد» يعرض الرابط «لم يعد متاحًا» تلقائيًا، وتشوف كم مرة فُتح.</p></div>
-      <div class="feat"><div class="ic">🔎</div><h3>طلبات الزبائن ومطابقتها</h3><p>سجّل الطلب وقت المكالمة: النوع، الحي، الميزانية، الغرف. كل معروض جديد يُطابَق معه فورًا، وزر واتساب جاهز بنص يذكر الأكواد المطابقة.</p></div>
-      <div class="feat"><div class="ic">👁️</div><h3>سجل «عُرض على» + محضر عرض</h3><p>اسم الزبون وتاريخ العرض وملاحظة لكل عقار، ويطلع «محضر عرض» مؤرّخًا تطبعه أو تحفظه PDF — دليلك إنك أول من عرض العقار على هذا الزبون إذا صار نزاع سعي.</p></div>
-      <div class="feat"><div class="ic">📣</div><h3>إعلان جاهز بضغطة</h3><p>نص إعلان لحراج وX وواتساب من بيانات العقار نفسها، بحدّ 280 حرفًا لـX، ويذكّرك برقم ترخيص الإعلان ورخصة فال.</p></div>
-      <div class="feat"><div class="ic">📅</div><h3>متابعة الزبائن</h3><p>«تواصلت اليوم» بضغطة، وموعد متابعة لكل طلب. المتأخرة والمستحقّة اليوم تطلع في أعلى القائمة.</p></div>
-      <div class="feat"><div class="ic">٪</div><h3>السعي ونصيبك والتفويض</h3><p>نسبة السعي ونصيبك منه (كامل مع المالك، مقسوم مع وسيط آخر) محسوبة بالريال على كل بطاقة — وتنبيه قبل العرض إذا ما عندك تفويض من المالك.</p></div>
+      <div class="feat"><div class="ic"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><h3>رابط عام لكل عقار</h3><p>صور ومواصفات وسعر وجوالك — بلا اسم المالك ولا جواله. ولما تغيّر الحالة إلى «متعاقد» يعرض الرابط «لم يعد متاحًا» تلقائيًا، وتشوف كم مرة فُتح.</p></div>
+      <div class="feat"><div class="ic"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div><h3>طلبات الزبائن ومطابقتها</h3><p>سجّل الطلب وقت المكالمة: النوع، الحي، الميزانية، الغرف. كل معروض جديد يُطابَق معه فورًا، وزر واتساب جاهز بنص يذكر الأكواد المطابقة.</p></div>
+      <div class="feat"><div class="ic"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></div><h3>سجل «عُرض على» + محضر عرض</h3><p>اسم الزبون وتاريخ العرض وملاحظة لكل عقار، ويطلع «محضر عرض» مؤرّخًا تطبعه أو تحفظه PDF — دليلك إنك أول من عرض العقار على هذا الزبون إذا صار نزاع سعي.</p></div>
+      <div class="feat"><div class="ic"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div><h3>إعلان جاهز بضغطة</h3><p>نص إعلان لحراج وX وواتساب من بيانات العقار نفسها، بحدّ 280 حرفًا لـX، ويذكّرك برقم ترخيص الإعلان ورخصة فال.</p></div>
+      <div class="feat"><div class="ic"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div><h3>متابعة الزبائن</h3><p>«تواصلت اليوم» بضغطة، وموعد متابعة لكل طلب. المتأخرة والمستحقّة اليوم تطلع في أعلى القائمة.</p></div>
+      <div class="feat"><div class="ic"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div><h3>السعي ونصيبك والتفويض</h3><p>نسبة السعي ونصيبك منه (كامل مع المالك، مقسوم مع وسيط آخر) محسوبة بالريال على كل بطاقة — وتنبيه قبل العرض إذا ما عندك تفويض من المالك.</p></div>
     </div>
   </div>
 </section>
